@@ -1,0 +1,32 @@
+# Godot
+# -----------------------
+
+# Godot editor metadata
+.godot/
+.import/
+
+# Export settings
+export.cfg
+export_presets.cfg
+
+# Backup/temporary files
+*.godot~
+*.tmp
+
+# Mono / C# support
+.mono/
+*.csproj
+*.sln
+*.userprefs
+
+# -----------------------
+# General
+# -----------------------
+
+# Node.js
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini 
