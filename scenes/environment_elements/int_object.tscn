@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpmp4bujrpjva"]
+
+[ext_resource type="Script" uid="uid://bff04h4snbmnj" path="res://scripts/int_object.gd" id="1_i6fca"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_t0fev"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qrcvd"]
+friction = 0.8
+bounce = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ud0ij"]
+size = Vector2(10, 14)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ak6oq"]
+font = ExtResource("2_t0fev")
+
+[node name="Int_Object" type="RigidBody2D"]
+disable_mode = 2
+collision_layer = 4
+collision_mask = 911
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_qrcvd")
+can_sleep = false
+max_contacts_reported = 2
+script = ExtResource("1_i6fca")
+initial_value = 30
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ud0ij")
+
+[node name="TextValue" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 13.0
+text = "00"
+label_settings = SubResource("LabelSettings_ak6oq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

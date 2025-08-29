@@ -1,0 +1,229 @@
+[gd_scene load_steps=18 format=3 uid="uid://dp6tjuwpf5i5h"]
+
+[ext_resource type="Script" uid="uid://c1p1e8spypbpk" path="res://scripts/main_menu.gd" id="1_um6dh"]
+[ext_resource type="Texture2D" uid="uid://cf21kgdnmvbe7" path="res://assets/images/QApgxR.png" id="2_mf7fl"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_d6l81"]
+[ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="4_a1wsg"]
+[ext_resource type="FontFile" uid="uid://clukxufm8416u" path="res://assets/fonts/04B_30__.TTF" id="5_i7p8e"]
+[ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="6_5d4ag"]
+[ext_resource type="PackedScene" uid="uid://bvih4mru6gyoh" path="res://scenes/UI/settings.tscn" id="6_bm8t2"]
+[ext_resource type="AudioStream" uid="uid://dr67emcrg45b" path="res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3" id="6_sfthw"]
+[ext_resource type="PackedScene" uid="uid://25bjfaqklrw" path="res://scenes/UI/user_list.tscn" id="8_um6dh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12kdf"]
+texture = ExtResource("2_mf7fl")
+modulate_color = Color(0.693137, 0.505547, 0.326815, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvdtt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mf7fl"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfgb2"]
+texture = ExtResource("4_a1wsg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlsky"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwd2w"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_um6dh"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d6l81"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "settings", "user_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_um6dh")
+main_menu = NodePath("Background/Menu")
+settings = NodePath("Background/Settings")
+user_list = NodePath("Background/UserList")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_12kdf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -920.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainButtons" type="VBoxContainer" parent="Background/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -233.5
+offset_right = 154.0
+offset_bottom = 233.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Start" type="Button" parent="Background/Menu/MainButtons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+text = "Start
+New Game"
+
+[node name="Continue" type="Button" parent="Background/Menu/MainButtons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_um6dh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+disabled = true
+text = "Continue"
+
+[node name="Settings" type="Button" parent="Background/Menu/MainButtons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_d6l81")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Background/Menu/MainButtons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+text = "Exit"
+
+[node name="GameTitle" type="Label" parent="Background/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 188.0
+offset_top = -200.0
+offset_right = 1085.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.67451)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("5_i7p8e")
+theme_override_font_sizes/font_size = 63
+text = "OK NAI 
+PREPARE 
+YOUR
+BOOTY 
+CHEEK FOR 
+THIS"
+horizontal_alignment = 1
+
+[node name="User" type="Panel" parent="Background/Menu"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 24.0
+offset_right = 1248.0
+offset_bottom = 88.0
+
+[node name="CurrentUser" type="Label" parent="Background/Menu/User"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_5d4ag")
+theme_override_font_sizes/font_size = 16
+text = "Welcome back! Naer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchUser" type="Button" parent="Background/Menu/User"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 400.0
+offset_right = 668.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+text = "Switch User"
+
+[node name="Settings" parent="Background" node_paths=PackedStringArray("previous_menu") instance=ExtResource("6_bm8t2")]
+visible = false
+layout_mode = 1
+offset_top = -296.5
+offset_bottom = 296.5
+previous_menu = NodePath("../Menu")
+
+[node name="UserList" parent="Background" node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
+visible = false
+layout_mode = 1
+parent = NodePath("../..")
+previous_menu = NodePath("../Menu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sfthw")
+volume_db = 5.0
+autoplay = true
+attenuation = 0.203063
+bus = &"Music"
+
+[connection signal="pressed" from="Background/Menu/MainButtons/Start" to="." method="_on_startnewgame_pressed"]
+[connection signal="pressed" from="Background/Menu/MainButtons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Background/Menu/MainButtons/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Background/Menu/MainButtons/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Background/Menu/User/SwitchUser" to="." method="_on_switch_user_pressed"]

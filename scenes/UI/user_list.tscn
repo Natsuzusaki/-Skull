@@ -1,0 +1,286 @@
+[gd_scene load_steps=21 format=3 uid="uid://25bjfaqklrw"]
+
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_563rl"]
+[ext_resource type="Script" uid="uid://q3cjb3sfjng0" path="res://scripts/user_list.gd" id="1_p8nt1"]
+[ext_resource type="Texture2D" uid="uid://cf21kgdnmvbe7" path="res://assets/images/QApgxR.png" id="2_aantl"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_j15x8"]
+[ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="3_aantl"]
+[ext_resource type="Texture2D" uid="uid://cuawj75op8e33" path="res://assets/images/uii.png" id="6_j8kax"]
+[ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="7_j8kax"]
+[ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="8_ofoij"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofoij"]
+texture = ExtResource("2_aantl")
+modulate_color = Color(0.449735, 0.314694, 0.183401, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yr1ls"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8td0d"]
+texture = ExtResource("6_j8kax")
+region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.458405, 0.458405, 0.458405, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_38kwa"]
+texture = ExtResource("6_j8kax")
+region_rect = Rect2(675, 576, 94, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofrgu"]
+texture = ExtResource("6_j8kax")
+region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.74978, 0.74978, 0.74978, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38kwa"]
+bg_color = Color(0, 0, 0, 0.431373)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8td0d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyp2g"]
+texture = ExtResource("8_ofoij")
+modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnx0p"]
+texture = ExtResource("8_ofoij")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4a5dg"]
+texture = ExtResource("8_ofoij")
+modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbepg"]
+texture = ExtResource("8_ofoij")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rc08k"]
+
+[node name="UserList" type="Panel"]
+anchors_preset = -1
+anchor_top = 0.0888889
+anchor_right = 0.8
+anchor_bottom = 0.911111
+offset_left = 384.0
+offset_top = -32.0
+offset_right = -128.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p8nt1")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 96.0001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ofoij")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UserList" type="ItemList" parent="Panel/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 30
+theme_override_fonts/font = ExtResource("2_j15x8")
+theme_override_font_sizes/font_size = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 456.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Name_input" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_aantl")
+placeholder_text = "write your name..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Delete_User" type="Button" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_563rl")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+text = "Delete"
+
+[node name="Create_user" type="Button" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_563rl")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+text = "Create"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 568.0
+offset_right = 368.0
+offset_bottom = 624.0
+
+[node name="Set_User" type="Button" parent="VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_563rl")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+text = "Select"
+
+[node name="ConfirmationPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = 32.0001
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ConfirmationPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -107.5
+offset_right = 208.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_38kwa")
+
+[node name="Label" type="Label" parent="ConfirmationPanel/Panel"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 416.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("7_j8kax")
+text = "Delete selected user?"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ConfirmationPanel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = 19.5
+offset_right = 176.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmationPanel/Panel/MarginContainer2"]
+layout_mode = 2
+
+[node name="No" type="Button" parent="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_563rl")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbepg")
+text = "No"
+
+[node name="VSeparator" type="VSeparator" parent="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rc08k")
+
+[node name="Yes" type="Button" parent="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_563rl")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbepg")
+text = "Yes"
+
+[connection signal="item_activated" from="Panel/MarginContainer/ScrollContainer/UserList" to="." method="_on_user_list_item_activated"]
+[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/UserList" to="." method="_on_user_list_item_selected"]
+[connection signal="focus_entered" from="VBoxContainer/Name_input" to="." method="_on_name_input_focus_entered"]
+[connection signal="text_changed" from="VBoxContainer/Name_input" to="." method="_on_name_input_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Delete_User" to="." method="_on_delete_user_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Create_user" to="." method="_on_create_user_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Set_User" to="." method="_on_set_user_pressed"]
+[connection signal="pressed" from="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer/Yes" to="." method="_on_yes_pressed"]

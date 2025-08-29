@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsouoiyh8vwuj"]
+
+[ext_resource type="Script" uid="uid://dcw2r0ntti44" path="res://scripts/flag.gd" id="1_ec5eu"]
+
+[node name="Flag" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_ec5eu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://tbbseijgioje"]
+
+[ext_resource type="Texture2D" uid="uid://cfngxsisimme" path="res://assets/images/note1.png" id="1_cxn7x"]
+[ext_resource type="Script" uid="uid://ccnlc0a4tvrnh" path="res://scripts/notes.gd" id="1_xcep3"]
+[ext_resource type="Texture2D" uid="uid://be32asbbhyyer" path="res://assets/images/note1_near.png" id="2_xcep3"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="4_88ptu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88ptu"]
+radius = 8.0
+height = 32.0
+
+[node name="Notes" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_xcep3")
+
+[node name="Note_Range" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_88ptu")
+
+[node name="Note" type="Sprite2D" parent="."]
+texture = ExtResource("1_cxn7x")
+
+[node name="Note_Near" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_xcep3")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -41.0
+offset_right = 20.0
+offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("4_88ptu")
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

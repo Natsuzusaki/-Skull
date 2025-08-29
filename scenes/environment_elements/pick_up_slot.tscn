@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt8d1yxyocqtj"]
+
+[ext_resource type="Script" uid="uid://g668iyuhr65i" path="res://scripts/pick_up_slot.gd" id="1_q4fkv"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_n40sm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp1mh"]
+size = Vector2(15, 15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4bdm4"]
+font = ExtResource("2_n40sm")
+font_size = 8
+
+[node name="PickUp_Slot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q4fkv")
+
+[node name="PickUp_Area" type="Area2D" parent="."]
+position = Vector2(10, 10)
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp_Area"]
+shape = SubResource("RectangleShape2D_tp1mh")
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_right = 30.0
+offset_bottom = 23.0
+text = "?"
+label_settings = SubResource("LabelSettings_4bdm4")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="body_entered" from="PickUp_Area" to="." method="_on_pick_up_area_body_entered"]
+[connection signal="body_exited" from="PickUp_Area" to="." method="_on_pick_up_area_body_exited"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba5axojyo8end"]
+
+[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="1_7x58t"]
+[ext_resource type="Script" uid="uid://cxrk56bwem6mc" path="res://scripts/printer.gd" id="1_vg6ij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbkte"]
+size = Vector2(16, 8)
+
+[node name="Printer" type="Node2D"]
+script = ExtResource("1_vg6ij")
+
+[node name="InstanceTime" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.0351563, 0.453125)
+texture = ExtResource("1_7x58t")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.117188, 0.0585938)
+texture = ExtResource("1_7x58t")
+
+[node name="Blocked_Area" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 140
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocked_Area"]
+shape = SubResource("RectangleShape2D_dbkte")
+
+[connection signal="body_entered" from="Blocked_Area" to="." method="_on_blocked_area_body_entered"]
+[connection signal="body_exited" from="Blocked_Area" to="." method="_on_blocked_area_body_exited"]

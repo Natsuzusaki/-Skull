@@ -1,0 +1,86 @@
+~ talk1
+Yuna: Huh! How do we even reach the other side?
+- Double Jumping
+	Yuna: I don't think double jumping can reach that distance.
+Yuna: Maybe there's something here that could help us.
+Yuna: ...
+do player.static_direction = -1
+do note1.monitoring = true
+Yuna: Oh! Look a note!
+do player.move_in_cutscene(Vector2(4432, 424))
+Yuna: It's some kind of instruction for a device
+do note_manager.visible = true
+do note_manager.show_note(0, true)
+do blur.visible = true
+do wait(0.6)
+Yuna: Oh! Someone has already been here, they drew all over the note.
+=> END!
+
+~ talk2
+Yuna: So... Did you understand all of that? Becuase i didn't
+- Yes
+	Yuna: This should be easy then [do player.move_in_cutscene(Vector2(4392, 424), 75)]
+- Nope
+	Yuna: Oh.. Well [do player.move_in_cutscene(Vector2(4392, 424), 75)]let us try out this device first, maybe we can learn something by trial and error.
+do console1.turned_on = true
+do player.stay = false
+do camera.back()
+=> END!
+
+~ talk3
+Yuna: It said something about [wave]print()[/wave] maybe that can help us get across?
+Yuna: Anyways goodluck!
+=> END!
+
+~ talk4
+Yuna: Oh wow! It looks like a bridge
+Yuna: We can now safely go across, thanks to you 😋
+=> END!
+
+~ talk5
+% Yuna: Oh it's too short 
+% Yuna: Maybe make it a bit longer? 
+% Yuna: Try printing a wider text 
+% Yuna: Not enough letters 
+% Yuna: Byebye text 
+=> END!
+
+~ talk6
+Yuna: They left us a note!
+Yuna: How nice
+=> END!
+
+~ talk7
+Yuna: You're getting good at this
+Yuna: Keep it up (nerd) 😁😁😁😁😁
+=> END!
+
+~ talk8
+Yuna: Uhh.. I dont think thats suppose to happen
+Yuna: How about we restart current room?
+- How to restart?
+	Yuna: Just press Q
+- Why do we restart?
+	Yuna: The string above is blocking the printer, I don't think we can get another string to put below
+	Yuna: Just press Q when you want to restart current room
+=> END!
+
+~ talk9
+Yuna: Three printers? Are they all connected?
+- Probably
+Yuna: We have to make sure we don't block our path
+Yuna: Goodluck!
+=> END!
+
+~ talk10
+Yuna: Ahh! We messed up
+=> END!
+
+~ talk11
+Yuna: .....?
+Yuna: Was that another person? Should we follow them?
+- Sure
+	Yuna: They went that way ->
+- Not Sure
+	Yuna: Too bad the only path we can go is the direction they went off to
+=> END!

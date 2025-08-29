@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b11yggyqs050q"]
+
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_d8087"]
+[ext_resource type="Script" uid="uid://dqf8lfenk1edv" path="res://scripts/code_blocks.gd" id="1_u1mv5"]
+[ext_resource type="PackedScene" uid="uid://dt8d1yxyocqtj" path="res://scenes/environment_elements/pick_up_slot.tscn" id="3_lxhjd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rr2pk"]
+font = ExtResource("1_d8087")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8sk8"]
+font = ExtResource("1_d8087")
+font_size = 8
+
+[node name="Code_Blocks" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u1mv5")
+statement = "func move():
+	gate.position.x = "
+
+[node name="FirstLine" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Func_name" type="Label" parent="FirstLine"]
+layout_mode = 2
+text = "example"
+label_settings = SubResource("LabelSettings_rr2pk")
+vertical_alignment = 1
+
+[node name="SecondLine" type="HBoxContainer" parent="FirstLine"]
+layout_mode = 2
+
+[node name="Indentation" type="Label" parent="FirstLine/SecondLine"]
+layout_mode = 2
+text = "   "
+
+[node name="Statement1" type="Label" parent="FirstLine/SecondLine"]
+layout_mode = 2
+text = "example"
+label_settings = SubResource("LabelSettings_h8sk8")
+vertical_alignment = 1
+
+[node name="PickUp_Slot" parent="FirstLine/SecondLine" instance=ExtResource("3_lxhjd")]
+layout_mode = 2

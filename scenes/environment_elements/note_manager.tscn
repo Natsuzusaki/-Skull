@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://tjy0471dujc4"]
+
+[ext_resource type="Texture2D" uid="uid://bhtqrwmqsanoi" path="res://assets/images/console_control.png" id="1_6uuh8"]
+[ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
+
+[node name="NoteManager" type="Node2D"]
+script = ExtResource("1_th8kw")
+
+[node name="Instructions" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Instruction1" type="Sprite2D" parent="Instructions"]
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("1_6uuh8")
+
+[node name="Instruction2" type="Sprite2D" parent="Instructions"]
+position = Vector2(143.956, 240)
+scale = Vector2(0.0882758, 0.0660317)
+texture = ExtResource("1_6uuh8")
+
+[node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Instruction3" type="Sprite2D" parent="Notes"]
+position = Vector2(-4.76837e-07, 3.23117e-27)
+scale = Vector2(0.0882758, 0.0660317)
+texture = ExtResource("1_6uuh8")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 248.0
+offset_top = 328.0
+offset_right = 502.0
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_woc00")
+text = "Press \"E\" to close"
+horizontal_alignment = 2

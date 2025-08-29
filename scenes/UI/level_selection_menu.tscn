@@ -1,0 +1,323 @@
+[gd_scene load_steps=21 format=3 uid="uid://djwgkcg0f8rok"]
+
+[ext_resource type="Texture2D" uid="uid://6beclxvljmm0" path="res://assets/images/ChatGPT Image Aug 13, 2025, 02_10_01 AM.png" id="1_tssx3"]
+[ext_resource type="Script" uid="uid://b7exnj07p634w" path="res://scripts/level_selection_menu.gd" id="1_xivej"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_erkc0"]
+[ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="4_qece5"]
+[ext_resource type="Texture2D" uid="uid://beqk2ccumslfk" path="res://assets/images/pixil-frame-0 (3).png" id="5_erkc0"]
+[ext_resource type="Texture2D" uid="uid://cu341iy5fue0f" path="res://assets/images/pixil-frame-0 (4).png" id="6_qece5"]
+[ext_resource type="Texture2D" uid="uid://d3quajpfnp2co" path="res://assets/images/pixil-frame-0 (5).png" id="7_b730w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_haryb"]
+texture = ExtResource("1_tssx3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b730w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty4yg"]
+texture = ExtResource("4_qece5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_totgr"]
+texture = ExtResource("4_qece5")
+modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kmca"]
+texture = ExtResource("4_qece5")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erkc0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4hd5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qece5"]
+texture = ExtResource("5_erkc0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b730w"]
+texture = ExtResource("5_erkc0")
+modulate_color = Color(0.517184, 0.517184, 0.517185, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kqfvb"]
+texture = ExtResource("5_erkc0")
+modulate_color = Color(0.803922, 0.803922, 0.803922, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gep0b"]
+texture = ExtResource("5_erkc0")
+modulate_color = Color(0.803922, 0.803922, 0.803922, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6tx2"]
+texture = ExtResource("7_b730w")
+region_rect = Rect2(440, 400, 460, 380)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0s06"]
+texture = ExtResource("6_qece5")
+modulate_color = Color(0.720467, 0.720468, 0.720467, 1)
+
+[node name="LevelSelectionMenu" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xivej")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_haryb")
+
+[node name="BackButton" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -547.0
+offset_top = 24.0
+offset_right = -392.0
+offset_bottom = 109.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b730w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ty4yg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_totgr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2kmca")
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -219.0
+offset_right = 136.0
+offset_bottom = -193.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_font_sizes/font_size = 25
+text = "Select Level"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -482.0
+offset_top = -154.0
+offset_right = 482.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+text = "Level 2"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+text = "Level 3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -482.0
+offset_top = 57.0
+offset_right = 482.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="Button4" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+text = "Level 4"
+
+[node name="Button5" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+text = "Level 5"
+
+[node name="Button6" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_erkc0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+text = "Level 6"
+
+[node name="lvl1check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 354.0
+offset_top = 302.0
+offset_right = 435.0
+offset_bottom = 368.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl2check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 696.0
+offset_top = 309.0
+offset_right = 777.0
+offset_bottom = 375.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl3check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1032.0
+offset_top = 306.0
+offset_right = 1113.0
+offset_bottom = 372.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl4check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 349.0
+offset_top = 517.0
+offset_right = 430.0
+offset_bottom = 583.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl5check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 694.0
+offset_top = 515.0
+offset_right = 775.0
+offset_bottom = 581.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl6check" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1034.0
+offset_top = 518.0
+offset_right = 1115.0
+offset_bottom = 584.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
+
+[node name="lvl2locked" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 502.0
+offset_top = 206.0
+offset_right = 777.0
+offset_bottom = 366.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
+
+[node name="lvl3locked" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 847.0
+offset_top = 206.0
+offset_right = 1122.0
+offset_bottom = 366.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
+
+[node name="lvl4locked" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 158.0
+offset_top = 417.0
+offset_right = 433.0
+offset_bottom = 577.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
+
+[node name="lvl5locked" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 502.0
+offset_top = 417.0
+offset_right = 777.0
+offset_bottom = 577.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
+
+[node name="lvl6locked" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 847.0
+offset_top = 417.0
+offset_right = 1122.0
+offset_bottom = 577.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button6" to="." method="_on_button_6_pressed"]

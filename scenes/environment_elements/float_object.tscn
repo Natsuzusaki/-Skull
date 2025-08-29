@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwqrtxttcr0it"]
+
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_2u5sw"]
+[ext_resource type="Script" uid="uid://c8s0dyxng1i7k" path="res://scripts/float_object.gd" id="1_7ibfo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_om64o"]
+friction = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjeo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvg8k"]
+font = ExtResource("1_2u5sw")
+
+[node name="Float_Object" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 399
+physics_material_override = SubResource("PhysicsMaterial_om64o")
+gravity_scale = 0.005
+can_sleep = false
+script = ExtResource("1_7ibfo")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ifjeo")
+
+[node name="TextValue" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -8.0
+offset_right = 19.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0.1"
+label_settings = SubResource("LabelSettings_uvg8k")
+horizontal_alignment = 1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfgrj03avqqj7"]
+
+[ext_resource type="Script" uid="uid://br4wmbtavt70m" path="res://scripts/bool_object.gd" id="1_0hytp"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_t4uxi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y83fy"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1qpe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2t0ew"]
+font = ExtResource("1_t4uxi")
+
+[node name="Bool_Object" type="RigidBody2D" groups=["Pushable"]]
+collision_layer = 128
+collision_mask = 399
+mass = 70.0
+physics_material_override = SubResource("PhysicsMaterial_y83fy")
+script = ExtResource("1_0hytp")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o1qpe")
+
+[node name="TextValue" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -8.0
+offset_right = 27.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "true"
+label_settings = SubResource("LabelSettings_2t0ew")
+horizontal_alignment = 1

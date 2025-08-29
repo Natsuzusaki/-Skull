@@ -1,0 +1,224 @@
+[gd_scene load_steps=13 format=3 uid="uid://bfan1cxcaqfbu"]
+
+[ext_resource type="Script" uid="uid://b6lv1768mwh4d" path="res://scripts/console_panel.gd" id="1_7qxwa"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
+[ext_resource type="Script" uid="uid://du1dou86xpprf" path="res://scripts/scriptvalidator.gd" id="2_kxyyb"]
+[ext_resource type="Texture2D" uid="uid://blj7xjycbvr2i" path="res://assets/images/console1.png" id="3_buc2e"]
+[ext_resource type="Script" uid="uid://df3vh6ys1xxhu" path="res://scripts/datatype_changer.gd" id="4_bptkf"]
+[ext_resource type="Texture2D" uid="uid://cw27pmkod1t64" path="res://assets/images/console2.png" id="4_oh7pb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ujx2k"]
+font = ExtResource("2_her8x")
+font_size = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx28n"]
+size = Vector2(64, 96)
+
+[sub_resource type="Animation" id="Animation_vj220"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Terminal/Panel:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Terminal/Panel:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_hx16o"]
+resource_name = "pop_down"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Terminal/Panel:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Terminal/Panel:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25)
+}
+
+[sub_resource type="Animation" id="Animation_ajbaa"]
+resource_name = "pop_up"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Terminal/Panel:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.266667, -1, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Terminal/Panel:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w38mj"]
+_data = {
+&"RESET": SubResource("Animation_vj220"),
+&"pop_down": SubResource("Animation_hx16o"),
+&"pop_up": SubResource("Animation_ajbaa")
+}
+
+[node name="Console" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_7qxwa")
+base_text = "enter code..."
+fixed_var = "var number = 5
+const SPEED = 10"
+
+[node name="TextValidator" type="Node2D" parent="."]
+script = ExtResource("2_kxyyb")
+
+[node name="DataType_Changer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_bptkf")
+
+[node name="Terminal" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -141.0
+offset_right = 150.0
+offset_bottom = 259.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(150, 200)
+
+[node name="Panel" type="Panel" parent="Terminal"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 25.0
+offset_top = -48.3333
+offset_right = -25.0
+offset_bottom = 151.667
+grow_horizontal = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 200)
+
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+label_settings = SubResource("LabelSettings_ujx2k")
+
+[node name="Limit" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = SubResource("LabelSettings_ujx2k")
+
+[node name="Button" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_her8x")
+theme_override_font_sizes/font_size = 8
+text = "run"
+
+[node name="Exit" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_her8x")
+theme_override_font_sizes/font_size = 8
+text = "X"
+
+[node name="CodeEdit" type="CodeEdit" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_her8x")
+theme_override_font_sizes/font_size = 8
+caret_blink = true
+gutters_draw_line_numbers = true
+code_completion_enabled = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 48)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_rx28n")
+
+[node name="Console" type="Sprite2D" parent="."]
+position = Vector2(0, 48)
+texture = ExtResource("3_buc2e")
+
+[node name="Console_Near" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 48)
+texture = ExtResource("4_oh7pb")
+
+[node name="PopUp Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w38mj")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="focus_entered" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_focus_entered"]
+[connection signal="focus_exited" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_focus_exited"]
+[connection signal="lines_edited_from" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_lines_edited_from"]

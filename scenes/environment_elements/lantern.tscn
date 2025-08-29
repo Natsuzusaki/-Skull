@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm1vrdfjgbxj"]
+
+[ext_resource type="Script" uid="uid://cau1cdb216ntx" path="res://scripts/lantern.gd" id="1_hdfmc"]
+[ext_resource type="Texture2D" uid="uid://dl20nmqj4oogk" path="res://assets/images/lantern1.png" id="1_hhuhv"]
+[ext_resource type="Texture2D" uid="uid://vdr667ixq1pe" path="res://assets/images/light1.png" id="2_uxgnm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxgnm"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxgnm"]
+size = Vector2(2.5, 2.5)
+
+[node name="Lantern" type="Node2D"]
+
+[node name="LanternPhysics" type="RigidBody2D" parent="."]
+collision_layer = 512
+collision_mask = 7
+mass = 10.0
+script = ExtResource("1_hdfmc")
+wind_strength = 10000.0
+min_delay = 3.0
+max_delay = 5.0
+
+[node name="PointLight2D" type="PointLight2D" parent="LanternPhysics"]
+position = Vector2(-1.52588e-05, 0)
+scale = Vector2(5.12, 5.12)
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("2_uxgnm")
+texture_scale = 1.5
+height = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LanternPhysics"]
+shape = SubResource("CapsuleShape2D_uxgnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="LanternPhysics"]
+texture = ExtResource("1_hhuhv")
+
+[node name="PinnedArea" type="StaticBody2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PinnedArea"]
+shape = SubResource("RectangleShape2D_uxgnm")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -16)
+node_a = NodePath("../LanternPhysics")
+node_b = NodePath("../PinnedArea")
+angular_limit_lower = -3.14159
+angular_limit_upper = -3.14159

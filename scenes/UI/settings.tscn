@@ -1,0 +1,238 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvih4mru6gyoh"]
+
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_emn88"]
+[ext_resource type="Texture2D" uid="uid://dijf2bi6a1w2i" path="res://assets/images/ui.png" id="1_ibeei"]
+[ext_resource type="Script" uid="uid://1vr5m2fqmcb7" path="res://scripts/settings.gd" id="1_jyo1n"]
+[ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="3_i4dvr"]
+[ext_resource type="Texture2D" uid="uid://cuawj75op8e33" path="res://assets/images/uii.png" id="6_ibeei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_25bb8"]
+texture = ExtResource("1_ibeei")
+region_rect = Rect2(544, 376, 336, 184)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25bb8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyo1n"]
+texture = ExtResource("6_ibeei")
+region_rect = Rect2(675, 576, 94, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibeei"]
+texture = ExtResource("6_ibeei")
+region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.412153, 0.412152, 0.412152, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pa0cq"]
+texture = ExtResource("6_ibeei")
+region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibeei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxa2i"]
+texture = ExtResource("1_ibeei")
+region_rect = Rect2(443, 347, 15, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hnnl"]
+texture = ExtResource("1_ibeei")
+region_rect = Rect2(426, 347, 15, 15)
+modulate_color = Color(0.856067, 0.856067, 0.856067, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2soj1"]
+texture = ExtResource("1_ibeei")
+region_rect = Rect2(409, 347, 15, 15)
+
+[node name="Settings" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -297.0
+offset_right = 576.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_25bb8")
+script = ExtResource("1_jyo1n")
+
+[node name="Setting_text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -470.0
+offset_top = 27.0
+offset_right = 482.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 23
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 60
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Entire_settings" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sounds_text" type="Label" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 25
+text = "Sounds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundSeparateOpen" type="HSeparator" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Sliders" type="VBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Music_control" type="HBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Music_text" type="Label" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/Music_control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 23
+text = "Music Volume "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/Music_control"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/Music_control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("3_i4dvr")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFX_control" type="HBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="SFX_text" type="Label" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/SFX_control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 23
+text = "SFX Volume     "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/SFX_control"]
+layout_mode = 2
+theme_override_constants/separation = 197
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/ScrollContainer/Entire_settings/Sliders/SFX_control"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SoundSeparateClose" type="HSeparator" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Keybinds_text" type="Label" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 25
+text = "Keybinds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeybindSeparateOpen" type="HSeparator" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Keybindings" type="VBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ActionList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings/Keybindings"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="ResetButton" type="HBoxContainer" parent="MarginContainer/ScrollContainer/Entire_settings/Keybindings"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResetToDefault" type="Button" parent="MarginContainer/ScrollContainer/Entire_settings/Keybindings/ResetButton"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 8.97
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_25bb8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jyo1n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ibeei")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pa0cq")
+text = "
+Reset to default   
+
+"
+icon_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -264.5
+offset_right = -7.0
+offset_bottom = -212.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_emn88")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibeei")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hxa2i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6hnnl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2soj1")
+
+[connection signal="value_changed" from="MarginContainer/ScrollContainer/Entire_settings/Sliders/Music_control/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/ScrollContainer/Entire_settings/Sliders/SFX_control/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/Entire_settings/Keybindings/ResetButton/ResetToDefault" to="." method="_on_reset_to_default_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
