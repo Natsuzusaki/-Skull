@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://csd1xt3gyob2q"]
+
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_clw5b"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_u14ib"]
+
+[resource]
+default_font = ExtResource("1_clw5b")
+default_font_size = 26
+/font_sizes/font_size = 16
+/fonts/pixel_font = ExtResource("1_clw5b")
+/icons/pixel = null
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_clw5b")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("3_u14ib")
