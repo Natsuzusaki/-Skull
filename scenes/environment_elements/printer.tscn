@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ba5axojyo8end"]
 
-[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="1_7x58t"]
 [ext_resource type="Script" uid="uid://cxrk56bwem6mc" path="res://scripts/printer.gd" id="1_vg6ij"]
+[ext_resource type="Texture2D" uid="uid://8qkj5m0ohnvh" path="res://assets/images/grayblocking2.png" id="2_dbkte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbkte"]
 size = Vector2(16, 8)
@@ -13,14 +13,12 @@ script = ExtResource("1_vg6ij")
 wait_time = 0.2
 one_shot = true
 
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(0, -28)
-scale = Vector2(0.0351563, 0.453125)
-texture = ExtResource("1_7x58t")
-
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.117188, 0.0585938)
-texture = ExtResource("1_7x58t")
+position = Vector2(0, -27.0332)
+scale = Vector2(0.666667, 0.877782)
+texture = ExtResource("2_dbkte")
+region_enabled = true
+region_rect = Rect2(392, 224, 48, 66)
 
 [node name="Blocked_Area" type="Area2D" parent="."]
 collision_layer = 16

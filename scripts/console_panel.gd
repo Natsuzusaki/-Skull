@@ -15,6 +15,7 @@ extends Area2D
 @onready var button: Button = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button
 @onready var consolesprite: Sprite2D = $Console
 @onready var consolesprite_near: Sprite2D = $Console_Near
+@onready var console_off: Sprite2D = $Console_Off
 @onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Limit
 
 var valid := false 
@@ -130,3 +131,8 @@ func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 	if restart_text:
 		label.text = fixed_var
 		restart_text = false
+func _process(delta: float) -> void:
+	if not turned_on:
+		consolesprite.visible = false
+		consolesprite_near.visible = false
+		console_off.visible = true

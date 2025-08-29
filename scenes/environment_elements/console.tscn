@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfan1cxcaqfbu"]
+[gd_scene load_steps=14 format=3 uid="uid://bfan1cxcaqfbu"]
 
 [ext_resource type="Script" uid="uid://b6lv1768mwh4d" path="res://scripts/console_panel.gd" id="1_7qxwa"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://blj7xjycbvr2i" path="res://assets/images/console1.png" id="3_buc2e"]
 [ext_resource type="Script" uid="uid://df3vh6ys1xxhu" path="res://scripts/datatype_changer.gd" id="4_bptkf"]
 [ext_resource type="Texture2D" uid="uid://cw27pmkod1t64" path="res://assets/images/console2.png" id="4_oh7pb"]
+[ext_resource type="Texture2D" uid="uid://dcydk3mfwaanh" path="res://assets/images/console3.png" id="7_ifr1o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ujx2k"]
 font = ExtResource("2_her8x")
@@ -206,9 +207,12 @@ position = Vector2(0, 48)
 texture = ExtResource("3_buc2e")
 
 [node name="Console_Near" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 48)
 texture = ExtResource("4_oh7pb")
+
+[node name="Console_Off" type="Sprite2D" parent="."]
+position = Vector2(0, 48)
+texture = ExtResource("7_ifr1o")
 
 [node name="PopUp Animation" type="AnimationPlayer" parent="."]
 libraries = {

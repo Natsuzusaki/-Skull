@@ -7,6 +7,7 @@ extends Node2D
 @onready var turn_on_near: Sprite2D = $TurnOnNear
 @onready var turn_off: Sprite2D = $TurnOff
 @onready var turn_off_near: Sprite2D = $TurnOffNear
+@onready var disable: Sprite2D = $Disabled
 var disabled := false
 var is_near := false
 var button_status := false #false-off, true-on
@@ -35,11 +36,9 @@ func _process(_delta: float) -> void:
 	turn_on.visible = false
 	turn_off_near.visible = false
 	turn_off.visible = false
+	disable.visible = false
 	if disabled:
-		if button_status:
-			turn_on.visible = true
-		else:
-			turn_off.visible = true
+		disable.visible = true
 		return
 	if button_status:
 		if is_near:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd2as5ogj6hch"]
+[gd_scene load_steps=9 format=3 uid="uid://cd2as5ogj6hch"]
 
 [ext_resource type="Script" uid="uid://g8l1is0q14ca" path="res://scripts/button.gd" id="1_rhj8v"]
 [ext_resource type="Texture2D" uid="uid://cb6i08eg0h1fh" path="res://assets/images/button1_on.png" id="2_i7y4x"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="3_3q610"]
 [ext_resource type="Texture2D" uid="uid://c8ukena52osw8" path="res://assets/images/button1_on_near.png" id="3_8828i"]
 [ext_resource type="Texture2D" uid="uid://ckjx2hmm7ofnt" path="res://assets/images/button1_off_near.png" id="5_bx0y0"]
+[ext_resource type="Texture2D" uid="uid://b5ijeems3ly6j" path="res://assets/images/button1_disabled.png" id="6_bx0y0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7y4x"]
 size = Vector2(48, 48)
@@ -33,6 +34,10 @@ texture = ExtResource("3_1bdt2")
 [node name="TurnOffNear" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("5_bx0y0")
+
+[node name="Disabled" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_bx0y0")
 
 [node name="Label" type="Label" parent="."]
 visible = false

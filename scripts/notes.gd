@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var on: bool = true
-@export var type: bool
 @export var note_num: int
 @export var note_manager: Node2D
 @export var blur: Control
@@ -37,7 +36,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			player.stay = false
 			actions_sent.emit("note_closed")
 		elif not note_manager.visible:
-			note_manager.show_note(note_num, type)
+			note_manager.show_note(note_num)
 			blur.visible = true
 			note_manager.visible = true
 			player.stay = true

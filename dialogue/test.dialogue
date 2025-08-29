@@ -10,7 +10,7 @@ Yuna: Oh! Look a note!
 do player.move_in_cutscene(Vector2(4432, 424))
 Yuna: It's some kind of instruction for a device
 do note_manager.visible = true
-do note_manager.show_note(0, true)
+do note_manager.show_note(0)
 do blur.visible = true
 do wait(0.6)
 Yuna: Oh! Someone has already been here, they drew all over the note.
@@ -46,7 +46,7 @@ Yuna: We can now safely go across, thanks to you 😋
 => END!
 
 ~ talk6
-Yuna: They left us a note!
+Yuna: They left us more note!
 Yuna: How nice
 => END!
 

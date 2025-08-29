@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://be7qsmwlyx7w2"]
 
-[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="1_1rdq5"]
 [ext_resource type="Script" uid="uid://ylxu0auomtae" path="res://scripts/gate.gd" id="1_qnip5"]
+[ext_resource type="Texture2D" uid="uid://8qkj5m0ohnvh" path="res://assets/images/grayblocking2.png" id="2_ve1cm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5amh"]
 size = Vector2(95, 128)
@@ -11,11 +11,13 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_qnip5")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, -64)
-scale = Vector2(0.734375, 1)
-texture = ExtResource("1_1rdq5")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_y5amh")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2.26498e-06, -64)
+scale = Vector2(0.979592, 0.969697)
+texture = ExtResource("2_ve1cm")
+region_enabled = true
+region_rect = Rect2(223, 14, 98, 132)
