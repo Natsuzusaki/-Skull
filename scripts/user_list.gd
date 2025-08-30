@@ -5,9 +5,9 @@ extends Panel
 @onready var user_list: ItemList = $%UserList
 @onready var name_input: LineEdit = $VBoxContainer/Name_input
 @onready var confirmation_panel: Control = $ConfirmationPanel
-@onready var delete_user: Button = $VBoxContainer/HBoxContainer/Delete_User
+@onready var delete_user: Button = $VBoxContainer2/Delete_User
+@onready var set_user: Button = $VBoxContainer/HBoxContainer/Set_User
 @onready var create_user: Button = $VBoxContainer/HBoxContainer/Create_user
-@onready var set_user: Button = $VBoxContainer2/Set_User
 
 var selected_user
 

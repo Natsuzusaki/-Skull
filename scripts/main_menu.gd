@@ -31,11 +31,12 @@ func _on_startnewgame_pressed() -> void:
 		pass
 	else:
 		get_tree().change_scene_to_file("res://scenes/UI/level_selection_menu.tscn")
-		SaveManager.reset_save("Chapter1")
 
 func _on_continue_pressed() -> void:
-	Loading.next_scene_path = "res://scenes/levels/newtutorial.tscn"
-	get_tree().change_scene_to_file("res://scenes/UI/loading_screen.tscn")
+	if data["Levels"]["level1"]:
+		Loading.loading("res://scenes/levels/test.tscn")
+	else:
+		Loading.loading("res://scenes/levels/newtutorial.tscn")
 
 func _on_Settings_pressed() -> void:
 	if SaveManager.current_user == "Guest":

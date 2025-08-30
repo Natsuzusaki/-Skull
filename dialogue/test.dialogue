@@ -12,8 +12,6 @@ Yuna: It's some kind of instruction for a device
 do note_manager.visible = true
 do note_manager.show_note(0)
 do blur.visible = true
-do wait(0.6)
-Yuna: Oh! Someone has already been here, they drew all over the note.
 => END!
 
 ~ talk2
@@ -23,6 +21,7 @@ Yuna: So... Did you understand all of that? Becuase i didn't
 - Nope
 	Yuna: Oh.. Well [do player.move_in_cutscene(Vector2(4392, 424), 75)]let us try out this device first, maybe we can learn something by trial and error.
 do console1.turned_on = true
+do console1.consolesprite.visible = true
 do player.stay = false
 do camera.back()
 => END!

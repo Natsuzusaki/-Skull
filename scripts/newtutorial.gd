@@ -7,10 +7,13 @@ extends Node2D
 @onready var consoles: Node2D = %Consoles
 @onready var cutscene_sfx: Node2D = %"Cutscene SFX"
 
+@onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var str_object_4: RigidBody2D = $Objects/Str_Object4
 @onready var console1: Area2D = $Consoles/Console
 @onready var blur: ColorRect = $UIs/Blur
 @onready var note_manager: Node2D = $UIs/NoteManager
+@onready var button_2: Area2D = $Buttons/Button2
+@onready var gate: StaticBody2D = $Gate
 @onready var cutscene_1: Area2D = $Triggers/Cutscene1
 @onready var cutscene_2: Area2D = $Triggers/Cutscene2
 @onready var cant_cross: Area2D = $Triggers/CantCross
@@ -39,6 +42,10 @@ func _ready() -> void:
 		if chapter1.has("player_pos"):
 			var pos = chapter1["player_pos"]
 			player.global_position = Vector2(pos[0], pos[1])
+		if chapter1.has("checkpoint_order"):
+			if chapter1["checkpoint_order"] == 7.0:
+				button_2.disabled = true
+				gate.global_position += Vector2(0, 120)
 		if chapter1.has("flags"):
 			var flags = chapter1["flags"]
 			if flags.has("has_done_cutscene"):
@@ -145,8 +152,6 @@ func _on_can_cross_2_1_body_entered(body: Node2D) -> void:
 	is_first_present = true if body in can_cross_2_1.get_overlapping_bodies() else false
 func _on_can_cross_2_2_body_entered(body: Node2D) -> void:
 	await wait(2.5)
-	print(is_first_present)
-	print(talk_ctr)
 	if body in can_cross_2_2.get_overlapping_bodies() and is_first_present and talk_ctr <= 4:
 		talk_ctr = 5
 		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk7")
@@ -188,6 +193,8 @@ func _on_noise_body_entered(_body: Node2D) -> void:
 	entered_last_area()
 func _on_level_finished_body_entered(_body: Node2D) -> void:
 	player.stay = true
+	ui_level_complete.visible = true
+	ui_level_complete.animation_player.play("DropDown")
 	SaveManager.mark_level_completed(1)
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout

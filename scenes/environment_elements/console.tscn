@@ -207,10 +207,12 @@ position = Vector2(0, 48)
 texture = ExtResource("3_buc2e")
 
 [node name="Console_Near" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 48)
 texture = ExtResource("4_oh7pb")
 
 [node name="Console_Off" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 48)
 texture = ExtResource("7_ifr1o")
 

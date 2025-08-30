@@ -131,8 +131,10 @@ func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 	if restart_text:
 		label.text = fixed_var
 		restart_text = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not turned_on:
 		consolesprite.visible = false
 		consolesprite_near.visible = false
 		console_off.visible = true
+	else:
+		console_off.visible = false

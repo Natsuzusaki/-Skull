@@ -67,13 +67,12 @@ func _ready() -> void:
 		lvl_6_check.visible = false
 
 func _on_button_pressed() -> void:
-	Loading.next_scene_path = "res://scenes/levels/newtutorial.tscn"
-	get_tree().change_scene_to_file("res://scenes/UI/loading_screen.tscn")
+	Loading.loading("res://scenes/levels/newtutorial.tscn")
+	SaveManager.reset_save("Chapter1")
 
 func _on_button_2_pressed() -> void:
 	if SaveManager.is_level_completed(1):
-		Loading.next_scene_path = "res://scenes/levels/test.tscn"
-		get_tree().change_scene_to_file("res://scenes/UI/loading_screen.tscn")
+		Loading.loading("res://scenes/levels/test.tscn")
 
 func _on_button_3_pressed() -> void:
 	if SaveManager.is_level_completed(2):

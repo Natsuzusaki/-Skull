@@ -137,7 +137,7 @@ placeholder_text = "write your name..."
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Delete_User" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Set_User" type="Button" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -149,7 +149,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
-text = "Delete"
+text = "Select"
 
 [node name="Create_user" type="Button" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 1
@@ -172,7 +172,7 @@ offset_top = 568.0
 offset_right = 368.0
 offset_bottom = 624.0
 
-[node name="Set_User" type="Button" parent="VBoxContainer2"]
+[node name="Delete_User" type="Button" parent="VBoxContainer2"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -184,7 +184,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
-text = "Select"
+text = "Delete"
 
 [node name="ConfirmationPanel" type="Control" parent="."]
 layout_mode = 1
@@ -279,8 +279,8 @@ text = "Yes"
 [connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/UserList" to="." method="_on_user_list_item_selected"]
 [connection signal="focus_entered" from="VBoxContainer/Name_input" to="." method="_on_name_input_focus_entered"]
 [connection signal="text_changed" from="VBoxContainer/Name_input" to="." method="_on_name_input_text_changed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Delete_User" to="." method="_on_delete_user_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Set_User" to="." method="_on_set_user_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Create_user" to="." method="_on_create_user_pressed"]
-[connection signal="pressed" from="VBoxContainer2/Set_User" to="." method="_on_set_user_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Delete_User" to="." method="_on_delete_user_pressed"]
 [connection signal="pressed" from="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer/No" to="." method="_on_no_pressed"]
 [connection signal="pressed" from="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer/Yes" to="." method="_on_yes_pressed"]
