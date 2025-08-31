@@ -43,7 +43,7 @@ func _ready() -> void:
 			var pos = chapter1["player_pos"]
 			player.global_position = Vector2(pos[0], pos[1])
 		if chapter1.has("checkpoint_order"):
-			if chapter1["checkpoint_order"] == 7.0:
+			if chapter1["checkpoint_order"] == 8.0:
 				button_2.disabled = true
 				gate.global_position += Vector2(0, 120)
 		if chapter1.has("flags"):
@@ -88,6 +88,7 @@ func _on_kill_fail_objects_body_entered(body: Node2D) -> void:
 		console1.turned_on = true
 
 func entered_last_area() -> void:
+	player.stay = true
 	var ctr := 0
 	var time := 1.0
 	var auto_print = ["blocked", "obstruct", "jammed", "closed", "damper", "barricade", "sealed"]
@@ -108,6 +109,7 @@ func entered_last_area() -> void:
 		await wait(time)
 		ctr += 1
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk11")
+	player.stay = false
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if not get_tree().paused:
@@ -209,4 +211,4 @@ func _on_turn_dark_body_exited(_body: Node2D) -> void:
 func _on_outside_cave_body_entered(_body: Node2D) -> void:
 	turn_dark_light(Color8(255, 255, 255, 255))
 func _on_outside_cave_body_exited(_body: Node2D) -> void:
-	turn_dark_light(Color8(113, 185, 227, 255))
+	turn_dark_light(Color8(69, 145, 187, 255))

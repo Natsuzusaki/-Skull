@@ -51,7 +51,7 @@ Yuna: How nice
 
 ~ talk7
 Yuna: You're getting good at this
-Yuna: Keep it up (nerd) 😁😁😁😁😁
+Yuna: Keep it up
 => END!
 
 ~ talk8
@@ -65,14 +65,13 @@ Yuna: How about we restart current room?
 => END!
 
 ~ talk9
-Yuna: Three printers? Are they all connected?
-- Probably
-Yuna: We have to make sure we don't block our path
+Yuna: This might be hard, printing a wider text might block our path
 Yuna: Goodluck!
 => END!
 
 ~ talk10
 Yuna: Ahh! We messed up
+Yuna: Just press Q to reset current room
 => END!
 
 ~ talk11

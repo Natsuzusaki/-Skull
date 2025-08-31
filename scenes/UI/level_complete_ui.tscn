@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://wikiax10fqqp"]
 
 [ext_resource type="Script" uid="uid://dmpb7uykx5g3r" path="res://scripts/level_complete_ui.gd" id="1_6sdq8"]
-[ext_resource type="Texture2D" uid="uid://beceoucmbs5sg" path="res://assets/images/Level Complete.png" id="2_mb5wx"]
+[ext_resource type="Texture2D" uid="uid://beceoucmbs5sg" path="res://complete/UI/Level Complete.png" id="2_mb5wx"]
 [ext_resource type="FontFile" uid="uid://clukxufm8416u" path="res://assets/fonts/04B_30__.TTF" id="3_224vw"]
-[ext_resource type="Texture2D" uid="uid://cbm21bh8b2bgq" path="res://assets/images/Main Menu Button.png" id="4_nbakb"]
+[ext_resource type="Texture2D" uid="uid://cbm21bh8b2bgq" path="res://complete/UI/Main Menu Button.png" id="4_nbakb"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_w4d5t"]
-[ext_resource type="Texture2D" uid="uid://ceynvfdo7v4yr" path="res://assets/images/Next Level Button.png" id="6_abo8g"]
-[ext_resource type="AudioStream" uid="uid://bkhlhugla6m7e" path="res://assets/music/tada-military-2-183973.wav" id="7_i7e8s"]
+[ext_resource type="Texture2D" uid="uid://ceynvfdo7v4yr" path="res://complete/UI/Next Level Button.png" id="6_abo8g"]
+[ext_resource type="AudioStream" uid="uid://bkhlhugla6m7e" path="res://complete/Audio/tada-military-2-183973.wav" id="7_i7e8s"]
 
 [sub_resource type="Animation" id="Animation_jdcbr"]
 resource_name = "DropDown"
