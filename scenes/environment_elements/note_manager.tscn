@@ -19,16 +19,19 @@ scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("2_wb6ox")
 
 [node name="Note2" type="Sprite2D" parent="Instructions"]
+visible = false
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("3_ssm08")
 
 [node name="Note3" type="Sprite2D" parent="Instructions"]
+visible = false
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("4_utwsd")
 
 [node name="Note4" type="Sprite2D" parent="Instructions"]
+visible = false
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("5_utwsd")

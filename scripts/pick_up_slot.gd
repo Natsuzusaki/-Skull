@@ -1,6 +1,6 @@
 extends Control
 
-@onready var object = preload("res://scenes/int_object.tscn")
+@onready var object = preload("res://scenes/environment_elements/int_object.tscn")
 @onready var pick_up_area: Area2D = $PickUp_Area
 @onready var text: Label = $Text
 @onready var player: CharacterBody2D = null

@@ -616,6 +616,7 @@ process_material = SubResource("ParticleProcessMaterial_jorx2")
 
 [node name="Cutscene SFX" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(840, 56)
 
 [node name="Jump1" type="AudioStreamPlayer2D" parent="Cutscene SFX"]
 position = Vector2(6976, -576)
@@ -748,8 +749,8 @@ offset_right = -640.0
 [connection signal="body_entered" from="Triggers/CanCross2_1" to="." method="_on_can_cross_2_1_body_entered"]
 [connection signal="body_entered" from="Triggers/CanCross2_2" to="." method="_on_can_cross_2_2_body_entered"]
 [connection signal="body_entered" from="Triggers/KillFailObjects" to="." method="_on_kill_fail_objects_body_entered"]
-[connection signal="body_entered" from="Triggers/Noise" to="." method="_on_noise_body_entered"]
 [connection signal="body_entered" from="Triggers/Noise" to="." method="_on_turn_dark_body_entered"]
+[connection signal="body_entered" from="Triggers/Noise" to="." method="_on_noise_body_entered"]
 [connection signal="body_entered" from="Triggers/LevelFinished" to="." method="_on_level_finished_body_entered"]
 [connection signal="body_entered" from="Triggers/TurnDark" to="." method="_on_turn_dark_body_entered"]
 [connection signal="body_exited" from="Triggers/TurnDark" to="." method="_on_turn_dark_body_exited"]
