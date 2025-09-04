@@ -11,6 +11,7 @@ var scene_loaded := false
 var displayed_progress := 0.0
 
 func _ready():
+	MusicManager.stop_music()
 	next_scene_path = Loading.next_scene_path
 	ResourceLoader.load_threaded_request(next_scene_path)
 

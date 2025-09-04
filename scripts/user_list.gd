@@ -11,6 +11,8 @@ extends Panel
 
 var selected_user
 
+const MAX_NAME_LENGTH := 16
+
 func _ready() -> void:
 	confirmation_panel.visible = false
 	delete_user.disabled = true
@@ -31,14 +33,19 @@ func _on_user_list_item_selected(index: int) -> void:
 	delete_user.disabled = false
 	set_user.disabled = false
 	selected_user = user_list.get_item_text(index)
+	
 func _on_create_user_pressed() -> void:
 	var new_user = name_input.text.strip_edges()
-	if new_user != "" and not SaveManager.users.has(new_user):
-		SaveManager.create_user(new_user)
-		user_list.add_item(new_user)
-		name_input.clear()
-		create_user.disabled = true
-		clear_selection()
+	if new_user == "" or SaveManager.users.has(new_user):
+		return
+	if new_user.length() > MAX_NAME_LENGTH:
+		new_user = new_user.substr(0, MAX_NAME_LENGTH)
+	SaveManager.create_user(new_user)
+	user_list.add_item(new_user)
+	name_input.clear()
+	create_user.disabled = true
+	clear_selection()
+		
 func _on_set_user_pressed() -> void:
 	if selected_user != null:
 		SaveManager.set_user(selected_user)
@@ -51,9 +58,17 @@ func _on_set_user_pressed() -> void:
 		previous_menu.visible = true
 func _on_user_list_item_activated(_index: int) -> void:
 	_on_set_user_pressed()
+	
 func _on_name_input_text_changed(new_text: String) -> void:
-	create_user.disabled = (new_text.strip_edges() == "" or SaveManager.users.has(new_text.strip_edges()))
+	# Trim spaces and cut off at max length
+	var trimmed = new_text.strip_edges()
+	if trimmed.length() > MAX_NAME_LENGTH:
+		trimmed = trimmed.substr(0, MAX_NAME_LENGTH)
+		name_input.text = trimmed
+
+	create_user.disabled = (trimmed == "" or SaveManager.users.has(trimmed))
 	clear_selection()
+
 func _on_delete_user_pressed() -> void:
 	confirmation_panel.visible = true
 	user_list.visible = false
