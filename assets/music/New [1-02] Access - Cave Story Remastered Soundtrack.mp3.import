@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdc53u543a25t"
+path="res://.godot/imported/New [1-02] Access - Cave Story Remastered Soundtrack.mp3-7d1c566867e5e801269184c304234a4f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/New [1-02] Access - Cave Story Remastered Soundtrack.mp3"
+dest_files=["res://.godot/imported/New [1-02] Access - Cave Story Remastered Soundtrack.mp3-7d1c566867e5e801269184c304234a4f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

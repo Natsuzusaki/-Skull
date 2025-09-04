@@ -20,6 +20,7 @@ extends Control
 @onready var lvl_6_check: Panel = $lvl6check
 
 func _ready() -> void:
+	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3")
 	button_2.disabled = true
 	button_3.disabled = true
 	button_4.disabled = true

@@ -10,6 +10,7 @@ extends Control
 var data
 
 func _ready() -> void:
+	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3")
 	if SaveManager.current_user == "Guest":
 		current_user.text = "Who is playing?"
 		start_button.disabled = true
@@ -27,18 +28,21 @@ func _process(_delta: float) -> void:
 				continue_button.disabled = false
 
 func _on_startnewgame_pressed() -> void:
+	SFXManager.play("button_click")
 	if SaveManager.current_user == "Guest":
 		pass
 	else:
 		get_tree().change_scene_to_file("res://scenes/UI/level_selection_menu.tscn")
 
 func _on_continue_pressed() -> void:
+	SFXManager.play("button_click")
 	if data["Levels"]["level1"]:
 		Loading.loading("res://scenes/levels/test.tscn")
 	else:
 		Loading.loading("res://scenes/levels/newtutorial.tscn")
 
 func _on_Settings_pressed() -> void:
+	SFXManager.play("button_click")
 	if SaveManager.current_user == "Guest":
 		pass
 	else:
@@ -46,8 +50,10 @@ func _on_Settings_pressed() -> void:
 		settings.visible = true
 
 func _on_Exit_pressed() -> void:
+	SFXManager.play("button_click")
 	get_tree().quit()
 
 func _on_switch_user_pressed() -> void:
+	SFXManager.play("button_click")
 	main_menu.visible = false
 	user_list.visible = true

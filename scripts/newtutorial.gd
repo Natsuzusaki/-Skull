@@ -33,6 +33,7 @@ var is_first_present := false
 var blocked := false
 
 func _ready() -> void:
+	MusicManager.play_music_with_fade("res://assets/music/New [1-02] Access - Cave Story Remastered Soundtrack.mp3")
 	console1.turned_on = false
 	note1.monitoring = false
 	connections()
