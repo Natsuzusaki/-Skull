@@ -15,7 +15,6 @@ extends Node2D
 @onready var button_2: Area2D = $Buttons/Button2
 @onready var gate: StaticBody2D = $Gate
 @onready var cutscene_1: Area2D = $Triggers/Cutscene1
-@onready var cutscene_2: Area2D = $Triggers/Cutscene2
 @onready var cant_cross: Area2D = $Triggers/CantCross
 @onready var can_cross_1: Area2D = $Triggers/CanCross1
 @onready var can_cross_2_1: Area2D = $Triggers/CanCross2_1
@@ -27,6 +26,7 @@ extends Node2D
 @onready var printer3: Node2D = $Printers/Printer10
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
+var is_smart := false
 var talk_ctr := 0
 var has_fallen := false
 var is_first_present := false
@@ -56,13 +56,8 @@ func _ready() -> void:
 					talk_ctr = 2
 			if flags.has("has_crossed"):
 				if flags["has_crossed"]:
-					console1.turned_on = false
 					talk_ctr = 3
 					SaveManager.restore_objects()
-			if flags.has("has_done_cutscene2"):
-				if flags["has_done_cutscene2"]:
-					cutscene_2.monitoring = false
-					talk_ctr = 5
 			if flags.has("has_crossed2"):
 				if flags["has_crossed2"]:
 					can_cross_2_1.monitoring = false
@@ -88,7 +83,6 @@ func _on_kill_fail_objects_body_entered(body: Node2D) -> void:
 		console1.turned_on = true
 
 func entered_last_area() -> void:
-	player.stay = true
 	var ctr := 0
 	var time := 1.0
 	var auto_print = ["blocked", "obstruct", "jammed", "closed", "damper", "barricade", "sealed"]
@@ -108,8 +102,6 @@ func entered_last_area() -> void:
 			time = 0.5
 		await wait(time)
 		ctr += 1
-	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk11")
-	player.stay = false
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if not get_tree().paused:
@@ -132,41 +124,33 @@ func _on_cutscene_1_body_entered(_body: Node2D) -> void:
 	player.static_direction = 1
 	await wait(1)
 	await player.move_in_cutscene(Vector2(4480, 424))
-	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk1")
+	dialogue("talk1")
 	SaveManager.update_save({"Chapter1": {"flags": {"has_done_cutscene": true}}})
-func _on_cutscene_2_body_entered(_body: Node2D) -> void:
-	cutscene_2.set_deferred("monitoring", false)
-	player.static_direction = 1
-	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk9")
-	SaveManager.update_save({"Chapter1": {"flags": {"has_done_cutscene2": true}}})
 func _on_can_cross_body_entered(body: Node2D) -> void:
 	await wait(1)
 	if body in can_cross_1.get_overlapping_bodies():
 		if talk_ctr == 2:
 			talk_ctr = 3
-			console1.turned_on = false
-			console1.consolesprite.visible = true
-			console1.consolesprite_near.visible = false
-			DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk4")
+			dialogue("talk4")
 			SaveManager.update_save({"Chapter1": {"flags": {"has_crossed": true}}})
 func _on_can_cross_2_1_body_entered(body: Node2D) -> void:
 	await wait(1)
 	is_first_present = true if body in can_cross_2_1.get_overlapping_bodies() else false
 func _on_can_cross_2_2_body_entered(body: Node2D) -> void:
-	await wait(2.5)
+	await wait(2)
 	if body in can_cross_2_2.get_overlapping_bodies() and is_first_present and talk_ctr <= 4:
 		talk_ctr = 5
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk7")
+		dialogue("talk7")
 		SaveManager.update_save({"Chapter1": {"flags": {"has_crossed2": true}}})
 	else:
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk8")
+		dialogue("talk8")
 func _on_cant_cross_body_entered(body: Node2D) -> void:
 	await wait(1)
 	if body in cant_cross.get_overlapping_bodies() and body is RigidBody2D:
 		blocked = true
 	if body is CharacterBody2D and blocked:
 		cant_cross.set_deferred("monitoring", false)
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk10")
+		dialogue("talk10")
 	elif body is CharacterBody2D:
 		cant_cross.set_deferred("monitoring", false)
 		SaveManager.update_save({"Chapter1": {"flags": {"has_crossed3": true}}})
@@ -175,19 +159,15 @@ func _actions_recieved(action:String) -> void:
 	if not talk_ctr and action.contains("note_closed"):
 		talk_ctr = 1
 		player.stay = true
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk2")
-	if talk_ctr == 3 and action.contains("note_interacted"):
-		talk_ctr = 4
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk6")
+		dialogue("talk2")
 func _actions_recieved2(action:String, _text:= "") -> void:
 	if talk_ctr == 1 and action == "console_focused":
 		talk_ctr = 2
-		DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk3")
+		dialogue("talk3")
 	elif action == "console_run":
-		await wait(0.3)
+		await wait(1.5)
 		if has_fallen:
-			DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), "talk5")
-			has_fallen = false
+			dialogue("talk5")
 
 func _on_noise_body_entered(_body: Node2D) -> void:
 	noise.set_deferred("monitoring", false)
@@ -200,6 +180,8 @@ func _on_level_finished_body_entered(_body: Node2D) -> void:
 	SaveManager.mark_level_completed(1)
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
+func dialogue(talk: String) -> void:
+	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), talk)
 func turn_dark_light(value) -> void:
 	var tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", value, 1)

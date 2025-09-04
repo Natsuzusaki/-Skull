@@ -1,8 +1,11 @@
 extends RigidBody2D
 
 @export var display_text: String 
+@export var manipulate_gravity_on_activate: bool
+@export var initial_gravity: float = 1.0
 @onready var collision: CollisionShape2D = $Collision
 @onready var text_value: Label = $TextValue
+var status := false
 var text_add2 = RegEx.new()
 var text_add3 = RegEx.new()
 var text_sub3 = RegEx.new()
@@ -11,6 +14,7 @@ var text_sub1 = RegEx.new()
 var text = null
 
 func _ready() -> void:
+	gravity_scale = initial_gravity
 	text = display_text if text == null else text
 	if text:
 		text_value.text = text
@@ -45,3 +49,9 @@ func update_collision_shape() -> void:
 
 func initialize(new_value: String) -> void:
 	text = new_value
+
+func activate(continuous: bool, _time: float) -> void:
+	if not continuous:
+		status = not status
+	if manipulate_gravity_on_activate:
+		gravity_scale = -initial_gravity if status else initial_gravity

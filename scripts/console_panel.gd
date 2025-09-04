@@ -18,9 +18,10 @@ extends Area2D
 @onready var console_off: Sprite2D = $Console_Off
 @onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Limit
 
-var valid := false 
-var restart_text := false
-var button_pressed := false
+enum ConsoleState {IDLE, NEAR, INTERACTING}
+var state: ConsoleState = ConsoleState.IDLE
+var valid := false #is the script valid
+var restart_text := false #restart fixed variables
 var value = null #player script
 var array_value = [] #player script
 
@@ -32,7 +33,7 @@ func _ready() -> void:
 	label.text = fixed_var
 	code_edit.placeholder_text = base_text
 
-#WAS my greatest dissapointments, but now i love it!
+#WAS my greatest dissapointments, but now i fucking love it!
 func execute_code(user_code: String) -> void:
 	var script = GDScript.new()
 	var formatted_code = text_validator.auto_indentation(user_code, characterlimit)
@@ -77,60 +78,62 @@ func run():
 
 #Terminal Interactions
 func _on_button_pressed() -> void:
-	array_value = []
-	player.stay = true
-	var user_code = code_edit.text
-	if user_code.is_empty():
-		#actions_sent.emit("nothing","")
-		label.text = "Nothing to print!"
-	else:
-		execute_code(user_code)
-		player.stay = false
-		button_pressed = true
-		button.release_focus()
-		camera.back()
-		pop_up_animation.play("pop_down")
-		await pop_up_animation.animation_finished
-		control.hide()
-		actions_sent.emit("console_run")
+	code_run()
 func _on_exit_pressed() -> void:
+	state = ConsoleState.IDLE
 	player.stay = false
 	camera.back()
-	button_pressed = true
 	pop_up_animation.play("pop_down")
-	await pop_up_animation.animation_finished
 	control.hide()
-	#actions_sent.emit("console_exited","")
 func _on_body_entered(_body: Node2D) -> void:
-	if turned_on:
-		consolesprite.visible = false
-		consolesprite_near.visible = true
-		label.text = fixed_var
-		if not button_pressed:
-			control.show()
-			pop_up_animation.play("pop_up")
-			#actions_sent.emit("moved_closer","")
-func _on_body_exited(_body: Node2D) -> void:
-	if turned_on:
-		consolesprite.visible = true
-		consolesprite_near.visible = false
-		if not button_pressed:
-			pop_up_animation.play("pop_down")
-		else:
-			control.show()
-			button_pressed = false
-func _on_code_edit_focus_entered() -> void:
+	if not turned_on:
+		return
+	state = ConsoleState.NEAR
+	consolesprite.visible = false
+	consolesprite_near.visible = true
 	label.text = fixed_var
-	player.stay = true
-	camera.focus_on_point(self)
-	camera.interact = true
-	actions_sent.emit("console_focused")
+	control.show()
+	pop_up_animation.play("pop_up")
+	#actions_sent.emit("moved_closer","")
+func _on_body_exited(_body: Node2D) -> void:
+	if not turned_on:
+		return
+	camera.back()
+	state = ConsoleState.IDLE
+	consolesprite.visible = true
+	consolesprite_near.visible = false
+	if control.visible:
+		pop_up_animation.play("pop_down")
+		control.hide()
+func _on_code_edit_focus_entered() -> void:
+	interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
 func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 	if restart_text:
 		label.text = fixed_var
 		restart_text = false
+func interacted() -> void:
+	state = ConsoleState.INTERACTING
+	label.text = fixed_var
+	player.stay = true
+	camera.focus_on_point(self)
+	camera.interact = true
+	code_edit.grab_focus()
+	actions_sent.emit("console_focused")
+func code_run() -> void:
+	array_value = []
+	var user_code = code_edit.text
+	if user_code.is_empty():
+		label.text = "Nothing to print!"
+		player.stay = true
+		return
+	execute_code(user_code)
+	player.stay = false
+	camera.back()
+	control.hide()
+	state = ConsoleState.IDLE
+	actions_sent.emit("console_run")
 func _process(_delta: float) -> void:
 	if not turned_on:
 		consolesprite.visible = false
@@ -138,3 +141,8 @@ func _process(_delta: float) -> void:
 		console_off.visible = true
 	else:
 		console_off.visible = false
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("carry") and state == ConsoleState.NEAR:
+		interacted()
+	if Input.is_action_just_pressed("AutoPrint") and state == ConsoleState.INTERACTING:
+		code_run()

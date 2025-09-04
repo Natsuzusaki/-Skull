@@ -57,5 +57,8 @@ theme_override_fonts/font = ExtResource("3_3q610")
 text = "E"
 horizontal_alignment = 1
 
+[node name="ActivationCooldown" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="ActivationCooldown" to="." method="_on_activation_cooldown_timeout"]
