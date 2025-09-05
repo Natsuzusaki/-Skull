@@ -737,8 +737,6 @@ blur = NodePath("../Blur")
 
 [node name="UI_LevelComplete" parent="UIs" instance=ExtResource("22_awabc")]
 visible = false
-offset_left = -640.0
-offset_right = -640.0
 
 [connection signal="body_entered" from="Triggers/Cutscene1" to="." method="_on_cutscene_1_body_entered"]
 [connection signal="body_entered" from="Triggers/CantCross" to="." method="_on_cant_cross_body_entered"]

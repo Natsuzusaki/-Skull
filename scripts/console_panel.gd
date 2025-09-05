@@ -80,6 +80,7 @@ func run():
 func _on_button_pressed() -> void:
 	code_run()
 func _on_exit_pressed() -> void:
+	SFXManager.play("console_exit")
 	state = ConsoleState.IDLE
 	player.stay = false
 	camera.back()
@@ -106,6 +107,7 @@ func _on_body_exited(_body: Node2D) -> void:
 		pop_up_animation.play("pop_down")
 		control.hide()
 func _on_code_edit_focus_entered() -> void:
+	SFXManager.play("console")
 	interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
@@ -125,10 +127,12 @@ func code_run() -> void:
 	array_value = []
 	var user_code = code_edit.text
 	if user_code.is_empty():
+		SFXManager.play("console_error")
 		label.text = "Nothing to print!"
 		player.stay = true
 		return
 	execute_code(user_code)
+	SFXManager.play("console")
 	player.stay = false
 	camera.back()
 	control.hide()

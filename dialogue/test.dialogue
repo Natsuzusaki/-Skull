@@ -14,6 +14,7 @@ Yuna: It's some kind of instruction for a device
 do note_manager.visible = true
 do note_manager.show_note(0)
 do blur.visible = true
+do SFXManager.play("note")
 => END!
 
 ~ talk2

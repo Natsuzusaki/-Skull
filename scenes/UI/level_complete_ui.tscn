@@ -1,12 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://wikiax10fqqp"]
+[gd_scene load_steps=19 format=3 uid="uid://wikiax10fqqp"]
 
 [ext_resource type="Script" uid="uid://dmpb7uykx5g3r" path="res://scripts/level_complete_ui.gd" id="1_6sdq8"]
-[ext_resource type="Texture2D" uid="uid://beceoucmbs5sg" path="res://complete/UI/Level Complete.png" id="2_mb5wx"]
+[ext_resource type="Texture2D" uid="uid://b11in1n6lehf2" path="res://assets/images/Level Complete.png" id="2_mb5wx"]
 [ext_resource type="FontFile" uid="uid://clukxufm8416u" path="res://assets/fonts/04B_30__.TTF" id="3_224vw"]
-[ext_resource type="Texture2D" uid="uid://cbm21bh8b2bgq" path="res://complete/UI/Main Menu Button.png" id="4_nbakb"]
+[ext_resource type="Texture2D" uid="uid://clhfjonf8miby" path="res://assets/images/Main Menu Button.png" id="4_nbakb"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_w4d5t"]
-[ext_resource type="Texture2D" uid="uid://ceynvfdo7v4yr" path="res://complete/UI/Next Level Button.png" id="6_abo8g"]
-[ext_resource type="AudioStream" uid="uid://bkhlhugla6m7e" path="res://complete/Audio/tada-military-2-183973.wav" id="7_i7e8s"]
+[ext_resource type="Texture2D" uid="uid://m5t2csndncu8" path="res://assets/images/Next Level Button.png" id="6_abo8g"]
+[ext_resource type="AudioStream" uid="uid://bkhlhugla6m7e" path="res://assets/music/tada-military-2-183973.wav" id="7_i7e8s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sdq8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbru2"]
+texture = ExtResource("4_nbakb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6sdq8"]
+texture = ExtResource("4_nbakb")
+modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mb5wx"]
+texture = ExtResource("4_nbakb")
+modulate_color = Color(0.687215, 0.687215, 0.687215, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mb5wx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_224vw"]
+texture = ExtResource("6_abo8g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbakb"]
+texture = ExtResource("6_abo8g")
+modulate_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4d5t"]
+texture = ExtResource("6_abo8g")
+modulate_color = Color(0.686275, 0.686275, 0.686275, 1)
 
 [sub_resource type="Animation" id="Animation_jdcbr"]
 resource_name = "DropDown"
@@ -99,7 +125,7 @@ COMPLETE!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenuButton" type="TextureButton" parent="LevelCompleteImage"]
+[node name="MainMenuButton" type="Button" parent="LevelCompleteImage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.249186
@@ -108,9 +134,10 @@ anchor_right = 0.477199
 anchor_bottom = 0.708841
 offset_top = 3.05176e-05
 grow_horizontal = 2
-texture_normal = ExtResource("4_nbakb")
-ignore_texture_size = true
-stretch_mode = 5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6sdq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lbru2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6sdq8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mb5wx")
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonLabel" type="Label" parent="LevelCompleteImage/MainMenuButton"]
@@ -126,19 +153,20 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NextLevelButton" type="TextureButton" parent="LevelCompleteImage"]
+[node name="NextLevelButton" type="Button" parent="LevelCompleteImage"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.526059
-anchor_top = 0.588415
-anchor_right = 0.755157
-anchor_bottom = 0.710366
+anchor_left = 0.523344
+anchor_top = 0.591463
+anchor_right = 0.752442
+anchor_bottom = 0.713414
 offset_left = 3.05176e-05
 offset_top = 3.05176e-05
 grow_horizontal = 2
-texture_normal = ExtResource("6_abo8g")
-ignore_texture_size = true
-stretch_mode = 5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mb5wx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_224vw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nbakb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w4d5t")
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonLabel" type="Label" parent="LevelCompleteImage/NextLevelButton"]
@@ -153,6 +181,7 @@ theme_override_font_sizes/font_size = 20
 text = "Next Level"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
