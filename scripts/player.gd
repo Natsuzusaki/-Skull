@@ -17,6 +17,7 @@ class_name Player
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+@onready var timer: Timer = $DeathDetection/Timer
 
 #Inpector Variables (Jump Values)
 @export var jump_height: float
@@ -172,7 +173,12 @@ func update_current_object() -> void:
 	in_range = true
 func _on_death_detection_body_entered(_body: Node2D) -> void:
 	dead = true
+	timer.start()
+	animation.play("die")
+	SFXManager.play("vine")
 	Engine.time_scale = 0.5
 	var tree = get_tree()
 	await tree.create_timer(1).timeout
 	tree.reload_current_scene()
+func _on_timer_timeout() -> void:
+	SFXManager.play("laugh")

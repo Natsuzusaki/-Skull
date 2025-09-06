@@ -30,6 +30,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and near:
+		SFXManager.play("note")
 		if note_manager.visible:
 			blur.visible = false 
 			note_manager.visible = false

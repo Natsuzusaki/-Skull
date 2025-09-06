@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cikm5xnxoyicy"
+path="res://.godot/imported/console exit.mp3-37d0bd49d0dec5e75d5f460d9d947583.mp3str"
+
+[deps]
+
+source_file="res://assets/music/console exit.mp3"
+dest_files=["res://.godot/imported/console exit.mp3-37d0bd49d0dec5e75d5f460d9d947583.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

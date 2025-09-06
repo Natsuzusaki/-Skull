@@ -4,9 +4,11 @@ extends Node
 @onready var music_player_loop := AudioStreamPlayer.new()
 
 var current_track: String = ""
-var music_volume: int = 1
-var fade_in_duration: float = 6.0  # seconds
+var music_volume: float = 1.0
+var fade_in_duration: float = 3.0
 var tween: Tween
+
+const MAX_VOLUME: float = 0.4
 
 func _ready() -> void:
 	add_child(music_player)
@@ -18,13 +20,19 @@ func _ready() -> void:
 	music_player.autoplay = false
 	music_player_loop.autoplay = false
 
-	music_player.volume_db = linear_to_db(-80) # will fade in
-	music_player_loop.volume_db = linear_to_db(music_volume)
+	# Apply capped volume on start
+	music_player.volume_db = linear_to_db(0)
+	music_player_loop.volume_db = linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME))
 
-	# Connect finished signal
 	music_player.finished.connect(_on_intro_finished)
 
-# Play a normal looping track (like menu music)
+func set_volume(value: float) -> void:
+	music_volume = clamp(value, 0.0, MAX_VOLUME)
+	if music_player:
+		music_player.volume_db = linear_to_db(music_volume)
+	if music_player_loop:
+		music_player_loop.volume_db = linear_to_db(music_volume)
+
 func play_music(path: String) -> void:
 	if current_track == path:
 		return
@@ -32,11 +40,10 @@ func play_music(path: String) -> void:
 	if stream and stream is AudioStream:
 		stop_music()
 		music_player.stream = stream
-		music_player.volume_db = linear_to_db(music_volume)
+		set_volume(music_volume) # Use the capped setter
 		music_player.play()
 		current_track = path
 
-# Play a track with fade-in intro, then loop same file normally
 func play_music_with_fade(path: String) -> void:
 	if current_track == path:
 		return
@@ -44,56 +51,32 @@ func play_music_with_fade(path: String) -> void:
 	if stream and stream is AudioStream:
 		stop_music()
 		current_track = path
-		fade_in_duration = fade_in_duration
 
-		# First pass (fade in, no loop)
 		var intro_stream = stream.duplicate()
-		if intro_stream is AudioStream: # safety check
+		if intro_stream is AudioStream: 
 			intro_stream.loop = false
 			
-		music_player.stream = stream
+		music_player.stream = intro_stream
 		music_player.play()
-		current_track = path
-		music_player.volume_db = -80  # silent start
+		music_player.volume_db = -80 
+		
 		tween = create_tween()
-		tween.tween_property(music_player, "volume_db", linear_to_db(music_volume), fade_in_duration)
-		#music_player.stream = intro_stream
-		#music_player.volume_db = linear_to_db(0)
-		#music_player.play()
-
-		# Tween volume to full
-		var tween = create_tween()
 		tween.tween_property(
 			music_player, "volume_db",
-			linear_to_db(music_volume),
+			linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME)),
 			fade_in_duration
 		)
-
-		# Loop version (will play after intro finishes)
 		var loop_stream = stream.duplicate()
 		if loop_stream is AudioStream:
 			loop_stream.loop = true
 		music_player_loop.stream = loop_stream
-		music_player_loop.volume_db = linear_to_db(music_volume)
+		music_player_loop.volume_db = linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME))
 
-
-# Signal handler: intro finished → play looping track
 func _on_intro_finished() -> void:
 	if music_player_loop.stream:
 		music_player_loop.play()
 
-# Stop all music
 func stop_music() -> void:
 	music_player.stop()
 	music_player_loop.stop()
 	current_track = ""
-
-# Set volume globally
-#func set_volume(value: float) -> void:
-	#music_volume = value
-	## If fading intro is running, keep tween as-is
-	#if music_player.playing:
-		#music_player.volume_db = clamp(music_player.volume_db, -80, linear_to_db(value))
-	#if music_player_loop.playing:
-		#music_player_loop.volume_db = linear_to_db(value)
-		

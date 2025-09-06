@@ -28,6 +28,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and not disabled and not cooldown and is_near:
+		SFXManager.play("button")
 		cooldown = true
 		activation_cooldown.start(active_time)
 		button_status = not button_status
