@@ -27,10 +27,10 @@ func _ready() -> void:
 func play(sfx_name: String) -> void:
 	if not sfx.has(sfx_name):
 		return
-	var sfx_player := AudioStreamPlayer.new()
-	sfx_player.stream = sfx[sfx_name]
-	sfx_player.bus = "SFX"
-	sfx_player.volume_db = linear_to_db(sfx_volume)
-	add_child(sfx_player)
-	sfx_player.play()
-	sfx_player.connect("finished", Callable(sfx_player, "queue_free"))
+	var new_sfx_player := AudioStreamPlayer.new()
+	new_sfx_player.stream = sfx[sfx_name]
+	new_sfx_player.bus = "SFX"
+	new_sfx_player.volume_db = linear_to_db(sfx_volume)
+	add_child(new_sfx_player)
+	new_sfx_player.play()
+	new_sfx_player.connect("finished", Callable(new_sfx_player, "queue_free"))

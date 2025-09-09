@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var collision: CollisionShape2D = $Collision
 @onready var text_value: Label = $TextValue
 var status := false
+var text_pass = RegEx.new()
 var text_add2 = RegEx.new()
 var text_add3 = RegEx.new()
 var text_sub3 = RegEx.new()
@@ -23,28 +24,34 @@ func _ready() -> void:
 	update_collision_shape()
 
 func update_collision_shape() -> void:
-	var size := 10
+	var base_size := 10
+	var base_height := 12
+	var total_width := 0
+	text_pass.compile('(\\s| )')
 	text_add2.compile('(#)')
 	text_add3.compile('(w|m|@|%|~|W|M)')
 	text_sub3.compile('(l|i|!|/|I|:|;|,|`)')
 	text_sub2.compile('(_)')
 	text_sub1.compile('(-|=|1|<|>)')
 	
-	var total_width := 0
 	for chars in text_value.text:
 		if text_add2.search(chars):
-			total_width += size + 2
+			total_width += base_size + 2
 		elif text_add3.search(chars):
-			total_width += size + 3
+			total_width += base_size + 3
 		elif text_sub3.search(chars) or chars.contains("|") or chars.contains(".") or chars.contains("'") or chars.contains('"'):
-			total_width += size - 3
+			total_width += base_size - 3
 		elif text_sub2.search(chars):
-			total_width += size - 2
+			total_width += base_size - 2
 		elif text_sub1.search(chars):
-			total_width += size - 1
+			total_width += base_size - 1
+		elif text_pass.search(chars):
+			total_width -= 3
 		else:
-			total_width += size
-	var new_extents = Vector2(total_width + 3, 12)
+			total_width += base_size
+	var new_extents = Vector2(total_width + 3, base_height)
+	if new_extents.x < 0:
+		new_extents = Vector2(0,0)
 	collision.shape.extents = new_extents 
 
 func initialize(new_value: String) -> void:

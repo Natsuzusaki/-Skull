@@ -37,9 +37,9 @@ func _on_startnewgame_pressed() -> void:
 func _on_continue_pressed() -> void:
 	SFXManager.play("button_menu")
 	if data["Levels"]["level1"]:
-		Loading.loading("res://scenes/levels/test.tscn")
+		Loading.loading("res://scenes/levels/level2.tscn")
 	else:
-		Loading.loading("res://scenes/levels/newtutorial.tscn")
+		Loading.loading("res://scenes/levels/level1.tscn")
 
 func _on_Settings_pressed() -> void:
 	SFXManager.play("button_menu")

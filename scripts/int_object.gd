@@ -8,17 +8,11 @@ extends RigidBody2D
 var value = null
 var is_carried := false
 
-signal pass_value_to_pickupslot()
-
 func _ready() -> void:
 	value = initial_value if value == null else value
-	if not player or not slot:
-		slot = get_tree().get_current_scene().find_child("PickUp_Slot")
-		player = get_tree().get_current_scene().find_child("Player")
+	player = get_tree().get_current_scene().find_child("Player")
 	if player:
 		player.on_interact.connect(_on_interact)
-	if slot:
-		slot.in_area.connect(_in_area)
 	text_value.text = str(value)
 	if collision.shape:
 		collision.shape = collision.shape.duplicate(true)
@@ -36,11 +30,10 @@ func _on_interact() -> void:
 			apply_impulse(Vector2((mass * 500) * player.static_direction, -(mass * 300)))
 			collision.disabled = false
 
-func _in_area(body: Node2D) -> void:
-	if body == self:
-		pass_value_to_pickupslot.emit(value)
-		if value is int:
-			queue_free()
+func _in_area() -> int:
+	var val = value
+	queue_free()
+	return val
 
 func _process(_delta: float) -> void:
 	#print(global_position) #WHATT?!?!?!?!?

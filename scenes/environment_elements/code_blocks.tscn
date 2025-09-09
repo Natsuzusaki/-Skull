@@ -12,15 +12,12 @@ font_size = 8
 font = ExtResource("1_d8087")
 font_size = 8
 
-[node name="Code_Blocks" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Code_Blocks" type="Node2D"]
 script = ExtResource("1_u1mv5")
 statement = "func move():
 	gate.position.x = "
 
 [node name="FirstLine" type="VBoxContainer" parent="."]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 

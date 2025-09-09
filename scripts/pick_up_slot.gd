@@ -1,42 +1,55 @@
 extends Control
 
-@onready var object = preload("res://scenes/environment_elements/int_object.tscn")
+@onready var int_object = preload("res://scenes/environment_elements/int_object.tscn")
+@onready var float_object = preload("res://scenes/environment_elements/float_object.tscn")
 @onready var pick_up_area: Area2D = $PickUp_Area
 @onready var text: Label = $Text
-@onready var player: CharacterBody2D = null
-var current_obj = null
-var previous_obj = null
+var current_obj: Variant = null
+var previous_obj: Variant = null
 
-signal pass_value_to_codeblocks()
-signal in_area()
+signal pass_value_to_codeblocks() 
 
 func _ready() -> void:
-	player = get_tree().get_current_scene().find_child("Player")
+	pass
 
 func _on_pick_up_area_body_entered(body: Node2D) -> void:
-	if body.value is int:
-		pass_value_to_codeblocks.emit(body.value)
-		if current_obj or current_obj == 0:
-			#print("Instance: prev: " + str(previous_obj) + " curr: " + str(current_obj))
-			var object_spawn = object.instantiate()
-			object_spawn.initialize(current_obj)
-			call_deferred("add_object_to_scene", object_spawn)
-			object_spawn.global_position = pick_up_area.global_position + Vector2(0, -30)
-			var throw_force = Vector2(150 * player.static_direction, -150)
-			object_spawn.apply_torque((object_spawn.mass * 10000) * player.static_direction)
-			object_spawn.apply_impulse(throw_force)
-		
-		body.pass_value_to_pickupslot.connect(_pass_value_from_object)
-		in_area.emit(body)
+	if not (body is RigidBody2D):
+		return
+
+	var v: Variant = null
+
+	if body.has_method("get_value_and_destroy"):
+		v = body.get_value_and_destroy()
+	else:
+		v = body.value
+		body.queue_free()
+
+	previous_obj = current_obj
+	current_obj = v
+	text.text = str(current_obj)
+
+	pass_value_to_codeblocks.emit(v)
+
+	if previous_obj != null:
+		var object_scene = int_object if previous_obj is int else float_object
+		var object_spawn = object_scene.instantiate()
+		object_spawn.initialize(previous_obj)
+		call_deferred("add_object_to_scene", object_spawn)
+		object_spawn.global_position = pick_up_area.global_position + Vector2(0, -30)
+		var throw_force = Vector2(150 * sign(v if v is float or v is int else 1), -150)
+		object_spawn.apply_torque((object_spawn.mass * 10000) * sign(throw_force.x))
+		object_spawn.apply_impulse(throw_force)
 
 func add_object_to_scene(object_spawn):
 	get_tree().get_current_scene().find_child("Objects").add_child(object_spawn)
 
-func _on_pick_up_area_body_exited(_body: Node2D) -> void:
-	pass
+func _on_pick_up_area_body_exited(body: Node2D) -> void:
+	if body.has_signal("pass_value_to_pickupslot"):
+		if body.pass_value_to_pickupslot.is_connected(_pass_value_from_object):
+			body.pass_value_to_pickupslot.disconnect(_pass_value_from_object)
 
 func _pass_value_from_object(value) -> void:
-	if value is int:
+	if value is int or value is float:
 		previous_obj = current_obj
 		current_obj = value
 		if not previous_obj:
