@@ -35,7 +35,7 @@ func _on_user_list_item_selected(index: int) -> void:
 	selected_user = user_list.get_item_text(index)
 	
 func _on_create_user_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	var new_user = name_input.text.strip_edges()
 	if new_user == "" or SaveManager.users.has(new_user):
 		return
@@ -48,7 +48,7 @@ func _on_create_user_pressed() -> void:
 	clear_selection()
 		
 func _on_set_user_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	if selected_user != null:
 		SaveManager.set_user(selected_user)
 		var parent_node = get_parent()
@@ -72,17 +72,17 @@ func _on_name_input_text_changed(new_text: String) -> void:
 	clear_selection()
 
 func _on_delete_user_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	confirmation_panel.visible = true
 	user_list.visible = false
 
 #CONFIRMATION PANEL
 func _on_no_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	confirmation_panel.visible = false
 	user_list.visible = true
 func _on_yes_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	if selected_user != null:
 		SaveManager.delete_user(selected_user)
 		user_list.clear()

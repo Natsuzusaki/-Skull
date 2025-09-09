@@ -175,10 +175,10 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 	dead = true
 	timer.start()
 	animation.play("die")
-	SFXManager.play("vine")
+	SFXManager.play("death")
 	Engine.time_scale = 0.5
 	var tree = get_tree()
 	await tree.create_timer(1).timeout
 	tree.reload_current_scene()
 func _on_timer_timeout() -> void:
-	SFXManager.play("laugh")
+	SFXManager.play("death2")

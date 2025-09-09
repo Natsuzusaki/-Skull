@@ -20,7 +20,6 @@ func _ready() -> void:
 	music_player.autoplay = false
 	music_player_loop.autoplay = false
 
-	# Apply capped volume on start
 	music_player.volume_db = linear_to_db(0)
 	music_player_loop.volume_db = linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME))
 
@@ -40,7 +39,7 @@ func play_music(path: String) -> void:
 	if stream and stream is AudioStream:
 		stop_music()
 		music_player.stream = stream
-		set_volume(music_volume) # Use the capped setter
+		set_volume(music_volume)
 		music_player.play()
 		current_track = path
 

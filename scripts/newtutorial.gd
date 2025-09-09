@@ -126,7 +126,6 @@ func _on_cutscene_1_body_entered(_body: Node2D) -> void:
 	await wait(1)
 	await player.move_in_cutscene(Vector2(4480, 424))
 	dialogue("talk1")
-	SFXManager.play("vine2")
 	SaveManager.update_save({"Chapter1": {"flags": {"has_done_cutscene": true}}})
 func _on_can_cross_body_entered(body: Node2D) -> void:
 	await wait(1)
@@ -134,7 +133,6 @@ func _on_can_cross_body_entered(body: Node2D) -> void:
 		if talk_ctr == 2:
 			talk_ctr = 3
 			dialogue("talk4")
-			SFXManager.play("vine2")
 			SaveManager.update_save({"Chapter1": {"flags": {"has_crossed": true}}})
 func _on_can_cross_2_1_body_entered(body: Node2D) -> void:
 	await wait(1)
@@ -144,11 +142,9 @@ func _on_can_cross_2_2_body_entered(body: Node2D) -> void:
 	if body in can_cross_2_2.get_overlapping_bodies() and is_first_present and talk_ctr <= 4:
 		talk_ctr = 5
 		dialogue("talk7")
-		SFXManager.play("vine2")
 		SaveManager.update_save({"Chapter1": {"flags": {"has_crossed2": true}}})
 	else:
 		dialogue("talk8")
-		SFXManager.play("vine2")
 func _on_cant_cross_body_entered(body: Node2D) -> void:
 	await wait(1)
 	if body in cant_cross.get_overlapping_bodies() and body is RigidBody2D:
@@ -156,7 +152,6 @@ func _on_cant_cross_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and blocked:
 		cant_cross.set_deferred("monitoring", false)
 		dialogue("talk10")
-		SFXManager.play("vine2")
 	elif body is CharacterBody2D:
 		cant_cross.set_deferred("monitoring", false)
 		SaveManager.update_save({"Chapter1": {"flags": {"has_crossed3": true}}})
@@ -166,17 +161,14 @@ func _actions_recieved(action:String) -> void:
 		talk_ctr = 1
 		player.stay = true
 		dialogue("talk2")
-		SFXManager.play("vine2")
 func _actions_recieved2(action:String, _text:= "") -> void:
 	if talk_ctr == 1 and action == "console_focused":
 		talk_ctr = 2
 		dialogue("talk3")
-		SFXManager.play("vine2")
 	elif action == "console_run":
 		await wait(1.5)
 		if has_fallen:
 			dialogue("talk5")
-			SFXManager.play("vine2")
 
 func _on_noise_body_entered(_body: Node2D) -> void:
 	noise.set_deferred("monitoring", false)

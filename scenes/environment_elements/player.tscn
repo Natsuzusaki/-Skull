@@ -378,8 +378,9 @@ autowrap_mode = 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1.5)
 sprite_frames = SubResource("SpriteFrames_f6uay")
-animation = &"die"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.565787
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.07

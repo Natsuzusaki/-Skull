@@ -68,7 +68,7 @@ func _ready() -> void:
 		lvl_6_check.visible = false
 
 func _on_button_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	Loading.loading("res://scenes/levels/newtutorial.tscn")
 	SaveManager.reset_save("Chapter1")
 
@@ -94,5 +94,5 @@ func _on_button_6_pressed() -> void:
 		
 
 func _on_back_button_pressed() -> void:
-	SFXManager.play("vine")
+	SFXManager.play("button_menu")
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
