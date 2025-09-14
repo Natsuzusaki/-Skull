@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm1vrdfjgbxj"]
+[gd_scene load_steps=7 format=3 uid="uid://dm1vrdfjgbxj"]
 
 [ext_resource type="Script" uid="uid://cau1cdb216ntx" path="res://scripts/lantern.gd" id="1_hdfmc"]
 [ext_resource type="Texture2D" uid="uid://dl20nmqj4oogk" path="res://assets/images/lantern1.png" id="1_hhuhv"]
@@ -10,6 +10,11 @@ height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxgnm"]
 size = Vector2(2.5, 2.5)
+
+[sub_resource type="Environment" id="Environment_hdfmc"]
+glow_enabled = true
+glow_bloom = 0.5
+glow_blend_mode = 0
 
 [node name="Lantern" type="Node2D"]
 
@@ -50,3 +55,6 @@ node_a = NodePath("../LanternPhysics")
 node_b = NodePath("../PinnedArea")
 angular_limit_lower = -3.14159
 angular_limit_upper = -3.14159
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hdfmc")

@@ -3,7 +3,7 @@ extends Camera2D
 @onready var player: CharacterBody2D = null
 @onready var camera_points_parent: Node2D = %CameraPoints
 
-@export var zoom_out: Vector2 = Vector2(1.509, 1.501) 
+@export var zoom_out: Vector2 = Vector2(1.43, 1.501) 
 @export var zoom_in: Vector2 = Vector2(3.0, 3.0)   
 @export var zoom_speed: float = 5.0
 @export var follow_speed: float = 8.0

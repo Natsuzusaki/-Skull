@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpmp4bujrpjva"]
+[gd_scene load_steps=7 format=3 uid="uid://cpmp4bujrpjva"]
 
 [ext_resource type="Script" uid="uid://bff04h4snbmnj" path="res://scripts/int_object.gd" id="1_i6fca"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_t0fev"]
@@ -6,6 +6,9 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qrcvd"]
 friction = 0.8
 bounce = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xufwe"]
+radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud0ij"]
 size = Vector2(10, 14)
@@ -16,13 +19,21 @@ font = ExtResource("2_t0fev")
 [node name="Int_Object" type="RigidBody2D"]
 disable_mode = 2
 collision_layer = 4
-collision_mask = 911
+collision_mask = 655
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_qrcvd")
 can_sleep = false
 max_contacts_reported = 2
 script = ExtResource("1_i6fca")
 initial_value = 30
+
+[node name="Die" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Die"]
+shape = SubResource("CircleShape2D_xufwe")
+debug_color = Color(0.994914, 0, 0.214251, 0.42)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ud0ij")
@@ -37,3 +48,5 @@ label_settings = SubResource("LabelSettings_ak6oq")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[connection signal="body_entered" from="Die" to="." method="_on_die_body_entered"]

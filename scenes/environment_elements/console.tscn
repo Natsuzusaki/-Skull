@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfan1cxcaqfbu"]
+[gd_scene load_steps=16 format=3 uid="uid://bfan1cxcaqfbu"]
 
 [ext_resource type="Script" uid="uid://b6lv1768mwh4d" path="res://scripts/console_panel.gd" id="1_7qxwa"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
@@ -8,9 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://cw27pmkod1t64" path="res://assets/images/console2.png" id="4_oh7pb"]
 [ext_resource type="Texture2D" uid="uid://dcydk3mfwaanh" path="res://assets/images/console3.png" id="7_ifr1o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifr1o"]
+bg_color = Color(0.156863, 0.172549, 0.235294, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ujx2k"]
 font = ExtResource("2_her8x")
 font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrj24"]
+bg_color = Color(0.00784314, 0.0470588, 0.0901961, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx28n"]
 size = Vector2(64, 96)
@@ -128,13 +134,14 @@ pivot_offset = Vector2(150, 200)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 25.0
+offset_left = 23.3333
 offset_top = -48.3333
-offset_right = -25.0
+offset_right = -26.6667
 offset_bottom = 151.667
 grow_horizontal = 2
 scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(125, 200)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ifr1o")
 
 [node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel"]
 layout_mode = 1
@@ -188,8 +195,12 @@ text = "X"
 [node name="CodeEdit" type="CodeEdit" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_placeholder_color = Color(0.133333, 0.298039, 0.133333, 1)
+theme_override_colors/font_color = Color(0.133333, 0.545098, 0.133333, 1)
 theme_override_fonts/font = ExtResource("2_her8x")
 theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_jrj24")
+theme_override_colors/line_number_color = Color(0.133333, 0.545098, 0.133333, 1)
 caret_blink = true
 gutters_draw_line_numbers = true
 code_completion_enabled = true

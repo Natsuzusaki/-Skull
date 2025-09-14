@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://g668iyuhr65i" path="res://scripts/pick_up_slot.gd" id="1_q4fkv"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_n40sm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp1mh"]
-size = Vector2(15, 15)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1yy5"]
+size = Vector2(84, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bdm4"]
 font = ExtResource("2_n40sm")
@@ -21,7 +21,8 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp_Area"]
-shape = SubResource("RectangleShape2D_tp1mh")
+position = Vector2(-33, 0)
+shape = SubResource("RectangleShape2D_j1yy5")
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 0

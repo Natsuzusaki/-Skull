@@ -26,6 +26,9 @@ SaveManager="*res://scripts/SaveManager.gd"
 Loading="*res://scripts/Loading.gd"
 MusicManager="*res://scripts/music_manager.gd"
 SFXManager="*res://scripts/sfx_manager.gd"
+Cutscene="*res://scenes/UI/cutscene_borders.tscn"
+Pause="*res://scenes/UI/pause.tscn"
+NoteManager="*res://scenes/UI/note_manager.tscn"
 
 [dialogue_manager]
 
@@ -99,6 +102,10 @@ AutoPrint={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue")
@@ -111,10 +118,16 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue")
 2d_physics/layer_4="Heavy_Object"
 2d_physics/layer_5="Detect_Area"
 2d_physics/layer_6="PickUp_Area"
-2d_physics/layer_7="Killzone_Area"
+2d_physics/layer_7="Killzone_Area (Spikes, Deathbox)"
 2d_physics/layer_8="Pushable_Object"
-2d_physics/layer_9="Something? (Spikes)"
+2d_physics/layer_9="Platform"
 2d_physics/layer_10="Lanterns"
+2d_physics/layer_11="MouseDetection"
+
+[navigation]
+
+2d/layer_7="Killzone_Area"
+2d/layer_9="Something? (Spikes)"
 
 [physics]
 
@@ -123,4 +136,6 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue")
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true
+environment/glow/upscale_mode=0
 2d/snap/snap_2d_transforms_to_pixel=true

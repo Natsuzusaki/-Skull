@@ -1,17 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://tjy0471dujc4"]
+[gd_scene load_steps=9 format=3 uid="uid://tjy0471dujc4"]
 
 [ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
+[ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="2_34uu6"]
 [ext_resource type="Texture2D" uid="uid://dynulkcrgdj4b" path="res://assets/images/Console Control1.png" id="2_wb6ox"]
 [ext_resource type="Texture2D" uid="uid://bay8corh4upa2" path="res://assets/images/Console Control2.png" id="3_ssm08"]
 [ext_resource type="Texture2D" uid="uid://51eiyvbk5os7" path="res://assets/images/Console Control3.png" id="4_utwsd"]
 [ext_resource type="Texture2D" uid="uid://brck2tyec62ob" path="res://assets/images/Console Control4.png" id="5_utwsd"]
 
-[node name="NoteManager" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ich"]
+shader = ExtResource("2_34uu6")
+shader_parameter/blur_size = 2.0
+
+[node name="NoteManager" type="CanvasLayer"]
 script = ExtResource("1_th8kw")
+
+[node name="Blur" type="ColorRect" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_x6ich")
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="Instructions" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(640, 360)
 
 [node name="Note1" type="Sprite2D" parent="Instructions"]
 position = Vector2(-0.110344, 1.23978e-05)
@@ -41,10 +53,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 248.0
-offset_top = 328.0
-offset_right = 502.0
-offset_bottom = 351.0
+offset_left = -1144.0
+offset_top = 320.0
+offset_right = -890.0
+offset_bottom = 343.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_woc00")

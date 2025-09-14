@@ -13,11 +13,13 @@ class_name Player
 @onready var collision: CollisionShape2D = $Collision
 @onready var state_machine = $StateMachine
 @onready var cameramark = $CameraCenter
+@onready var trailsmark: Marker2D = $RunTrail_or_JumpCloud
 @onready var debug = $Label
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var timer: Timer = $DeathDetection/Timer
+@onready var run_trail = preload("res://scenes/environment_elements/player_trails.tscn")
 
 #Inpector Variables (Jump Values)
 @export var jump_height: float
@@ -26,6 +28,7 @@ class_name Player
 
 #Player's Local Variable
 var stay := false # DONT MOVE WHEN INTERACTING THE TERMINAL PLEASE
+var on_console := false
 var dead := false
 var down_buffered := false
 var jump_buffered := false
@@ -42,12 +45,18 @@ var is_jump_pressed := false #key flagging
 var nearby_objects: Array = [] #all objects in range
 var temp_current_object: Node2D #object reference
 var current_object: Node2D #current object carrying
+var trail_distance_threshold := 20.0
+var landing_threshold := 70.0
+var last_trail_pos: Vector2
+var last_y_position: float
+var fall_distance := 0.0
 
 #Interactions with other object
 signal on_interact()
 
 #Starting StateMachine, Input, Frame and Physics
 func _ready() -> void:
+	last_trail_pos = global_position
 	Engine.time_scale = 1.0
 	state_machine.init(self)
 func _unhandled_input(event: InputEvent) -> void:
@@ -66,6 +75,13 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
+	if not is_on_floor():
+		if velocity.y > 0:
+			fall_distance += abs(velocity.y) * delta
+	else:
+		if fall_distance > landing_threshold:
+			_spawn_trail("landing_cloud")
+		fall_distance = 0.0
 
 #Player Actions
 func gravity() -> float:
@@ -74,6 +90,7 @@ func jump() -> void:
 	if not dead:
 		if not can_double_jump:
 			velocity.y = jump_velocity * 0.9
+			_spawn_trail("run_trail")
 		else:
 			velocity.y = jump_velocity
 		jump_sfx.play()
@@ -94,6 +111,11 @@ func move(_delta: float, move_speed: int) -> void:
 	if was_on_floor and not is_on_floor() and velocity.y >= 0:
 		can_coyote_jump = true
 		coyote_timer.start()
+	if dynamic_direction != 0 and is_on_floor():
+		var dist = trailsmark.global_position.distance_to(last_trail_pos)
+		if dist >= trail_distance_threshold:
+			_spawn_trail("run_trail")
+			last_trail_pos = trailsmark.global_position
 	if dynamic_direction > 0:
 		static_direction = 1
 	elif dynamic_direction < 0:
@@ -110,6 +132,11 @@ func move(_delta: float, move_speed: int) -> void:
 				var other = body.get_contact_collider(inner_i)
 				if other is RigidBody2D and other.is_in_group("Pushable") and other != self:
 					other.apply_central_impulse(force_dir * push_force * 0.8)
+func _spawn_trail(anim_name:String) -> void:
+	var trail_instance = run_trail.instantiate()
+	trail_instance.animation_name = anim_name
+	get_tree().get_current_scene().add_child(trail_instance)
+	trail_instance.global_position = trailsmark.global_position if anim_name == "run_trail" else trailsmark.global_position - Vector2(0, -2)
 func move_in_cutscene(target_pos: Vector2, speed := 100) -> void:
 	set_process_input(false)
 	var dir = (target_pos - global_position).normalized()

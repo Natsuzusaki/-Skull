@@ -1,12 +1,23 @@
-extends Control
+extends CanvasLayer
 
 @export var settings: Control
 @export var pause_menu: Control
-@export var blur: Control
+
+func _ready() -> void:
+	self.visible = false
+
+func paused() -> void:
+	self.visible = true
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause") and self.visible:
+		self.visible = false
+		get_tree().paused = false
 
 func _on_resume_pressed() -> void:
+	self.visible = false
 	SFXManager.play("button_menu")
-	get_tree().call_group("main", "_resume_game")
+	get_tree().paused = false
 
 func _on_restart_pressed() -> void:
 	SFXManager.play("button_menu")
@@ -23,6 +34,5 @@ func _on_settings_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	SFXManager.play("button_menu")
-	#save progress
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

@@ -50,3 +50,6 @@ func update_collision_shape() -> void:
 	var text_width = text_length * size
 	var new_extents = Vector2(text_width + 3, 12)
 	collision.shape.extents = new_extents
+
+func _on_die_body_entered(_body: Node2D) -> void:
+	queue_free()

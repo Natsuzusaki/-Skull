@@ -1,11 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmsr3ydtu1vw1"]
+[gd_scene load_steps=14 format=3 uid="uid://cmsr3ydtu1vw1"]
 
 [ext_resource type="Script" uid="uid://c17enfthvnqr5" path="res://scripts/pause.gd" id="1_cho5n"]
 [ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="2_35g5d"]
 [ext_resource type="Texture2D" uid="uid://dijf2bi6a1w2i" path="res://assets/images/ui.png" id="2_gc51q"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_h04nq"]
+[ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="2_wgkjp"]
 [ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="3_35g5d"]
 [ext_resource type="PackedScene" uid="uid://bvih4mru6gyoh" path="res://scenes/UI/settings.tscn" id="5_gc51q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f636"]
+shader = ExtResource("2_wgkjp")
+shader_parameter/blur_size = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgkjp"]
 texture = ExtResource("2_gc51q")
@@ -24,19 +29,20 @@ modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 texture = ExtResource("3_35g5d")
 modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
-[node name="Pause" type="Control" node_paths=PackedStringArray("settings", "pause_menu")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Pause" type="CanvasLayer" node_paths=PackedStringArray("settings", "pause_menu")]
+process_mode = 3
+layer = 2
 script = ExtResource("1_cho5n")
 settings = NodePath("Settings")
 pause_menu = NodePath("Pause_menu")
 
+[node name="Blur" type="ColorRect" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_0f636")
+offset_right = 1280.0
+offset_bottom = 720.0
+
 [node name="Pause_menu" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -125,7 +131,6 @@ text = "Exit"
 
 [node name="Settings" parent="." node_paths=PackedStringArray("previous_menu") instance=ExtResource("5_gc51q")]
 visible = false
-layout_mode = 1
 offset_top = -296.5
 offset_bottom = 296.5
 previous_menu = NodePath("../Pause_menu")

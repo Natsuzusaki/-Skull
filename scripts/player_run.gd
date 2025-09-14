@@ -10,7 +10,7 @@ func enter() -> void:
 
 func process_input(_event: InputEvent) -> PlayerState:
 	if parent.stay:
-		return null
+		return idle_state
 	if Input.is_action_just_pressed("down"):
 		parent.down()
 	if Input.is_action_pressed("carry"):

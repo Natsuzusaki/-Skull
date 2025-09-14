@@ -1,7 +1,6 @@
 extends Node2D
 @onready var player: CharacterBody2D = %Player
 @onready var camera: Camera2D = %Camera
-@onready var pause: Control = %Pause
 @onready var notes: Node2D = %Notes
 @onready var objects: Node2D = %Objects
 @onready var consoles: Node2D = %Consoles
@@ -10,8 +9,6 @@ extends Node2D
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var str_object_4: RigidBody2D = $Objects/Str_Object4
 @onready var console1: Area2D = $Consoles/Console
-@onready var blur: ColorRect = $UIs/Blur
-@onready var note_manager: Node2D = $UIs/NoteManager
 @onready var button_2: Area2D = $Buttons/Button2
 @onready var gate: StaticBody2D = $Gate
 @onready var cutscene_1: Area2D = $Triggers/Cutscene1
@@ -104,21 +101,16 @@ func entered_last_area() -> void:
 		await wait(time)
 		ctr += 1
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
 			_pause_game()
-		else:
-			_resume_game()
+			get_viewport().set_input_as_handled()
 func _pause_game() -> void:
-	blur.visible = true
 	get_tree().paused = true
-	pause.visible = true
-func _resume_game() -> void:
-	blur.visible = false
-	get_tree().paused = false
-	pause.visible = false
+	Pause.paused()
 
 func _on_cutscene_1_body_entered(_body: Node2D) -> void:
+	Cutscene.start_cutscene()
 	player.stay = true
 	camera.focus_on_player(true)
 	cutscene_1.set_deferred("monitoring", false)

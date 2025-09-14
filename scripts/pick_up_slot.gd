@@ -11,7 +11,6 @@ signal pass_value_to_codeblocks()
 
 func _ready() -> void:
 	pass
-
 func _on_pick_up_area_body_entered(body: Node2D) -> void:
 	if not (body is RigidBody2D):
 		return
@@ -36,8 +35,8 @@ func _on_pick_up_area_body_entered(body: Node2D) -> void:
 		object_spawn.initialize(previous_obj)
 		call_deferred("add_object_to_scene", object_spawn)
 		object_spawn.global_position = pick_up_area.global_position + Vector2(0, -30)
-		var throw_force = Vector2(150 * sign(v if v is float or v is int else 1), -150)
-		object_spawn.apply_torque((object_spawn.mass * 10000) * sign(throw_force.x))
+		var throw_force = Vector2(130, -150)
+		object_spawn.apply_torque((object_spawn.mass * 10000))
 		object_spawn.apply_impulse(throw_force)
 
 func add_object_to_scene(object_spawn):

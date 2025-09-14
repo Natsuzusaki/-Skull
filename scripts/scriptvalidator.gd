@@ -193,3 +193,9 @@ func code_verify(error) -> bool:
 		label.text = "Script Error: \n IDK where tho 😋"
 		return true
 	return false
+
+func rewrite_code(user_code: String) -> String:
+	var rewritten = user_code
+	# Replace ".position" with ".commanded_position"
+	rewritten = rewritten.replace(".position", ".commanded_position")
+	return rewritten

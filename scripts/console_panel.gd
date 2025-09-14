@@ -4,6 +4,7 @@ extends Area2D
 @export var characterlimit: int
 @export_multiline var base_text: String
 @export_multiline var fixed_var: String
+@export var outputs: Dictionary = {}
 
 @onready var player: CharacterBody2D = %Player
 @onready var camera: Camera2D = %Camera
@@ -37,13 +38,23 @@ func _ready() -> void:
 func execute_code(user_code: String) -> void:
 	var script = GDScript.new()
 	var formatted_code = text_validator.auto_indentation(user_code, characterlimit)
+	formatted_code = text_validator.rewrite_code(formatted_code)
+	var var_assignments = ""
+	var init_assignments = ""
+	for key in outputs.keys():
+		var_assignments += "var %s\n" % key
+		init_assignments += "	self.%s = ctx[\"%s\"]\n" % [key, key]
 	var full_script = """
 extends Node
-%s
 
 var console: Node
-func _init(real_console):
+var ctx: Dictionary
+%s
+
+func _init(real_console, context:Dictionary):
 	console = real_console
+	ctx = context
+%s
 
 func custom_print(varargs: Array) -> void:
 	if console:
@@ -55,8 +66,9 @@ func custom_print(varargs: Array) -> void:
 
 func run():
 %s
-""" % [fixed_var, formatted_code]
+""" % [var_assignments, init_assignments, formatted_code]
 	#print(full_script) #debug
+	#print(outputs)
 	if formatted_code.is_empty():
 		return
 	script.set_source_code(full_script)
@@ -64,7 +76,17 @@ func run():
 	if text_validator.code_verify(error):
 		return
 	elif error == Error.OK:
-		var instance = script.new(self)
+		var ctx: Dictionary = {}
+		for key in outputs.keys():
+			var path = outputs[key]
+			if typeof(path) == TYPE_NODE_PATH:
+				ctx[key] = get_node(path)
+			elif typeof(path) == TYPE_STRING:
+				ctx[key] = get_node(NodePath(path))
+			else:
+				ctx[key] = path
+		#print("CTX CONTENTS: ", ctx)
+		var instance = script.new(self, ctx)
 		add_child(instance)
 		if instance.has_method("run"):
 			instance.call("run")
@@ -80,12 +102,7 @@ func run():
 func _on_button_pressed() -> void:
 	code_run()
 func _on_exit_pressed() -> void:
-	SFXManager.play("console_exit")
-	state = ConsoleState.IDLE
-	player.stay = false
-	camera.back()
-	pop_up_animation.play("pop_down")
-	control.hide()
+	console_exit()
 func _on_body_entered(_body: Node2D) -> void:
 	if not turned_on:
 		return
@@ -111,14 +128,25 @@ func _on_code_edit_focus_entered() -> void:
 	interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
+	player.on_console = false
 func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 	if restart_text:
 		label.text = fixed_var
 		restart_text = false
+func console_exit() -> void:
+	SFXManager.play("console_exit")
+	state = ConsoleState.IDLE
+	player.stay = false
+	player.on_console = false
+	camera.back()
+	code_edit.release_focus()
+	pop_up_animation.play("pop_down")
+	control.hide()
 func interacted() -> void:
 	state = ConsoleState.INTERACTING
 	label.text = fixed_var
 	player.stay = true
+	player.on_console = true
 	camera.focus_on_point(self)
 	camera.interact = true
 	code_edit.grab_focus()
@@ -130,10 +158,12 @@ func code_run() -> void:
 		SFXManager.play("console_error")
 		label.text = "Nothing to print!"
 		player.stay = true
+		player.on_console = true
 		return
 	execute_code(user_code)
 	SFXManager.play("console")
 	player.stay = false
+	player.on_console = false
 	camera.back()
 	control.hide()
 	state = ConsoleState.IDLE
@@ -146,6 +176,9 @@ func _process(_delta: float) -> void:
 	else:
 		console_off.visible = false
 func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:
+		console_exit()
+		get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("carry") and state == ConsoleState.NEAR:
 		interacted()
 	if Input.is_action_just_pressed("AutoPrint") and state == ConsoleState.INTERACTING:
