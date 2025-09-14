@@ -1,6 +1,5 @@
 extends TileMapLayer
 
-@export var can_view_property: bool
 @export var platform_name: String
 @export var min_limit: Vector2
 @export var max_limit: Vector2
@@ -62,8 +61,7 @@ var commanded_position: Vector2:
 		return tile_offset
 
 func _on_mouse_detection_mouse_entered() -> void:
-	if can_view_property:
-		ui.visible = true
+	ui.visible = true
 	animation_player.play("pop_up")
 func _on_mouse_detection_mouse_exited() -> void:
 	animation_player.play("pop_down")

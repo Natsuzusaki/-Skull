@@ -240,7 +240,7 @@ color_initial_ramp = SubResource("GradientTexture1D_getup")
 [sub_resource type="LabelSettings" id="LabelSettings_uwo42"]
 font = ExtResource("17_b2isc")
 
-[node name="NewTutorial" type="Node2D" groups=["main"]]
+[node name="Level1" type="Node2D" groups=["main"]]
 script = ExtResource("1_db1r7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -718,7 +718,6 @@ note_num = 3
 [node name="Player" parent="." instance=ExtResource("12_igeo0")]
 unique_name_in_owner = true
 position = Vector2(424, 240)
-collision_mask = 138
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true

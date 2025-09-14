@@ -12,7 +12,7 @@ Yuna: Look over there! There's a note!
 do player.move_in_cutscene(Vector2(4432, 424))
 Yuna: It's some kind of instruction for a device
 do NoteManager.show_note(0)
-do blur.visible = true
+do note1.show_status = true
 do SFXManager.play("note")
 => END!
 

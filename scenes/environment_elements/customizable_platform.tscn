@@ -28,7 +28,7 @@ font = ExtResource("4_htcs7")
 font_size = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pnud"]
-size = Vector2(80, 16)
+size = Vector2(96, 16)
 
 [sub_resource type="Animation" id="Animation_htcs7"]
 length = 0.001
@@ -89,6 +89,7 @@ tile_set = ExtResource("1_08bv5")
 script = ExtResource("2_lf1it")
 
 [node name="UI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

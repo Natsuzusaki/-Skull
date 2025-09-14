@@ -10,9 +10,11 @@ var pressed := false
 
 func _on_body_entered(_body: Node2D) -> void:
 	pressed = true
+	print("stepped on")
 
 func _on_body_exited(_body: Node2D) -> void:
 	pressed = false
+	print("let go")
 
 func _process(_delta: float) -> void:
 	if pressed:

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgs4eyp8262dh"]
+
+[ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="1_0lmy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5exy"]
+size = Vector2(32, 8.8125)
+
+[node name="Platform" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0lmy3")
+region_enabled = true
+region_rect = Rect2(400, 16, 32, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_b5exy")
+one_way_collision_margin = 0.0

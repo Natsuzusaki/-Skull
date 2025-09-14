@@ -10,6 +10,7 @@ class_name Player
 @onready var animation = $Sprite
 @onready var death_collision: CollisionShape2D = $DeathDetection/Death_Collision
 @onready var pick_up_collision: CollisionShape2D = $PickUp_Area/PickUp_Collision
+@onready var death_detection: Area2D = $DeathDetection
 @onready var collision: CollisionShape2D = $Collision
 @onready var state_machine = $StateMachine
 @onready var cameramark = $CameraCenter
@@ -20,6 +21,7 @@ class_name Player
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var timer: Timer = $DeathDetection/Timer
 @onready var run_trail = preload("res://scenes/environment_elements/player_trails.tscn")
+#@onready var point_light_2d: PointLight2D = $PointLight2D
 
 #Inpector Variables (Jump Values)
 @export var jump_height: float
@@ -51,12 +53,14 @@ var last_trail_pos: Vector2
 var last_y_position: float
 var fall_distance := 0.0
 
+
 #Interactions with other object
 signal on_interact()
 
 #Starting StateMachine, Input, Frame and Physics
 func _ready() -> void:
 	last_trail_pos = global_position
+	#point_light_2d.enabled = false
 	Engine.time_scale = 1.0
 	state_machine.init(self)
 func _unhandled_input(event: InputEvent) -> void:
@@ -200,6 +204,7 @@ func update_current_object() -> void:
 	in_range = true
 func _on_death_detection_body_entered(_body: Node2D) -> void:
 	dead = true
+	death_detection.set_collision_mask_value(7, false)
 	timer.start()
 	animation.play("die")
 	SFXManager.play("death")
@@ -209,3 +214,9 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 	tree.reload_current_scene()
 func _on_timer_timeout() -> void:
 	SFXManager.play("death2")
+	
+#func emit_light():
+	#point_light_2d.enabled = true
+	#
+#func disable_light():
+	#point_light_2d.enabled = false

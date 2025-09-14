@@ -20,6 +20,7 @@ func _on_resume_pressed() -> void:
 	get_tree().paused = false
 
 func _on_restart_pressed() -> void:
+	self.visible = false
 	SFXManager.play("button_menu")
 	for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 		checkpoint.set_deferred("monitoring", true)

@@ -21,6 +21,7 @@ extends Node2D
 @onready var printer1: Node2D = $Printers/Printer8
 @onready var printer2: Node2D = $Printers/Printer9
 @onready var printer3: Node2D = $Printers/Printer10
+@onready var mid_ground: TileMapLayer = $MidGround
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 var is_smart := false
