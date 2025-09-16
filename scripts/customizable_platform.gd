@@ -5,41 +5,37 @@ extends TileMapLayer
 @export var max_limit: Vector2
 @export var move_in_x: bool
 @export var move_in_y: bool
-@onready var mouse_detection: Area2D = $MouseDetection
-@onready var platform_label: Label = $UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer/PlatformName
-@onready var movement_coords: Label = $UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer/MovementCoords
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var ui: Control = $UI
 
-var tile_offset := Vector2.ZERO
-var original_pos: Vector2
+@onready var camera: Camera2D = %Camera
+
+var grid_pos: Vector2:
+	get:
+		return get_grid_coords(camera, 32)
 var target: Vector2
 
 func _ready() -> void:
-	if move_in_x and move_in_y:
-		movement_coords.text = "X and Y coords"
-	elif move_in_x and not move_in_y:
-		movement_coords.text = "X coords"
-	elif move_in_y and not move_in_x:
-		movement_coords.text = "Y coords"
-	else:
-		movement_coords.text = "set the coords"
+	target = global_position
 
-	if platform_name == "":
-		mouse_detection.set_collision_layer_value(9, false)
-	platform_label.text = platform_name
-	ui.visible = false
-	original_pos = global_position
+func get_grid_coords(origin: Node2D, tile_size: float = 32.0) -> Vector2:
+	var diff: Vector2 = global_position - origin.global_position
+	var coords: Vector2 = (diff / tile_size).round()
+	coords.y = -coords.y
+	return coords
 
-func move(value) -> void:
-	var newpos: Vector2
+func grid_to_world(coords: Vector2, origin: Node2D, tile_size: float = 32.0) -> Vector2:
+	var pos = coords * tile_size
+	pos.y = -pos.y
+	return origin.global_position + pos
+
+func move(steps: int) -> void:
+	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
+		await camera.zoom_restored
+	var new_grid = grid_pos
 	if move_in_x:
-		newpos = Vector2(value, 0)
+		new_grid.x = steps
 	elif move_in_y:
-		newpos = Vector2(0, value * 1)
-	else:
-		return
-	target = original_pos + newpos
+		new_grid.y = steps
+	target = grid_to_world(new_grid, camera, 32)
 	target.x = clamp(target.x, min_limit.x, max_limit.x)
 	target.y = clamp(target.y, min_limit.y, max_limit.y)
 	var tween = create_tween()
@@ -47,22 +43,21 @@ func move(value) -> void:
 
 var commanded_position: Vector2:
 	set(value):
-		tile_offset = value
-		var scaled = original_pos + (tile_offset * 32.0) * -1
-		var clamped = Vector2(
-			clamp(scaled.x, min_limit.x, max_limit.x),
-			clamp(scaled.y, min_limit.y, max_limit.y)
-		)
-		target = clamped
-		#print(target, value, clamped, scaled)
+		if camera.zoom.distance_to(camera.zoom_out) > 0.01:
+			await camera.zoom_restored
+		if move_in_x:
+			grid_pos.x = value.x
+		elif move_in_y:
+			grid_pos.y = value.y
+		target = grid_to_world(grid_pos, camera, 32)
+		target.x = clamp(target.x, min_limit.x, max_limit.x)
+		target.y = clamp(target.y, min_limit.y, max_limit.y)
 		var tween = create_tween()
-		tween.tween_property(self, "global_position", target, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(self, "global_position", target, 1) \
+			.set_trans(Tween.TRANS_SINE) \
+			.set_ease(Tween.EASE_IN_OUT)
 	get:
-		return tile_offset
+		return grid_pos
 
-func _on_mouse_detection_mouse_entered() -> void:
-	ui.visible = true
-	animation_player.play("pop_up")
-func _on_mouse_detection_mouse_exited() -> void:
-	animation_player.play("pop_down")
-	ui.visible = false
+func _process(_delta: float) -> void:
+	grid_pos = get_grid_coords(camera, 32)

@@ -7,18 +7,32 @@ extends Node2D
 @export var move_in_y: bool
 @export var spawn_horizontal: bool
 @onready var instance_time: Timer = $InstanceTime
+@onready var camera : Camera2D = %Camera
 @onready var int_object = preload("res://scenes/environment_elements/int_object.tscn")
 @onready var str_object = preload("res://scenes/environment_elements/str_object.tscn")
 @onready var bool_object = preload("res://scenes/environment_elements/bool_object.tscn")
 @onready var float_object = preload("res://scenes/environment_elements/float_object.tscn")
-var original_pos: Vector2
 var target: Vector2
+var grid_pos: Vector2
 var type := 0 #0-integer, 1-string, 2-boolean, 3-float
 var blocked := false
 
 func _ready() -> void:
-	original_pos = global_position
 	console.print_value.connect(_print_value)
+	target = global_position
+	grid_pos = get_grid_coords(camera, 32)
+
+func get_grid_coords(origin: Node2D, tile_size: float = 32.0) -> Vector2:
+	var diff: Vector2 = global_position - origin.global_position
+	var coords: Vector2 = (diff / tile_size).round()
+	coords.y = -coords.y
+	return coords
+
+func grid_to_world(coords: Vector2, origin: Node2D, tile_size: float = 32.0) -> Vector2:
+	var pos = coords * tile_size
+	pos.y = -pos.y
+	return origin.global_position + pos
+
 func _print_value(_value, array_value) -> void:
 	for v in array_value:
 		spawn_object(v)
@@ -61,15 +75,15 @@ func _on_blocked_area_body_entered(_body: Node2D) -> void:
 func _on_blocked_area_body_exited(_body: Node2D) -> void:
 	blocked = false
 
-func move(value) -> void:
-	var newpos: Vector2
+func move(steps: int) -> void:
+	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
+		await camera.zoom_restored
+	grid_pos = get_grid_coords(camera, 32)
 	if move_in_x:
-		newpos = Vector2(value, 0)
+		grid_pos.x = steps
 	elif move_in_y:
-		newpos = Vector2(0, value * -1)
-	else:
-		return
-	target = original_pos + newpos
+		grid_pos.y = steps
+	target = grid_to_world(grid_pos, camera, 32)
 	target.x = clamp(target.x, min_limit.x, max_limit.x)
 	target.y = clamp(target.y, min_limit.y, max_limit.y)
 	var tween = create_tween()

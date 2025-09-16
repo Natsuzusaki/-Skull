@@ -31,11 +31,11 @@ func get_value() -> Variant:
 	return stored_value
 
 func _consume_value(value: int) -> void:
-	var processed_value = value * 32
+	var processed_value = value
 	_propagate(processed_value)
 
 func _receive_value(value: int) -> void:
-	var processed_value = value * 32
+	var processed_value = value
 	_propagate(processed_value)
 
 func _propagate(value: int) -> void:

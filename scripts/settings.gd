@@ -18,7 +18,8 @@ var input_actions = {
 	"down": "Move Down",
 	"jump": "Jump",
 	"carry": "Interact/Carry",
-	"debug": "Restart"
+	"debug": "Restart",
+	"grid": "Show Grid"
 }
 func _ready():
 	music_bus_id = AudioServer.get_bus_index("Music")

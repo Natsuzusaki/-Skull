@@ -17,6 +17,8 @@ var snapping_enabled := true
 var screen_size: Vector2 = Vector2.ZERO
 var cur_screen := Vector2.ZERO
 
+signal zoom_restored 
+
 func _ready() -> void:
 	top_level = true
 	make_current()
@@ -40,6 +42,8 @@ func _physics_process(delta: float) -> void:
 		zoom = zoom.lerp(zoom_out, zoom_speed * delta)
 	if cutscene:
 		zoom = zoom.lerp(Vector2(1.65, 1.7), zoom_speed * delta)
+	if not interact and zoom.distance_to(zoom_out) < 0.01:
+		emit_signal("zoom_restored")
 	if snapping_enabled:
 		var player_screen: Vector2 = (player.global_position / screen_size).floor()
 		if not player_screen.is_equal_approx(cur_screen):
@@ -68,7 +72,6 @@ func back() -> void:
 	interact = false
 	snapping_enabled = true
 	_snap_to_player_screen()
-
 
 func _update_screen(new_screen: Vector2) -> void:
 	cur_screen = new_screen

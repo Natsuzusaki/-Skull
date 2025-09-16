@@ -92,7 +92,8 @@ func create_user(user: String) -> void:
 				"down": "S",
 				"jump": "Space",
 				"carry": "E",
-				"debug": "Q"
+				"debug": "Q",
+				"grid": "G"
 			}, 
 			"music_volume": 1.0, 
 			"sfx_volume": 1.0

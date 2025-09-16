@@ -1,0 +1,234 @@
+[gd_scene load_steps=15 format=3 uid="uid://dm3a5jhuecy5i"]
+
+[ext_resource type="Script" uid="uid://bo4vm7vef4lfd" path="res://scripts/mouse_detection.gd" id="1_e6v1y"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_fumoj"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="3_h4ssr"]
+[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="4_fumoj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p5xh"]
+bg_color = Color(0.156863, 0.172549, 0.235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txh40"]
+bg_color = Color(0.00784314, 0.0470588, 0.0901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uri5p"]
+font = ExtResource("2_fumoj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_65afp"]
+font = ExtResource("3_h4ssr")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_78kk1"]
+font = ExtResource("2_fumoj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyoda"]
+font = ExtResource("3_h4ssr")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_htcs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_e6v1y"]
+resource_name = "pop_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_fumoj"]
+resource_name = "pop_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_233p8"]
+_data = {
+&"RESET": SubResource("Animation_htcs7"),
+&"pop_down": SubResource("Animation_e6v1y"),
+&"pop_up": SubResource("Animation_fumoj")
+}
+
+[node name="MouseDetection" type="Area2D"]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_e6v1y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -128.0
+offset_right = -104.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(40, 32)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 40)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1p5xh")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_txh40")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/Panel/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "name:"
+label_settings = SubResource("LabelSettings_uri5p")
+
+[node name="PlatformName" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "platform1"
+label_settings = SubResource("LabelSettings_65afp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MoveLabel" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "can move in:"
+label_settings = SubResource("LabelSettings_78kk1")
+
+[node name="MovementCoords" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "X and Y coords"
+label_settings = SubResource("LabelSettings_hyoda")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CoordsLabel" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "position:"
+label_settings = SubResource("LabelSettings_78kk1")
+
+[node name="CurrentCoords" type="Label" parent="CanvasLayer/UI/Panel/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "(0, 0)"
+label_settings = SubResource("LabelSettings_hyoda")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_233p8")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+scale = Vector2(0.0625, 0.0625)
+texture = ExtResource("4_fumoj")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

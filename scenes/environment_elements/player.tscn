@@ -365,7 +365,6 @@ shape = SubResource("CircleShape2D_dyaro")
 position = Vector2(0, -107.143)
 
 [node name="RunTrail_or_JumpCloud" type="Marker2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="Label" type="Label" parent="."]
 visible = false

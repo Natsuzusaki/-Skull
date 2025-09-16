@@ -13,7 +13,6 @@ font = ExtResource("1_d8087")
 font_size = 8
 
 [node name="Code_Blocks" type="Node2D"]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_u1mv5")
 statement = "func move():
 	gate.position.x = "

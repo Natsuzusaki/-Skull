@@ -24,7 +24,9 @@ func _on_restart_pressed() -> void:
 	SFXManager.play("button_menu")
 	for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 		checkpoint.set_deferred("monitoring", true)
-	SaveManager.reset_save("Chapter1")
+	var root_name := get_tree().current_scene.name
+	var lvl := root_name.replace("Level", "")
+	SaveManager.reset_save("Chapter%s" % lvl)
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
