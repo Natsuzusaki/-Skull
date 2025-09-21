@@ -1,14 +1,134 @@
-[gd_scene load_steps=4 format=3 uid="uid://gximac3mmbpx"]
+[gd_scene load_steps=10 format=3 uid="uid://gximac3mmbpx"]
 
 [ext_resource type="Script" uid="uid://c7lij77e87tql" path="res://scripts/pressure_plate.gd" id="1_l6a50"]
-[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="2_jwwgu"]
+[ext_resource type="Texture2D" uid="uid://c82u0p1esbgep" path="res://assets/images/printer1.png" id="2_jwwgu"]
+[ext_resource type="Texture2D" uid="uid://8qkj5m0ohnvh" path="res://assets/images/grayblocking2.png" id="3_7e88l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7e88l"]
 size = Vector2(64, 8)
 
+[sub_resource type="Animation" id="Animation_oxg10"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.38419e-07, -0.88888824)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.8000001, 1.488889)]
+}
+
+[sub_resource type="Animation" id="Animation_7e88l"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8000001, 1.488889), Vector2(1.8000001, 1.488889)]
+}
+
+[sub_resource type="Animation" id="Animation_jwwgu"]
+resource_name = "not_pressed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8000001, 1.488889), Vector2(1.8000001, 1.488889)]
+}
+
+[sub_resource type="Animation" id="Animation_p8yr4"]
+resource_name = "pressed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8000001, 1.488889), Vector2(1.8000001, 1.488889)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g55ch"]
+_data = {
+&"RESET": SubResource("Animation_oxg10"),
+&"idle": SubResource("Animation_7e88l"),
+&"not_pressed": SubResource("Animation_jwwgu"),
+&"pressed": SubResource("Animation_p8yr4")
+}
+
 [node name="Pressure_Plate" type="Area2D"]
-collision_layer = 140
-collision_mask = 16
+collision_layer = 4096
+collision_mask = 128
 script = ExtResource("1_l6a50")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -16,15 +136,25 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_7e88l")
 
 [node name="Pressure_Off" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -9.53674e-07)
-scale = Vector2(0.5, 0.125)
+position = Vector2(2.38419e-07, -0.88888824)
+scale = Vector2(1.8000001, 1.488889)
 texture = ExtResource("2_jwwgu")
+region_enabled = true
+region_rect = Rect2(17, 17, 30, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pressure_Off"]
+libraries = {
+&"": SubResource("AnimationLibrary_g55ch")
+}
+autoplay = "idle"
 
 [node name="Pressure_On" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2.38419e-07, 4)
-scale = Vector2(0.5, 0.0625)
-texture = ExtResource("2_jwwgu")
+position = Vector2(2.38419e-07, 3.5)
+scale = Vector2(1.7777778, 1.5)
+texture = ExtResource("3_7e88l")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(663, 198, 36, 6)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

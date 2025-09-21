@@ -248,7 +248,7 @@ environment = SubResource("Environment_gvm5i")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(-176, -32)
-color = Color(0.272088, 0.568963, 0.733159, 1)
+color = Color(0.27058825, 0.5686275, 0.73333335, 1)
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -646,19 +646,19 @@ display_text = "obstructed"
 unique_name_in_owner = true
 
 [node name="Console" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(4368, 360)
+position = Vector2(4368, 368)
 characterlimit = 20
 base_text = "print(\"text\")"
 fixed_var = ""
 
 [node name="Console2" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(5248, 360)
+position = Vector2(5248, 368)
 characterlimit = 24
 base_text = "print(\"text1\", \"text2\" )"
 fixed_var = ""
 
 [node name="Console3" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(6000, -200)
+position = Vector2(6000, -192)
 characterlimit = 5
 base_text = "var a = \"text1\"
 var b = \"text2\"
@@ -666,20 +666,20 @@ print(a, a, b, b, a)"
 fixed_var = ""
 
 [node name="Console6" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(5176, -184)
+position = Vector2(5176, -176)
 characterlimit = 10
 base_text = "var text = \"example\"
 print(text)"
 fixed_var = ""
 
 [node name="Console4" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(6872, -232)
+position = Vector2(6872, -224)
 characterlimit = 10
 base_text = "print(???)"
 fixed_var = ""
 
 [node name="Console5" parent="Consoles" instance=ExtResource("9_bw3ef")]
-position = Vector2(8080, -744)
+position = Vector2(8080, -736)
 characterlimit = 20
 base_text = "print()"
 fixed_var = ""

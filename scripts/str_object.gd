@@ -27,7 +27,6 @@ func update_collision_shape() -> void:
 	var base_size := 10
 	var base_height := 12
 	var total_width := 0
-	text_pass.compile('(\\s| )')
 	text_add2.compile('(#)')
 	text_add3.compile('(w|m|@|%|~|W|M)')
 	text_sub3.compile('(l|i|!|/|I|:|;|,|`)')
@@ -45,8 +44,6 @@ func update_collision_shape() -> void:
 			total_width += base_size - 2
 		elif text_sub1.search(chars):
 			total_width += base_size - 1
-		elif text_pass.search(chars):
-			total_width -= 3
 		else:
 			total_width += base_size
 	var new_extents = Vector2(total_width + 3, base_height)

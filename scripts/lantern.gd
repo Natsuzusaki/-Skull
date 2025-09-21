@@ -3,7 +3,10 @@ extends RigidBody2D
 @export var wind_strength: float = 150.0
 @export var min_delay: float = 1.0
 @export var max_delay: float = 3.0
+@onready var point_light_2d: PointLight2D = $PointLight2D
+
 var wind_timer := 0.0
+var enabled = false
 
 func _ready() -> void:
 	_reset_timer()
@@ -20,3 +23,15 @@ func _push_gust() -> void:
 
 func _reset_timer() -> void:
 	wind_timer = randf_range(min_delay, max_delay)
+	
+func disable_light(duration: float = 2.0):
+	enabled = false
+	var tween := create_tween()
+	tween.tween_property(point_light_2d, "color", Color(0.0, 0.0, 0.0), duration)
+	
+	
+func enable_light(duration: float = 2.0):
+	point_light_2d.texture_scale = 0.9
+	enabled = true
+	var tween := create_tween()
+	tween.tween_property(point_light_2d, "color", Color(1.0, 1.0, 1.0, 1.0), duration)

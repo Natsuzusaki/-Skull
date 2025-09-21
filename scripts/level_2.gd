@@ -20,6 +20,7 @@ func _ready() -> void:
 				SaveManager.restore_objects()
 	starting_scene()
 
+#----SpecificTriggers
 func starting_scene() -> void:
 	if not ctr:
 		Cutscene.start_cutscene()
@@ -33,10 +34,10 @@ func starting_scene() -> void:
 		ctr = true
 	return
 
+#----Processes
 func _process(_delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
-
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
@@ -51,7 +52,14 @@ func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
 
+#----Helpers
 func dialogue(talk: String) -> void:
-	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), talk)
+	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue2.dialogue"), talk)
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
+
+#----Triggers
+func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
+	camera.focus_on_player(true, true)
+	await wait(1)
+	dialogue("talk1")

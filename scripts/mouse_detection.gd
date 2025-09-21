@@ -24,7 +24,9 @@ func _ready() -> void:
 	ui.visible = false
 
 func _process(_delta: float) -> void:
-	current_coords.text = "(%d, %d)" % [parent.grid_pos.x, parent.grid_pos.y]
+	if parent:
+		var pos = parent.get_grid_pos()
+		current_coords.text = "x (%d, %d) y" % [pos.x, pos.y]
 
 func _on_mouse_entered() -> void:
 	ui.visible = true

@@ -17,6 +17,7 @@ var snapping_enabled := true
 var screen_size: Vector2 = Vector2.ZERO
 var cur_screen := Vector2.ZERO
 
+signal screen_snapped(new_screen: Vector2, world_center: Vector2)
 signal zoom_restored 
 
 func _ready() -> void:
@@ -63,11 +64,13 @@ func focus_on_console(console_node: Node2D) -> void:
 	snapping_enabled = false
 	interact = true
 	current_target = console_node
-func focus_on_player(value:bool) -> void:
+func focus_on_player(value:bool, smooth: bool) -> void:
 	snapping_enabled = false
+	position_smoothing_enabled = smooth
 	cutscene = value
 	current_target = player
 func back() -> void:
+	position_smoothing_enabled = true
 	cutscene = false
 	interact = false
 	snapping_enabled = true
@@ -76,6 +79,7 @@ func back() -> void:
 func _update_screen(new_screen: Vector2) -> void:
 	cur_screen = new_screen
 	global_position = cur_screen * screen_size + screen_size * 0.5
+	emit_signal("screen_snapped", cur_screen, global_position)
 func _snap_to_player_screen() -> void:
 	var player_screen: Vector2 = (player.global_position / screen_size).floor()
 	_update_screen(player_screen)

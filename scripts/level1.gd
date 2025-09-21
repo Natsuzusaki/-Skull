@@ -113,7 +113,7 @@ func _pause_game() -> void:
 func _on_cutscene_1_body_entered(_body: Node2D) -> void:
 	Cutscene.start_cutscene()
 	player.stay = true
-	camera.focus_on_player(true)
+	camera.focus_on_player(true, true)
 	cutscene_1.set_deferred("monitoring", false)
 	player.static_direction = 1
 	await wait(1)

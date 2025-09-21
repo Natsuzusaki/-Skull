@@ -1,9 +1,10 @@
 extends RigidBody2D
 
+@export var value:bool = true
 @onready var player: CharacterBody2D = null
 @onready var collision: CollisionShape2D = $Collision
 @onready var text_value: Label = $TextValue
-var value = null
+#var value = null
 var is_carried := false
 
 func _ready() -> void:

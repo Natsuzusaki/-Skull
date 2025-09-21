@@ -18,6 +18,7 @@ extends Area2D
 @onready var consolesprite_near: Sprite2D = $Console_Near
 @onready var console_off: Sprite2D = $Console_Off
 @onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Limit
+@onready var point_light_2d: PointLight2D = $Terminal/Panel/MarginContainer/VBoxContainer/PointLight2D
 
 enum ConsoleState {IDLE, NEAR, INTERACTING}
 var state: ConsoleState = ConsoleState.IDLE
@@ -33,7 +34,8 @@ func _ready() -> void:
 	limit.text = str(characterlimit)
 	label.text = fixed_var
 	code_edit.placeholder_text = base_text
-
+	point_light_2d.visible = false
+	
 #WAS my greatest dissapointments, but now i fucking love it!
 func execute_code(user_code: String) -> void:
 	var script = GDScript.new()
@@ -77,6 +79,8 @@ func run():
 		return
 	elif error == Error.OK:
 		var ctx: Dictionary = {}
+		print("OUTPUTS: ", outputs)
+
 		for key in outputs.keys():
 			var path = outputs[key]
 			if typeof(path) == TYPE_NODE_PATH:
@@ -176,6 +180,7 @@ func _process(_delta: float) -> void:
 	else:
 		console_off.visible = false
 func _unhandled_input(_event: InputEvent) -> void:
+	
 	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:
 		console_exit()
 		get_viewport().set_input_as_handled()

@@ -130,16 +130,12 @@ var control_regex = RegEx.new()
 
 func auto_indentation(user_code: String, _limit: int) -> String:
 	control_regex.compile(r"print\s*\(([^)]*)\)")
-	#if user_code.begins_with('print("') and user_code.ends_with('")'):
-		#user_code = text_limiter(user_code, limit)
 	var result = user_code
 	for match in control_regex.search_all(user_code):
 		var inner = match.get_string(1)
 		var replacement = "custom_print([%s])" % inner
 		result = result.replace(match.get_string(), replacement)
 	user_code = result
-	#user_code = user_code.replace("print(", "custom_print(")
-	#user_code = control_regex.sub(user_code, "custom_print([\\1])", true)
 	if func_detector(user_code):
 		var indented_lines = []
 		var lines = user_code.split("\n")
@@ -159,26 +155,6 @@ func func_detector(user_code: String) -> bool:
 			return false
 	return true
 
-#func text_limiter(user_code: String, limit: int) -> String:
-	#var regex = RegEx.new()
-	#regex.compile("\"([^\"]*)\"|'([^']*)'")
-	#var result := ""
-	#var last_pos := 0
-	#for match in regex.search_all(user_code):
-		#var start := match.get_start()
-		#var end := match.get_end()
-		#result += user_code.substr(last_pos, start - last_pos)
-		#var content := match.get_string(1)
-		#if content == "":
-			#content = match.get_string(2)
-		#if content.length() > limit:
-			#content = content.substr(0, limit)
-		#var quote := user_code.substr(start, 1)
-		#result += "%s%s%s" % [quote, content, quote]
-		#last_pos = end
-	#result += user_code.substr(last_pos)
-	#return result
-
 func code_verify(error) -> bool:
 	if error == Error.ERR_PARSE_ERROR:
 		SFXManager.play("console_error")
@@ -196,6 +172,34 @@ func code_verify(error) -> bool:
 
 func rewrite_code(user_code: String) -> String:
 	var rewritten = user_code
-	# Replace ".position" with ".commanded_position"
+
+	var regex_x = RegEx.new()
+	regex_x.compile(r"(\w+)\.position\.x\s*=\s*([^\n]+)")
+	for match in regex_x.search_all(rewritten):
+		var obj = match.get_string(1)
+		var val = match.get_string(2)
+		rewritten = rewritten.replace(match.get_string(),
+			"%s.set_grid_x(%s)" % [obj, val])
+
+	var regex_y = RegEx.new()
+	regex_y.compile(r"(\w+)\.position\.y\s*=\s*([^\n]+)")
+	for match in regex_y.search_all(rewritten):
+		var obj = match.get_string(1)
+		var val = match.get_string(2)
+		rewritten = rewritten.replace(match.get_string(),
+			"%s.set_grid_y(%s)" % [obj, val])
+
+	var regex_vec = RegEx.new()
+	regex_vec.compile(r"(\w+)\.position\s*=\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)")
+	for match in regex_vec.search_all(rewritten):
+		var obj = match.get_string(1)
+		var x = match.get_string(2)
+		var y = match.get_string(3)
+		rewritten = rewritten.replace(
+			match.get_string(),
+			"%s.commanded_position = Vector2(%s, %s)" % [obj, x, y]
+		)
+
 	rewritten = rewritten.replace(".position", ".commanded_position")
+
 	return rewritten

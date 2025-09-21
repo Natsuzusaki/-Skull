@@ -36,6 +36,7 @@ func _on_settings_pressed() -> void:
 	settings.visible = true
 
 func _on_exit_pressed() -> void:
+	self.visible = false
 	SFXManager.play("button_menu")
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
