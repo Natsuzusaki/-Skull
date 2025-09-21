@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tjy0471dujc4"]
+[gd_scene load_steps=13 format=3 uid="uid://tjy0471dujc4"]
 
 [ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bay8corh4upa2" path="res://assets/images/Console Control2.png" id="3_ssm08"]
 [ext_resource type="Texture2D" uid="uid://51eiyvbk5os7" path="res://assets/images/Console Control3.png" id="4_utwsd"]
 [ext_resource type="Texture2D" uid="uid://brck2tyec62ob" path="res://assets/images/Console Control4.png" id="5_utwsd"]
+[ext_resource type="Texture2D" uid="uid://dcodg31hpx0aw" path="res://assets/images/Console Control5.png" id="7_0gnik"]
+[ext_resource type="Texture2D" uid="uid://ywm4gwyihwoy" path="res://assets/images/Console Control6.png" id="8_2ni1o"]
+[ext_resource type="Texture2D" uid="uid://dh5tkhqmvif1g" path="res://assets/images/Console Control7.png" id="9_fab4a"]
+[ext_resource type="Texture2D" uid="uid://cgkbacwelgvmx" path="res://assets/images/Console Control8.png" id="10_rgr4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ich"]
 shader = ExtResource("2_34uu6")
@@ -47,6 +51,30 @@ visible = false
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("5_utwsd")
+
+[node name="Note5" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(-271.99997, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("7_0gnik")
+
+[node name="Note6" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(272.00003, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("8_2ni1o")
+
+[node name="Note7" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("9_fab4a")
+
+[node name="Note8" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("10_rgr4i")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 14
