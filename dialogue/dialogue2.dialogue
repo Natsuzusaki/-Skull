@@ -5,7 +5,6 @@ Yuna: Yeah that, but it could be a visor or something
 Yuna: It's very thin, not good for protecting
 Yuna: Im gonna wear it anyways
 Yuna: I love glasses 
-do SaveManager.update_save({"Chapter2": {"flags": {"has_done_startingcutscene": true}}})
 do player.stay = false
 do camera.back()
 do Cutscene.end_cutscene()
@@ -17,15 +16,48 @@ Yuna: Integer? Throw? Where do we even throw the integer?
 - In that question mark?
 do camera.focus_on_point(code_block)
 Yuna: Sure Einstein, we'll try that later
-do camera.back()
+do camera.focus_on_player(true, true)
 Yuna: The big question is where are we suppose to see a grid?
+- Glasses
+Yuna: These thing? really?
+Yuna: I have to double check
+Yuna: Yeah theres a note inside, don't tell me how i didn't notice it at first
+Yuna: the note says "Press G to see grid"
+Yuna: 😤
+Yuna: Wow how blatant, i think someone is running out of ideas
+Yuna: What else are we missing?
+Yuna: Oh yeah what are we moving anyway?
+- Integer
+	do camera.focus_on_point(int_obj)
+	Yuna: Not sure, we can already move them ourself
+	Yuna: I don't think thats it
+	Yuna: How about that wall
+- Yuna
+	Yuna: Do I look like I'm disabled?
+	Yuna: Try finding an object we can't move, like that wall blocking our way
+- Wall
+do camera.focus_on_point(wall)
+Yuna: That wall does look suspicious
+Yuna: And it has a dot in the middle
+do camera.back()
+do wait(0.5)
+do grid.visible = true
+Yuna: And it lines up in the grid
+do grid.visible = false
+Yuna: Let me try something
+do mouse_target = mouse_move.global_position
+do yuna_mouse_move = true
 do player.stay = false
-do grid_speak = true
 do Cutscene.end_cutscene()
 => END!
 
 ~ talk3
-Yuna: YAO?! Who put graphing paper on my screen?
-Yuna: Huh now that answered our question
-do SaveManager.update_save({"Chapter2": {"flags": {"has_done_startingcutscene2": true}}})
+Yuna: That should help you figuring things out 😋😋😋
+Yuna: Goodluck Eisntein!
+do mouse_target = Vector2(832,640)
+do yuna_mouse_move = true
+=> END!
+
+~ talk4
+Yuna: NIGGA
 => END!

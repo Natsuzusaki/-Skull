@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://4d26fus63aq8"]
+
+[ext_resource type="Shader" uid="uid://wyonb613mql8" path="res://assets/presets/fog.gdshader" id="1_cjhtb"]
+[ext_resource type="Script" uid="uid://puxgyslmvcq4" path="res://scripts/death_fog.gd" id="1_sv4xs"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sv4xs"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r6nnf"]
+noise = SubResource("FastNoiseLite_sv4xs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j4ae3"]
+frequency = 0.0055
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_djjs1"]
+width = 1280
+height = 720
+noise = SubResource("FastNoiseLite_j4ae3")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cjhtb"]
+frequency = 0.0055
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sv4xs"]
+width = 1280
+height = 720
+noise = SubResource("FastNoiseLite_cjhtb")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3p4d7"]
+shader = ExtResource("1_cjhtb")
+shader_parameter/fog_color = Color(0.00784314, 0.0470588, 0.0901961, 1)
+shader_parameter/center_pos = Vector2(600, 350)
+shader_parameter/inner_radius = 447.0
+shader_parameter/outer_radius = 0.0
+shader_parameter/use_noise_layer_1 = true
+shader_parameter/noise_texture_1 = SubResource("NoiseTexture2D_djjs1")
+shader_parameter/noise_scale_1 = 4.0
+shader_parameter/noise_velocity_1 = Vector2(0.03, 0.02)
+shader_parameter/noise_edge_influence_1 = 0.6
+shader_parameter/noise_edge_hardness_1 = 80.0
+shader_parameter/use_noise_layer_2 = false
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_sv4xs")
+shader_parameter/noise_scale_2 = 8.5
+shader_parameter/noise_velocity_2 = Vector2(-0.015, 0.025)
+shader_parameter/noise_edge_influence_2 = 0.4
+shader_parameter/noise_edge_hardness_2 = 50.0
+shader_parameter/use_density_noise = false
+shader_parameter/density_noise_influence = 0.06400000304
+shader_parameter/use_fog_texture = false
+shader_parameter/fog_texture = SubResource("NoiseTexture2D_r6nnf")
+shader_parameter/fog_texture_scale = Vector2(1, 1)
+shader_parameter/fog_texture_velocity = Vector2(0.01, 0.005)
+shader_parameter/fog_texture_influence = 0.5
+shader_parameter/use_distance_tint = false
+shader_parameter/clear_area_tint = Color(0.8, 0.7, 0.5, 1)
+shader_parameter/tint_feather = 50.0
+
+[sub_resource type="Animation" id="Animation_u4blf"]
+resource_name = "black_zoom_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1000.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pet4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [447.0]
+}
+
+[sub_resource type="Animation" id="Animation_dcvq4"]
+resource_name = "black_zoom_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.26666668, 1.3333334, 2),
+"transitions": PackedFloat32Array(0.2973023, 2.5491216, 1),
+"update": 0,
+"values": [0.0, 89.0, 1000.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7max"]
+_data = {
+&"RESET": SubResource("Animation_pet4d"),
+&"black_zoom_in": SubResource("Animation_u4blf"),
+&"black_zoom_out": SubResource("Animation_dcvq4")
+}
+
+[node name="DeathFog" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_sv4xs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_3p4d7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t7max")
+}

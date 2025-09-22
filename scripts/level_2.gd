@@ -1,17 +1,26 @@
 extends Node2D
 
+#----References
 @onready var grid: CanvasLayer = $Grid
 @onready var player: Player = %Player
 @onready var camera: Camera2D = %Camera
 @onready var notes: Node2D = %Notes
 @onready var consoles: Node2D = %Consoles
-
+#----Markers
 @onready var code_block: Marker2D = $CameraPoints/CodeBlock
+@onready var wall: Marker2D = $CameraPoints/Wall
+@onready var int_obj: Marker2D = $CameraPoints/Int
+@onready var mouse_move: Marker2D = $CameraPoints/MouseMove
+@onready var yuna_mouse: Area2D = $YunaMouse
+#----Area2D
+@onready var tutorial_end: Area2D = $Triggers/TutorialEnd
 
 var data = SaveManager.load_game()
-var grid_speak := false
 var ctr := false
 var talk_ctr := 0
+var mouse_target: Vector2
+var yuna_mouse_move := false
+var mouse_speed: float = 600.0
 
 func _ready() -> void:
 	connections()
@@ -25,6 +34,8 @@ func _ready() -> void:
 			if checkpoint >= 1.0:
 				ctr = true
 			if checkpoint == 2.0:
+				talk_ctr = 3
+				tutorial_end.monitoring = false
 				SaveManager.restore_objects()
 	starting_scene()
 
@@ -52,20 +63,27 @@ func _actions_recieved(action: String) -> void:
 		camera.focus_on_player(true, true)
 		dialogue("talk2")
 		talk_ctr = 2
-func _actions_recieved2() -> void:
+func _actions_recieved2(_action: String) -> void:
 	pass
 
 #----Processes
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
+	if yuna_mouse_move:
+		var current = yuna_mouse.global_position
+		if current.distance_to(mouse_target) > 2:
+			var new_pos = current.move_toward(mouse_target, mouse_speed * delta)
+			yuna_mouse.global_position = new_pos
+		else:
+			yuna_mouse.global_position = mouse_target
+			yuna_mouse_move = false
+			if talk_ctr == 2:
+				dialogue("talk3")
+				talk_ctr = 3
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
-			if grid_speak:
-				grid_speak = false
-				dialogue("talk3")
-				talk_ctr = 3
 			grid.visible = true
 		else:
 			grid.visible = false
@@ -92,4 +110,7 @@ func connections() -> void:
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
 	camera.focus_on_player(true, true)
 	await wait(1)
-	dialogue("talk1")
+	dialogue("talk4")
+func _on_tutorial_end_body_entered(_body: Node2D) -> void:
+	tutorial_end.set_deferred("monitoring", false)
+	talk_ctr = 3

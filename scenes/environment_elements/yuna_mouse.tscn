@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsyicmrx6igd8"]
+
+[ext_resource type="Texture2D" uid="uid://b4nsm72010jc7" path="res://assets/images/mouse.png" id="1_ego0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ab1"]
+size = Vector2(8.5, 14.5)
+
+[node name="YunaMouse" type="Area2D"]
+z_index = 10
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_f1ab1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ego0a")

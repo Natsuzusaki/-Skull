@@ -23,7 +23,7 @@ func _ready() -> void:
 	camera.screen_snapped.connect(func(_screen, _world_center):
 		# Re-align to camera center whenever it moves
 		_last_grid_pos = get_grid_coords(32)
-		print("[%s] re-synced grid to %s" % [name, _last_grid_pos])
+		#print("[%s] re-synced grid to %s" % [name, _last_grid_pos])
 	)
 	for ref in inputs:
 		var plat = get_node_or_null(ref.platform)
@@ -99,7 +99,8 @@ func _move_to(new_grid: Vector2) -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.finished.connect(func():
 		emit_signal("grid_pos_changed", new_grid)
-		print("[%s] moved to grid %s -> world %s" % [name, new_grid, target]))
+		#print("[%s] moved to grid %s -> world %s" % [name, new_grid, target])
+		)
 
 # ----------------------------
 # Input combining
@@ -139,7 +140,7 @@ func recalculate() -> void:
 		total.x = base.x
 	if not y_modified:
 		total.y = base.y
-	print("[%s] Recalculated total = %s" % [name, total])
+	#print("[%s] Recalculated total = %s" % [name, total])
 	_move_to(total)
 
 func _apply_op(a: float, b: float, op: String) -> float:

@@ -54,12 +54,12 @@ var last_trail_pos: Vector2
 var last_y_position: float
 var fall_distance := 0.0
 
-
 #Interactions with other object
 signal on_interact()
 
 #Starting StateMachine, Input, Frame and Physics
 func _ready() -> void:
+	DeathFog.open_fog()
 	last_trail_pos = global_position
 	point_light_2d.enabled = false
 	Engine.time_scale = 1.0
@@ -210,6 +210,7 @@ func update_current_object() -> void:
 	in_range = true
 func _on_death_detection_body_entered(_body: Node2D) -> void:
 	dead = true
+	DeathFog.close_fog()
 	death_detection.set_collision_mask_value(7, false)
 	timer.start()
 	animation.play("die")

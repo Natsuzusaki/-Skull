@@ -34,3 +34,10 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	animation_player.play("pop_down")
 	ui.visible = false
+
+func _on_area_entered(_body: Node2D) -> void:
+	ui.visible = true
+	animation_player.play("pop_up")
+func _on_area_exited(_body: Node2D) -> void:
+	animation_player.play("pop_down")
+	ui.visible = false
