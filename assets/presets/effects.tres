@@ -1,0 +1,45 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b6vjhf5vk7oxt"]
+
+[ext_resource type="Texture2D" uid="uid://bucowxkaxnsiv" path="res://assets/images/effects.png" id="1_irqgi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_860ri"]
+texture = ExtResource("1_irqgi")
+0:0/animation_columns = 9
+0:0/animation_speed = 10.0
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 25.0
+0:0/0 = 0
+0:1/animation_columns = 8
+0:1/animation_speed = 10.0
+0:1/animation_mode = 1
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/animation_frame_4/duration = 1.0
+0:1/animation_frame_5/duration = 1.0
+0:1/animation_frame_6/duration = 1.0
+0:1/animation_frame_7/duration = 10.0
+0:1/0 = 0
+0:2/animation_columns = 7
+0:2/animation_speed = 10.0
+0:2/animation_mode = 1
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/animation_frame_4/duration = 1.0
+0:2/animation_frame_5/duration = 1.0
+0:2/animation_frame_6/duration = 15.0
+0:2/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_860ri")

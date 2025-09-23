@@ -30,8 +30,8 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3p4d7"]
 shader = ExtResource("1_cjhtb")
 shader_parameter/fog_color = Color(0.00784314, 0.0470588, 0.0901961, 1)
-shader_parameter/center_pos = Vector2(600, 350)
-shader_parameter/inner_radius = 447.0
+shader_parameter/center_pos = Vector2(650, 350)
+shader_parameter/inner_radius = 1000.0
 shader_parameter/outer_radius = 0.0
 shader_parameter/use_noise_layer_1 = true
 shader_parameter/noise_texture_1 = SubResource("NoiseTexture2D_djjs1")
@@ -56,6 +56,21 @@ shader_parameter/use_distance_tint = false
 shader_parameter/clear_area_tint = Color(0.8, 0.7, 0.5, 1)
 shader_parameter/tint_feather = 50.0
 
+[sub_resource type="Animation" id="Animation_pet4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+
 [sub_resource type="Animation" id="Animation_u4blf"]
 resource_name = "black_zoom_in"
 length = 0.5
@@ -70,21 +85,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1000.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_pet4d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/inner_radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [447.0]
 }
 
 [sub_resource type="Animation" id="Animation_dcvq4"]
@@ -115,7 +115,6 @@ layer = 5
 script = ExtResource("1_sv4xs")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_3p4d7")
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,3 +126,4 @@ grow_vertical = 2
 libraries = {
 &"": SubResource("AnimationLibrary_t7max")
 }
+autoplay = "RESET"

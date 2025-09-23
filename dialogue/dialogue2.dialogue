@@ -60,4 +60,5 @@ do yuna_mouse_move = true
 
 ~ talk4
 Yuna: NIGGA
+do camera.back()
 => END!

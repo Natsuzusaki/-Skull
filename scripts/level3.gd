@@ -7,20 +7,31 @@ extends Node2D
 @onready var lantern_8: Node2D = $Lanterns/Lantern8
 @onready var lantern_9: Node2D = $Lanterns/Lantern9
 @onready var console_4: Area2D = $Consoles/Console4
-
 @onready var camera: Camera2D = %Camera
 @onready var consoles: Node2D = %Consoles
-
 @onready var printers: Node2D = $Printers
 
+var data = SaveManager.load_game()
+var ctr := false
 
 func _ready() -> void:
-	var light1: PointLight2D = lantern_8.get_node("LanternPhysics/PointLight2D")
-	light1.color = Color(0.0, 0.0, 0.0, 1.0)
-	var light2: PointLight2D = lantern_9.get_node("LanternPhysics/PointLight2D")
-	light2.color = Color(0.0, 0.0, 0.0, 1.0)
-	var console_light: PointLight2D = console_4.get_node("Terminal/Panel/MarginContainer/VBoxContainer/PointLight2D")
-	console_light.visible = true
+	if data.has("Chapter3"):
+		var chapter3 = data["Chapter3"]
+		if chapter3.has("player_pos"):
+			var pos = chapter3["player_pos"]
+			player.global_position = Vector2(pos[0], pos[1])
+		if chapter3.has("checkpoint_order"):
+			var checkpoint = chapter3["checkpoint_order"]
+			if checkpoint >= 1.0:
+				ctr = true
+			if checkpoint == 2.0:
+				SaveManager.restore_objects()
+	#var light1: PointLight2D = lantern_8.get_node("LanternPhysics/PointLight2D")
+	#light1.enabled = false
+	#var light2: PointLight2D = lantern_9.get_node("LanternPhysics/PointLight2D")
+	#light2.enabled = false
+	#var console_light: PointLight2D = console_4.get_node("Terminal/Panel/MarginContainer/VBoxContainer/PointLight2D")
+	#console_light.visible = true
 	
 func _process(_delta: float) -> void:
 	if player.on_console:
@@ -29,10 +40,21 @@ func _process(_delta: float) -> void:
 	#if dark.enabled:
 		#fade_to_transparent()
 
+	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
 			grid.visible = true
+		else:
+			grid.visible = false
+	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
+		if not get_tree().paused:
+			_pause_game()
+			get_viewport().set_input_as_handled()
+func _pause_game() -> void:
+	get_tree().paused = true
+	Pause.paused()
+
 
 func fade_to_black(duration: float = 0.3) -> void:
 	var tween := create_tween()
@@ -42,12 +64,12 @@ func fade_to_transparent(duration: float = 0.3) -> void:
 	var tween := create_tween()
 	tween.tween_property(canvas_modulate, "color", Color(0.317, 0.623, 0.795), duration)
 	
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	player.emit_light()
-	fade_to_black()
-
-func _on_area_2d_body_exited(_body: Node2D) -> void:
-	player.disable_light()
-	fade_to_transparent()
+#func _on_area_2d_body_entered(_body: Node2D) -> void:
+	##player.emit_light()
+	##fade_to_black()
+#
+#func _on_area_2d_body_exited(_body: Node2D) -> void:
+	##player.disable_light()
+	##fade_to_transparent()
 
 	

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm1vrdfjgbxj"]
+[gd_scene load_steps=8 format=3 uid="uid://dm1vrdfjgbxj"]
 
+[ext_resource type="Script" uid="uid://cyma6w12tmixm" path="res://scripts/lantern_parent.gd" id="1_2w5l1"]
 [ext_resource type="Script" uid="uid://cau1cdb216ntx" path="res://scripts/lantern.gd" id="1_hdfmc"]
 [ext_resource type="Texture2D" uid="uid://dl20nmqj4oogk" path="res://assets/images/lantern1.png" id="1_hhuhv"]
 [ext_resource type="Texture2D" uid="uid://vdr667ixq1pe" path="res://assets/images/light1.png" id="2_uxgnm"]
@@ -17,6 +18,7 @@ glow_bloom = 0.5
 glow_blend_mode = 0
 
 [node name="Lantern" type="Node2D"]
+script = ExtResource("1_2w5l1")
 
 [node name="LanternPhysics" type="RigidBody2D" parent="."]
 collision_layer = 512
@@ -30,6 +32,7 @@ max_delay = 5.0
 [node name="PointLight2D" type="PointLight2D" parent="LanternPhysics"]
 position = Vector2(-1.52588e-05, 0)
 scale = Vector2(5.12, 5.12)
+energy = 1.5
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("2_uxgnm")

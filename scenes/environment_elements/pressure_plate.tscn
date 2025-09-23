@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gximac3mmbpx"]
+[gd_scene load_steps=10 format=3 uid="uid://c8fww5kbpkvyt"]
 
 [ext_resource type="Script" uid="uid://c7lij77e87tql" path="res://scripts/pressure_plate.gd" id="1_l6a50"]
 [ext_resource type="Texture2D" uid="uid://c82u0p1esbgep" path="res://assets/images/printer1.png" id="2_jwwgu"]

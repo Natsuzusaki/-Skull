@@ -13,7 +13,10 @@
 texture = ExtResource("2_aantl")
 modulate_color = Color(0.449735, 0.314694, 0.183401, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yr1ls"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofrgu"]
+texture = ExtResource("6_j8kax")
+region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.74978, 0.74978, 0.74978, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8td0d"]
 texture = ExtResource("6_j8kax")
@@ -24,30 +27,27 @@ modulate_color = Color(0.458405, 0.458405, 0.458405, 1)
 texture = ExtResource("6_j8kax")
 region_rect = Rect2(675, 576, 94, 26)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofrgu"]
-texture = ExtResource("6_j8kax")
-region_rect = Rect2(675, 576, 94, 26)
-modulate_color = Color(0.74978, 0.74978, 0.74978, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yr1ls"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38kwa"]
 bg_color = Color(0, 0, 0, 0.431373)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8td0d"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyp2g"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbepg"]
 texture = ExtResource("8_ofoij")
-modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnx0p"]
-texture = ExtResource("8_ofoij")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4a5dg"]
 texture = ExtResource("8_ofoij")
 modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbepg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnx0p"]
 texture = ExtResource("8_ofoij")
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyp2g"]
+texture = ExtResource("8_ofoij")
+modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8td0d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rc08k"]
 
@@ -144,11 +144,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_563rl")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
-theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
 text = "Select"
 
 [node name="Create_user" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -158,11 +158,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_563rl")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
-theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
 text = "Create"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
@@ -179,11 +179,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_563rl")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
-theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofrgu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_38kwa")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8td0d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yr1ls")
 text = "Delete"
 
 [node name="ConfirmationPanel" type="Control" parent="."]
@@ -248,11 +248,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_563rl")
 theme_override_font_sizes/font_size = 15
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbepg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
 text = "No"
 
 [node name="VSeparator" type="VSeparator" parent="ConfirmationPanel/Panel/MarginContainer2/HBoxContainer"]
@@ -268,11 +268,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_563rl")
 theme_override_font_sizes/font_size = 15
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbepg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4a5dg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wnx0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_oyp2g")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8td0d")
 text = "Yes"
 
 [connection signal="item_activated" from="Panel/MarginContainer/ScrollContainer/UserList" to="." method="_on_user_list_item_activated"]
