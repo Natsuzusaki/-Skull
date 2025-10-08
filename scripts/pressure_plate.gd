@@ -1,197 +1,249 @@
 extends Area2D
 
+# ----------------------------
+# Exported Inspector Settings
+# ----------------------------
 @export var continuous: bool = false
 @export var active_time: float = 1.0
-@export var is_opposite: bool = false
-@export var outputs: Array[Node] = []
+@export var has_else: bool = false  
+@export var is_not: bool = false              # Flip value (NOT gate)
+@export var outputs: Array[Node] = []         # Only leader should assign outputs
+@export var plat_coords: int
+enum LogicOp { NONE, AND, OR }
 
-enum PlateMode { NORMAL, AND, OR, NOT }
-@export var mode: PlateMode = PlateMode.NORMAL
-@export var logic_group: String = ""
-@onready var animation_player: AnimationPlayer = $Pressure_Off/AnimationPlayer
+@export var subgroup: int = 0                 # Subgroup ID (0 = none)
+@export var subgroup_operator: LogicOp = LogicOp.NONE
+@export var main_group: String = ""           # Main group ID ("" = none)
+@export var main_group_operator: LogicOp = LogicOp.NONE
+
+# ----------------------------
+# Internal State
+# ----------------------------
+@onready var animation_player: AnimationPlayer = $red/AnimationPlayer
+@onready var green: Sprite2D = $green
+@onready var red: Sprite2D = $red
 
 var current_object: Node = null
 var activated: bool = false
 var occupied: int = 0
+var idle: bool = true
 
+# ----------------------------
+# Lifecycle
+# ----------------------------
 func _ready() -> void:
-	if logic_group != "":
-		if not is_in_group(logic_group):
-			add_to_group(logic_group)
-			print(name, " added to group: ", logic_group)
-	print(name, " ready, activated = ", activated, " mode = ", mode, " group = ", logic_group)
+	green.visible = false
+	# Add to group for main group evaluation
+	if main_group != "" and not is_in_group(main_group):
+		add_to_group(main_group)
+	print("Plate ready -> main_group:", main_group, " subgroup:", subgroup)
 
 
 func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("Pushable"):
-		print(name, " Not boolean")
 		return
 
 	occupied += 1
-	print(name, " occupied = ", occupied)
 	animation_player.play("pressed")
+	green.visible = true
+	red.visible = false
 	current_object = body
 
+	# Apply NOT logic
 	var value: bool = bool(body.get("value"))
-	if is_opposite:
+	if is_not:
 		value = !value
-	print(name, " boolean value = ", value)
 
-	if value != activated and occupied == 1:
-		activated = value
-		print(name, " activated = ", activated)
-		_evaluate_logic()
+	# Update activated state
+	_evaluate_logic(value)
 
 
 func _on_body_exited(body: Node) -> void:
 	occupied -= 1
-	print(name, " occupied = ", occupied)
 	animation_player.play("not_pressed")
-	if body == current_object:
-		if occupied <= 0:
-			current_object = null
+	green.visible = false
+	red.visible = true
+
+	if body == current_object and occupied <= 0:
+		current_object = null
+		#activated = false
+		#if main_group != "":
+			#_evaluate_logic(value)
+
+
+# ----------------------------
+# Logic Evaluation
+# ----------------------------
+func _evaluate_logic(value: bool) -> void:
+	# Case 1: Standalone (no subgroup, no main group, no operators)
+	if (main_group == "" and subgroup == 0 and subgroup_operator == LogicOp.NONE and main_group_operator == LogicOp.NONE):
+		if has_else != true:
+			if value != activated and occupied == 1:
+				activated = value
+				_process_value(activated)
+				print("Standalone Plate triggered")
+				return
+		else:
+			if idle and occupied == 1:
+				idle = false
+				activated = value
+				print("PLATE HAS ELSE")
+				evaluate_else(value)
+			elif not idle and value != activated and occupied == 1:
+				activated = value
+				print("PLATE HAS ELSE")
+				evaluate_else(value)
+				
+			
+			
+			
+
+	# Case 2: Full group evaluation
+	else:
+		activated = value
+		_evaluate_main_group(value)
+		print("Group Plate evaluated")
+
+
+func _evaluate_main_group(_value: bool) -> void:
+	var members = get_tree().get_nodes_in_group(main_group)
+	if members.is_empty():
+		return
+
+	# --- Step 1: Collect subgroup plate values
+	var subgroup_results := {}
+	for plate in members:
+		if not subgroup_results.has(plate.subgroup):			#"all_occupied": true,
+			subgroup_results[plate.subgroup] = { "values": [], "op": plate.subgroup_operator, "plates": [] } #Create dict for every plate
+		subgroup_results[plate.subgroup]["plates"].append(plate)
+		if plate.occupied != 0:
+			subgroup_results[plate.subgroup]["values"].append(plate.activated)	#Append value of every plate in dict
+		else:
+			pass
+			#subgroup_results[plate.subgroup]["values"].append()
+			#subgroup_results[plate.subgroup]["all_occupied"] = false
+			
+	print("Subgroup Plates: ",subgroup_results)
+	# --- Step 2: Evaluate each subgroup
+	var subgroup_outputs := {}
+	
+	for id in subgroup_results.keys():
+		var entry = subgroup_results[id]
+		var total = subgroup_results[id]["plates"].size()
+		var values: Array = entry["values"]
+		var op: LogicOp = entry["op"]
+		
+		var val: bool
+		
+		print("\n")
+		print("Values: ",values)
+		print("Entry: ",entry)
+		
+		if op == LogicOp.NONE:
+			# No subgroup operator, take first plate's value if occupied
+			subgroup_outputs[id] = values.size() > 0 and values[0]
+		if op == LogicOp.OR:
+			subgroup_outputs[id] = _evaluate_operator(values, op)
+		else:
+			# Respect operator (AND/OR), only valid if all occupied
+			if values.size() == total:
+				print("Values = Total, TRUE")
+				subgroup_outputs[id] = _evaluate_operator(values, op)
+				val = subgroup_outputs[id]
+				print("     VAL: ", val)
+			else:
+				print("Values = Total, FALSE")
+				subgroup_outputs[id] = false
+		print("Total sg plates ", total)
 
 	
+		for plate in entry["plates"]:
+			if val:
+				print("     MOVING: ", plate.name)
+				plate._move_plat(true)
+			else:
+				print("     NOT MOVING: ", plate.name)
+	print("\nSubgroup Values: ", subgroup_outputs)
+	# --- Step 3: Evaluate main group operator
+	var final_values = subgroup_outputs.values()
+	var final_result = false
+	if main_group_operator == LogicOp.NONE:
+		final_result = final_values.size() > 0 and final_values[0]
+	else:
+		final_result = _evaluate_operator(final_values, main_group_operator)
 
+	# --- Step 4: Leader executes outputs
+	var leader = _find_leader(members)
+	if leader != null and final_result:
+		for output in leader.outputs:
+			if output != null:
+				if output.has_method("activate"):
+					output.activate(continuous, active_time)
+		print("Main group", main_group, "-> final result TRUE (Leader:", leader.name, ")")
+		leader.outputs.clear()
+		print("Outputs Cleared, Leader: ", leader)
+	else:
+		print("Main group", main_group, "-> final result FALSE")
+
+
+# ----------------------------
+# Helpers
+# ----------------------------
+func _evaluate_operator(values: Array, op: LogicOp) -> bool:
+	if values.is_empty():
+		return false
+	match op:
+		LogicOp.NONE:
+			for v in values:
+				if not v: return false
+			return true
+		LogicOp.AND:
+			for v in values:
+				if not v: return false
+			return true
+		LogicOp.OR:
+			for v in values:
+				if v: return true
+			return false
+		_:
+			return false
+
+func _find_leader(members: Array) -> Node:
+	for m in members:
+		if m.outputs.size() > 0:
+			return m
+	return null
 
 func _process_value(_value: bool) -> void:
 	for output in outputs:
 		if output != null:
-			output.activate(continuous, active_time)
-
-
-
-func _evaluate_logic() -> void:
-	match mode:
-		PlateMode.NORMAL:
-			print(name, " Evaluating NORMAL plate...")
-			_process_value(activated)
-
-		PlateMode.AND:
-			print(name, " Evaluating AND group: ", logic_group)
-			_evaluate_and_group()
-
-		PlateMode.OR:
-			print(name, " Evaluating OR group: ", logic_group)
-			_evaluate_or_group()
-
-		PlateMode.NOT:
-			print(name, " Evaluating NOT group: ", logic_group)
-			_evaluate_not_group()
-
-
-
-func _get_group_members() -> Array:
-	if logic_group == "":
-		return [self]
-
-	var members = get_tree().get_nodes_in_group(logic_group)
-	var plates := []
-	for m in members:
-		if m == null:
-			continue
-		
-		if not m.is_inside_tree():
-			continue
-	
-		if m.has_method("_evaluate_logic") or m.has_method("_process_value"):
-			plates.append(m)
-
-	print("Group members for '", logic_group, "': count=", plates.size(), " -> ", plates)
-	return plates
-
-
-func _evaluate_and_group() -> void:
-	var plates = _get_group_members()
-	if plates.is_empty():
-		print("AND: no plates found in group ", logic_group)
+			if not output.is_else:
+				print("OUTPUT IS NOT ELSE: ", output)
+				if output.has_method("activate"):
+					output.activate(continuous, active_time)
+				if output.has_method("move"):
+					output.move(plat_coords)
+				
+func _move_plat(_value: bool) -> void:
+	# Only move when the boolean is true
+	if not _value:
 		return
-
-	var all_true := true
-	for plate in plates:
-		print("AND checking plate:", plate.name, " activated=", plate.activated)
-		if not plate.activated:
-			all_true = false
-			break
-	print("AND check: all plates true? -> ", all_true)
-
-
-	var leader = _find_leader(plates)
-	print("Leader: ", leader)
-	
-	if all_true:
-		for output in leader.outputs:
-			if output != null:
-				output.activate(continuous, active_time)
-				print("Group ", logic_group, " -> activated outputs by leader ", leader.name)
+	for output in outputs:
+		if output != null:
+			if not output.has_method("activate") and output.has_method("move"):
+				output.move(plat_coords)
+				
+func evaluate_else(_value: bool) -> void:
+	print("EVALUATING ELSE")
+	if _value:
+		_process_value(_value)
 	else:
-		print("Group ", logic_group, " not satisfied (AND); leader:", leader.name)
-
-
-func _evaluate_or_group() -> void:
-	var plates = _get_group_members()
-	if plates.is_empty():
-		print("OR: no plates found in group ", logic_group)
-		return
-
-	var any_true := false
-	for plate in plates:
-		print("OR checking plate:", plate.name, " activated=", plate.activated)
-		if plate.activated:
-			any_true = true
-			break
-	print("OR check: any plate true? -> ", any_true)
-
-	var leader = _find_leader(plates)
-	if leader == self:
-		if any_true:
-			for output in leader.outputs:
-				if output != null:
-					output.activate(continuous, active_time)
-					print("Group ", logic_group, " -> activated outputs by leader ", leader.name)
-		else:
-			print("Group ", logic_group, " not satisfied (OR); leader:", leader.name)
-
-
-func _evaluate_not_group() -> void:
-	var plates = _get_group_members()
-	if plates.is_empty():
-		print("NOT: no plates found in group ", logic_group)
-		return
-
-
-	var result := true
-	var not_plate_count := 0
-	for plate in plates:
-		print("NOT checking plate:", plate.name, " mode=", plate.mode, " activated=", plate.activated)
-		if plate.mode == PlateMode.NOT:
-			not_plate_count += 1
-			if plate.activated:
-				result = false
-		else:
-			if not plate.activated:
-				result = false
-
-	if not_plate_count != 1:
-		result = false
-
-	print("NOT check: -> ", result)
-
-	var leader = _find_leader(plates)
-	if leader == self:
-		if result:
-			for output in leader.outputs:
-				if output != null:
-					output.activate(continuous, active_time)
-					print("Group ", logic_group, " -> activated outputs by leader ", leader.name)
-		else:
-			print("Group ", logic_group, " not satisfied (NOT); leader:", leader.name)
-
-
-func _find_leader(plates: Array) -> Node:
-	if plates.is_empty():
-		return self
-	for p in plates:
-		if p.outputs and p.outputs.size() > 0:
-			return p
-	return plates[0]
+		for output in outputs:
+			if output != null:
+				if output.is_else:
+					print("OUTPUT IS ELSE: ",output)
+					if output.has_method("activate"):
+						output.activate(continuous, active_time)
+					if output.has_method("move"):
+						output.move(plat_coords)
+	

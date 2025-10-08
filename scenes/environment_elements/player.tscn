@@ -1,10 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://c2udgjcetsli8"]
+[gd_scene load_steps=51 format=3 uid="uid://c2udgjcetsli8"]
 
 [ext_resource type="Texture2D" uid="uid://dt35kodhnu56f" path="res://assets/characters/CARRY/base_carry_strip8.png" id="1_exd05"]
 [ext_resource type="Script" uid="uid://cae5jkfe4lxvd" path="res://scripts/player.gd" id="1_q1jvc"]
 [ext_resource type="Texture2D" uid="uid://cdkne5i464sm2" path="res://assets/characters/IDLE/base_idle_strip9.png" id="2_8egqi"]
 [ext_resource type="Texture2D" uid="uid://cokn33idhou1q" path="res://assets/characters/JUMP/base_jump_strip9.png" id="3_2hi7l"]
-[ext_resource type="Texture2D" uid="uid://dl20nmqj4oogk" path="res://assets/images/lantern1.png" id="3_x1sp5"]
 [ext_resource type="Texture2D" uid="uid://c53q7xcg7pyuf" path="res://assets/characters/RUN/base_run_strip8.png" id="4_6nrej"]
 [ext_resource type="Script" uid="uid://cqg47qnj5p2gk" path="res://scripts/player_statemachine.gd" id="5_ehqa6"]
 [ext_resource type="Script" uid="uid://c48t5wtogen7l" path="res://scripts/player_idle.gd" id="6_pd16y"]
@@ -13,9 +12,6 @@
 [ext_resource type="Script" uid="uid://vwu6wkfmcdrk" path="res://scripts/player_jump.gd" id="9_28uqj"]
 [ext_resource type="AudioStream" uid="uid://5a8mclp4qn1" path="res://assets/music/sounds/jump.wav" id="11_7txwo"]
 [ext_resource type="Script" uid="uid://cqhgdccgk652a" path="res://scripts/player_falling.gd" id="11_y2is3"]
-[ext_resource type="Texture2D" uid="uid://vdr667ixq1pe" path="res://assets/images/light1.png" id="13_dshov"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dshov"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1sp5"]
 radius = 5.7142854
@@ -307,23 +303,6 @@ script = ExtResource("1_q1jvc")
 jump_height = 70.0
 jump_time_to_peak = 0.4
 jump_time_to_descent = 0.3
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-material = SubResource("CanvasItemMaterial_dshov")
-position = Vector2(-1.52588e-05, 0)
-scale = Vector2(5.714288, 5.7142887)
-blend_mode = 2
-texture = ExtResource("13_dshov")
-texture_scale = 0.15
-height = 30.0
-
-[node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
-position = Vector2(-1.9999964, -0.9999995)
-scale = Vector2(0.062499985, 0.06249997)
-texture = ExtResource("3_x1sp5")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 24)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-5.9604645e-08, -2.1428573)

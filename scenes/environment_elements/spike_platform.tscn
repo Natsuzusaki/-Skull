@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dersvtufh1xbs"]
+
+[ext_resource type="TileSet" uid="uid://d0goud1b4sckf" path="res://assets/presets/tiles.tres" id="1_36b0h"]
+
+[node name="SpikePlatform" type="TileMapLayer"]
+tile_set = ExtResource("1_36b0h")
