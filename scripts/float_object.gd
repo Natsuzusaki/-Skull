@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+@export var initial_value : float
 @onready var player: CharacterBody2D = null
 @onready var collision: CollisionShape2D = $Collision
 @onready var text_value: Label = $TextValue
@@ -7,7 +8,7 @@ var value = null
 var is_carried := false
 
 func _ready() -> void:
-	value = 0.5 if value == null else value
+	value = initial_value if value == null else value
 	if not player:
 		player = get_tree().get_current_scene().find_child("Player")
 	if player:

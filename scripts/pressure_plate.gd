@@ -141,7 +141,6 @@ func _evaluate_or_group() -> void:
 			any_true = true
 			break
 	print("OR check: any plate true? -> ", any_true)
-
 	var leader = _find_leader(plates)
 	if leader == self:
 		if any_true:
@@ -151,15 +150,11 @@ func _evaluate_or_group() -> void:
 					print("Group ", logic_group, " -> activated outputs by leader ", leader.name)
 		else:
 			print("Group ", logic_group, " not satisfied (OR); leader:", leader.name)
-
-
 func _evaluate_not_group() -> void:
 	var plates = _get_group_members()
 	if plates.is_empty():
 		print("NOT: no plates found in group ", logic_group)
 		return
-
-
 	var result := true
 	var not_plate_count := 0
 	for plate in plates:
@@ -171,12 +166,9 @@ func _evaluate_not_group() -> void:
 		else:
 			if not plate.activated:
 				result = false
-
 	if not_plate_count != 1:
 		result = false
-
 	print("NOT check: -> ", result)
-
 	var leader = _find_leader(plates)
 	if leader == self:
 		if result:
@@ -186,8 +178,6 @@ func _evaluate_not_group() -> void:
 					print("Group ", logic_group, " -> activated outputs by leader ", leader.name)
 		else:
 			print("Group ", logic_group, " not satisfied (NOT); leader:", leader.name)
-
-
 func _find_leader(plates: Array) -> Node:
 	if plates.is_empty():
 		return self

@@ -108,7 +108,7 @@ func connections() -> void:
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
-	SaveManager.mark_level_completed(1)
+	SaveManager.mark_level_completed(2)
 	camera.focus_on_player(true, true)
 	await wait(1)
 	dialogue("talk4")
