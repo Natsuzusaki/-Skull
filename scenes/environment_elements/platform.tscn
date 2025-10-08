@@ -1,23 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgs4eyp8262dh"]
 
-[ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="1_0lmy3"]
+[ext_resource type="Texture2D" uid="uid://sjk04htle5jp" path="res://assets/images/platform.png" id="1_0lmy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5exy"]
-size = Vector2(63.99996, 16)
+size = Vector2(60, 22.000141)
 
 [node name="Platform" type="AnimatableBody2D"]
 collision_layer = 2
 collision_mask = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.748604e-07, 5.9604645e-07)
-scale = Vector2(1.3333334, 0.99999994)
+position = Vector2(0.013072471, 5.9604645e-07)
 texture = ExtResource("1_0lmy3")
 region_enabled = true
-region_rect = Rect2(656, 128, 48, 16)
+region_rect = Rect2(22, 43, 60, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.0140036e-05, -4.7683716e-07)
+visible = false
+position = Vector2(0, -2.3841858e-07)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_b5exy")
 one_way_collision_margin = 0.0

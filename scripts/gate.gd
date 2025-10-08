@@ -5,6 +5,7 @@ extends StaticBody2D
 @export var max_limit: Vector2
 @export var move_in_x: bool
 @export var move_in_y: bool
+@export var is_else: bool = false
 var target: Vector2
 var status := false
 
@@ -16,7 +17,7 @@ func activate(continuous: bool, time: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", target, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-func move(value) -> void:
+func move_gate(value) -> void:
 	var newpos: Vector2
 	if move_in_x:
 		newpos = Vector2(value, 0)

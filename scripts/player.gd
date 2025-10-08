@@ -21,8 +21,6 @@ class_name Player
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var timer: Timer = $DeathDetection/Timer
 @onready var run_trail = preload("res://scenes/environment_elements/player_trails.tscn")
-@onready var point_light_2d: PointLight2D = $PointLight2D
-@onready var lantern: Sprite2D = $PointLight2D/Sprite2D
 
 #Inpector Variables (Jump Values)
 @export var jump_height: float
@@ -61,10 +59,8 @@ signal on_interact()
 func _ready() -> void:
 	DeathFog.open_fog()
 	last_trail_pos = global_position
-	point_light_2d.enabled = false
 	Engine.time_scale = 1.0
 	state_machine.init(self)
-	lantern.visible = false
 func _unhandled_input(event: InputEvent) -> void:
 	if not Input.is_action_pressed("carry"):
 		is_carry_pressed = false
@@ -75,12 +71,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 func _process(delta: float) -> void:
 	if static_direction == -1:
-		lantern.position.x = -2.0
-		lantern.position.y = -1.0
 		animation.flip_h = static_direction
 	elif static_direction == 1:
-		lantern.position.x = 1.0
-		lantern.position.y = -1.0
 		animation.flip_h = not static_direction
 	state_machine.process_frame(delta)
 func _physics_process(delta: float) -> void:
@@ -222,10 +214,3 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	SFXManager.play("death2")
 	
-func emit_light():
-	point_light_2d.enabled = true
-	lantern.visible = true
-	
-func disable_light():
-	point_light_2d.enabled = false
-	lantern.visible = false

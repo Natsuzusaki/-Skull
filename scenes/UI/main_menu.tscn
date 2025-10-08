@@ -13,22 +13,22 @@
 texture = ExtResource("2_mf7fl")
 modulate_color = Color(0.693137, 0.505547, 0.326815, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvdtt"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mf7fl"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwd2w"]
 texture = ExtResource("4_a1wsg")
-modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfgb2"]
-texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlsky"]
 texture = ExtResource("4_a1wsg")
 modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwd2w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfgb2"]
 texture = ExtResource("4_a1wsg")
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mf7fl"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvdtt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_um6dh"]
 texture = ExtResource("4_a1wsg")
@@ -90,11 +90,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Start
 New Game"
 
@@ -104,11 +104,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_um6dh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_um6dh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 disabled = true
 text = "Continue"
 
@@ -118,11 +118,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_d6l81")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_d6l81")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Settings"
 
 [node name="Exit" type="Button" parent="Background/Menu/MainButtons"]
@@ -131,10 +131,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Exit"
 
 [node name="GameTitle" type="Label" parent="Background/Menu"]
@@ -185,7 +185,7 @@ vertical_alignment = 1
 
 [node name="SwitchUser" type="Button" parent="Background/Menu/User"]
 texture_filter = 1
-layout_mode = 2
+layout_mode = 0
 offset_left = 400.0
 offset_right = 668.0
 offset_bottom = 64.0
@@ -193,10 +193,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Switch User"
 
 [node name="Settings" parent="Background" node_paths=PackedStringArray("previous_menu") instance=ExtResource("6_bm8t2")]

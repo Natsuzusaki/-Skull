@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://jb1ltuprc84v"
+path="res://.godot/imported/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3-7eec5e5e238f32e484bd8147f122c2ce.mp3str"
+
+[deps]
+
+source_file="res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3"
+dest_files=["res://.godot/imported/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3-7eec5e5e238f32e484bd8147f122c2ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,9 +5,11 @@ extends TileMapLayer
 @export var max_limit: Vector2 = Vector2( 99999,  99999)
 @export var move_in_x: bool = true
 @export var move_in_y: bool = false
+@export var is_else: bool = false
 @export var reverse: bool = false
 @export var offset: int = 0
 @export var inputs: Array[InputRef] = []
+
 
 @onready var camera: Camera2D = %Camera
 

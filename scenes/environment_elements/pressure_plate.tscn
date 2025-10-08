@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8fww5kbpkvyt"]
+[gd_scene load_steps=8 format=3 uid="uid://gximac3mmbpx"]
 
-[ext_resource type="Script" uid="uid://c7lij77e87tql" path="res://scripts/pressure_plate.gd" id="1_l6a50"]
-[ext_resource type="Texture2D" uid="uid://c82u0p1esbgep" path="res://assets/images/printer1.png" id="2_jwwgu"]
-[ext_resource type="Texture2D" uid="uid://8qkj5m0ohnvh" path="res://assets/images/grayblocking2.png" id="3_7e88l"]
+[ext_resource type="Script" uid="uid://k3anjeybnyvr" path="res://scripts/pressure_plate.gd" id="1_l6a50"]
+[ext_resource type="Texture2D" uid="uid://b41xh7oaog0tp" path="res://assets/images/pressure_plate.png" id="2_l6a50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7e88l"]
-size = Vector2(64, 8)
+size = Vector2(54, 8)
 
 [sub_resource type="Animation" id="Animation_oxg10"]
 length = 0.001
@@ -19,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2.38419e-07, -0.88888824)]
+"values": [Vector2(0, -5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -33,33 +32,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1.8000001, 1.488889)]
 }
-
-[sub_resource type="Animation" id="Animation_7e88l"]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../green:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(0, -5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.8000001, 1.488889), Vector2(1.8000001, 1.488889)]
+"values": [Vector2(0, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_jwwgu"]
@@ -96,7 +79,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("../green:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -105,23 +88,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, -5), Vector2(0, -1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.8000001, 1.488889), Vector2(1.8000001, 1.488889)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g55ch"]
 _data = {
 &"RESET": SubResource("Animation_oxg10"),
-&"idle": SubResource("Animation_7e88l"),
 &"not_pressed": SubResource("Animation_jwwgu"),
 &"pressed": SubResource("Animation_p8yr4")
 }
@@ -135,26 +105,33 @@ script = ExtResource("1_l6a50")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_7e88l")
 
-[node name="Pressure_Off" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -0.88888824)
+[node name="green" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
 scale = Vector2(1.8000001, 1.488889)
-texture = ExtResource("2_jwwgu")
+texture = ExtResource("2_l6a50")
 region_enabled = true
-region_rect = Rect2(17, 17, 30, 5)
+region_rect = Rect2(33, 51, 30, 5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pressure_Off"]
+[node name="red" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(1.8000001, 1.488889)
+texture = ExtResource("2_l6a50")
+region_enabled = true
+region_rect = Rect2(33, 58, 30, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="red"]
 libraries = {
 &"": SubResource("AnimationLibrary_g55ch")
 }
-autoplay = "idle"
 
-[node name="Pressure_On" type="Sprite2D" parent="."]
+[node name="base" type="Sprite2D" parent="."]
 position = Vector2(2.38419e-07, 3.5)
+rotation = -3.1415927
 scale = Vector2(1.7777778, 1.5)
-texture = ExtResource("3_7e88l")
+texture = ExtResource("2_l6a50")
 flip_v = true
 region_enabled = true
-region_rect = Rect2(663, 198, 36, 6)
+region_rect = Rect2(28, 63, 40, 6)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -11,10 +11,39 @@ extends Node2D
 @onready var consoles: Node2D = %Consoles
 @onready var printers: Node2D = $Printers
 
+@onready var if_1: Control = $Labels/if1
+@onready var if_2: Control = $Labels/if2
+@onready var if_3: Control = $Labels/if3
+@onready var if_4: Control = $Labels/if4
+@onready var if_5: Control = $Labels/if5
+@onready var if_6: Control = $Labels/if6
+
+
+
 var data = SaveManager.load_game()
 var ctr := false
 
+var a = 12 > 3
+#var b = false
+#var c = null
+#var d = false
+#
+#var e:bool
+
+
 func _ready() -> void:
+	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3")
+	#e = (a and not b) and (c or d == false)
+	#print("test: ",e)
+	print("a: ", a)
+	
+	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	if_3.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	if_4.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	if_5.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	if_6.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	
 	if data.has("Chapter3"):
 		var chapter3 = data["Chapter3"]
 		if chapter3.has("player_pos"):
@@ -56,13 +85,13 @@ func _pause_game() -> void:
 	Pause.paused()
 
 
-func fade_to_black(duration: float = 0.3) -> void:
-	var tween := create_tween()
-	tween.tween_property(canvas_modulate, "color", Color(0.0, 0.0, 0.0, 1.0), duration)
-
-func fade_to_transparent(duration: float = 0.3) -> void:
-	var tween := create_tween()
-	tween.tween_property(canvas_modulate, "color", Color(0.317, 0.623, 0.795), duration)
+#func fade_to_black(duration: float = 0.3) -> void:
+	#var tween := create_tween()
+	#tween.tween_property(canvas_modulate, "color", Color(0.0, 0.0, 0.0, 1.0), duration)
+#
+#func fade_to_transparent(duration: float = 0.3) -> void:
+	#var tween := create_tween()
+	#tween.tween_property(canvas_modulate, "color", Color(0.317, 0.623, 0.795), duration)
 	
 #func _on_area_2d_body_entered(_body: Node2D) -> void:
 	##player.emit_light()
@@ -73,3 +102,30 @@ func fade_to_transparent(duration: float = 0.3) -> void:
 	##fade_to_transparent()
 
 	
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_1, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+func _on_area_2d_2_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_2, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+func _on_area_2d_3_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_3, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+func _on_area_2d_4_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_4, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+	
+func _on_area_2d_5_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_5, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+
+
+func _on_area_2d_6_body_entered(_body: Node2D) -> void:
+	var duration = 0.5
+	var tween := create_tween()
+	tween.tween_property(if_6, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
