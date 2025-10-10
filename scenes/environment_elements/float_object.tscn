@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwqrtxttcr0it"]
+[gd_scene load_steps=7 format=3 uid="uid://cwqrtxttcr0it"]
 
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_2u5sw"]
 [ext_resource type="Script" uid="uid://c8s0dyxng1i7k" path="res://scripts/float_object.gd" id="1_7ibfo"]
@@ -7,6 +7,10 @@
 friction = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjeo"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwrbe"]
+size = Vector2(32, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvg8k"]
 font = ExtResource("1_2u5sw")
@@ -22,6 +26,14 @@ script = ExtResource("1_7ibfo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ifjeo")
+
+[node name="ConvertDetect" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConvertDetect"]
+shape = SubResource("RectangleShape2D_lwrbe")
+debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="TextValue" type="Label" parent="."]
 anchors_preset = 8

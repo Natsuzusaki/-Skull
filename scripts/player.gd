@@ -7,7 +7,9 @@ class_name Player
 @onready var object_out_timer: Timer = $ObjectOutTimer
 @onready var down_buffer_timer: Timer = $DownBufferTimer
 @onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
-@onready var animation = $Sprite
+@onready var animation: AnimatedSprite2D = $Sprite
+@onready var animation2: AnimatedSprite2D = $Sprite2
+@onready var animation3: AnimatedSprite2D = $Sprite3
 @onready var death_collision: CollisionShape2D = $DeathDetection/Death_Collision
 @onready var pick_up_collision: CollisionShape2D = $PickUp_Area/PickUp_Collision
 @onready var death_detection: Area2D = $DeathDetection
@@ -54,6 +56,7 @@ var fall_distance := 0.0
 
 #Interactions with other object
 signal on_interact()
+signal on_throw_upward()
 
 #Starting StateMachine, Input, Frame and Physics
 func _ready() -> void:
@@ -71,9 +74,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 func _process(delta: float) -> void:
 	if static_direction == -1:
-		animation.flip_h = static_direction
+		sprite_flip(true)
 	elif static_direction == 1:
-		animation.flip_h = not static_direction
+		sprite_flip(false)
 	state_machine.process_frame(delta)
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
@@ -146,13 +149,16 @@ func move_in_cutscene(target_pos: Vector2, speed := 100) -> void:
 		static_direction = 1
 	else:
 		static_direction = -1
-	animation.play("run")
+	if speed <= 200:
+		sprite_animation("walk")
+	else:
+		sprite_animation("run")
 	var distance = global_position.distance_to(target_pos)
 	var duration = distance / speed
 	var tween := create_tween()
 	tween.tween_property(self, "global_position", target_pos, duration)
 	await tween.finished
-	animation.play("idle")
+	sprite_animation("idle")
 	tween.finished.connect(func():
 		set_process_input(true))
 func carry() -> void:
@@ -167,6 +173,14 @@ func carry() -> void:
 			is_carrying = not is_carrying
 			object_out_timer.start()
 			on_interact.emit()
+func up_throw() -> void:
+	if not dead:
+		if is_carrying and not is_carry_pressed:
+			is_carry_pressed = true
+			is_carrying = not is_carrying
+			object_out_timer.start()
+			on_throw_upward.emit()
+	return
 
 #Timers
 func _on_coyote_timer_timeout() -> void:
@@ -205,7 +219,7 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 	DeathFog.close_fog()
 	death_detection.set_collision_mask_value(7, false)
 	timer.start()
-	animation.play("die")
+	sprite_animation("die")
 	SFXManager.play("death")
 	Engine.time_scale = 0.5
 	var tree = get_tree()
@@ -214,3 +228,12 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	SFXManager.play("death2")
 	
+#Helper
+func sprite_animation(anim_name: String) -> void:
+	animation.play(anim_name)
+	animation2.play(anim_name)
+	animation3.play(anim_name)
+func sprite_flip(flip: bool) -> void:
+	animation.flip_h = flip
+	animation2.flip_h = flip
+	animation3.flip_h = flip

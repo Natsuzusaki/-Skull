@@ -14,6 +14,8 @@ func process_input(_event: InputEvent) -> PlayerState:
 	if Input.is_action_just_pressed("jump") and parent.can_double_jump and parent.has_double_jump:
 		parent.can_double_jump = false
 		parent.jump()
+	if Input.is_action_pressed("carry") and Input.is_action_pressed("up"):
+		parent.up_throw()
 	if Input.is_action_pressed("carry"):
 		parent.carry()
 	return null

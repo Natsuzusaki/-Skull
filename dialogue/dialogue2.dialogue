@@ -1,10 +1,14 @@
 ~ talk1
+do player.sprite_animation("action")
+do wait(0.3)
+do star.visible = false
+do player.sprite_animation("idle")
 Yuna: What is this? It looks like one of those glasses you use when handling chemicals in a laboratory
 - Safety Glasses?
 Yuna: Yeah that, but it could be a visor or something
 Yuna: It's very thin, not good for protecting
-Yuna: Im gonna wear it anyways
-Yuna: I love glasses 
+Yuna: [do player.sprite_animation("action")]Im gonna wear it anyways 
+Yuna: [do player.sprite_animation("idle")]I love glasses 
 do player.stay = false
 do camera.back()
 do Cutscene.end_cutscene()

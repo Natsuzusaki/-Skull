@@ -8,11 +8,16 @@ var parent: Player
 
 func enter() -> void:
 	if parent.stay:
-		parent.animation.play("idle")
+		animation("idle")
 	else:
-		parent.animation.play(animation_name)
+		animation(animation_name)
 func exit() -> void:
 	pass
+
+func animation(anim_name: String) -> void:
+	parent.animation.play(anim_name)
+	parent.animation2.play(anim_name)
+	parent.animation3.play(anim_name)
 
 func process_input(_event:InputEvent) -> PlayerState:
 	return null

@@ -8,6 +8,9 @@ func enter() -> void:
 	parent.debug.text = "idle"
 
 func process_input(_event: InputEvent) -> PlayerState:
+	if Input.is_action_pressed("carry") and Input.is_action_pressed("up") and not parent.stay:
+		print("!")
+		parent.up_throw()
 	if Input.is_action_pressed("carry") and not parent.stay:
 		parent.carry()
 	if Input.get_axis("left", "right") and not parent.stay:

@@ -34,7 +34,9 @@ func _ready() -> void:
 	else:
 		current_target = player
 	screen_size = get_viewport().get_visible_rect().size / zoom
+	position_smoothing_enabled = false
 	_snap_to_player_screen()
+	position_smoothing_enabled = true
 
 func _physics_process(delta: float) -> void:
 	if interact:

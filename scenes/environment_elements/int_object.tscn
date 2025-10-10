@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpmp4bujrpjva"]
+[gd_scene load_steps=8 format=3 uid="uid://cpmp4bujrpjva"]
 
 [ext_resource type="Script" uid="uid://bff04h4snbmnj" path="res://scripts/int_object.gd" id="1_i6fca"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_t0fev"]
@@ -7,8 +7,11 @@
 friction = 0.8
 bounce = 0.1
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xufwe"]
-radius = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvh4m"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xufwe"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud0ij"]
 size = Vector2(10, 14)
@@ -33,8 +36,16 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Die"]
-shape = SubResource("CircleShape2D_xufwe")
+shape = SubResource("RectangleShape2D_tvh4m")
 debug_color = Color(0.994914, 0, 0.214251, 0.42)
+
+[node name="ConvertDetect" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConvertDetect"]
+shape = SubResource("RectangleShape2D_xufwe")
+debug_color = Color(0, 1, 0, 0.41960785)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ud0ij")

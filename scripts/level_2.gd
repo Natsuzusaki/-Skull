@@ -2,6 +2,7 @@ extends Node2D
 
 #----References
 @onready var grid: CanvasLayer = $Grid
+@onready var star: ColorRect = $Star
 @onready var player: Player = %Player
 @onready var camera: Camera2D = %Camera
 @onready var notes: Node2D = %Notes
@@ -20,9 +21,10 @@ var ctr := false
 var talk_ctr := 0
 var mouse_target: Vector2
 var yuna_mouse_move := false
-var mouse_speed: float = 600.0
+var mouse_speed: float = 550.0
 
 func _ready() -> void:
+	#Engine.time_scale = 0.1
 	connections()
 	if data.has("Chapter2"):
 		var chapter2 = data["Chapter2"]

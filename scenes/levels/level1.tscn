@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://bvryah7o4iscn"]
+[gd_scene load_steps=48 format=4 uid="uid://bvryah7o4iscn"]
 
 [ext_resource type="Script" uid="uid://cupi8qqybo8sf" path="res://scripts/level1.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://7gnnosfir6we" path="res://scenes/environment_elements/checkpoint.tscn" id="2_6gwlt"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dktlbpwfha5xr" path="res://assets/music/sounds/explosion.wav" id="16_agrr7"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="17_b2isc"]
 [ext_resource type="TileSet" uid="uid://cqd57uw5omsxj" path="res://assets/presets/grass_tiles.tres" id="18_qg8x4"]
+[ext_resource type="Texture2D" uid="uid://ear0qm6wpdt4" path="res://assets/krit_1 (adachi_rei).png" id="21_jrfo0"]
 [ext_resource type="PackedScene" uid="uid://wikiax10fqqp" path="res://scenes/UI/level_complete_ui.tscn" id="22_p5q6g"]
 
 [sub_resource type="Sky" id="Sky_gvm5i"]
@@ -816,6 +817,17 @@ print() and String"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Label4" type="Label" parent="Labels"]
+offset_left = -1040.0
+offset_top = 712.0
+offset_right = -242.0
+offset_bottom = 1004.0
+theme_override_fonts/font = ExtResource("17_b2isc")
+theme_override_font_sizes/font_size = 24
+text = "thank sri"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="Label" type="Label" parent="Labels"]
 offset_left = 2472.0
 offset_top = 280.0
@@ -842,6 +854,11 @@ tile_set = ExtResource("18_qg8x4")
 visible = false
 offset_left = -640.0
 offset_right = -640.0
+
+[node name="Thanksri" type="Sprite2D" parent="."]
+position = Vector2(-640, 640)
+scale = Vector2(0.047407404, 0.04740739)
+texture = ExtResource("21_jrfo0")
 
 [connection signal="body_entered" from="Triggers/Cutscene1" to="." method="_on_cutscene_1_body_entered"]
 [connection signal="body_entered" from="Triggers/CantCross" to="." method="_on_cant_cross_body_entered"]
