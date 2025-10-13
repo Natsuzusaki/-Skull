@@ -23,6 +23,7 @@ extends Node2D
 @onready var printer3: Node2D = $Printers/Printer10
 @onready var mid_ground: TileMapLayer = $MidGround
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var timerr: CanvasLayer = $Time
 
 var is_smart := false
 var talk_ctr := 0
@@ -45,6 +46,9 @@ func _ready() -> void:
 			if chapter1["checkpoint_order"] == 8.0:
 				button_2.disabled = true
 				gate.global_position += Vector2(0, 120)
+		if chapter1.has("current_timer"):
+			timerr.time = chapter1["current_timer"]
+			timerr.update_display() 
 		if chapter1.has("flags"):
 			var flags = chapter1["flags"]
 			if flags.has("has_done_cutscene"):
@@ -106,6 +110,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
+	if Input.is_action_just_pressed("debug") and not player.stay:
+		_save_timer_to_json()
+		get_tree().reload_current_scene()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -169,9 +176,10 @@ func _on_noise_body_entered(_body: Node2D) -> void:
 	entered_last_area()
 func _on_level_finished_body_entered(_body: Node2D) -> void:
 	player.stay = true
-	ui_level_complete.visible = true
-	ui_level_complete.animation_player.play("DropDown")
+	ui_level_complete.drop_down()
+	SaveManager.save_level_completion("Chapter1", timerr, true)
 	SaveManager.mark_level_completed(1)
+
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
 func dialogue(talk: String) -> void:
@@ -179,6 +187,8 @@ func dialogue(talk: String) -> void:
 func turn_dark_light(value) -> void:
 	var tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", value, 1)
+func _save_timer_to_json() -> void:
+	SaveManager.save_timer_for_session("Chapter1", timerr.time)
 
 func _on_turn_dark_body_entered(_body: Node2D) -> void:
 	turn_dark_light(Color8(27, 71, 95, 255))

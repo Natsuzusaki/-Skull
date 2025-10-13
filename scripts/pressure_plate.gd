@@ -3,6 +3,7 @@ extends Area2D
 # ----------------------------
 # Exported Inspector Settings
 # ----------------------------
+@export var plate_num: int
 @export var continuous: bool = false
 @export var active_time: float = 1.0
 @export var has_else: bool = false  
@@ -22,6 +23,8 @@ enum LogicOp { NONE, AND, OR }
 @onready var animation_player: AnimationPlayer = $red/AnimationPlayer
 @onready var green: Sprite2D = $green
 @onready var red: Sprite2D = $red
+@onready var text: Label = $Label
+
 
 var current_object: Node = null
 var activated: bool = false
@@ -32,6 +35,10 @@ var idle: bool = true
 # Lifecycle
 # ----------------------------
 func _ready() -> void:
+	if plate_num == 0:
+		text.text = " "
+	else:
+		text.text = str(plate_num)
 	green.visible = false
 	# Add to group for main group evaluation
 	if main_group != "" and not is_in_group(main_group):

@@ -1,6 +1,6 @@
 ~ talk1
 do player.sprite_animation("action")
-do wait(0.3)
+do wait(1)
 do star.visible = false
 do player.sprite_animation("idle")
 Yuna: What is this? It looks like one of those glasses you use when handling chemicals in a laboratory

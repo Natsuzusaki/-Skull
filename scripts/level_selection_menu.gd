@@ -75,10 +75,12 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	if SaveManager.is_level_completed(1):
 		Loading.loading("res://scenes/levels/level2.tscn")
+		SaveManager.reset_save("Chapter2")
 
 func _on_button_3_pressed() -> void:
 	if SaveManager.is_level_completed(2):
 		Loading.loading("res://scenes/levels/level3.tscn")
+		SaveManager.reset_save("Chapter3")
 
 func _on_button_4_pressed() -> void:
 	if SaveManager.is_level_completed(3):

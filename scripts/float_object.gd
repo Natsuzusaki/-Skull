@@ -37,7 +37,6 @@ func _on_interact() -> void:
 			apply_impulse(Vector2((mass * 250) * player.static_direction, 0))
 			collision.disabled = false
 func _throw_upwards() -> void:
-	print("?")
 	if not player or not is_carried:
 		return
 	is_carried = false

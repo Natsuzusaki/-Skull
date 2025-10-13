@@ -124,3 +124,34 @@ func delete_user(user: String) -> void:
 			DirAccess.remove_absolute(path)
 		if current_user == user:
 			current_user = "Guest"
+
+func save_timer_for_session(chapter: String, timer_value: float) -> void:
+	var timer_data = {chapter: {"current_timer": timer_value}}
+	update_save(timer_data)
+	print("Saved current timer for '%s': %.2f seconds." % [chapter, timer_value])
+
+# New: Save completed level time (e.g., on finish/exit without restart)
+# Stores 'level_time' float under the chapter (permanent, optional best-time min)
+# Also calls stop() on the Time node if provided
+func save_level_completion(chapter: String, time_node: Node, use_best_time: bool = false) -> void:
+	if not time_node:
+		print("Warning: No Time node provided for level completion save.")
+		return
+		
+	time_node.stop()  # Finalize total_time string (from your Time script)
+	var completion_time = time_node.time  # The float value
+	
+	var data = load_game()
+	var chapter_data = data.get(chapter, {})
+	
+	if use_best_time and chapter_data.has("level_time"):
+		# Optional: Keep the minimum (best) time
+		completion_time = min(completion_time, chapter_data["level_time"])
+		print("Updated best time for '%s' to %.2f seconds." % [chapter, completion_time])
+		
+	var completion_data = {chapter: {"level_time": completion_time}}
+	update_save(completion_data)
+	
+	# Optionally save the formatted string too
+	completion_data[chapter]["level_time_formatted"] = time_node.total_time
+	update_save(completion_data)

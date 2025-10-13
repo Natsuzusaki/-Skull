@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q6k3puy5pgwi"
+path="res://.godot/imported/DRAMATIC THUD Sound Effect.mp3-66926b33cd5f6b5a629578c0ef2623de.mp3str"
+
+[deps]
+
+source_file="res://assets/music/DRAMATIC THUD Sound Effect.mp3"
+dest_files=["res://.godot/imported/DRAMATIC THUD Sound Effect.mp3-66926b33cd5f6b5a629578c0ef2623de.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

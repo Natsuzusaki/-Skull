@@ -1313,9 +1313,8 @@ frame_progress = 0.8988102
 position = Vector2(0, -1.4285715)
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_8vfao")
-animation = &"die"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.6460324
 
 [node name="Sprite3" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1.4285715)

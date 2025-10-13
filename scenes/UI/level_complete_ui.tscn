@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wikiax10fqqp"]
+[gd_scene load_steps=41 format=3 uid="uid://wikiax10fqqp"]
 
 [ext_resource type="Script" uid="uid://dmpb7uykx5g3r" path="res://scripts/level_complete_ui.gd" id="1_6sdq8"]
 [ext_resource type="Texture2D" uid="uid://b11in1n6lehf2" path="res://assets/images/Level Complete.png" id="2_mb5wx"]
@@ -6,61 +6,227 @@
 [ext_resource type="Texture2D" uid="uid://clhfjonf8miby" path="res://assets/images/Main Menu Button.png" id="4_nbakb"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_w4d5t"]
 [ext_resource type="Texture2D" uid="uid://m5t2csndncu8" path="res://assets/images/Next Level Button.png" id="6_abo8g"]
-[ext_resource type="AudioStream" uid="uid://bkhlhugla6m7e" path="res://assets/music/tada-military-2-183973.wav" id="7_i7e8s"]
+[ext_resource type="AudioStream" uid="uid://b8gn0ojtsly7b" path="res://assets/music/complete.mp3" id="8_abo8g"]
+[ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="8_mb5wx"]
+[ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="8_nbakb"]
+[ext_resource type="Texture2D" uid="uid://c6tgbd56m8mg5" path="res://assets/images/medal.png" id="9_224vw"]
+[ext_resource type="AudioStream" uid="uid://c5pisfirjssx2" path="res://assets/music/woosh-230554.mp3" id="9_i7e8s"]
+[ext_resource type="AudioStream" uid="uid://r4h50t2favek" path="res://assets/music/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="10_abo8g"]
+[ext_resource type="AudioStream" uid="uid://cn2kk0747yqyo" path="res://assets/music/fireworks-sound-280715.mp3" id="10_v2426"]
+[ext_resource type="FontFile" uid="uid://8je5juxgn1f2" path="res://assets/fonts/mac's Minecraft.ttf" id="11_w4d5t"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sdq8"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbru2"]
-texture = ExtResource("4_nbakb")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6sdq8"]
-texture = ExtResource("4_nbakb")
-modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_224vw"]
+shader = ExtResource("8_mb5wx")
+shader_parameter/blur_size = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mb5wx"]
 texture = ExtResource("4_nbakb")
 modulate_color = Color(0.687215, 0.687215, 0.687215, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mb5wx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6sdq8"]
+texture = ExtResource("4_nbakb")
+modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_224vw"]
-texture = ExtResource("6_abo8g")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbru2"]
+texture = ExtResource("4_nbakb")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbakb"]
-texture = ExtResource("6_abo8g")
-modulate_color = Color(0.4, 0.4, 0.4, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sdq8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4d5t"]
 texture = ExtResource("6_abo8g")
 modulate_color = Color(0.686275, 0.686275, 0.686275, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbakb"]
+texture = ExtResource("6_abo8g")
+modulate_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_224vw"]
+texture = ExtResource("6_abo8g")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mb5wx"]
+
 [sub_resource type="Animation" id="Animation_jdcbr"]
 resource_name = "DropDown"
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("Control:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"times": PackedFloat32Array(0, 0.41, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(72, -600), Vector2(72, 0), Vector2(72, -50), Vector2(72, 0)]
+"values": [Vector2(0, 0), Vector2(0, 599), Vector2(0, 504), Vector2(0, 599)]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SFXPlayer")
+tracks/1/path = NodePath("SFXPlayer:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.166667),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fireworks:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fireworks2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19630282, 0.5, 4.3333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fireworks3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.77667636, 1.8666667, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("fireworks2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(136, 824), Vector2(125, 984), Vector2(150, 731), Vector2(88, 1073)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fireworks3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1016, 824), Vector2(893, 902), Vector2(1098, 1024), Vector2(1112, 833)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("confetti:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("confetti2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("confetti3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("confetti4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("confetti:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("confetti2:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("confetti3:emitting")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("confetti4:emitting")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nx8t5"]
@@ -68,20 +234,874 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("Control:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -600)]
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Time label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Time label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1216, 863.99994)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TimeResult:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1224.0001, 952)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TimeResult:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("woosh:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fireworks2:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("fireworks3:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("fireworks2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, 824)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("fireworks3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1016, 824)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("confetti:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("confetti2:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("confetti3:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("confetti4:emitting")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("confetti:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("confetti2:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("confetti3:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("confetti4:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1320)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ajuat"]
 _data = {
 &"DropDown": SubResource("Animation_jdcbr"),
 &"RESET": SubResource("Animation_nx8t5")
+}
+
+[sub_resource type="Animation" id="Animation_u4eal"]
+resource_name = "1star"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("star:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medal2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(568, 1472), Vector2(568, 744)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("medal2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_c1u14"]
+resource_name = "1star_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("medal2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 744)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medal2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.2, 2.2)]
+}
+
+[sub_resource type="Animation" id="Animation_i7e8s"]
+resource_name = "2star"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("medal1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medal2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5, 5), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("medal1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(72, 1472.0001), Vector2(488, 744)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("medal2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1064, 1472.0001), Vector2(1064, 1472.0001), Vector2(648, 744)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("star:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.26948163, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_v2426"]
+resource_name = "2star_idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("medal1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(488, 744)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medal2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(648, 744)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("medal1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.206809, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.2, 2.2), Vector2(2, 2), Vector2(2.2, 2.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("medal2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.61089873, 1.2, 1.8, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.2, 2.2), Vector2(2, 2), Vector2(2.2, 2.2)]
+}
+
+[sub_resource type="Animation" id="Animation_224vw"]
+resource_name = "3star"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../3star/medal1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(72, 1472.0001), Vector2(408, 760)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../3star/medal2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.20000002, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(568, 1472), Vector2(568, 1472), Vector2(568, 712.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../3star/medal3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1064, 1472.0001), Vector2(1064, 1472.0001), Vector2(728, 760)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../3star/medal3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.40000004, 0.6, 0.79, 0.97),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2, 2), Vector2(2, 2), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../3star/medal1:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.41, 0.59),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2, 2), Vector2(2, 2), Vector2(2, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../3star/medal2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.20833334, 0.40000004, 0.6, 0.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(2.5, 2.5), Vector2(2.5, 2.5), Vector2(2.5, 2.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("star:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.22, 0.42, 0.43333334, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_abo8g"]
+resource_name = "3star_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("medal1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(408, 760)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("medal2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 712.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("medal3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(728, 760)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("medal1:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.2, 2.2), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("medal2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.4901161e-08, 0.6, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(2.5, 2.5), Vector2(2.7, 2.7), Vector2(2.5, 2.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("medal3:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(2.2, 2.2)]
+}
+
+[sub_resource type="Animation" id="Animation_nbakb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../3star/medal1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(72, 1472.0001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../3star/medal2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 1472)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../3star/medal3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1064, 1472.0001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../3star/medal3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../3star/medal1:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../3star/medal2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("medal1:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-367, 991)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("medal2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-439, 1096)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("medal3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1064, 1472.0001)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("star:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("medal1:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("medal2:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("medal3:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.44, 1.44)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4d5t"]
+_data = {
+&"1star": SubResource("Animation_u4eal"),
+&"1star_idle": SubResource("Animation_c1u14"),
+&"2star": SubResource("Animation_i7e8s"),
+&"2star_idle": SubResource("Animation_v2426"),
+&"3star": SubResource("Animation_224vw"),
+&"3star_idle": SubResource("Animation_abo8g"),
+&"RESET": SubResource("Animation_nbakb")
+}
+
+[sub_resource type="Curve" id="Curve_u4eal"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_c1u14"]
+offsets = PackedFloat32Array(0.31724137, 0.43448275, 0.5862069, 0.7172414)
+colors = PackedColorArray(0.6790145, 2.8637796e-06, 2.8878452e-07, 1, 1, 0.62352943, 0, 1, 1, 1, 0.3529412, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_c1u14"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3820225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_nrpc1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Time label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-88, 1312.0001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeResult:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80.00018, 1328)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Time label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TimeResult:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_jfdpd"]
+resource_name = "Show time"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Time label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Time label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-88, 1312.0001), Vector2(440, 1120)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TimeResult:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.43, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(80.00018, 1328), Vector2(464, 1176)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TimeResult:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.43, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("woosh:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.16666667, 0.62252903),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1u14"]
+_data = {
+&"RESET": SubResource("Animation_nrpc1"),
+&"Show time": SubResource("Animation_jfdpd")
 }
 
 [node name="UI_LevelComplete" type="Control"]
@@ -95,8 +1115,36 @@ offset_right = -568.0
 offset_bottom = -600.0
 grow_horizontal = 2
 script = ExtResource("1_6sdq8")
+_3star = 7
+_2star = 11
 
-[node name="LevelCompleteImage" type="TextureRect" parent="."]
+[node name="Blur" type="ColorRect" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_224vw")
+layout_mode = 0
+offset_left = -72.0
+offset_top = 600.0
+offset_right = 1208.0
+offset_bottom = 1320.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 600.0
+offset_right = 1208.0
+offset_bottom = 1320.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelCompleteImage" type="TextureRect" parent="Control"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 offset_left = 110.0
@@ -108,14 +1156,14 @@ texture = ExtResource("2_mb5wx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LevelCompleteLabel" type="Label" parent="LevelCompleteImage"]
+[node name="LevelCompleteLabel" type="Label" parent="Control/LevelCompleteImage"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -73.0
-offset_bottom = 12.0
+offset_top = -79.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_224vw")
@@ -125,7 +1173,7 @@ COMPLETE!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenuButton" type="Button" parent="LevelCompleteImage"]
+[node name="MainMenuButton" type="Button" parent="Control/LevelCompleteImage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.249186
@@ -134,13 +1182,13 @@ anchor_right = 0.477199
 anchor_bottom = 0.708841
 offset_top = 3.05176e-05
 grow_horizontal = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6sdq8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_lbru2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6sdq8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_mb5wx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6sdq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lbru2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6sdq8")
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtonLabel" type="Label" parent="LevelCompleteImage/MainMenuButton"]
+[node name="ButtonLabel" type="Label" parent="Control/LevelCompleteImage/MainMenuButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,7 +1201,7 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="LevelCompleteImage"]
+[node name="NextLevelButton" type="Button" parent="Control/LevelCompleteImage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.523344
@@ -163,13 +1211,13 @@ anchor_bottom = 0.713414
 offset_left = 3.05176e-05
 offset_top = 3.05176e-05
 grow_horizontal = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_mb5wx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_224vw")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_nbakb")
 theme_override_styles/normal = SubResource("StyleBoxTexture_w4d5t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nbakb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_224vw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mb5wx")
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtonLabel" type="Label" parent="LevelCompleteImage/NextLevelButton"]
+[node name="ButtonLabel" type="Label" parent="Control/LevelCompleteImage/NextLevelButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,7 +1237,207 @@ libraries = {
 }
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_i7e8s")
+stream = ExtResource("8_abo8g")
+volume_db = 2.919
+bus = &"SFX"
 
-[connection signal="pressed" from="LevelCompleteImage/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="LevelCompleteImage/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[node name="woosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_i7e8s")
+bus = &"SFX"
+
+[node name="fireworks" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_v2426")
+volume_db = -27.3
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="3star" type="Node2D" parent="."]
+
+[node name="medal1" type="Sprite2D" parent="3star"]
+z_index = 1
+position = Vector2(-367, 991)
+scale = Vector2(1.44, 1.44)
+texture = ExtResource("9_224vw")
+
+[node name="medal2" type="Sprite2D" parent="3star"]
+z_index = 1
+position = Vector2(-439, 1096)
+scale = Vector2(1.44, 1.44)
+texture = ExtResource("9_224vw")
+
+[node name="medal3" type="Sprite2D" parent="3star"]
+z_index = 1
+position = Vector2(1064, 1472.0001)
+scale = Vector2(1.44, 1.44)
+texture = ExtResource("9_224vw")
+
+[node name="play3star" type="AnimationPlayer" parent="3star"]
+libraries = {
+&"": SubResource("AnimationLibrary_w4d5t")
+}
+
+[node name="star" type="AudioStreamPlayer" parent="3star"]
+stream = ExtResource("10_abo8g")
+volume_db = 1.802
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Time label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -88.0
+offset_top = 1312.0001
+offset_right = 176.0
+offset_bottom = 1348.0001
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("8_nbakb")
+theme_override_font_sizes/font_size = 32
+text = "TOTAL TIME"
+
+[node name="TimeResult" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.00018
+offset_top = 1328.0
+offset_right = 278.00043
+offset_bottom = 1364.0
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("11_w4d5t")
+theme_override_font_sizes/font_size = 32
+text = "time"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="fireworks2" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(136, 824)
+emitting = false
+amount = 100
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 7.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_u4eal")
+color = Color(1, 0.8235294, 0, 1)
+color_ramp = SubResource("Gradient_c1u14")
+
+[node name="fireworks3" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(1016, 824)
+emitting = false
+amount = 100
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 7.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_u4eal")
+color = Color(1, 0.8235294, 0, 1)
+color_ramp = SubResource("Gradient_c1u14")
+
+[node name="confetti" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(568, 1320)
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 450)
+initial_velocity_min = 494.59
+initial_velocity_max = 640.42
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_c1u14")
+color = Color(1.2513996e-06, 0.46222287, 0.050626308, 1)
+
+[node name="confetti2" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(568, 1320)
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 450)
+initial_velocity_min = 494.59
+initial_velocity_max = 640.42
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_c1u14")
+color = Color(0.552962, 1.3596937e-06, 4.813075e-07, 1)
+
+[node name="confetti3" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(568, 1320)
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 450)
+initial_velocity_min = 494.59
+initial_velocity_max = 640.42
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_c1u14")
+color = Color(1, 1, 0, 1)
+
+[node name="confetti4" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(568, 1320)
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 450)
+initial_velocity_min = 494.59
+initial_velocity_max = 640.42
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_c1u14")
+color = Color(0, 0.40392157, 1, 1)
+
+[node name="ShowTime" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c1u14")
+}
+
+[connection signal="pressed" from="Control/LevelCompleteImage/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/LevelCompleteImage/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

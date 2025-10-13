@@ -11,33 +11,33 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_haryb"]
 texture = ExtResource("1_tssx3")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b730w"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty4yg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kmca"]
 texture = ExtResource("4_qece5")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_totgr"]
 texture = ExtResource("4_qece5")
 modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kmca"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ty4yg"]
 texture = ExtResource("4_qece5")
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erkc0"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b730w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4hd5"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qece5"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kqfvb"]
 texture = ExtResource("5_erkc0")
+modulate_color = Color(0.803922, 0.803922, 0.803922, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b730w"]
 texture = ExtResource("5_erkc0")
 modulate_color = Color(0.517184, 0.517184, 0.517185, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kqfvb"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qece5"]
 texture = ExtResource("5_erkc0")
-modulate_color = Color(0.803922, 0.803922, 0.803922, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4hd5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erkc0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gep0b"]
 texture = ExtResource("5_erkc0")
@@ -84,10 +84,10 @@ grow_horizontal = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_erkc0")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_b730w")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ty4yg")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_totgr")
 theme_override_styles/normal = SubResource("StyleBoxTexture_2kmca")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_totgr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ty4yg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b730w")
 text = "Back"
 
 [node name="Label" type="Label" parent="."]
@@ -131,11 +131,11 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
 text = "Level 1"
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
@@ -145,11 +145,11 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
 text = "Level 2"
 
 [node name="Button3" type="Button" parent="HBoxContainer"]
@@ -159,11 +159,11 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kqfvb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b730w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_erkc0")
 text = "Level 3"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -188,10 +188,10 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
 text = "Level 4"
 
 [node name="Button5" type="Button" parent="HBoxContainer2"]
@@ -201,10 +201,10 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
 text = "Level 5"
 
 [node name="Button6" type="Button" parent="HBoxContainer2"]
@@ -214,10 +214,10 @@ size_flags_horizontal = 7
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_erkc0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_gep0b")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qece5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4hd5")
 text = "Level 6"
 
 [node name="lvl1check" type="Panel" parent="."]
@@ -275,7 +275,7 @@ offset_bottom = 584.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_s6tx2")
 
 [node name="lvl2locked" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 502.0
 offset_top = 206.0
 offset_right = 777.0
@@ -283,7 +283,7 @@ offset_bottom = 366.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
 
 [node name="lvl3locked" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 847.0
 offset_top = 206.0
 offset_right = 1122.0
@@ -291,7 +291,7 @@ offset_bottom = 366.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
 
 [node name="lvl4locked" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 158.0
 offset_top = 417.0
 offset_right = 433.0
@@ -299,7 +299,7 @@ offset_bottom = 577.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
 
 [node name="lvl5locked" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 502.0
 offset_top = 417.0
 offset_right = 777.0
@@ -307,7 +307,7 @@ offset_bottom = 577.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p0s06")
 
 [node name="lvl6locked" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 847.0
 offset_top = 417.0
 offset_right = 1122.0

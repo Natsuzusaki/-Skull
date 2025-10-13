@@ -11,26 +11,26 @@ signal pass_value_to_codeblocks()
 
 func _ready() -> void:
 	pass
+
 func _on_pick_up_area_body_entered(body: Node2D) -> void:
 	if not (body is RigidBody2D):
 		return
-
+	if body.scene_file_path == float_object.resource_path:
+		return
 	var v: Variant = null
-
 	if body.has_method("get_value_and_destroy"):
 		v = body.get_value_and_destroy()
 	else:
 		v = body.value
 		body.queue_free()
-
+	if not (v is int):
+		return
 	previous_obj = current_obj
 	current_obj = v
 	text.text = str(current_obj)
-
 	pass_value_to_codeblocks.emit(v)
-
 	if previous_obj != null:
-		var object_scene = int_object if previous_obj is int else float_object
+		var object_scene = int_object
 		var object_spawn = object_scene.instantiate()
 		object_spawn.initialize(previous_obj)
 		call_deferred("add_object_to_scene", object_spawn)

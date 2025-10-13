@@ -7,6 +7,8 @@ extends Node2D
 @onready var camera: Camera2D = %Camera
 @onready var notes: Node2D = %Notes
 @onready var consoles: Node2D = %Consoles
+@onready var timerr: CanvasLayer = $Time
+@onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 #----Markers
 @onready var code_block: Marker2D = $CameraPoints/CodeBlock
 @onready var wall: Marker2D = $CameraPoints/Wall
@@ -39,6 +41,9 @@ func _ready() -> void:
 				talk_ctr = 3
 				tutorial_end.monitoring = false
 				SaveManager.restore_objects()
+		if chapter2.has("current_timer"):
+			timerr.time = chapter2["current_timer"]
+			timerr.update_display() 
 	starting_scene()
 
 #----SpecificTriggers
@@ -93,6 +98,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
+	if Input.is_action_just_pressed("debug") and not player.stay:
+		_save_timer_to_json()
+		get_tree().reload_current_scene()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -107,6 +115,8 @@ func connections() -> void:
 		note.actions_sent.connect(_actions_recieved)
 	for console in consoles.get_children():
 		console.actions_sent.connect(_actions_recieved2)
+func _save_timer_to_json() -> void:
+	SaveManager.save_timer_for_session("Chapter2", timerr.time)
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
@@ -117,3 +127,8 @@ func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
 func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	tutorial_end.set_deferred("monitoring", false)
 	talk_ctr = 3
+#func _on_area_2d_body_entered(_body: Node2D) -> void:
+	#player.stay = true
+	#ui_level_complete.drop_down()
+	#SaveManager.save_level_completion("Chapter2", timerr, true)
+	#SaveManager.mark_level_completed(2)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bvryah7o4iscn"]
+[gd_scene load_steps=49 format=4 uid="uid://bvryah7o4iscn"]
 
 [ext_resource type="Script" uid="uid://cupi8qqybo8sf" path="res://scripts/level1.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://7gnnosfir6we" path="res://scenes/environment_elements/checkpoint.tscn" id="2_6gwlt"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dktlbpwfha5xr" path="res://assets/music/sounds/explosion.wav" id="16_agrr7"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="17_b2isc"]
 [ext_resource type="TileSet" uid="uid://cqd57uw5omsxj" path="res://assets/presets/grass_tiles.tres" id="18_qg8x4"]
+[ext_resource type="PackedScene" uid="uid://cwp5271an726j" path="res://scenes/UI/time.tscn" id="21_db1r7"]
 [ext_resource type="Texture2D" uid="uid://ear0qm6wpdt4" path="res://assets/krit_1 (adachi_rei).png" id="21_jrfo0"]
 [ext_resource type="PackedScene" uid="uid://wikiax10fqqp" path="res://scenes/UI/level_complete_ui.tscn" id="22_p5q6g"]
 
@@ -718,7 +719,7 @@ note_num = 3
 
 [node name="Player" parent="." instance=ExtResource("12_igeo0")]
 unique_name_in_owner = true
-position = Vector2(424, 240)
+position = Vector2(424, 239.99998)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -852,8 +853,8 @@ tile_set = ExtResource("18_qg8x4")
 
 [node name="UI_LevelComplete" parent="UIs" instance=ExtResource("22_p5q6g")]
 visible = false
-offset_left = -640.0
-offset_right = -640.0
+
+[node name="Time" parent="." instance=ExtResource("21_db1r7")]
 
 [node name="Thanksri" type="Sprite2D" parent="."]
 position = Vector2(-640, 640)

@@ -17,7 +17,8 @@ extends Node2D
 @onready var if_4: Control = $Labels/if4
 @onready var if_5: Control = $Labels/if5
 @onready var if_6: Control = $Labels/if6
-
+@onready var timerr: Node = $Time
+@onready var ui_level_complete: Control = $"UI's/UI_LevelComplete"
 
 
 var data = SaveManager.load_game()
@@ -32,11 +33,11 @@ var a = 12 > 3
 
 
 func _ready() -> void:
-	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3")
 	#e = (a and not b) and (c or d == false)
 	#print("test: ",e)
 	print("a: ", a)
 	
+	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3")
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_3.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -44,6 +45,7 @@ func _ready() -> void:
 	if_5.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_6.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	
+		
 	if data.has("Chapter3"):
 		var chapter3 = data["Chapter3"]
 		if chapter3.has("player_pos"):
@@ -55,51 +57,34 @@ func _ready() -> void:
 				ctr = true
 			if checkpoint == 2.0:
 				SaveManager.restore_objects()
-	#var light1: PointLight2D = lantern_8.get_node("LanternPhysics/PointLight2D")
-	#light1.enabled = false
-	#var light2: PointLight2D = lantern_9.get_node("LanternPhysics/PointLight2D")
-	#light2.enabled = false
-	#var console_light: PointLight2D = console_4.get_node("Terminal/Panel/MarginContainer/VBoxContainer/PointLight2D")
-	#console_light.visible = true
-	
+		if chapter3.has("current_timer"):
+			timerr.time = chapter3["current_timer"]
+			timerr.update_display() 
+
 func _process(_delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
-	#var dark: RigidBody2D = lantern_8.get_node("LanternPhysics")
-	#if dark.enabled:
-		#fade_to_transparent()
+		timerr.visible = true
 
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
 			grid.visible = true
+			timerr.visible = false
 		else:
 			grid.visible = false
+			timerr.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
+	if Input.is_action_just_pressed("debug") and not player.stay:
+		_save_timer_to_json()
+		get_tree().reload_current_scene()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
-
-
-#func fade_to_black(duration: float = 0.3) -> void:
-	#var tween := create_tween()
-	#tween.tween_property(canvas_modulate, "color", Color(0.0, 0.0, 0.0, 1.0), duration)
-#
-#func fade_to_transparent(duration: float = 0.3) -> void:
-	#var tween := create_tween()
-	#tween.tween_property(canvas_modulate, "color", Color(0.317, 0.623, 0.795), duration)
-	
-#func _on_area_2d_body_entered(_body: Node2D) -> void:
-	##player.emit_light()
-	##fade_to_black()
-#
-#func _on_area_2d_body_exited(_body: Node2D) -> void:
-	##player.disable_light()
-	##fade_to_transparent()
 
 	
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -124,8 +109,30 @@ func _on_area_2d_5_body_entered(_body: Node2D) -> void:
 	var tween := create_tween()
 	tween.tween_property(if_5, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
 
-
 func _on_area_2d_6_body_entered(_body: Node2D) -> void:
 	var duration = 0.5
 	var tween := create_tween()
 	tween.tween_property(if_6, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
+
+
+# Example: In a _on_level_complete signal or exit function
+#func complete_level() -> void:
+	#var time_node = $Time
+	#SaveManager.save_level_completion("Chapter3", time_node, true)  # true for best-time min
+	#
+	## Optionally save other progress
+	#var new_data = {"Chapter3": {"completed": true}}
+	#SaveManager.update_save(new_data)
+	#
+	## Change to next scene/menu
+	#get_tree().change_scene_to_file("res://scenes/next_level.tscn")  # Or main_menu
+func _save_timer_to_json() -> void:
+	SaveManager.save_timer_for_session("Chapter3", timerr.time)
+
+func _on_finish_body_entered(_body: Node2D) -> void:
+	player.stay = true
+	ui_level_complete.drop_down()
+	var time_node = $Time
+	SaveManager.save_level_completion("Chapter3", time_node, true)  # true for best-time min
+	MusicManager.set_volume(0)
+	SaveManager.mark_level_completed(3)

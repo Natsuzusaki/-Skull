@@ -69,8 +69,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_carry_pressed = false
 	if not Input.is_action_pressed("jump"):
 		is_jump_pressed = false
-	if Input.is_action_just_pressed("debug") and not stay:
-		get_tree().reload_current_scene()
 	state_machine.process_input(event)
 func _process(delta: float) -> void:
 	if static_direction == -1:

@@ -11,6 +11,7 @@ var tween: Tween
 const MAX_VOLUME: float = 0.4
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	add_child(music_player)
 	add_child(music_player_loop)
 

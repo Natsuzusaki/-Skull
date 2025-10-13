@@ -39,4 +39,8 @@ func _on_exit_pressed() -> void:
 	self.visible = false
 	SFXManager.play("button_menu")
 	get_tree().paused = false
+	var main_scene = get_tree().current_scene
+	if main_scene.has_node("Time"):
+		var time_node = main_scene.get_node("Time")
+		SaveManager.save_timer_for_session("Chapter3", time_node.time)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
