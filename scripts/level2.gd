@@ -23,10 +23,11 @@ var ctr := false
 var talk_ctr := 0
 var mouse_target: Vector2
 var yuna_mouse_move := false
-var mouse_speed: float = 550.0
+var mouse_speed: float = 500.0
 
 func _ready() -> void:
 	#Engine.time_scale = 0.1
+	MusicManager.play_music("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3")
 	connections()
 	if data.has("Chapter2"):
 		var chapter2 = data["Chapter2"]
@@ -44,6 +45,10 @@ func _ready() -> void:
 		if chapter2.has("current_timer"):
 			timerr.time = chapter2["current_timer"]
 			timerr.update_display() 
+		if chapter2.has("flags"):
+			var flags = chapter2["flags"]
+			if flags.has("has_done_cutscene"):
+				star.visible = false
 	starting_scene()
 
 #----SpecificTriggers
@@ -120,15 +125,15 @@ func _save_timer_to_json() -> void:
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
-	SaveManager.mark_level_completed(2)
 	camera.focus_on_player(true, true)
 	await wait(1)
 	dialogue("talk4")
 func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	tutorial_end.set_deferred("monitoring", false)
 	talk_ctr = 3
-#func _on_area_2d_body_entered(_body: Node2D) -> void:
-	#player.stay = true
-	#ui_level_complete.drop_down()
-	#SaveManager.save_level_completion("Chapter2", timerr, true)
-	#SaveManager.mark_level_completed(2)
+
+func _on_level_finish_body_entered(_body: Node2D) -> void:
+	player.stay = true
+	ui_level_complete.drop_down()
+	SaveManager.save_level_completion("Chapter2", timerr, true)
+	SaveManager.mark_level_completed(2)

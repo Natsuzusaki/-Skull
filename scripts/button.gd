@@ -8,6 +8,7 @@ extends Node2D
 @export var active_time: float = 0.1
 @export var outputs: Array[Node2D] = []
 
+@onready var player: CharacterBody2D = %Player
 @onready var turn_on: Sprite2D = $TurnOn
 @onready var turn_on_near: Sprite2D = $TurnOnNear
 @onready var turn_off: Sprite2D = $TurnOff
@@ -21,23 +22,30 @@ var is_near := false
 var button_status := false #false-off, true-on
 
 func _on_body_entered(_body: Node2D) -> void:
+	player.near_button = true
 	is_near = true
 
 func _on_body_exited(_body: Node2D) -> void:
+	player.near_button = false
 	is_near = false
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and not disabled and not cooldown and is_near:
-		SFXManager.play("button")
-		cooldown = true
-		activation_cooldown.start(active_time)
-		button_status = not button_status
-		for output in outputs:
-			if output == null:
-				continue
+		activate()
+func activate() -> void:
+	SFXManager.play("button")
+	cooldown = true
+	activation_cooldown.start(active_time)
+	button_status = not button_status
+	for output in outputs:
+		if output == null:
+			continue
+		if output is StaticBody2D or output is RigidBody2D:
 			output.activate(continuous, active_time)
-		if one_use:
-			disabled = true
+		elif output is Area2D:
+			output.change()
+	if one_use:
+		disabled = true
 
 func _on_activation_cooldown_timeout() -> void:
 	cooldown = false
@@ -61,3 +69,7 @@ func _process(_delta: float) -> void:
 			turn_off_near.visible = true
 		else:
 			turn_off.visible = true
+
+func _on_float_press_body_entered(body: Node2D) -> void:
+	if body.value is float:
+		activate()

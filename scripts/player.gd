@@ -38,21 +38,24 @@ var jump_buffered := false
 var can_coyote_jump := false
 var has_double_jump := true
 var can_double_jump := true
-var push_force := 2000.0
+var push_force := 2000.0 #pushing boolean
 var dynamic_direction := 0.0 #-1 left, 0 idle, 1 right
 var static_direction := 0 #1-left, 0-right
-var in_range := false
+var in_range := false #in range with an object
 var is_carrying := false
 var is_carry_pressed := false #key flagging
 var is_jump_pressed := false #key flagging
 var nearby_objects: Array = [] #all objects in range
 var temp_current_object: Node2D #object reference
 var current_object: Node2D #current object carrying
-var trail_distance_threshold := 20.0
-var landing_threshold := 70.0
-var last_trail_pos: Vector2
-var last_y_position: float
-var fall_distance := 0.0
+var trail_distance_threshold := 20.0 #cloud trail
+var last_trail_pos: Vector2 #cloud trail
+var landing_threshold := 70.0 #landing cloud
+var last_y_position: float #landing cloud
+var fall_distance := 0.0 #landing cloud
+var near_console := false
+var near_note := false
+var near_button := false
 
 #Interactions with other object
 signal on_interact()
@@ -160,7 +163,7 @@ func move_in_cutscene(target_pos: Vector2, speed := 100) -> void:
 	tween.finished.connect(func():
 		set_process_input(true))
 func carry() -> void:
-	if not dead:
+	if not dead and not near_button and not near_console and not near_note:
 		if not is_carrying and in_range and not is_carry_pressed:
 			is_carry_pressed = true
 			is_carrying = not is_carrying

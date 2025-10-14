@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://tjy0471dujc4"]
+[gd_scene load_steps=15 format=3 uid="uid://tjy0471dujc4"]
 
 [ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ywm4gwyihwoy" path="res://assets/images/Console Control6.png" id="8_2ni1o"]
 [ext_resource type="Texture2D" uid="uid://dh5tkhqmvif1g" path="res://assets/images/Console Control7.png" id="9_fab4a"]
 [ext_resource type="Texture2D" uid="uid://cgkbacwelgvmx" path="res://assets/images/Console Control8.png" id="10_rgr4i"]
+[ext_resource type="Texture2D" uid="uid://dcg4jhwtg6jh5" path="res://assets/images/Console Control9.png" id="11_fab4a"]
+[ext_resource type="Texture2D" uid="uid://battsl1bhcf0h" path="res://assets/images/Console Control10.png" id="12_rgr4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ich"]
 shader = ExtResource("2_34uu6")
@@ -75,6 +77,18 @@ visible = false
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("10_rgr4i")
+
+[node name="Note9" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("11_fab4a")
+
+[node name="Note10" type="Sprite2D" parent="Instructions"]
+visible = false
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("12_rgr4i")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 14

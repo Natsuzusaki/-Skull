@@ -10,7 +10,6 @@ extends TileMapLayer
 @export var offset: int = 0
 @export var inputs: Array[InputRef] = []
 
-
 @onready var camera: Camera2D = %Camera
 
 signal grid_pos_changed(new_pos: Vector2)
@@ -57,13 +56,16 @@ func get_grid_pos() -> Vector2:
 # ----------------------------
 # Movement API (keeps existing external interface)
 # ----------------------------
-func move(steps: int) -> void:
+func move(steps: int, axis: String = "") -> void:
 	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
 		await camera.zoom_restored
 	var new_grid = get_grid_pos()
-	if move_in_x:
+	if move_in_x and move_in_y:
+		move_in_x = false
+		move_in_y = false
+	if move_in_x or axis == "x":
 		new_grid.x = steps + offset if not reverse else (steps + offset) * -1
-	elif move_in_y:
+	elif move_in_y or axis == "y":
 		new_grid.y = steps + offset if not reverse else (steps + offset) * -1
 	_move_to(new_grid)
 

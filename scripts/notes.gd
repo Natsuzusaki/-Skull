@@ -19,6 +19,7 @@ func _on_body_entered(_body: Node2D) -> void:
 		note.visible = false
 		note_near.visible = true
 		label.visible = true
+		player.near_note = true
 
 func _on_body_exited(_body: Node2D) -> void:
 	if on:
@@ -26,6 +27,7 @@ func _on_body_exited(_body: Node2D) -> void:
 		note.visible = true
 		note_near.visible = false
 		label.visible = false
+		player.near_note = false
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and near:

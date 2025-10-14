@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_n40sm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1yy5"]
-size = Vector2(88, 16)
+size = Vector2(144, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bdm4"]
 font = ExtResource("2_n40sm")
@@ -21,7 +21,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp_Area"]
-position = Vector2(-46, 0)
+position = Vector2(-74, 0)
 shape = SubResource("RectangleShape2D_j1yy5")
 
 [node name="Text" type="Label" parent="."]

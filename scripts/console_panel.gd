@@ -110,6 +110,7 @@ func _on_exit_pressed() -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	if not turned_on:
 		return
+	player.near_console = true
 	state = ConsoleState.NEAR
 	consolesprite.visible = false
 	consolesprite_near.visible = true
@@ -120,6 +121,7 @@ func _on_body_entered(_body: Node2D) -> void:
 func _on_body_exited(_body: Node2D) -> void:
 	if not turned_on:
 		return
+	player.near_console = false
 	camera.back()
 	state = ConsoleState.IDLE
 	consolesprite.visible = true
@@ -142,6 +144,7 @@ func console_exit() -> void:
 	state = ConsoleState.IDLE
 	player.stay = false
 	player.on_console = false
+	player.near_console = false
 	camera.back()
 	code_edit.release_focus()
 	pop_up_animation.play("pop_down")
@@ -168,6 +171,7 @@ func code_run() -> void:
 	SFXManager.play("console")
 	player.stay = false
 	player.on_console = false
+	player.near_console = false
 	camera.back()
 	control.hide()
 	state = ConsoleState.IDLE

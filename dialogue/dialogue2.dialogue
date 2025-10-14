@@ -1,4 +1,5 @@
 ~ talk1
+do SaveManager.update_save({"Chapter2": {"flags": {"has_done_cutscene": true}}})
 do player.sprite_animation("action")
 do wait(1)
 do star.visible = false
@@ -56,13 +57,13 @@ do Cutscene.end_cutscene()
 => END!
 
 ~ talk3
-Yuna: That should help you figuring things out 😋😋😋
+Yuna: Hovering over those walls will show its properties
 Yuna: Goodluck Eisntein!
 do mouse_target = Vector2(832,640)
 do yuna_mouse_move = true
 => END!
 
 ~ talk4
-Yuna: NIGGA
+Yuna: Ouch!
 do camera.back()
 => END!

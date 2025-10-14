@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bvryah7o4iscn"]
+[gd_scene load_steps=51 format=4 uid="uid://bvryah7o4iscn"]
 
 [ext_resource type="Script" uid="uid://cupi8qqybo8sf" path="res://scripts/level1.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://7gnnosfir6we" path="res://scenes/environment_elements/checkpoint.tscn" id="2_6gwlt"]
@@ -194,12 +194,12 @@ texture = ExtResource("7_jrfo0")
 [sub_resource type="TileSet" id="TileSet_6gwlt"]
 sources/0 = SubResource("TileSetAtlasSource_db1r7")
 
-[sub_resource type="Gradient" id="Gradient_ros4a"]
+[sub_resource type="Gradient" id="Gradient_db1r7"]
 offsets = PackedFloat32Array(0, 0.528796, 1)
 colors = PackedColorArray(0.85098, 1, 0.996078, 0, 0.851651, 1, 0.997644, 1, 0.85098, 1, 0.996078, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rfa2f"]
-gradient = SubResource("Gradient_ros4a")
+gradient = SubResource("Gradient_db1r7")
 width = 1
 height = 32
 fill_to = Vector2(0, 1)
@@ -207,14 +207,14 @@ fill_to = Vector2(0, 1)
 [sub_resource type="Gradient" id="Gradient_awabc"]
 colors = PackedColorArray(1, 1, 1, 0.101961, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_getup"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6gwlt"]
 gradient = SubResource("Gradient_awabc")
 
 [sub_resource type="Gradient" id="Gradient_getup"]
 offsets = PackedFloat32Array(0, 0.503401, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w3p8f"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c2nc4"]
 gradient = SubResource("Gradient_getup")
 
 [sub_resource type="Curve" id="Curve_3mrrw"]
@@ -222,7 +222,7 @@ _limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, -40), 0.0, 0.0, 0, 0, Vector2(0.2, 40), 0.0, 0.0, 0, 0, Vector2(0.4, -40), 0.0, 0.0, 0, 0, Vector2(0.6, 40), 0.0, 0.0, 0, 0, Vector2(0.8, -40), 0.0, 0.0, 0, 0, Vector2(1, 40), 0.0, 0.0, 0, 0]
 point_count = 6
 
-[sub_resource type="CurveTexture" id="CurveTexture_3mrrw"]
+[sub_resource type="CurveTexture" id="CurveTexture_vhxpm"]
 curve = SubResource("Curve_3mrrw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jorx2"]
@@ -232,15 +232,24 @@ emission_box_extents = Vector3(1000, 200, 1)
 gravity = Vector3(-100, 10, 0)
 tangential_accel_min = 5.0
 tangential_accel_max = 6.0
-tangential_accel_curve = SubResource("CurveTexture_3mrrw")
+tangential_accel_curve = SubResource("CurveTexture_vhxpm")
 damping_max = 100.0
 scale_min = 1.5
 scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_w3p8f")
-color_initial_ramp = SubResource("GradientTexture1D_getup")
+color_ramp = SubResource("GradientTexture1D_c2nc4")
+color_initial_ramp = SubResource("GradientTexture1D_6gwlt")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwo42"]
 font = ExtResource("17_b2isc")
+
+[sub_resource type="Curve" id="Curve_db1r7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_6gwlt"]
+offsets = PackedFloat32Array(0.31724137, 0.43448275, 0.5862069, 0.7172414)
+colors = PackedColorArray(0.6790145, 2.8637796e-06, 2.8878452e-07, 1, 1, 0.62352943, 0, 1, 1, 1, 0.3529412, 1, 1, 1, 1, 1)
 
 [node name="Level1" type="Node2D" groups=["main"]]
 script = ExtResource("1_db1r7")
@@ -574,7 +583,6 @@ display_text = "safe_to_walk"
 position = Vector2(4048, 96)
 rotation = 1.55814
 gravity_scale = -1.0
-can_sleep = false
 display_text = "step_tool"
 manipulate_gravity_on_activate = true
 initial_gravity = -1.0
@@ -814,15 +822,15 @@ offset_bottom = 524.0
 theme_override_fonts/font = ExtResource("17_b2isc")
 theme_override_font_sizes/font_size = 24
 text = "Chapter 1:
-print() and String"
+Printing Strings"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Label4" type="Label" parent="Labels"]
-offset_left = -1040.0
-offset_top = 712.0
-offset_right = -242.0
-offset_bottom = 1004.0
+offset_left = -1008.0
+offset_top = 776.0
+offset_right = -210.0
+offset_bottom = 1068.0
 theme_override_fonts/font = ExtResource("17_b2isc")
 theme_override_font_sizes/font_size = 24
 text = "thank sri"
@@ -850,14 +858,53 @@ tile_map_data = PackedByteArray("AAAfABYAAAAAAAAAAAAVABYAAAAAAAAAAAAiABYAAAAAAAM
 tile_set = ExtResource("18_qg8x4")
 
 [node name="UIs" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UI_LevelComplete" parent="UIs" instance=ExtResource("22_p5q6g")]
-visible = false
 
 [node name="Time" parent="." instance=ExtResource("21_db1r7")]
 
+[node name="fire" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(-704, 672)
+amount = 50
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 7.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_db1r7")
+color = Color(1, 0.8235294, 0, 1)
+color_ramp = SubResource("Gradient_6gwlt")
+
+[node name="fire2" type="CPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(-512, 736)
+amount = 50
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 7.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_db1r7")
+color = Color(1, 0.8235294, 0, 1)
+color_ramp = SubResource("Gradient_6gwlt")
+
 [node name="Thanksri" type="Sprite2D" parent="."]
-position = Vector2(-640, 640)
+z_index = 2
+position = Vector2(-608, 704)
 scale = Vector2(0.047407404, 0.04740739)
 texture = ExtResource("21_jrfo0")
 

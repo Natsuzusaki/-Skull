@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwqrtxttcr0it"]
+[gd_scene load_steps=8 format=3 uid="uid://cwqrtxttcr0it"]
 
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_2u5sw"]
 [ext_resource type="Script" uid="uid://c8s0dyxng1i7k" path="res://scripts/float_object.gd" id="1_7ibfo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_om64o"]
 friction = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwjnu"]
+size = Vector2(20, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifjeo"]
 size = Vector2(32, 16)
@@ -23,6 +26,14 @@ gravity_scale = 0.005
 can_sleep = false
 continuous_cd = 1
 script = ExtResource("1_7ibfo")
+
+[node name="Die" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Die"]
+shape = SubResource("RectangleShape2D_xwjnu")
+debug_color = Color(0.994914, 0, 0.214251, 0.42)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ifjeo")
@@ -50,3 +61,5 @@ grow_vertical = 2
 text = "0.1"
 label_settings = SubResource("LabelSettings_uvg8k")
 horizontal_alignment = 1
+
+[connection signal="body_entered" from="Die" to="." method="_on_die_body_entered"]
