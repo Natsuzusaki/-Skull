@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://m5fobfxy3xod"]
+
+[ext_resource type="Texture2D" uid="uid://vdr667ixq1pe" path="res://assets/images/light1.png" id="1_w00l2"]
+
+[node name="LevelIntro" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(672, 306)
+scale = Vector2(5.12, 5.12)
+energy = 1.5
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("1_w00l2")
+texture_scale = 1.5
+height = 30.0

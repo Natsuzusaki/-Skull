@@ -14,14 +14,12 @@ func update_color_rect_size() -> void:
 		color_rect.size = size
 		color_rect.position = -shape.extents
 func update_color_rect_color() -> void:
-	var parent_name = parent.TYPE_NAMES[parent.initial_type]
+	var parent_name = parent.TYPE_NAMES[parent.type_index]
 	var color: Color
 	match parent_name:
-		"int": color = Color(0.2, 0.6, 1.0, 0.5)
-		"float": color = Color(0.5, 0.9, 0.3, 0.5)
-		"str": color = Color(1.0, 0.8, 0.2, 0.5)
-		"bool": color = Color(1.0, 0.3, 0.3, 0.5)
-		_: color = Color(1.0, 1.0, 1.0, 0.05)
-	var tween = create_tween()
-	tween.tween_property(color_rect, "color", color, 0.3) \
-		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		"int": color = Color(0.2, 0.6, 1.0, 0.5)  # blue-ish
+		"float": color = Color(0.5, 0.9, 0.3, 0.5)  # green-ish
+		"str": color = Color(1.0, 0.8, 0.2, 0.5)  # yellow/orange
+		"bool": color = Color(1.0, 0.3, 0.3, 0.5)  # red-ish
+		_: color = Color(1.0, 1.0, 1.0, 0.05)   # default faint white
+	color_rect.color = color

@@ -110,7 +110,6 @@ func _on_exit_pressed() -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	if not turned_on:
 		return
-	player.near_console = true
 	state = ConsoleState.NEAR
 	consolesprite.visible = false
 	consolesprite_near.visible = true
@@ -121,7 +120,6 @@ func _on_body_entered(_body: Node2D) -> void:
 func _on_body_exited(_body: Node2D) -> void:
 	if not turned_on:
 		return
-	player.near_console = false
 	camera.back()
 	state = ConsoleState.IDLE
 	consolesprite.visible = true
@@ -130,7 +128,7 @@ func _on_body_exited(_body: Node2D) -> void:
 		pop_up_animation.play("pop_down")
 		control.hide()
 func _on_code_edit_focus_entered() -> void:
-	SFXManager.play("console")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
@@ -140,11 +138,10 @@ func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 		label.text = fixed_var
 		restart_text = false
 func console_exit() -> void:
-	SFXManager.play("console_exit")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_EXIT)
 	state = ConsoleState.IDLE
 	player.stay = false
 	player.on_console = false
-	player.near_console = false
 	camera.back()
 	code_edit.release_focus()
 	pop_up_animation.play("pop_down")
@@ -162,16 +159,15 @@ func code_run() -> void:
 	array_value = []
 	var user_code = code_edit.text
 	if user_code.is_empty():
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "Nothing to print!"
 		player.stay = true
 		player.on_console = true
 		return
 	execute_code(user_code)
-	SFXManager.play("console")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	player.stay = false
 	player.on_console = false
-	player.near_console = false
 	camera.back()
 	control.hide()
 	state = ConsoleState.IDLE

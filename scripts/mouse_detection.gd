@@ -18,12 +18,9 @@ func _ready() -> void:
 	else:
 		movement_coords.text = "set the coords"
 
-	if parent is TileMapLayer:
-		if parent.platform_name == "":
-			set_collision_layer_value(11, false)
-		platform_name.text = parent.platform_name
-	else:
-		platform_name.text = "printer"
+	if parent.platform_name == "":
+		set_collision_layer_value(11, false)
+	platform_name.text = parent.platform_name
 	ui.visible = false
 
 func _process(_delta: float) -> void:

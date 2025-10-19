@@ -10,6 +10,7 @@ extends TileMapLayer
 @export var offset: int = 0
 @export var inputs: Array[InputRef] = []
 
+
 @onready var camera: Camera2D = %Camera
 
 signal grid_pos_changed(new_pos: Vector2)
@@ -56,16 +57,13 @@ func get_grid_pos() -> Vector2:
 # ----------------------------
 # Movement API (keeps existing external interface)
 # ----------------------------
-func move(steps: int, axis: String = "") -> void:
+func move(steps: int) -> void:
 	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
 		await camera.zoom_restored
 	var new_grid = get_grid_pos()
-	if move_in_x and move_in_y:
-		move_in_x = false
-		move_in_y = false
-	if move_in_x or axis == "x":
+	if move_in_x:
 		new_grid.x = steps + offset if not reverse else (steps + offset) * -1
-	elif move_in_y or axis == "y":
+	elif move_in_y:
 		new_grid.y = steps + offset if not reverse else (steps + offset) * -1
 	_move_to(new_grid)
 
@@ -94,6 +92,7 @@ func set_grid_y(val) -> void:
 	commanded_position = _last_grid_pos
 
 func _move_to(new_grid: Vector2) -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.STONE_PLATFORM)
 	_last_grid_pos = new_grid
 	target = grid_to_world(new_grid, 32)
 	target.x = clamp(target.x, min_limit.x, max_limit.x)

@@ -1,6 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhkwho3sbf2km"]
+[gd_scene load_steps=21 format=3 uid="uid://bhkwho3sbf2km"]
 
 [ext_resource type="Script" uid="uid://druv8tccie5pt" path="res://scripts/sfx_manager.gd" id="1_yybmf"]
+[ext_resource type="Script" uid="uid://b0cgvostktddq" path="res://scripts/sfx_settings.gd" id="2_nf7bn"]
+[ext_resource type="AudioStream" uid="uid://cwhewfxcvageb" path="res://assets/music/gameboy-pluck.mp3" id="3_e0q5q"]
+[ext_resource type="AudioStream" uid="uid://bgma7p4eg6umi" path="res://assets/music/GateOpen.mp3" id="4_bkja7"]
+[ext_resource type="AudioStream" uid="uid://cacat05w7st6b" path="res://assets/music/note_sfx.mp3" id="5_3cn81"]
+[ext_resource type="AudioStream" uid="uid://b8uv7y2wvjniq" path="res://assets/music/death_sfx.mp3" id="6_urvsl"]
+[ext_resource type="AudioStream" uid="uid://dyswf1fr638c5" path="res://assets/music/death2_sfx.wav" id="7_urvsl"]
+[ext_resource type="AudioStream" uid="uid://btwlqvlxm24u0" path="res://assets/music/console.mp3" id="8_0u5pd"]
+[ext_resource type="AudioStream" uid="uid://cikm5xnxoyicy" path="res://assets/music/console exit.mp3" id="9_ktasg"]
+[ext_resource type="AudioStream" uid="uid://b30amtl6y8tjv" path="res://assets/music/console error.mp3" id="10_5ifs4"]
+[ext_resource type="AudioStream" uid="uid://kkecea4bpwvr" path="res://assets/music/stone.mp3" id="11_ktasg"]
 
-[node name="Node" type="Node"]
+[sub_resource type="Resource" id="Resource_nf7bn"]
+script = ExtResource("2_nf7bn")
+sfx_file = ExtResource("3_e0q5q")
+volume = -17.053
+pitch_random = 0.1
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_oub7f"]
+script = ExtResource("2_nf7bn")
+sfx_name = 1
+sfx_file = ExtResource("4_bkja7")
+volume = -16.236
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_w4mbc"]
+script = ExtResource("2_nf7bn")
+sfx_name = 2
+sfx_file = ExtResource("5_3cn81")
+volume = -15.595
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_0ho66"]
+script = ExtResource("2_nf7bn")
+sfx_name = 3
+sfx_file = ExtResource("6_urvsl")
+volume = -15.916
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_0u5pd"]
+script = ExtResource("2_nf7bn")
+sfx_name = 4
+sfx_file = ExtResource("7_urvsl")
+volume = -16.561
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_kpkhy"]
+script = ExtResource("2_nf7bn")
+sfx_name = 5
+sfx_file = ExtResource("8_0u5pd")
+volume = -13.994
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_eb3jp"]
+script = ExtResource("2_nf7bn")
+sfx_name = 6
+sfx_file = ExtResource("9_ktasg")
+volume = -12.072
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_ybe85"]
+script = ExtResource("2_nf7bn")
+sfx_name = 7
+sfx_file = ExtResource("10_5ifs4")
+volume = -16.236
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_5ifs4"]
+script = ExtResource("2_nf7bn")
+sfx_name = 8
+sfx_file = ExtResource("11_ktasg")
+volume = -16.109
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[node name="SfxManager" type="Node"]
 script = ExtResource("1_yybmf")
+SFX_SETTINGS = Array[ExtResource("2_nf7bn")]([SubResource("Resource_nf7bn"), SubResource("Resource_oub7f"), SubResource("Resource_w4mbc"), SubResource("Resource_0ho66"), SubResource("Resource_0u5pd"), SubResource("Resource_kpkhy"), SubResource("Resource_eb3jp"), SubResource("Resource_ybe85"), SubResource("Resource_5ifs4")])

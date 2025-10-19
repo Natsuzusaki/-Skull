@@ -4,7 +4,6 @@ extends RigidBody2D
 @export var manipulate_gravity_on_activate: bool
 @export var initial_gravity: float = 1.0
 @onready var collision: CollisionShape2D = $Collision
-@onready var collision2: CollisionShape2D = $ConvertDetect/CollisionShape2D
 @onready var player: CharacterBody2D = null
 @onready var text_value: Label = $TextValue
 @onready var int_object = load("res://scenes/environment_elements/int_object.tscn")
@@ -27,7 +26,6 @@ func _ready() -> void:
 		text_value.text = text
 	if collision.shape:
 		collision.shape = collision.shape.duplicate(true)
-		collision2.shape = collision2.shape.duplicate(true)
 	update_collision_shape()
 
 func update_collision_shape() -> void:
@@ -56,8 +54,7 @@ func update_collision_shape() -> void:
 	var new_extents = Vector2(total_width + 3, base_height)
 	if new_extents.x < 0:
 		new_extents = Vector2(0,0)
-	collision.shape.extents = new_extents
-	collision2.shape.extents = new_extents
+	collision.shape.extents = new_extents 
 
 func initialize(new_value: String) -> void:
 	text = new_value

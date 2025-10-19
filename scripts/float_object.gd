@@ -3,7 +3,6 @@ extends RigidBody2D
 @export var initial_value : float
 @onready var player: CharacterBody2D = null
 @onready var collision: CollisionShape2D = $Collision
-@onready var collision2: CollisionShape2D = $Die/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $ConvertDetect/CollisionShape2D
 @onready var text_value: Label = $TextValue
 @onready var str_object = load("res://scenes/environment_elements/str_object.tscn")
@@ -22,7 +21,6 @@ func _ready() -> void:
 	text_value.text = str(value)
 	if collision.shape:
 		collision.shape = collision.shape.duplicate(true)
-		collision2.shape = collision2.shape.duplicate(true)
 		collision_shape_2d.shape = collision_shape_2d.shape.duplicate(true)
 	update_collision_shape()
 
@@ -64,12 +62,8 @@ func update_collision_shape() -> void:
 	var text_width = text_length * size
 	var new_extents = Vector2(text_width + 3, 12)
 	collision.shape.extents = new_extents
-	collision2.shape.extents = new_extents
 	collision_shape_2d.shape.extents = new_extents
 
-func _on_die_body_entered(_body: Node2D) -> void:
-	queue_free()
-	
 func _convert_value(target_type: String, val) -> Variant:
 	match target_type:
 		"int":

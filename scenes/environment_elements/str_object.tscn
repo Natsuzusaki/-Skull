@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://okiqhyadjhg0"]
+[gd_scene load_steps=6 format=3 uid="uid://okiqhyadjhg0"]
 
 [ext_resource type="Script" uid="uid://cqdg0wcxh2p2l" path="res://scripts/str_object.gd" id="1_w6b6k"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_2tqai"]
@@ -7,9 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erk0j"]
 size = Vector2(20, 26)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0227"]
-size = Vector2(16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qktcs"]
 font = ExtResource("2_2tqai")
@@ -20,20 +17,11 @@ collision_layer = 8
 collision_mask = 398
 mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_mxie2")
-can_sleep = false
 continuous_cd = 1
 script = ExtResource("1_w6b6k")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_erk0j")
-
-[node name="ConvertDetect" type="Area2D" parent="."]
-collision_layer = 4096
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ConvertDetect"]
-shape = SubResource("RectangleShape2D_u0227")
-debug_color = Color(0, 1, 0, 0.41960785)
 
 [node name="TextValue" type="Label" parent="."]
 anchors_preset = 8

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://battsl1bhcf0h"
-path="res://.godot/imported/Console Control10.png-26eccd9f7e4856477ad3f26c77c9516e.ctex"
+uid="uid://bincjg4hdow5r"
+path="res://.godot/imported/mini_medal.png-7e7ff5334bb5420602641fe14c241403.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Console Control10.png"
-dest_files=["res://.godot/imported/Console Control10.png-26eccd9f7e4856477ad3f26c77c9516e.ctex"]
+source_file="res://assets/images/mini_medal.png"
+dest_files=["res://.godot/imported/mini_medal.png-7e7ff5334bb5420602641fe14c241403.ctex"]
 
 [params]
 

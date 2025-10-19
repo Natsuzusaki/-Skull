@@ -8,7 +8,6 @@ var sec: int = 0
 var minute: int = 0
 var hr: int = 0
 var total_time: String
-
 func _ready() -> void:
 	update_display()  # Optional: Ensure labels start at 00:00:00
 
@@ -36,3 +35,11 @@ func update_display() -> void:
 	hours.text = "%02d" % hr
 	minutes.text = "%02d" % minute
 	seconds.text = "%02d" % sec
+
+func pause() -> void:
+	set_process(false)
+	print("     TIMER PAUSED")
+
+func start() -> void:
+	set_process(true)
+	print("     TIMER STARTED")

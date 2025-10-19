@@ -13,7 +13,7 @@ do player.move_in_cutscene(Vector2(4432, 424))
 Yuna: It's some kind of instruction for a device
 do NoteManager.show_note(0)
 do note1.show_status = true
-do SFXManager.play("note")
+do SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 => END!
 
 ~ talk2
@@ -29,6 +29,8 @@ do console1.consolesprite.visible = true
 do player.stay = false
 do camera.back()
 do Cutscene.end_cutscene()
+do timerr.visible = true
+do timerr.start()
 => END!
 
 ~ talk3

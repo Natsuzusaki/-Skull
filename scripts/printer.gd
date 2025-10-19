@@ -33,9 +33,6 @@ func grid_to_world(coords: Vector2, origin: Node2D, tile_size: float = 32.0) -> 
 	pos.y = -pos.y
 	return origin.global_position + pos
 
-func get_grid_pos() -> Vector2:
-	return get_grid_coords(camera, 32)
-
 func _print_value(_value, array_value) -> void:
 	for v in array_value:
 		spawn_object(v)

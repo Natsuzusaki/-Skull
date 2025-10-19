@@ -10,36 +10,36 @@
 texture = ExtResource("1_ibeei")
 region_rect = Rect2(544, 376, 336, 184)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25bb8"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyo1n"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pa0cq"]
 texture = ExtResource("6_ibeei")
 region_rect = Rect2(675, 576, 94, 26)
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibeei"]
 texture = ExtResource("6_ibeei")
 region_rect = Rect2(675, 576, 94, 26)
 modulate_color = Color(0.412153, 0.412152, 0.412152, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pa0cq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyo1n"]
 texture = ExtResource("6_ibeei")
 region_rect = Rect2(675, 576, 94, 26)
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibeei"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25bb8"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxa2i"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2soj1"]
 texture = ExtResource("1_ibeei")
-region_rect = Rect2(443, 347, 15, 15)
+region_rect = Rect2(409, 347, 15, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hnnl"]
 texture = ExtResource("1_ibeei")
 region_rect = Rect2(426, 347, 15, 15)
 modulate_color = Color(0.856067, 0.856067, 0.856067, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2soj1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxa2i"]
 texture = ExtResource("1_ibeei")
-region_rect = Rect2(409, 347, 15, 15)
+region_rect = Rect2(443, 347, 15, 15)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibeei"]
 
 [node name="Settings" type="Panel"]
 anchors_preset = 8
@@ -200,10 +200,10 @@ size_flags_horizontal = 6
 size_flags_stretch_ratio = 8.97
 theme_override_fonts/font = ExtResource("1_emn88")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_25bb8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_jyo1n")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ibeei")
 theme_override_styles/normal = SubResource("StyleBoxTexture_pa0cq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ibeei")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jyo1n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_25bb8")
 text = "
 Reset to default   
 
@@ -227,10 +227,10 @@ grow_vertical = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_emn88")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ibeei")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hxa2i")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6hnnl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_2soj1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6hnnl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hxa2i")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibeei")
 
 [connection signal="value_changed" from="MarginContainer/ScrollContainer/Entire_settings/Sliders/Music_control/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/ScrollContainer/Entire_settings/Sliders/SFX_control/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

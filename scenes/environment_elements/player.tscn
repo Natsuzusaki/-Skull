@@ -1342,7 +1342,7 @@ one_shot = true
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_7txwo")
-volume_db = -10.0
+volume_db = -20.498
 bus = &"SFX"
 
 [connection signal="body_entered" from="DeathDetection" to="." method="_on_death_detection_body_entered"]

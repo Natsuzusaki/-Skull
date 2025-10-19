@@ -17,10 +17,13 @@ extends Node2D
 @onready var if_4: Control = $Labels/if4
 @onready var if_5: Control = $Labels/if5
 @onready var if_6: Control = $Labels/if6
-@onready var timerr: Node = $Time
-@onready var ui_level_complete: Control = $"UI's/UI_LevelComplete"
+@onready var timerr: CanvasLayer = $Time
+@onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 
 
+
+
+var current_chapter = "Chapter3"
 var data = SaveManager.load_game()
 var ctr := false
 
@@ -37,7 +40,7 @@ func _ready() -> void:
 	#print("test: ",e)
 	print("a: ", a)
 	
-	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3")
+	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3", 0.03)
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_3.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -45,7 +48,13 @@ func _ready() -> void:
 	if_5.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_6.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	
-		
+	if data["Time_and_Medal_Score"].has("Chapter3"):
+		var chap3 = data["Time_and_Medal_Score"]["Chapter3"]
+		if chap3.has("saved_session_time"):
+			var session_time = chap3["saved_session_time"]
+			timerr.time = session_time
+			print(timerr.time)
+			timerr.update_display() 
 	if data.has("Chapter3"):
 		var chapter3 = data["Chapter3"]
 		if chapter3.has("player_pos"):
@@ -57,14 +66,13 @@ func _ready() -> void:
 				ctr = true
 			if checkpoint == 2.0:
 				SaveManager.restore_objects()
-		if chapter3.has("current_timer"):
-			timerr.time = chapter3["current_timer"]
-			timerr.update_display() 
+	
 
 func _process(_delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
 		timerr.visible = true
+	_save_time_on_death()
 
 	
 func _unhandled_input(_event: InputEvent) -> void:
@@ -114,6 +122,10 @@ func _on_area_2d_6_body_entered(_body: Node2D) -> void:
 	var tween := create_tween()
 	tween.tween_property(if_6, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
 
+func _save_time_on_death() -> void:
+	if player.dead:
+		_save_timer_to_json()
+	return
 
 # Example: In a _on_level_complete signal or exit function
 #func complete_level() -> void:
@@ -132,7 +144,12 @@ func _save_timer_to_json() -> void:
 func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	ui_level_complete.drop_down()
-	var time_node = $Time
-	SaveManager.save_level_completion("Chapter3", time_node, true)  # true for best-time min
-	MusicManager.set_volume(0)
+	SaveManager.save_level_completion("Chapter3", timerr, ui_level_complete) 
 	SaveManager.mark_level_completed(3)
+	SaveManager.evaluate_level_score("Chapter3")
+	SaveManager.reset_session_time("Chapter1")
+	MusicManager.change_volume(0.01)
+	await get_tree().create_timer(5).timeout
+	MusicManager.change_volume(0.03)
+	
+	

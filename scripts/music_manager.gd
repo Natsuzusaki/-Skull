@@ -3,12 +3,13 @@ extends Node
 @onready var music_player := AudioStreamPlayer.new()
 @onready var music_player_loop := AudioStreamPlayer.new()
 
+
 var current_track: String = ""
-var music_volume: float = 1.0
+var music_volume: float = 0.08
 var fade_in_duration: float = 3.0
 var tween: Tween
 
-const MAX_VOLUME: float = 0.4
+const MAX_VOLUME: float = 1.0
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
@@ -33,18 +34,18 @@ func set_volume(value: float) -> void:
 	if music_player_loop:
 		music_player_loop.volume_db = linear_to_db(music_volume)
 
-func play_music(path: String) -> void:
+func play_music(path: String, volume: float) -> void:
 	if current_track == path:
 		return
 	var stream = load(path)
 	if stream and stream is AudioStream:
 		stop_music()
 		music_player.stream = stream
-		set_volume(music_volume)
+		set_volume(volume)
 		music_player.play()
 		current_track = path
 
-func play_music_with_fade(path: String) -> void:
+func play_music_with_fade(path: String, volume: float) -> void:
 	if current_track == path:
 		return
 	var stream = load(path)
@@ -63,14 +64,14 @@ func play_music_with_fade(path: String) -> void:
 		tween = create_tween()
 		tween.tween_property(
 			music_player, "volume_db",
-			linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME)),
+			linear_to_db(clamp(volume, 0.0, MAX_VOLUME)),
 			fade_in_duration
 		)
 		var loop_stream = stream.duplicate()
 		if loop_stream is AudioStream:
 			loop_stream.loop = true
 		music_player_loop.stream = loop_stream
-		music_player_loop.volume_db = linear_to_db(clamp(music_volume, 0.0, MAX_VOLUME))
+		music_player_loop.volume_db = linear_to_db(clamp(volume, 0.0, MAX_VOLUME))
 
 func _on_intro_finished() -> void:
 	if music_player_loop.stream:
@@ -80,3 +81,13 @@ func stop_music() -> void:
 	music_player.stop()
 	music_player_loop.stop()
 	current_track = ""
+	
+func change_volume(value: float) -> void:
+	music_volume = clamp(value, 0.0, MAX_VOLUME)
+	if music_player:
+		tween = create_tween()
+		tween.tween_property(music_player, "volume_db", linear_to_db(music_volume), fade_in_duration)
+	if music_player_loop:
+		tween = create_tween()
+		tween.tween_property(music_player_loop, "volume_db", linear_to_db(music_volume), fade_in_duration)
+		

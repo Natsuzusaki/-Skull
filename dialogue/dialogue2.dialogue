@@ -1,5 +1,4 @@
 ~ talk1
-do SaveManager.update_save({"Chapter2": {"flags": {"has_done_cutscene": true}}})
 do player.sprite_animation("action")
 do wait(1)
 do star.visible = false
@@ -13,10 +12,14 @@ Yuna: [do player.sprite_animation("idle")]I love glasses
 do player.stay = false
 do camera.back()
 do Cutscene.end_cutscene()
+do timerr.visible = true
+do timerr.start()
 do ctr = true
 => END!
 
 ~ talk2
+do timerr.visible = false
+do timerr.pause()
 Yuna: Integer? Throw? Where do we even throw the integer?
 - In that question mark?
 do camera.focus_on_point(code_block)
@@ -54,16 +57,18 @@ do mouse_target = mouse_move.global_position
 do yuna_mouse_move = true
 do player.stay = false
 do Cutscene.end_cutscene()
+do timerr.visible = true
+do timerr.start()
 => END!
 
 ~ talk3
-Yuna: Hovering over those walls will show its properties
+Yuna: That should help you figuring things out 😋😋😋
 Yuna: Goodluck Eisntein!
 do mouse_target = Vector2(832,640)
 do yuna_mouse_move = true
 => END!
 
 ~ talk4
-Yuna: Ouch!
+Yuna: NIGGA
 do camera.back()
 => END!
