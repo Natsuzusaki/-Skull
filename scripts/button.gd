@@ -32,6 +32,7 @@ func _on_body_exited(_body: Node2D) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and not disabled and not cooldown and is_near:
 		activate()
+
 func activate() -> void:
 	SFXManager.play("button")
 	cooldown = true
@@ -43,7 +44,12 @@ func activate() -> void:
 		if output is StaticBody2D or output is RigidBody2D:
 			output.activate(continuous, active_time)
 		elif output is Area2D:
-			output.change()
+			if output.is_in_group("LoopRoom"):
+				output.activate = false
+			else:
+				output.change()
+		elif output is Camera2D:
+			output.unlock()
 	if one_use:
 		disabled = true
 

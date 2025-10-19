@@ -17,14 +17,14 @@ var text_add3 = RegEx.new()
 var text_sub3 = RegEx.new()
 var text_sub2 = RegEx.new()
 var text_sub1 = RegEx.new()
-var text = null
+var value = null
 
 func _ready() -> void:
 	gravity_scale = initial_gravity
-	text = display_text if text == null else text
+	value = display_text if value == null else value
 	player = get_tree().get_current_scene().find_child("Player")
-	if text:
-		text_value.text = text
+	if value:
+		text_value.text = value
 	if collision.shape:
 		collision.shape = collision.shape.duplicate(true)
 		collision2.shape = collision2.shape.duplicate(true)
@@ -60,7 +60,7 @@ func update_collision_shape() -> void:
 	collision2.shape.extents = new_extents
 
 func initialize(new_value: String) -> void:
-	text = new_value
+	value = new_value
 
 func activate(continuous: bool, _time: float) -> void:
 	if not continuous:
@@ -117,7 +117,7 @@ func do_convert_type(target_type: String) -> void:
 		"int": new_scene = int_object
 		"bool": new_scene = bool_object
 		_: return
-	var new_value = _convert_value(target_type, text)
+	var new_value = _convert_value(target_type, value)
 	if new_value == null:
 		show_conversion_error()
 		return

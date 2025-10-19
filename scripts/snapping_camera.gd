@@ -13,6 +13,7 @@ var current_target: Node2D = null
 var interact := false
 var cutscene := false
 var snapping_enabled := true
+var locked_in_room := false
 
 var screen_size: Vector2 = Vector2.ZERO
 var cur_screen := Vector2.ZERO
@@ -48,9 +49,12 @@ func _physics_process(delta: float) -> void:
 	if not interact and zoom.distance_to(zoom_out) < 0.01:
 		emit_signal("zoom_restored")
 	if snapping_enabled:
-		var player_screen: Vector2 = (player.global_position / screen_size).floor()
-		if not player_screen.is_equal_approx(cur_screen):
-			_update_screen(player_screen)
+		if not locked_in_room:
+			var player_screen: Vector2 = (player.global_position / screen_size).floor()
+			if not player_screen.is_equal_approx(cur_screen):
+				_update_screen(player_screen)
+		else:
+			global_position = cur_screen * screen_size + screen_size * 0.5
 	else:
 		if current_target:
 			global_position = global_position.lerp(current_target.global_position, follow_speed * delta)
@@ -77,6 +81,14 @@ func back() -> void:
 	interact = false
 	snapping_enabled = true
 	_snap_to_player_screen()
+func unlock() -> void:
+	print("unlock")
+	locked_in_room = false
+	back()
+func lock() -> void:
+	print("lock")
+	await get_tree().create_timer(0.3).timeout
+	locked_in_room = true
 
 func _update_screen(new_screen: Vector2) -> void:
 	cur_screen = new_screen

@@ -1734,8 +1734,10 @@ text = "proceed()"
 [node name="Time" parent="." instance=ExtResource("27_ojkn5")]
 
 [node name="Grid" parent="." instance=ExtResource("14_flme0")]
+visible = false
 
 [node name="UI\'s" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UI_LevelComplete" parent="UI\'s" instance=ExtResource("28_6vxnv")]
 _3star = 0

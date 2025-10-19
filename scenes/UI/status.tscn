@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8mcom3hx5frj"]
+
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_35ho3"]
+[ext_resource type="Texture2D" uid="uid://63ntdiitwwwt" path="res://assets/images/loop.png" id="2_314cd"]
+[ext_resource type="Texture2D" uid="uid://d3v7aqp2hp6xs" path="res://assets/images/shatter.png" id="4_gnbdm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8oy1"]
+font = ExtResource("1_35ho3")
+font_size = 80
+outline_size = 26
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_dyimm"]
+resource_name = "Loop"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spk2g"]
+_data = {
+&"Loop": SubResource("Animation_dyimm")
+}
+
+[node name="Status" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loop" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -40.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoopText" type="Label" parent="Loop"]
+layout_mode = 2
+text = "Loop"
+label_settings = SubResource("LabelSettings_c8oy1")
+
+[node name="LoopLogo" type="Sprite2D" parent="Loop"]
+position = Vector2(407.99997, 40.000023)
+scale = Vector2(0.7199997, 0.7199999)
+texture = ExtResource("2_314cd")
+
+[node name="Break" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Break"]
+position = Vector2(384, -28.000011)
+scale = Vector2(3.6325305, 3.8561149)
+texture = ExtResource("4_gnbdm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Break"]
+position = Vector2(17.00001, 119.99999)
+rotation = 2.5132742
+scale = Vector2(2.323, 2.466)
+texture = ExtResource("4_gnbdm")
+
+[node name="BreakText" type="Label" parent="Break"]
+layout_mode = 2
+text = "Break"
+label_settings = SubResource("LabelSettings_c8oy1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_spk2g")
+}

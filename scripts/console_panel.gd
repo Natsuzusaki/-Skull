@@ -37,8 +37,12 @@ func _ready() -> void:
 	point_light_2d.visible = false
 	
 #WAS my greatest dissapointments, but now i fucking love it!
-func execute_code(user_code: String) -> void:
+func execute_code(user_code: String) -> bool:
 	var script = GDScript.new()
+	if text_validator.detect_infinite_loops(user_code):
+		SFXManager.play("console_error")
+		label.text = "⚠️ Infinite loop detected! \n Add an increment or break."
+		return false
 	var formatted_code = text_validator.auto_indentation(user_code, characterlimit)
 	formatted_code = text_validator.rewrite_code(formatted_code)
 	var var_assignments = ""
@@ -69,18 +73,16 @@ func custom_print(varargs: Array) -> void:
 func run():
 %s
 """ % [var_assignments, init_assignments, formatted_code]
-	#print(full_script) #debug
+	print(full_script) #debug
 	#print(outputs)
 	if formatted_code.is_empty():
-		return
+		return false
 	script.set_source_code(full_script)
 	var error = script.reload()
 	if text_validator.code_verify(error):
-		return
+		return false
 	elif error == Error.OK:
 		var ctx: Dictionary = {}
-		print("OUTPUTS: ", outputs)
-
 		for key in outputs.keys():
 			var path = outputs[key]
 			if typeof(path) == TYPE_NODE_PATH:
@@ -97,10 +99,12 @@ func run():
 			instance.queue_free()
 		if value == null:
 			value = null
+			return true
 		else:
 			print_value.emit(value, array_value)
+			return true
 	else:
-		return
+		return false
 
 #Terminal Interactions
 func _on_button_pressed() -> void:
@@ -159,23 +163,26 @@ func interacted() -> void:
 	code_edit.grab_focus()
 	actions_sent.emit("console_focused")
 func code_run() -> void:
-	array_value = []
+	array_value.clear()
 	var user_code = code_edit.text
-	if user_code.is_empty():
+	var success = execute_code(user_code)
+	if success:
+		SFXManager.play("console")
+		player.stay = false
+		player.on_console = false
+		player.near_console = false
+		camera.back()
+		control.hide()
+		state = ConsoleState.IDLE
+		actions_sent.emit("console_run")
+	else:
 		SFXManager.play("console_error")
-		label.text = "Nothing to print!"
 		player.stay = true
 		player.on_console = true
-		return
-	execute_code(user_code)
-	SFXManager.play("console")
-	player.stay = false
-	player.on_console = false
-	player.near_console = false
-	camera.back()
-	control.hide()
-	state = ConsoleState.IDLE
-	actions_sent.emit("console_run")
+		state = ConsoleState.INTERACTING
+		camera.focus_on_point(self)
+		label.text += "\n(Fix the error and try again.)"
+
 func _process(_delta: float) -> void:
 	if not turned_on:
 		consolesprite.visible = false

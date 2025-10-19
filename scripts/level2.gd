@@ -27,7 +27,7 @@ var mouse_speed: float = 500.0
 
 func _ready() -> void:
 	#Engine.time_scale = 0.1
-	MusicManager.play_music("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3")
+	MusicManager.play_music_with_fade("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3")
 	connections()
 	if data.has("Chapter2"):
 		var chapter2 = data["Chapter2"]

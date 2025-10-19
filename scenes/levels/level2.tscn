@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://dlqyj5fklu02m"]
+[gd_scene load_steps=72 format=4 uid="uid://dlqyj5fklu02m"]
 
 [ext_resource type="PackedScene" uid="uid://c2udgjcetsli8" path="res://scenes/environment_elements/player.tscn" id="1_nos0u"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="1_ok6xr"]
@@ -14,12 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://b11yggyqs050q" path="res://scenes/environment_elements/code_blocks.tscn" id="5_dj4wq"]
 [ext_resource type="PackedScene" uid="uid://cpmp4bujrpjva" path="res://scenes/environment_elements/int_object.tscn" id="5_k0mew"]
 [ext_resource type="Script" uid="uid://ed380ipd2mme" path="res://scripts/InputReference.gd" id="7_b4tpv"]
-[ext_resource type="Texture2D" uid="uid://c8k8d5ilbtb7k" path="res://assets/images/signs.png" id="10_sqrei"]
 [ext_resource type="TileSet" uid="uid://b6vjhf5vk7oxt" path="res://assets/presets/effects.tres" id="11_g04qb"]
 [ext_resource type="PackedScene" uid="uid://bobhew8fqmf32" path="res://scenes/UI/grid.tscn" id="11_gycjm"]
 [ext_resource type="PackedScene" uid="uid://tbbseijgioje" path="res://scenes/environment_elements/notes.tscn" id="11_sqrei"]
 [ext_resource type="TileSet" uid="uid://cv5api3ubthor" path="res://assets/presets/border.tres" id="12_5qtw0"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="12_8i1lk"]
+[ext_resource type="TileSet" uid="uid://ck62xmqsq83ao" path="res://assets/presets/signs.tres" id="15_8kpy5"]
 [ext_resource type="PackedScene" uid="uid://dm1vrdfjgbxj" path="res://scenes/environment_elements/lantern.tscn" id="16_b3p8y"]
 [ext_resource type="TileSet" uid="uid://copvvoh80wwcs" path="res://assets/presets/grass_tile_static.tres" id="21_ida7w"]
 [ext_resource type="Shader" uid="uid://c8dbr4xyefsoo" path="res://assets/presets/partialfog.gdshader" id="23_8kpy5"]
@@ -138,57 +138,6 @@ size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6igki"]
 size = Vector2(64, 64)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3p8y"]
-texture = ExtResource("10_sqrei")
-0:0/size_in_atlas = Vector2i(2, 3)
-0:0/animation_columns = 4
-0:0/animation_speed = 10.0
-0:0/animation_frame_0/duration = 50.0
-0:0/animation_frame_1/duration = 1.0
-0:0/animation_frame_2/duration = 1.0
-0:0/animation_frame_3/duration = 1.0
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(-8, 0)
-0:3/size_in_atlas = Vector2i(3, 2)
-0:3/animation_columns = 4
-0:3/animation_speed = 10.0
-0:3/animation_frame_0/duration = 50.0
-0:3/animation_frame_1/duration = 1.0
-0:3/animation_frame_2/duration = 1.0
-0:3/animation_frame_3/duration = 1.0
-0:3/0 = 0
-0:3/0/texture_origin = Vector2i(0, 8)
-0:5/size_in_atlas = Vector2i(3, 2)
-0:5/animation_columns = 4
-0:5/animation_speed = 10.0
-0:5/animation_frame_0/duration = 50.0
-0:5/animation_frame_1/duration = 1.0
-0:5/animation_frame_2/duration = 1.0
-0:5/animation_frame_3/duration = 1.0
-0:5/0 = 0
-0:5/0/texture_origin = Vector2i(0, 8)
-0:7/size_in_atlas = Vector2i(3, 2)
-0:7/animation_columns = 4
-0:7/animation_speed = 10.0
-0:7/animation_frame_0/duration = 50.0
-0:7/animation_frame_1/duration = 1.0
-0:7/animation_frame_2/duration = 1.0
-0:7/animation_frame_3/duration = 1.0
-0:7/0 = 0
-0:7/0/texture_origin = Vector2i(0, 8)
-0:9/size_in_atlas = Vector2i(3, 2)
-0:9/animation_columns = 4
-0:9/animation_speed = 10.0
-0:9/animation_frame_0/duration = 50.0
-0:9/animation_frame_1/duration = 1.0
-0:9/animation_frame_2/duration = 1.0
-0:9/animation_frame_3/duration = 1.0
-0:9/0 = 0
-0:9/0/texture_origin = Vector2i(0, 8)
-
-[sub_resource type="TileSet" id="TileSet_bxuut"]
-sources/0 = SubResource("TileSetAtlasSource_b3p8y")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45jfw"]
 size = Vector2(112, 80)
@@ -698,7 +647,7 @@ tile_set = ExtResource("12_5qtw0")
 
 [node name="Signs" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AADSABcAAAAAAAkAAACfABoAAAAAAAkAAAB6AAYAAAAAAAcAAAAuABoAAAAAAAMAAAAIAQ4AAAAAAAcAAABlABkAAAAAAAkAAAA5ARQAAAAAAAkAAAAnARkAAAAAAAkAAAB0ARsAAAAAAAUAAAB6AQ0AAAAAAAUAAABfAQcAAAAAAAMAAABcARMAAAAAAAMAAABSARwAAAAAAAAAACB9AUUAAAAAAAcAAABoAVIAAAAAAAUAAAB3AVwAAAAAAAMAAACwAVAAAAAAAAcAACA=")
-tile_set = SubResource("TileSet_bxuut")
+tile_set = ExtResource("15_8kpy5")
 
 [node name="Caster" type="Node2D" parent="."]
 
@@ -1052,9 +1001,9 @@ label_settings = SubResource("LabelSettings_hgky1")
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Labels"]
-offset_left = -744.0
+offset_left = -752.0
 offset_top = 520.0
-offset_right = -144.0
+offset_right = -152.0
 offset_bottom = 612.0
 text = "Chapter 2:
 Numbers and Positions"
@@ -1128,10 +1077,11 @@ offset_top = -592.0
 offset_bottom = -592.0
 
 [node name="Star" type="ColorRect" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_45jfw")
-offset_left = 112.0
+offset_left = 115.0
 offset_top = 424.0
-offset_right = 152.0
+offset_right = 155.0
 offset_bottom = 464.0
 
 [connection signal="body_entered" from="Triggers/LevelFinish" to="." method="_on_level_finish_body_entered"]
