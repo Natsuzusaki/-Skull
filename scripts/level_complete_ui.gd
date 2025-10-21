@@ -11,44 +11,42 @@ extends Control
 
 var converted_min3: float
 var converted_min2: float
-
 var total_formatted: String
 var time_in_sec: float
-var player: Node
+
+var medals: int
+
 func _ready() -> void:
 	self.visible = false
-	player = get_tree().current_scene.get_node("Player")
-	
 
 func drop_down() -> void:
 	self.visible = true
-	converted_min3 = _3star
-	converted_min2 = _2star
+	converted_min3 = _3star * 60
+	converted_min2 = _2star * 60
 	var time_node = get_tree().current_scene.get_node("Time")
 	time_node.stop()
 	time_node.visible = false
 	time_in_sec = time_node.time
 	total_formatted = time_node.total_time
 	newtime.text = total_formatted
+	get_medal_value()
 	animation_player.play("DropDown")
 	timer.start()
 	await get_tree().create_timer(2).timeout
 	show_time.play("Show time")
-	print(time_in_sec)
 
 	
 func _on_main_menu_button_pressed() -> void:
-	SFXManager.play("button_menu")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	Loading.loading("res://scenes/UI/main_menu.tscn")
 	
 func _on_next_level_button_pressed() -> void:
-	SFXManager.play("button_menu")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	Loading.loading("res://scenes/UI/level_selection_menu.tscn")
 	
 
 
 func _on_timer_timeout() -> void:
-	print(converted_min3)
 	if time_in_sec <= converted_min3:
 		play_3_star.play("3star")
 		await get_tree().create_timer(1).timeout
@@ -61,3 +59,11 @@ func _on_timer_timeout() -> void:
 		play_3_star.play("1star")
 		await get_tree().create_timer(1).timeout
 		play_3_star.play("1star_idle")
+		
+func get_medal_value() -> void:
+	if time_in_sec <= converted_min3:
+		medals = 3
+	if time_in_sec > converted_min3 and time_in_sec <= converted_min2:
+		medals = 2
+	if time_in_sec > converted_min2:
+		medals = 1

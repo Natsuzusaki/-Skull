@@ -150,7 +150,7 @@ size = Vector2(48, 80)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hgky1"]
 font = ExtResource("12_8i1lk")
-font_size = 24
+font_size = 8
 
 [sub_resource type="Gradient" id="Gradient_8kpy5"]
 colors = PackedColorArray(1, 1, 1, 0.101961, 1, 1, 1, 1)
@@ -789,48 +789,56 @@ initial_value = 1000
 position = Vector2(432, 256)
 statement = "
 	platform.position.y = "
+control_axis = "y"
 outputs = [NodePath("../../Platforms/Customizable_Platform")]
 
 [node name="Code_Blocks2" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(1328, 360)
 statement = "
 	printer.position.x = "
+control_axis = "x"
 outputs = [NodePath("../../Printers/Printer2")]
 
 [node name="Code_Blocks3" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(2448, 160)
 statement = "
 	platform1.position.x = "
+control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform2")]
 
 [node name="Code_Blocks4" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(2512, 224)
 statement = "
 	platform2.position.x = "
+control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform3")]
 
 [node name="Code_Blocks5" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(3120, 384)
 statement = "
 	platform1.position.y = "
+control_axis = "y"
 outputs = [NodePath("../../Platforms/Customizable_Platform4"), NodePath("../../Platforms/Customizable_Platform5")]
 
 [node name="Code_Blocks6" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(4256, 96)
 statement = "
 	platform1.position.y = "
+control_axis = "y"
 outputs = [NodePath("../../Platforms/Customizable_Platform6")]
 
 [node name="Code_Blocks7" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(4320, 144)
 statement = "
 	platform2.position.y = "
+control_axis = "y"
 outputs = [NodePath("../../Platforms/Customizable_Platform7")]
 
 [node name="Code_Blocks8" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
 position = Vector2(5680, 464)
 statement = "
 	platform1.position.y = "
+control_axis = "y"
 outputs = [NodePath("../../Platforms/Customizable_Platform14")]
 
 [node name="Code_Blocks9" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("5_dj4wq")]
@@ -1005,9 +1013,10 @@ offset_left = -752.0
 offset_top = 520.0
 offset_right = -152.0
 offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("12_8i1lk")
+theme_override_font_sizes/font_size = 24
 text = "Chapter 2:
 Numbers and Positions"
-label_settings = SubResource("LabelSettings_hgky1")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Labels"]
@@ -1022,7 +1031,7 @@ horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_nos0u")]
 unique_name_in_owner = true
-position = Vector2(-832.00006, 440)
+position = Vector2(6296, 1471.0001)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -1084,6 +1093,6 @@ offset_top = 424.0
 offset_right = 155.0
 offset_bottom = 464.0
 
-[connection signal="body_entered" from="Triggers/LevelFinish" to="." method="_on_level_finish_body_entered"]
+[connection signal="body_entered" from="Triggers/LevelFinish" to="." method="_on_complete_body_entered"]
 [connection signal="body_entered" from="Triggers/FallCutscene" to="." method="_on_fall_cutscene_body_entered"]
 [connection signal="body_entered" from="Triggers/TutorialEnd" to="." method="_on_tutorial_end_body_entered"]

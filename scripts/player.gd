@@ -221,13 +221,13 @@ func _on_death_detection_body_entered(_body: Node2D) -> void:
 	death_detection.set_collision_mask_value(7, false)
 	timer.start()
 	sprite_animation("die")
-	SFXManager.play("death")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.DEATH)
 	Engine.time_scale = 0.5
 	var tree = get_tree()
 	await tree.create_timer(1).timeout
 	tree.reload_current_scene()
 func _on_timer_timeout() -> void:
-	SFXManager.play("death2")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.DEATH2)
 	
 #Helper
 func sprite_animation(anim_name: String) -> void:

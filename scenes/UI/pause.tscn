@@ -16,18 +16,18 @@ shader_parameter/blur_size = 2.0
 texture = ExtResource("2_gc51q")
 region_rect = Rect2(576, 136, 176, 232)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgkjp"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f636"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wijuh"]
 texture = ExtResource("3_35g5d")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_supq8"]
 texture = ExtResource("3_35g5d")
 modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wijuh"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f636"]
 texture = ExtResource("3_35g5d")
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgkjp"]
 
 [node name="Pause" type="CanvasLayer" node_paths=PackedStringArray("settings", "pause_menu")]
 process_mode = 3
@@ -87,10 +87,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_h04nq")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wijuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
 text = "Resume"
 
 [node name="Restart" type="Button" parent="Pause_menu/MarginContainer/VBoxContainer"]
@@ -99,10 +99,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_h04nq")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wijuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
 text = "Restart Level"
 
 [node name="Settings" type="Button" parent="Pause_menu/MarginContainer/VBoxContainer"]
@@ -111,10 +111,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_h04nq")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wijuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
 text = "Settings"
 
 [node name="Exit" type="Button" parent="Pause_menu/MarginContainer/VBoxContainer"]
@@ -123,10 +123,10 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_h04nq")
 theme_override_font_sizes/font_size = 23
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wijuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_supq8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0f636")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgkjp")
 text = "Exit"
 
 [node name="Settings" parent="." node_paths=PackedStringArray("previous_menu") instance=ExtResource("5_gc51q")]

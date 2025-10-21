@@ -157,15 +157,15 @@ func func_detector(user_code: String) -> bool:
 
 func code_verify(error) -> bool:
 	if error == Error.ERR_PARSE_ERROR:
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "Parse Error: \n Check your syntax!"
 		return true
 	elif error == Error.ERR_COMPILATION_FAILED:
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "Compilation Error: \n There is a semantic error!"
 		return true
 	elif error != OK:
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "Script Error: \n IDK where tho 😋"
 		return true
 	return false

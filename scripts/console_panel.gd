@@ -40,7 +40,7 @@ func _ready() -> void:
 func execute_code(user_code: String) -> bool:
 	var script = GDScript.new()
 	if text_validator.detect_infinite_loops(user_code):
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "⚠️ Infinite loop detected! \n Add an increment or break."
 		return false
 	var formatted_code = text_validator.auto_indentation(user_code, characterlimit)
@@ -134,7 +134,7 @@ func _on_body_exited(_body: Node2D) -> void:
 		pop_up_animation.play("pop_down")
 		control.hide()
 func _on_code_edit_focus_entered() -> void:
-	SFXManager.play("console")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
@@ -144,7 +144,7 @@ func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 		label.text = fixed_var
 		restart_text = false
 func console_exit() -> void:
-	SFXManager.play("console_exit")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_EXIT)
 	state = ConsoleState.IDLE
 	player.stay = false
 	player.on_console = false
@@ -167,7 +167,7 @@ func code_run() -> void:
 	var user_code = code_edit.text
 	var success = execute_code(user_code)
 	if success:
-		SFXManager.play("console")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 		player.stay = false
 		player.on_console = false
 		player.near_console = false
@@ -176,7 +176,7 @@ func code_run() -> void:
 		state = ConsoleState.IDLE
 		actions_sent.emit("console_run")
 	else:
-		SFXManager.play("console_error")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		player.stay = true
 		player.on_console = true
 		state = ConsoleState.INTERACTING

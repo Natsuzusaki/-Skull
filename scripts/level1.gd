@@ -25,6 +25,7 @@ extends Node2D
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 @onready var timerr: CanvasLayer = $Time
 
+var current_chapter = "Chapter1"
 var is_smart := false
 var talk_ctr := 0
 var has_fallen := false
@@ -32,11 +33,12 @@ var is_first_present := false
 var blocked := false
 
 func _ready() -> void:
-	MusicManager.play_music_with_fade("res://assets/music/New [1-02] Access - Cave Story Remastered Soundtrack.mp3")
+	MusicManager.play_music_with_fade("res://assets/music/New [1-02] Access - Cave Story Remastered Soundtrack.mp3", 0.08)
 	console1.turned_on = false
 	note1.monitoring = false
 	connections()
 	var data = SaveManager.load_game()
+	
 	if data.has("Chapter1"):
 		var chapter1 = data["Chapter1"]
 		if chapter1.has("player_pos"):
@@ -46,9 +48,6 @@ func _ready() -> void:
 			if chapter1["checkpoint_order"] == 8.0:
 				button_2.disabled = true
 				gate.global_position += Vector2(0, 120)
-		if chapter1.has("current_timer"):
-			timerr.time = chapter1["current_timer"]
-			timerr.update_display() 
 		if chapter1.has("flags"):
 			var flags = chapter1["flags"]
 			if flags.has("has_done_cutscene"):
@@ -73,6 +72,17 @@ func _ready() -> void:
 			if flags.has("listened_to_noise"):
 				if flags["listened_to_noise"]:
 					noise.monitoring = false
+	if data["Time_and_Medal_Score"].has("Chapter1"):
+		var chap1 = data["Time_and_Medal_Score"]["Chapter1"]
+		if chap1.has("saved_session_time"):
+			var session_time = chap1["saved_session_time"]
+			timerr.time = session_time
+			print(timerr.time)
+			timerr.update_display() 
+					
+func _process(_delta: float) -> void:
+	_save_time_on_death()
+	
 func connections() -> void:
 	for note in notes.get_children():
 		note.actions_sent.connect(_actions_recieved)
@@ -118,6 +128,8 @@ func _pause_game() -> void:
 	Pause.paused()
 
 func _on_cutscene_1_body_entered(_body: Node2D) -> void:
+	timerr.visible = false
+	timerr.pause()
 	Cutscene.start_cutscene()
 	player.stay = true
 	camera.focus_on_player(true, true)
@@ -177,8 +189,11 @@ func _on_noise_body_entered(_body: Node2D) -> void:
 func _on_level_finished_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	ui_level_complete.drop_down()
-	SaveManager.save_level_completion("Chapter1", timerr, true)
+	SaveManager.save_level_completion("Chapter1", timerr, ui_level_complete)
+	SaveManager.evaluate_level_score("Chapter1")
+	SaveManager.reset_session_time("Chapter1")
 	SaveManager.mark_level_completed(1)
+	
 
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
@@ -189,6 +204,11 @@ func turn_dark_light(value) -> void:
 	tween.tween_property(canvas_modulate, "color", value, 1)
 func _save_timer_to_json() -> void:
 	SaveManager.save_timer_for_session("Chapter1", timerr.time)
+	
+func _save_time_on_death() -> void:
+	if player.dead:
+		_save_timer_to_json()
+	return
 
 func _on_turn_dark_body_entered(_body: Node2D) -> void:
 	turn_dark_light(Color8(27, 71, 95, 255))

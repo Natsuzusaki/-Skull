@@ -47,7 +47,7 @@ texture = ExtResource("6_abo8g")
 
 [sub_resource type="Animation" id="Animation_jdcbr"]
 resource_name = "DropDown"
-length = 5.0
+length = 6.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -79,7 +79,7 @@ tracks/2/path = NodePath("fireworks:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.8666667),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -91,10 +91,10 @@ tracks/3/path = NodePath("fireworks2:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.19630282, 0.5, 4.3333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.19630282, 0.5, 4.6666665, 6.5, 9.033333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, false, true, false]
+"values": [false, false, true, true, false, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -103,10 +103,10 @@ tracks/4/path = NodePath("fireworks3:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.77667636, 1.8666667, 4.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.77667636, 1.8666667, 4.6666665, 4.9433427, 6.0333333, 6.5, 9.199999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false]
+"values": [false, true, false, true, true, false, true, false, false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -115,10 +115,10 @@ tracks/5/path = NodePath("fireworks2:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.5, 2.5, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.5, 2.5, 3.5, 5.6666665, 6.6666665, 7.6666656),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(136, 824), Vector2(125, 984), Vector2(150, 731), Vector2(88, 1073)]
+"values": [Vector2(136, 824), Vector2(125, 984), Vector2(150, 731), Vector2(88, 1073), Vector2(125, 984), Vector2(150, 731), Vector2(88, 1073)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -127,10 +127,10 @@ tracks/6/path = NodePath("fireworks3:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2, 3, 4, 6.1666665, 7.1666665, 8.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1016, 824), Vector2(893, 902), Vector2(1098, 1024), Vector2(1112, 833)]
+"values": [Vector2(1016, 824), Vector2(893, 902), Vector2(1098, 1024), Vector2(1112, 833), Vector2(893, 902), Vector2(1098, 1024), Vector2(1112, 833)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -446,6 +446,18 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(568, 1320)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("fireworks:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ajuat"]

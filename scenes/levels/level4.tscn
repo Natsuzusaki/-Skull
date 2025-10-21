@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=4 uid="uid://l8hb6r2jccd3"]
 
-[ext_resource type="Script" uid="uid://c2hwlghlabqox" path="res://scenes/levels/level4.gd" id="1_5sfmg"]
+[ext_resource type="Script" uid="uid://c2hwlghlabqox" path="res://scripts/level4.gd" id="1_5sfmg"]
 [ext_resource type="PackedScene" uid="uid://c2udgjcetsli8" path="res://scenes/environment_elements/player.tscn" id="1_eh8f3"]
 [ext_resource type="TileSet" uid="uid://d0goud1b4sckf" path="res://assets/presets/tiles.tres" id="1_fjlvv"]
 [ext_resource type="TileSet" uid="uid://co4aa8a5s77br" path="res://assets/presets/tiles_without_collision.tres" id="1_s45gt"]

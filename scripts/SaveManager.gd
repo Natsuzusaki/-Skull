@@ -65,11 +65,52 @@ func mark_level_completed(level: int) -> void:
 		data["Levels"] = {}
 	data["Levels"]["level%s" % level] = true
 	save_game(data)
+	
 func is_level_completed(level: int) -> bool:
 	var data = load_game()
 	if data.has("Levels") and data["Levels"].has("level%s" % level):
 		return data["Levels"]["level%s" % level]
 	return false
+
+func evaluate_level_score(chapter: String) -> void:
+	var data = load_game()
+	if not data["Time_and_Medal_Score"].has(chapter):
+		var chapt = {"Time_and_Medal_Score": {chapter: {}}}
+		update_save(chapt)
+		print("CREATING CHAPTER")
+		
+	var reload_data = load_game()
+	var chap = reload_data["Time_and_Medal_Score"][chapter]
+	
+	if not chap.has("prev_time"):
+		print("NO PREV DATA")
+		var new_time = data[chapter]["level_time"]
+		var new_time_formatted = data[chapter]["level_time_formatted"]
+		var new_medals = data[chapter]["medals_earned"]
+	
+		var a = {"Time_and_Medal_Score": {chapter: {}}}
+		a["Time_and_Medal_Score"][chapter]["prev_time_formatted"] = new_time_formatted
+		a["Time_and_Medal_Score"][chapter]["prev_medals"] = new_medals
+		a["Time_and_Medal_Score"][chapter]["prev_time"] = new_time
+		update_save(a)
+
+	else:
+		print("HAS PREV DATA")
+		var prev_time = data["Time_and_Medal_Score"][chapter]["prev_time"]
+		
+		var new_time = data[chapter]["level_time"]
+		var new_time_formatted = data[chapter]["level_time_formatted"]
+		var new_medals = data[chapter]["medals_earned"]
+		if new_time < prev_time:
+			var a = {"Time_and_Medal_Score": {chapter: {}}}
+			a["Time_and_Medal_Score"][chapter]["prev_time"] = new_time
+			a["Time_and_Medal_Score"][chapter]["prev_time_formatted"] = new_time_formatted
+			a["Time_and_Medal_Score"][chapter]["prev_medals"] = new_medals
+			update_save(a)
+			print("OVERRIDING OLD DATA")
+		else:
+			print("Current score is not the best")
+		
 
 #User database
 func create_user(user: String) -> void:
@@ -77,13 +118,14 @@ func create_user(user: String) -> void:
 		return
 	users.append(user)
 	save_game({
+		"Time_and_Medal_Score":{
+			
+			},
 		"Levels": {
 			"level1": false, 
 			"level2": false, 
 			"level3": false, 
-			"level4": false, 
-			"level5": false,
-			"level6": false
+			"level4": false
 			},
 		"Settings": {
 			"keybinds": {
@@ -126,32 +168,35 @@ func delete_user(user: String) -> void:
 			current_user = "Guest"
 
 func save_timer_for_session(chapter: String, timer_value: float) -> void:
-	var timer_data = {chapter: {"current_timer": timer_value}}
+	var timer_data = {"Time_and_Medal_Score": {chapter:{"saved_session_time": timer_value}}}
 	update_save(timer_data)
 	print("Saved current timer for '%s': %.2f seconds." % [chapter, timer_value])
-
-# New: Save completed level time (e.g., on finish/exit without restart)
-# Stores 'level_time' float under the chapter (permanent, optional best-time min)
-# Also calls stop() on the Time node if provided
-func save_level_completion(chapter: String, time_node: Node, use_best_time: bool = false) -> void:
+	
+func reset_session_time(chapter: String) -> void:
+	var data = load_game()
+	if data["Time_and_Medal_Score"].has(chapter):
+		if not data["Time_and_Medal_Score"][chapter].has("saved_session_time"):
+			return
+	var session_time = {"Time_and_Medal_Score": {chapter: {}}}
+	session_time["Time_and_Medal_Score"][chapter]["saved_session_time"] = 0
+	update_save(session_time)
+	
+func save_level_completion(chapter: String, time_node: Node, level_complete_node: Node) -> void:
 	if not time_node:
 		print("Warning: No Time node provided for level completion save.")
 		return
 		
-	time_node.stop()  # Finalize total_time string (from your Time script)
-	var completion_time = time_node.time  # The float value
-	
-	var data = load_game()
-	var chapter_data = data.get(chapter, {})
-	
-	if use_best_time and chapter_data.has("level_time"):
-		# Optional: Keep the minimum (best) time
-		completion_time = min(completion_time, chapter_data["level_time"])
-		print("Updated best time for '%s' to %.2f seconds." % [chapter, completion_time])
-		
+	time_node.stop()  
+	var completion_time = time_node.time 
+
 	var completion_data = {chapter: {"level_time": completion_time}}
-	update_save(completion_data)
-	
-	# Optionally save the formatted string too
 	completion_data[chapter]["level_time_formatted"] = time_node.total_time
+	completion_data[chapter]["medals_earned"] = level_complete_node.medals
 	update_save(completion_data)
+	#await get_tree().create_timer(0.5).timeout
+	#var data = load_game()
+	#if not data["Time_and_Medal_Score"].has(chapter) or not data["Time_and_Medal_Score"][chapter].has("saved_session_time"):
+		#return
+	#var session_time = {"Time_and_Medal_Score": {chapter:{}}}
+	#session_time["Time_and_Medal_Score"][chapter]["saved_session_time"] = 0
+	#update_save(session_time)

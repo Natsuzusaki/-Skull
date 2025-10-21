@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_563rl"]
 [ext_resource type="Script" uid="uid://q3cjb3sfjng0" path="res://scripts/user_list.gd" id="1_p8nt1"]
-[ext_resource type="Texture2D" uid="uid://cf21kgdnmvbe7" path="res://assets/images/QApgxR.png" id="2_aantl"]
+[ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_j8kax"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_j15x8"]
 [ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="3_aantl"]
 [ext_resource type="Texture2D" uid="uid://cuawj75op8e33" path="res://assets/images/uii.png" id="6_j8kax"]
@@ -10,8 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="8_ofoij"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofoij"]
-texture = ExtResource("2_aantl")
-modulate_color = Color(0.449735, 0.314694, 0.183401, 1)
+texture = ExtResource("2_j8kax")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofrgu"]
 texture = ExtResource("6_j8kax")
@@ -65,6 +64,20 @@ grow_vertical = 2
 script = ExtResource("1_p8nt1")
 
 [node name="Panel2" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 96.0001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ofoij")
+
+[node name="Panel3" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -31,7 +31,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and near:
-		SFXManager.play("note")
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 		if show_status:
 			show_status = false 
 			NoteManager.hide_note()

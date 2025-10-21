@@ -74,7 +74,7 @@ func _input(event):
 func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
 func _on_reset_to_default_pressed() -> void:
-	SFXManager.play("button_menu")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	InputMap.load_from_project_settings()
 	var keybinds = {}
 	for action in input_actions:
@@ -140,7 +140,7 @@ func save_settings():
 
 #Back
 func _on_back_pressed() -> void:
-	SFXManager.play("button_menu")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	save_settings()
 	self.visible = false
 	previous_menu.visible = true

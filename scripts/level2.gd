@@ -18,17 +18,25 @@ extends Node2D
 #----Area2D
 @onready var tutorial_end: Area2D = $Triggers/TutorialEnd
 
+var current_chapter = "Chapter2"
 var data = SaveManager.load_game()
 var ctr := false
 var talk_ctr := 0
 var mouse_target: Vector2
 var yuna_mouse_move := false
-var mouse_speed: float = 500.0
+var mouse_speed: float = 550.0
 
 func _ready() -> void:
 	#Engine.time_scale = 0.1
-	MusicManager.play_music_with_fade("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3")
+	MusicManager.play_music_with_fade("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3", 0.08)
 	connections()
+	if data["Time_and_Medal_Score"].has("Chapter2"):
+		var chap2 = data["Time_and_Medal_Score"]["Chapter2"]
+		if chap2.has("saved_session_time"):
+			var session_time = chap2["saved_session_time"]
+			timerr.time = session_time
+			print(timerr.time)
+			timerr.update_display() 
 	if data.has("Chapter2"):
 		var chapter2 = data["Chapter2"]
 		if chapter2.has("player_pos"):
@@ -42,18 +50,13 @@ func _ready() -> void:
 				talk_ctr = 3
 				tutorial_end.monitoring = false
 				SaveManager.restore_objects()
-		if chapter2.has("current_timer"):
-			timerr.time = chapter2["current_timer"]
-			timerr.update_display() 
-		if chapter2.has("flags"):
-			var flags = chapter2["flags"]
-			if flags.has("has_done_cutscene"):
-				star.visible = false
 	starting_scene()
 
 #----SpecificTriggers
 func starting_scene() -> void:
 	if not ctr:
+		timerr.pause()
+		timerr.visible = false
 		Cutscene.start_cutscene()
 		player.stay = true
 		camera.focus_on_player(true, true)
@@ -80,6 +83,7 @@ func _actions_recieved2(_action: String) -> void:
 
 #----Processes
 func _process(delta: float) -> void:
+	_save_time_on_death()
 	if player.on_console:
 		grid.visible = false
 	if yuna_mouse_move:
@@ -110,6 +114,11 @@ func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
 
+func _save_time_on_death() -> void:
+	if player.dead:
+		_save_timer_to_json()
+	return
+
 #----Helpers
 func dialogue(talk: String) -> void:
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue2.dialogue"), talk)
@@ -125,15 +134,23 @@ func _save_timer_to_json() -> void:
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
+	SaveManager.mark_level_completed(2)
 	camera.focus_on_player(true, true)
 	await wait(1)
 	dialogue("talk4")
 func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	tutorial_end.set_deferred("monitoring", false)
 	talk_ctr = 3
+#func _on_area_2d_body_entered(_body: Node2D) -> void:
+	#player.stay = true
+	#ui_level_complete.drop_down()
+	##SaveManager.save_level_completion("Chapter2", timerr, true)
+	#SaveManager.mark_level_completed(2)
 
-func _on_level_finish_body_entered(_body: Node2D) -> void:
+func _on_complete_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	ui_level_complete.drop_down()
-	SaveManager.save_level_completion("Chapter2", timerr, true)
+	SaveManager.save_level_completion("Chapter2", timerr, ui_level_complete)
+	SaveManager.evaluate_level_score("Chapter2")
+	SaveManager.reset_session_time("Chapter1")
 	SaveManager.mark_level_completed(2)

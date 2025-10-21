@@ -25,11 +25,11 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SaveManager="*res://scripts/SaveManager.gd"
 Loading="*res://scripts/Loading.gd"
 MusicManager="*res://scripts/music_manager.gd"
-SFXManager="*res://scripts/sfx_manager.gd"
 Cutscene="*res://scenes/UI/cutscene_borders.tscn"
 Pause="*res://scenes/UI/pause.tscn"
 NoteManager="*res://scenes/UI/note_manager.tscn"
 DeathFog="*res://scenes/UI/death_fog.tscn"
+SfxManager="*res://scenes/UI/sfx_manager.tscn"
 
 [dialogue_manager]
 
