@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://7irmetb5g5pa"]
+
+[ext_resource type="Texture2D" uid="uid://d15m1u5belv4r" path="res://assets/images/grass.png" id="1_aa05m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eneqb"]
+size = Vector2(4, 10)
+
+[node name="MiddleVine2" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eneqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aa05m")
+region_enabled = true
+region_rect = Rect2(96, 144, 16, 16)

@@ -47,7 +47,8 @@ texture = ExtResource("1_hhuhv")
 
 [node name="PinnedArea" type="StaticBody2D" parent="."]
 position = Vector2(0, -16)
-collision_layer = 8
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PinnedArea"]
 shape = SubResource("RectangleShape2D_uxgnm")

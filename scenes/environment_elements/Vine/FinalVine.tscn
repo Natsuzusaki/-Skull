@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn7pbolskq76"]
+
+[ext_resource type="Script" uid="uid://d4kcitnpbiiwa" path="res://scripts/vine.gd" id="1_8doe2"]
+[ext_resource type="PackedScene" uid="uid://dvg3vsessyknw" path="res://scenes/environment_elements/Vine/TopVine.tscn" id="2_qem7k"]
+[ext_resource type="PackedScene" uid="uid://b6bwkwy1urkuj" path="res://scenes/environment_elements/Vine/MiddleVine1.tscn" id="3_cwv2x"]
+[ext_resource type="PackedScene" uid="uid://7irmetb5g5pa" path="res://scenes/environment_elements/Vine/MiddleVine2.tscn" id="4_ysq7c"]
+[ext_resource type="PackedScene" uid="uid://cxqyid03wsi1" path="res://scenes/environment_elements/Vine/BottomVine.tscn" id="5_qafaj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smajk"]
+size = Vector2(1, 1)
+
+[node name="Vine" type="Node2D"]
+script = ExtResource("1_8doe2")
+top_scene = ExtResource("2_qem7k")
+mid1_scene = ExtResource("3_cwv2x")
+mid2_scene = ExtResource("4_ysq7c")
+bottom_scene = ExtResource("5_qafaj")
+min_push_interval = 3.0
+max_push_interval = 5.0
+push_strength = 1000000.0
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource("RectangleShape2D_smajk")

@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bfa64kl1ie3qb"]
+
+[ext_resource type="Shader" uid="uid://cg75eexvuvey6" path="res://assets/presets/textmove.gdshader" id="1_hnmhd"]
+
+[resource]
+shader = ExtResource("1_hnmhd")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 0.50000002049012
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = false
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = false
+shader_parameter/rotation_strength = 5.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/rotation_frequency = 4.0
+shader_parameter/enable_scaling = false
+shader_parameter/scale_strength = 0.1
+shader_parameter/scale_speed = 2.5
+shader_parameter/scale_frequency = 6.0
+shader_parameter/base_scale = 1.0
+shader_parameter/text_color = Color(1, 1, 1, 1)
+shader_parameter/use_custom_color = false
+shader_parameter/shake_intensity = 0.5
+shader_parameter/enable_pixelation = false
+shader_parameter/pixel_size = 4.0
+shader_parameter/adaptive_pixels = false
+shader_parameter/enable_outline = false
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 1.0

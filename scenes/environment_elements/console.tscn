@@ -11,20 +11,20 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifr1o"]
 bg_color = Color(0.156863, 0.172549, 0.235294, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stbsn"]
+bg_color = Color(0.0083132805, 0.046857096, 0.09015126, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ujx2k"]
+font = ExtResource("2_her8x")
+font_size = 8
+font_color = Color(1, 0.47058824, 0.41960785, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ifr1o"]
 font = ExtResource("2_her8x")
 font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrj24"]
 bg_color = Color(0.00784314, 0.0470588, 0.0901961, 1)
-
-[sub_resource type="Gradient" id="Gradient_ifr1o"]
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.99333334, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jrj24"]
-gradient = SubResource("Gradient_ifr1o")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx28n"]
 size = Vector2(64, 96)
@@ -173,36 +173,79 @@ theme_override_constants/separation = 7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 20.0
-label_settings = SubResource("LabelSettings_ujx2k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_stbsn")
 
-[node name="Limit" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
-label_settings = SubResource("LabelSettings_ujx2k")
+[node name="ScrollContainer" type="ScrollContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_ujx2k")
+autowrap_mode = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.2
 theme_override_fonts/font = ExtResource("2_her8x")
 theme_override_font_sizes/font_size = 8
 text = "run"
 
-[node name="Exit" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Exit" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_her8x")
 theme_override_font_sizes/font_size = 8
 text = "X"
+
+[node name="Limit" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "string size
+limit: "
+label_settings = SubResource("LabelSettings_ifr1o")
+horizontal_alignment = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="CodeEdit" type="CodeEdit" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -219,19 +262,6 @@ code_completion_enabled = true
 indent_automatic = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
-z_index = -9
-position = Vector2(118.260864, 176.63766)
-scale = Vector2(1.6304345, 1.2681161)
-energy = 2.8
-blend_mode = 2
-range_z_min = -1023
-range_z_max = 500
-texture = SubResource("GradientTexture2D_jrj24")
-offset = Vector2(-2, -72)
-texture_scale = 2.3
-height = 535.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)
@@ -259,8 +289,8 @@ libraries = {
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="focus_entered" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_focus_entered"]
 [connection signal="focus_exited" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_focus_exited"]
 [connection signal="lines_edited_from" from="Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit" to="." method="_on_code_edit_lines_edited_from"]

@@ -69,6 +69,6 @@ do yuna_mouse_move = true
 => END!
 
 ~ talk4
-Yuna: NIGGA
+Yuna: ouch
 do camera.back()
 => END!

@@ -1,15 +1,49 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd2as5ogj6hch"]
+[gd_scene load_steps=12 format=3 uid="uid://cd2as5ogj6hch"]
 
 [ext_resource type="Script" uid="uid://g8l1is0q14ca" path="res://scripts/button.gd" id="1_rhj8v"]
 [ext_resource type="Texture2D" uid="uid://cb6i08eg0h1fh" path="res://assets/images/button1_on.png" id="2_i7y4x"]
 [ext_resource type="Texture2D" uid="uid://blmmkyvqw7xta" path="res://assets/images/button1_off.png" id="3_1bdt2"]
-[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="3_3q610"]
 [ext_resource type="Texture2D" uid="uid://c8ukena52osw8" path="res://assets/images/button1_on_near.png" id="3_8828i"]
 [ext_resource type="Texture2D" uid="uid://ckjx2hmm7ofnt" path="res://assets/images/button1_off_near.png" id="5_bx0y0"]
 [ext_resource type="Texture2D" uid="uid://b5ijeems3ly6j" path="res://assets/images/button1_disabled.png" id="6_bx0y0"]
+[ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="7_bx0y0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7y4x"]
 size = Vector2(48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j4ab"]
+atlas = ExtResource("7_bx0y0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vklxr"]
+atlas = ExtResource("7_bx0y0")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q03qi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Button" type="Area2D"]
 collision_layer = 16
@@ -39,23 +73,12 @@ texture = ExtResource("5_bx0y0")
 visible = false
 texture = ExtResource("6_bx0y0")
 
-[node name="Label" type="Label" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -32.0
-offset_right = 20.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(20, 12)
-theme_override_fonts/font = ExtResource("3_3q610")
-text = "E"
-horizontal_alignment = 1
+[node name="Button" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_q03qi")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="ActivationCooldown" type="Timer" parent="."]
 

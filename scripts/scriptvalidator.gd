@@ -1,6 +1,6 @@
 extends Node
 
-@onready var label: Label = $"../Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Label"
+@onready var label: Label = %Label
 var control_regex = RegEx.new()
 #DO NOT TOUCH!!!
 #var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -144,7 +144,7 @@ func auto_indentation(user_code: String, _limit: int) -> String:
 			indented_lines.append("\t".repeat(indentation_level) + line)
 		return "\n".join(indented_lines)
 	else:
-		label.text = "Error: Console can't \n handle functions"
+		label.text = "Error: Console can't \nhandle functions"
 		return ""
 
 func func_detector(user_code: String) -> bool:
@@ -158,15 +158,15 @@ func func_detector(user_code: String) -> bool:
 func code_verify(error) -> bool:
 	if error == Error.ERR_PARSE_ERROR:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
-		label.text = "Parse Error: \n Check your syntax!"
+		label.text = "Parse Error: \nCheck your syntax!"
 		return true
 	elif error == Error.ERR_COMPILATION_FAILED:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
-		label.text = "Compilation Error: \n There is a semantic error!"
+		label.text = "Compilation Error: \nThere is a semantic error!"
 		return true
 	elif error != OK:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
-		label.text = "Script Error: \n IDK where tho 😋"
+		label.text = "Script Error: \nIDK where tho 😋"
 		return true
 	return false
 

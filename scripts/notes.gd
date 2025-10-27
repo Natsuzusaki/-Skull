@@ -5,7 +5,7 @@ extends Area2D
 
 @onready var note: Sprite2D = $Note
 @onready var note_near: Sprite2D = $Note_Near
-@onready var label: Label = $Label
+@onready var button: AnimatedSprite2D = $Button
 @onready var player: Player = %Player
 
 var show_status := false
@@ -18,7 +18,7 @@ func _on_body_entered(_body: Node2D) -> void:
 		near = true
 		note.visible = false
 		note_near.visible = true
-		label.visible = true
+		button.visible = true
 		player.near_note = true
 
 func _on_body_exited(_body: Node2D) -> void:
@@ -26,7 +26,7 @@ func _on_body_exited(_body: Node2D) -> void:
 		near = false
 		note.visible = true
 		note_near.visible = false
-		label.visible = false
+		button.visible = false
 		player.near_note = false
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -36,9 +36,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 			show_status = false 
 			NoteManager.hide_note()
 			player.stay = false
+			player.collision.scale = Vector2(1,1)
+			player.collision.position = Vector2(0, -2.143)
 			actions_sent.emit("note_closed")
 		elif not show_status:
 			show_status = true
 			NoteManager.show_note(note_num)
 			player.stay = true
+			player.collision.scale = Vector2(2.5, 1.5)
+			player.collision.position = Vector2(0, -7.143)
 			actions_sent.emit("note_interacted")

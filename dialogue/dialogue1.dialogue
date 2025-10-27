@@ -1,0 +1,111 @@
+~ talk1
+do timerr.visible = false
+do timerr.pause()
+do wait(2.5)
+do Cutscene.start_cutscene()
+Yuna: Oh...
+Yuna: I wasn't sure someone would pick up the controls again.
+Yuna: I can't really move without your inputs.
+Yuna: This whole world responds to your thoughts... your code.
+Yuna: Don't worry I'll guide you.
+Yuna: Try taking a step forward.
+do player.stay = false
+do fade_in(move_label)
+do timerr.visible = true
+do timerr.start()
+do Cutscene.end_cutscene()
+do SaveManager.update_save({"Chapter1": {"flags": {"talk1": true}}})
+=> END!
+
+~ talk2
+do Cutscene.start_cutscene()
+do timerr.visible = false
+do timerr.pause()
+Yuna: Strange, isn't it? These are called "Strings".
+Yuna: A String is a sequence of characters, it can be any word.
+Yuna: They are heavy, sturdy... I can't move them.
+Yuna: Only the world around them can
+do timerr.visible = true
+do timerr.start()
+do Cutscene.end_cutscene()
+do SaveManager.update_save({"Chapter1": {"flags": {"talk2": true}}})
+=> END!
+
+~ talk3
+do Cutscene.start_cutscene()
+do timerr.visible = false
+do timerr.pause()
+do camera.focus_on_player(true, true)
+Yuna: Hmm... this note.. it's talking about some sort of terminal.
+Yuna: It's implying that you can write commands to create literal Strings.
+do player.static_direction = -1
+Yuna: Wait, that old monitor over there... maybe that's what it meant!
+do player.move_in_cutscene(Vector2(4368, 424))
+do console1.turned_on = true
+do console1.consolesprite.visible = true
+Yuna: It still works!
+Yuna: It seems you can type instructions here.
+Yuna: Remember those Strings we saw before? Try typing something like that.
+Yuna: Surround your text with qoutes "" or ''.
+do camera.back()
+do timerr.visible = true
+do timerr.start()
+do Cutscene.end_cutscene()
+do SaveManager.update_save({"Chapter1": {"flags": {"talk3": true}}})
+=> END!
+
+~ talk4
+do Cutscene.start_cutscene()
+do timerr.visible = false
+do timerr.pause()
+do camera.focus_on_player(true, true)
+Yuna: You... you actually did it.
+Yuna: Looks like this console will be our way forward.
+do camera.back()
+do timerr.visible = true
+do timerr.start()
+do Cutscene.end_cutscene()
+do SaveManager.update_save({"Chapter1": {"flags": {"talk4": true}}})
+do title_fadeout()
+=> END!
+
+~ talk5
+do timerr.visible = false
+do timerr.pause()
+Yuna: You really do understand those notes
+Yuna: Keep it up
+do timerr.visible = true
+do timerr.start()
+do SaveManager.update_save({"Chapter1": {"flags": {"talk5": true}}})
+=> END!
+
+~ objectfall_talk
+% Yuna: It's too short.
+% Yuna: Make it a bit longer.
+% Yuna: Try printing a longer word.
+% Yuna: Not enough letters.
+do has_fallen = false
+=> END!
+
+~ talk5_fail
+do timerr.visible = false
+do timerr.pause()
+Yuna: Stuck? Why don't we restart current room?
+do fade_in(restart_label)
+do timerr.visible = true
+do timerr.start()
+=> END!
+
+~ blocked
+do timerr.visible = false
+do timerr.pause()
+Yuna: I don't think were suppose to block the path below
+do fade_in(restart_label3)
+do timerr.visible = true
+do timerr.start()
+=> END!
+
+~ bazinga
+Naer: This guy has got to be the most annoying person on the planet!!!!!
+Naer: Can I get a true as birds chat??
+=> END!

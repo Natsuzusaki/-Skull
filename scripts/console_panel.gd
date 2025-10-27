@@ -8,17 +8,15 @@ extends Area2D
 
 @onready var player: CharacterBody2D = %Player
 @onready var camera: Camera2D = %Camera
-@onready var label: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Label
+@onready var label = %Label
 @onready var code_edit: CodeEdit = $Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit
 @onready var pop_up_animation: AnimationPlayer = $"PopUp Animation"
 @onready var control: Control = $Terminal
 @onready var text_validator: Node2D = $TextValidator
-@onready var button: Button = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Button
 @onready var consolesprite: Sprite2D = $Console
 @onready var consolesprite_near: Sprite2D = $Console_Near
 @onready var console_off: Sprite2D = $Console_Off
-@onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Limit
-@onready var point_light_2d: PointLight2D = $Terminal/Panel/MarginContainer/VBoxContainer/PointLight2D
+@onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Limit
 
 enum ConsoleState {IDLE, NEAR, INTERACTING}
 var state: ConsoleState = ConsoleState.IDLE
@@ -31,17 +29,16 @@ signal print_value()
 signal actions_sent()
 
 func _ready() -> void:
-	limit.text = str(characterlimit)
+	limit.text += str(characterlimit)
 	label.text = fixed_var
 	code_edit.placeholder_text = base_text
-	point_light_2d.visible = false
-	
+
 #WAS my greatest dissapointments, but now i fucking love it!
 func execute_code(user_code: String) -> bool:
 	var script = GDScript.new()
 	if text_validator.detect_infinite_loops(user_code):
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
-		label.text = "⚠️ Infinite loop detected! \n Add an increment or break."
+		label.text = "Error: Infinite loop \ndetected! \nAdd an increment or break."
 		return false
 	var formatted_code = text_validator.auto_indentation(user_code, characterlimit)
 	formatted_code = text_validator.rewrite_code(formatted_code)
@@ -181,7 +178,7 @@ func code_run() -> void:
 		player.on_console = true
 		state = ConsoleState.INTERACTING
 		camera.focus_on_point(self)
-		label.text += "\n(Fix the error and try again.)"
+		#label.text += "\n(Fix the error and \ntry again.)"
 
 func _process(_delta: float) -> void:
 	if not turned_on:

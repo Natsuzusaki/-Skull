@@ -1031,7 +1031,7 @@ horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_nos0u")]
 unique_name_in_owner = true
-position = Vector2(6296, 1471.0001)
+position = Vector2(-856.00006, 440)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -1082,6 +1082,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="UI_LevelComplete" parent="UIs" instance=ExtResource("28_8kpy5")]
+visible = false
 offset_top = -592.0
 offset_bottom = -592.0
 

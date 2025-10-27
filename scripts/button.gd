@@ -14,6 +14,7 @@ extends Node2D
 @onready var turn_off_near: Sprite2D = $TurnOffNear
 @onready var disable: Sprite2D = $Disabled
 @onready var activation_cooldown: Timer = $ActivationCooldown
+@onready var button: AnimatedSprite2D = $Button
 
 var cooldown := false
 var disabled := false
@@ -22,9 +23,11 @@ var button_status := false #false-off, true-on
 
 func _on_body_entered(_body: Node2D) -> void:
 	is_near = true
+	button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_body_exited(_body: Node2D) -> void:
 	is_near = false
+	button.modulate = Color(1.0, 1.0, 1.0, 0.0)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and not disabled and not cooldown and is_near:

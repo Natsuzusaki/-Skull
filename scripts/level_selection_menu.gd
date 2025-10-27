@@ -139,8 +139,6 @@ func _on_button_pressed() -> void:
 		SaveManager.reset_save("Chapter1")
 	Loading.loading("res://scenes/levels/level1.tscn")
 
-		
-
 func _on_button_2_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	Loading.loading("res://scenes/levels/level2.tscn")
@@ -153,8 +151,8 @@ func _on_button_3_pressed() -> void:
 
 func _on_button_4_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	
-		
+	Loading.loading("res://scenes/levels/level4.tscn")
+
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

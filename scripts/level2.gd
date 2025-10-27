@@ -131,6 +131,10 @@ func connections() -> void:
 		console.actions_sent.connect(_actions_recieved2)
 func _save_timer_to_json() -> void:
 	SaveManager.save_timer_for_session("Chapter2", timerr.time)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_save_timer_to_json()
+		get_tree().quit()
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:

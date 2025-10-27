@@ -7,6 +7,9 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+## Ignore player input
+var disable_player_control: bool = true
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -69,7 +72,10 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
-	get_viewport().set_input_as_handled()
+	if not balloon.visible:
+		return
+	if disable_player_control:
+		get_viewport().set_input_as_handled()
 
 
 func _notification(what: int) -> void:

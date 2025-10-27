@@ -1310,12 +1310,14 @@ position = Vector2(2816, 712)
 statement = "
 	platform.position.x = 
 "
+control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform2")]
 
 [node name="Code_Blocks2" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
 position = Vector2(1232, 744)
 statement = "
 	printer.position.x "
+control_axis = "x"
 outputs = [NodePath("../../Printers/Printer7")]
 
 [node name="Objects" type="Node2D" parent="."]
@@ -1333,7 +1335,7 @@ value = false
 
 [node name="Player" parent="." instance=ExtResource("12_ojkn5")]
 unique_name_in_owner = true
-position = Vector2(-3311.9998, 296)
+position = Vector2(48, 440)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true

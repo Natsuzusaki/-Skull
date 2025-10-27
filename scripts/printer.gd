@@ -78,7 +78,7 @@ func _on_blocked_area_body_entered(_body: Node2D) -> void:
 func _on_blocked_area_body_exited(_body: Node2D) -> void:
 	blocked = false
 
-func move(steps: int) -> void:
+func move(steps: int, _axis: String) -> void:
 	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
 		await camera.zoom_restored
 	grid_pos = get_grid_coords(camera, 32)
