@@ -14,6 +14,8 @@ extends Node2D
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 @onready var timerr: CanvasLayer = $Time
 @onready var secretground: TileMapLayer = $SecretGround
+@onready var chapter_intro: CanvasLayer = $ChapterIntro
+@onready var progress_bar: CanvasLayer = $ProgressBar
 #----Label
 @onready var move_label: Label = $Labels/Move
 @onready var jump_label: Label = $Labels/Jump
@@ -248,3 +250,37 @@ func _on_outside_cave_body_exited(_body: Node2D) -> void:
 	fade_in(jump_label)
 	await wait(1.5)
 	fade_in(jump2_label)
+
+func _on_room_1_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(1)
+func _on_room_2_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(2)
+func _on_room_3_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(3)
+func _on_room_4_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(4)
+func _on_room_5_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(5)
+func _on_room_6_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(6)
+func _on_room_7_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(7)
+func _on_room_8_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(8)
+func _on_room_9_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(9)
+func _on_room_10_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(10)
+func _on_room_11_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(11)

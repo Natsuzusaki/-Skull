@@ -43,7 +43,7 @@ func _ready() -> void:
 	# Add to group for main group evaluation
 	if main_group != "" and not is_in_group(main_group):
 		add_to_group(main_group)
-	print("Plate ready -> main_group:", main_group, " subgroup:", subgroup)
+	#print("Plate ready -> main_group:", main_group, " subgroup:", subgroup)
 
 
 func _on_body_entered(body: Node) -> void:
@@ -127,8 +127,7 @@ func _evaluate_main_group(_value: bool) -> void:
 			subgroup_results[plate.subgroup]["values"].append(plate.activated)	#Append value of every plate in dict
 		else:
 			pass
-			#subgroup_results[plate.subgroup]["values"].append()
-			#subgroup_results[plate.subgroup]["all_occupied"] = false
+			
 			
 	print("Subgroup Plates: ",subgroup_results)
 	# --- Step 2: Evaluate each subgroup

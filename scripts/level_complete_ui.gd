@@ -8,6 +8,10 @@ extends Control
 @onready var play_3_star: AnimationPlayer = $"3star/play3star"
 @onready var newtime: Label = $TimeResult
 @onready var show_time: AnimationPlayer = $ShowTime
+@onready var main_menu_button: Button = $Control/LevelCompleteImage/MainMenuButton
+@onready var next_level_button: Button = $Control/LevelCompleteImage/NextLevelButton
+@onready var timer_2: Timer = $Timer2
+@onready var label: Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Label
 
 var converted_min3: float
 var converted_min2: float
@@ -21,6 +25,9 @@ func _ready() -> void:
 
 func drop_down() -> void:
 	self.visible = true
+	main_menu_button.disabled = true
+	next_level_button.disabled = true
+	timer_2.start()
 	converted_min3 = _3star * 60
 	converted_min2 = _2star * 60
 	var time_node = get_tree().current_scene.get_node("Time")
@@ -33,6 +40,7 @@ func drop_down() -> void:
 	animation_player.play("DropDown")
 	timer.start()
 	await get_tree().create_timer(2).timeout
+	label.text = ": under %d minutes\n: under %d minutes\n: over %d minutes" % [_3star, _2star, _2star]
 	show_time.play("Show time")
 
 	
@@ -67,3 +75,8 @@ func get_medal_value() -> void:
 		medals = 2
 	if time_in_sec > converted_min2:
 		medals = 1
+
+
+func _on_timer_2_timeout() -> void:
+	main_menu_button.disabled = false
+	next_level_button.disabled = false

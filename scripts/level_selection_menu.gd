@@ -19,20 +19,22 @@ extends Control
 @onready var time_result_3: Label = $Lvl3Completion/TimeResult3
 @onready var lvl_3_medal_3: Sprite2D = $Lvl3Completion/lvl3medal3
 @onready var lvl_3_medal_2: Sprite2D = $Lvl3Completion/lvl3medal2
-@onready var lvl_3_medal_1: Sprite2D = $"Lvl3Completion/lvl3 medal1"
+@onready var lvl_3_medal_1: Sprite2D = $"Lvl3Completion/lvl3medal1"
 @onready var time_result_4: Label = $Lvl4Completion/TimeResult4
 @onready var lvl_4_medal_3: Sprite2D = $Lvl4Completion/lvl4medal3
 @onready var lvl_4_medal_2: Sprite2D = $Lvl4Completion/lvl4medal2
-@onready var lvl_4_medal_1: Sprite2D = $"Lvl4Completion/lvl4 medal1"
+@onready var lvl_4_medal_1: Sprite2D = $"Lvl4Completion/lvl4medal1"
 @onready var lvl_1_completion: Control = $Lvl1Completion
 @onready var lvl_2_completion: Control = $Lvl2Completion
 @onready var lvl_3_completion: Control = $Lvl3Completion
 @onready var lvl_4_completion: Control = $Lvl4Completion
+@onready var animation_player: AnimationPlayer = $Reward/AnimationPlayer
 
 var data = SaveManager.load_game()
 
 
 func _ready() -> void:
+	#animation_player.play("show_golden_trophy")
 	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3", 0.08)
 	button_2.disabled = true
 	button_3.disabled = true
@@ -131,28 +133,68 @@ func _ready() -> void:
 				lvl_4_medal_3.visible = false
 	else:
 		lvl_4_completion.visible = false
+		
 	
+func _process(_delta: float) -> void:
+	check_game_completion()
 
 func _on_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	if SaveManager.is_level_completed(1):
-		SaveManager.reset_save("Chapter1")
+		if not data["Time_and_Medal_Score"]["Chapter1"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter1"]["saved_session_time"] == 0.0 :
+			SaveManager.reset_save("Chapter1")
 	Loading.loading("res://scenes/levels/level1.tscn")
+
+		
 
 func _on_button_2_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
+	if SaveManager.is_level_completed(2):
+		if not data["Time_and_Medal_Score"]["Chapter2"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter2"]["saved_session_time"] == 0.0 :
+			SaveManager.reset_save("Chapter2")
 	Loading.loading("res://scenes/levels/level2.tscn")
 
 func _on_button_3_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	#if SaveManager.is_level_completed(3):
-		#SaveManager.reset_save("Chapter3")
+	if SaveManager.is_level_completed(3):
+		if not data["Time_and_Medal_Score"]["Chapter3"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter3"]["saved_session_time"] == 0.0 :
+			SaveManager.reset_save("Chapter3")
 	Loading.loading("res://scenes/levels/level3.tscn")
 
 func _on_button_4_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	Loading.loading("res://scenes/levels/level4.tscn")
-
+	
+		
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+	
+func check_game_completion() -> void:
+	var user_data = SaveManager.load_game()
+	if user_data.has("Time_and_Medal_Score"):
+		if user_data["Time_and_Medal_Score"].has("Chapter1") and user_data["Time_and_Medal_Score"].has("Chapter2") and user_data["Time_and_Medal_Score"].has("Chapter3") and user_data["Time_and_Medal_Score"].has("Chapter4"):
+			var lvl1 = user_data["Levels"]["level1"]
+			var lvl2 = user_data["Levels"]["level2"]
+			var lvl3 = user_data["Levels"]["level3"]
+			var lvl4 = user_data["Levels"]["level4"]
+			var lvl1_medals = user_data["Time_and_Medal_Score"]["Chapter1"]["prev_medals"]
+			var lvl2_medals = user_data["Time_and_Medal_Score"]["Chapter2"]["prev_medals"]
+			var lvl3_medals = user_data["Time_and_Medal_Score"]["Chapter3"]["prev_medals"]
+			var lvl4_medals = user_data["Time_and_Medal_Score"]["Chapter4"]["prev_medals"]
+			if lvl1 and lvl2 and lvl3 and lvl4:
+				if lvl1_medals == 3.0 and lvl2_medals == 3.0 and lvl3_medals == 3.0 and lvl4_medals == 3.0:
+					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == false:
+						animation_player.play("show_both_rewards")
+						user_data["Levels"]["golden_trophy_shown"] = true
+						user_data["Levels"]["silver_trophy_shown"]= true
+						SaveManager.update_save(user_data)
+					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == true:
+						animation_player.play("show_golden_trophy")
+						user_data["Levels"]["golden_trophy_shown"] = true
+						SaveManager.update_save(user_data)
+				else:
+					if user_data["Levels"]["silver_trophy_shown"] == false:
+						animation_player.play("show_silver_trophy")
+						user_data["Levels"]["silver_trophy_shown"] = true
+						SaveManager.update_save(user_data)
+					

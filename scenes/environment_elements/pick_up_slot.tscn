@@ -1,14 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://dt8d1yxyocqtj"]
 
 [ext_resource type="Script" uid="uid://g668iyuhr65i" path="res://scripts/pick_up_slot.gd" id="1_q4fkv"]
-[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_n40sm"]
+[ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="2_j1yy5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1yy5"]
-size = Vector2(144, 16)
+size = Vector2(88, 16)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4bdm4"]
-font = ExtResource("2_n40sm")
+[sub_resource type="LabelSettings" id="LabelSettings_2pid2"]
+font = ExtResource("2_j1yy5")
 font_size = 8
+font_color = Color(1, 1, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PickUp_Slot" type="Control"]
 layout_mode = 3
@@ -21,7 +24,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp_Area"]
-position = Vector2(-74, 0)
+position = Vector2(-46, 0)
 shape = SubResource("RectangleShape2D_j1yy5")
 
 [node name="Text" type="Label" parent="."]
@@ -30,10 +33,11 @@ offset_left = -10.0
 offset_right = 30.0
 offset_bottom = 23.0
 text = "?"
-label_settings = SubResource("LabelSettings_4bdm4")
+label_settings = SubResource("LabelSettings_2pid2")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+justification_flags = 131
 
 [connection signal="body_entered" from="PickUp_Area" to="." method="_on_pick_up_area_body_entered"]
 [connection signal="body_exited" from="PickUp_Area" to="." method="_on_pick_up_area_body_exited"]

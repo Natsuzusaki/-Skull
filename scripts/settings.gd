@@ -13,7 +13,7 @@ var music_bus_id: int
 var sfx_bus_id: int
 
 var input_actions = {
-	"up": "Throw Up",
+	"up": "Throw up",
 	"left": "Move Left",
 	"right": "Move Right",
 	"down": "Move Down",
@@ -143,5 +143,12 @@ func save_settings():
 func _on_back_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	save_settings()
-	self.visible = false
-	previous_menu.visible = true
+	var root = get_tree().current_scene
+	var menu = root.find_child("Menu")
+	if menu:
+		if menu.visible == false:
+			menu.visible = true
+			Pause.hide_settings()
+	else:
+		self.visible = false
+		previous_menu.visible = true

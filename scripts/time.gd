@@ -9,7 +9,7 @@ var minute: int = 0
 var hr: int = 0
 var total_time: String
 func _ready() -> void:
-	update_display()  # Optional: Ensure labels start at 00:00:00
+	update_display()  
 
 func _process(delta) -> void:
 	time += delta
@@ -26,7 +26,7 @@ func stop():
 	total_time = "%02d:%02d:%02d" % [hr, minute, sec]
 	print(total_time)
 
-# New: Update display from current 'time' value (for instant restore after reload)
+
 func update_display() -> void:
 	sec = int(fmod(time, 60))
 	minute = int(fmod(time, 3600) / 60)

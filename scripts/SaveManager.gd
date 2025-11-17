@@ -41,6 +41,7 @@ func reset_save(key:String) -> void:
 	if data.has(key):
 		data[key] = {}
 	save_game(data)
+	print("LEVEL RESETTED")
 #Save Objects in world
 func snapshot_objects() -> void:
 	object_scene.clear()
@@ -118,6 +119,26 @@ func create_user(user: String) -> void:
 		return
 	users.append(user)
 	save_game({
+		"Chapter1":{
+			"checkpoint_order": 0.0,
+			"player_position":[],
+			"flags":{}
+		},
+		"Chapter2":{
+			"checkpoint_order": 0.0,
+			"player_position":[],
+			"flags":{}
+		},
+		"Chapter3":{
+			"checkpoint_order": 0.0,
+			"player_position":[],
+			"flags":{}
+		},
+		"Chapter4":{
+			"checkpoint_order": 0.0,
+			"player_position":[],
+			"flags":{}
+		},
 		"Time_and_Medal_Score":{
 			
 			},
@@ -125,7 +146,9 @@ func create_user(user: String) -> void:
 			"level1": false, 
 			"level2": false, 
 			"level3": false, 
-			"level4": false
+			"level4": false,
+			"silver_trophy_shown": false,
+			"golden_trophy_shown": false
 			},
 		"Settings": {
 			"keybinds": {
@@ -178,7 +201,7 @@ func reset_session_time(chapter: String) -> void:
 		if not data["Time_and_Medal_Score"][chapter].has("saved_session_time"):
 			return
 	var session_time = {"Time_and_Medal_Score": {chapter: {}}}
-	session_time["Time_and_Medal_Score"][chapter]["saved_session_time"] = 0
+	session_time["Time_and_Medal_Score"][chapter]["saved_session_time"] = 0.0
 	update_save(session_time)
 	
 func save_level_completion(chapter: String, time_node: Node, level_complete_node: Node) -> void:
@@ -193,10 +216,3 @@ func save_level_completion(chapter: String, time_node: Node, level_complete_node
 	completion_data[chapter]["level_time_formatted"] = time_node.total_time
 	completion_data[chapter]["medals_earned"] = level_complete_node.medals
 	update_save(completion_data)
-	#await get_tree().create_timer(0.5).timeout
-	#var data = load_game()
-	#if not data["Time_and_Medal_Score"].has(chapter) or not data["Time_and_Medal_Score"][chapter].has("saved_session_time"):
-		#return
-	#var session_time = {"Time_and_Medal_Score": {chapter:{}}}
-	#session_time["Time_and_Medal_Score"][chapter]["saved_session_time"] = 0
-	#update_save(session_time)

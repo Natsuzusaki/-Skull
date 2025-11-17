@@ -10,6 +10,9 @@ extends Node2D
 @onready var camera: Camera2D = %Camera
 @onready var consoles: Node2D = %Consoles
 @onready var printers: Node2D = $Printers
+@onready var chapter_intro: CanvasLayer = $ChapterIntro
+@onready var progress_bar: CanvasLayer = $ProgressBar
+
 
 @onready var if_1: Control = $Labels/if1
 @onready var if_2: Control = $Labels/if2
@@ -20,26 +23,20 @@ extends Node2D
 @onready var timerr: CanvasLayer = $Time
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 
-
+@onready var gate: StaticBody2D = $Gates/Gate
+@onready var customizable_platform_2: TileMapLayer = $Platforms/Customizable_Platform2
+@onready var int_object: RigidBody2D = $Objects/Int_Object
+@onready var gate_8: StaticBody2D = $Gates/Gate8
+@onready var gate_9: StaticBody2D = $Gates/Gate9
+@onready var gate_11: StaticBody2D = $Gates/Gate11
 
 
 var current_chapter = "Chapter3"
 var data = SaveManager.load_game()
 var ctr := false
 
-var a = 12 > 3
-#var b = false
-#var c = null
-#var d = false
-#
-#var e:bool
-
 
 func _ready() -> void:
-	#e = (a and not b) and (c or d == false)
-	#print("test: ",e)
-	print("a: ", a)
-	
 	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3", 0.03)
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -55,6 +52,10 @@ func _ready() -> void:
 			timerr.time = session_time
 			print(timerr.time)
 			timerr.update_display() 
+			if session_time == 0.0:
+				chapter_intro.show_intro()
+	else: 
+		chapter_intro.show_intro()
 	if data.has("Chapter3"):
 		var chapter3 = data["Chapter3"]
 		if chapter3.has("player_pos"):
@@ -62,10 +63,17 @@ func _ready() -> void:
 			player.global_position = Vector2(pos[0], pos[1])
 		if chapter3.has("checkpoint_order"):
 			var checkpoint = chapter3["checkpoint_order"]
-			if checkpoint >= 1.0:
-				ctr = true
 			if checkpoint == 2.0:
-				SaveManager.restore_objects()
+				gate.global_position += Vector2(0, 120)
+			if checkpoint == 5.0:
+				customizable_platform_2.position += Vector2(-160, 0)
+				int_object.queue_free()
+			if checkpoint == 6.0:
+				gate_8.global_position += Vector2(0, 120)
+				gate_9.global_position += Vector2(0, 120)
+			if checkpoint == 7.0:
+				gate_11.global_position += Vector2(0, 120)
+		
 	
 
 func _process(_delta: float) -> void:
@@ -127,17 +135,6 @@ func _save_time_on_death() -> void:
 		_save_timer_to_json()
 	return
 
-# Example: In a _on_level_complete signal or exit function
-#func complete_level() -> void:
-	#var time_node = $Time
-	#SaveManager.save_level_completion("Chapter3", time_node, true)  # true for best-time min
-	#
-	## Optionally save other progress
-	#var new_data = {"Chapter3": {"completed": true}}
-	#SaveManager.update_save(new_data)
-	#
-	## Change to next scene/menu
-	#get_tree().change_scene_to_file("res://scenes/next_level.tscn")  # Or main_menu
 func _save_timer_to_json() -> void:
 	SaveManager.save_timer_for_session("Chapter3", timerr.time)
 
@@ -145,11 +142,40 @@ func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter3", timerr, ui_level_complete) 
-	SaveManager.mark_level_completed(3)
 	SaveManager.evaluate_level_score("Chapter3")
-	SaveManager.reset_session_time("Chapter1")
+	SaveManager.reset_session_time("Chapter3")
+	SaveManager.mark_level_completed(3)
 	MusicManager.change_volume(0.01)
 	await get_tree().create_timer(5).timeout
 	MusicManager.change_volume(0.03)
 	
-	
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_save_timer_to_json()
+		get_tree().quit() 
+
+func _on_room_1_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(1)
+func _on_room_2_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(2)
+func _on_room_3_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(3)
+func _on_room_4_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(4)
+func _on_room_5_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(5)
+func _on_room_6_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(6)
+func _on_room_7_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(7)
+func _on_room_8_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(8)

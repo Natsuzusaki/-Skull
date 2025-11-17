@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @export var settings: Control
 @export var pause_menu: Control
+@onready var blur: ColorRect = $Blur
+
 
 func _ready() -> void:
 	self.visible = false
@@ -10,9 +12,19 @@ func paused() -> void:
 	self.visible = true
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause") and self.visible:
-		self.visible = false
-		get_tree().paused = false
+	var root = get_tree().current_scene
+	var root_name: String
+	if root:
+		root_name = root.name
+	print(root_name)
+	if root_name in ["Level1", "Level2", "Level3", "Level4"]:
+		if Input.is_action_just_pressed("pause"):
+			if self.visible and not settings.visible:
+				self.visible = false
+				get_tree().paused = false
+			elif self.visible and settings.visible and not pause_menu.visible:
+				settings.visible = false
+				pause_menu.visible = true
 
 func _on_resume_pressed() -> void:
 	self.visible = false
@@ -46,3 +58,15 @@ func _on_exit_pressed() -> void:
 		var time_node = main_scene.get_node("Time")
 		SaveManager.save_timer_for_session(scene_chapter, time_node.time)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+
+func show_settings() -> void:
+	self.visible = true
+	blur.visible = false
+	pause_menu.visible = false
+	settings.visible = true
+func hide_settings() -> void:
+	self.visible = false
+	blur.visible = true
+	pause_menu.visible = true
+	settings.visible = false
+	

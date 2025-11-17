@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dp6tjuwpf5i5h"]
+[gd_scene load_steps=75 format=3 uid="uid://dp6tjuwpf5i5h"]
 
 [ext_resource type="Script" uid="uid://c1p1e8spypbpk" path="res://scripts/main_menu.gd" id="1_um6dh"]
 [ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_5d4ag"]
@@ -6,8 +6,59 @@
 [ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="4_a1wsg"]
 [ext_resource type="FontFile" uid="uid://clukxufm8416u" path="res://assets/fonts/04B_30__.TTF" id="5_i7p8e"]
 [ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="6_5d4ag"]
-[ext_resource type="PackedScene" uid="uid://bvih4mru6gyoh" path="res://scenes/UI/settings.tscn" id="6_bm8t2"]
 [ext_resource type="PackedScene" uid="uid://25bjfaqklrw" path="res://scenes/UI/user_list.tscn" id="8_um6dh"]
+[ext_resource type="Texture2D" uid="uid://ccjaely0tqtjt" path="res://assets/images/gold_trophy1.png" id="9_sfthw"]
+[ext_resource type="Texture2D" uid="uid://04rjn5rljk8s" path="res://assets/images/silver_trophy1.png" id="9_wt33a"]
+[ext_resource type="Texture2D" uid="uid://csd7jr1l1omgv" path="res://assets/images/silver_trophy2.png" id="10_cfh5a"]
+[ext_resource type="Texture2D" uid="uid://bwabnmnilam5u" path="res://assets/images/gold_trophy2.png" id="10_n3ahy"]
+[ext_resource type="Texture2D" uid="uid://c7cyvmmnupk0s" path="res://assets/images/silver_trophy3.png" id="11_6irp5"]
+[ext_resource type="Texture2D" uid="uid://ypn3kijs1sxb" path="res://assets/images/gold_trophy3.png" id="11_scr1a"]
+[ext_resource type="Texture2D" uid="uid://wp83q1jmw6rw" path="res://assets/images/gold_trophy4.png" id="12_d0t0a"]
+[ext_resource type="Texture2D" uid="uid://bdfxrjvobp83r" path="res://assets/images/silver_trophy4.png" id="12_m8t5g"]
+[ext_resource type="Texture2D" uid="uid://bd0fjo4gyqgf4" path="res://assets/images/silver_trophy5.png" id="13_ffklo"]
+[ext_resource type="Texture2D" uid="uid://bkp3ltsrkg1pf" path="res://assets/images/gold_trophy5.png" id="13_sh0sw"]
+[ext_resource type="Texture2D" uid="uid://jd22r6l34ose" path="res://assets/images/silver_trophy6.png" id="14_e6xqc"]
+[ext_resource type="Texture2D" uid="uid://k5jcxw50t420" path="res://assets/images/gold_trophy6.png" id="14_wfqjx"]
+[ext_resource type="Texture2D" uid="uid://b6qm7ho0cdftj" path="res://assets/images/silver_trophy_pressed1.png" id="15_c2ugb"]
+[ext_resource type="Texture2D" uid="uid://yjmbd40ssrsc" path="res://assets/images/gold_trophy7.png" id="15_cj7n5"]
+[ext_resource type="Texture2D" uid="uid://dt0x1q4vkfwcg" path="res://assets/images/silver_trophy_pressed2.png" id="16_6trdw"]
+[ext_resource type="Texture2D" uid="uid://b8mxvwgmveutd" path="res://assets/images/gold_trophy8.png" id="16_afaap"]
+[ext_resource type="Texture2D" uid="uid://bxxela2mnfnra" path="res://assets/images/silver_trophy_pressed3.png" id="17_2nf18"]
+[ext_resource type="Texture2D" uid="uid://da7bdbhx8knlp" path="res://assets/images/gold_trophy_hover1.png" id="17_gqbxs"]
+[ext_resource type="Texture2D" uid="uid://bj6aax6mxbyqb" path="res://assets/images/gold_trophy_pressed1.png" id="17_ww2wg"]
+[ext_resource type="Texture2D" uid="uid://wfqatg08slp8" path="res://assets/images/gold_trophy_hover2.png" id="18_1ss0f"]
+[ext_resource type="Texture2D" uid="uid://bai2g7bm6rh2r" path="res://assets/images/gold_trophy_pressed2.png" id="18_a7i4r"]
+[ext_resource type="Texture2D" uid="uid://dfoxpkaairrum" path="res://assets/images/silver_trophy_pressed4.png" id="18_grcqo"]
+[ext_resource type="Texture2D" uid="uid://06q0pxd767r8" path="res://assets/images/gold_trophy_pressed3.png" id="19_8d054"]
+[ext_resource type="Texture2D" uid="uid://bdgeegkk4mdm2" path="res://assets/images/gold_trophy_hover3.png" id="19_54m0d"]
+[ext_resource type="Texture2D" uid="uid://c6wceqx3tdu5g" path="res://assets/images/silver_trophy_pressed5.png" id="19_bh5d6"]
+[ext_resource type="Texture2D" uid="uid://li7l3gnt05ux" path="res://assets/images/gold_trophy_pressed4.png" id="20_726sv"]
+[ext_resource type="Texture2D" uid="uid://5ulxyn5ei05" path="res://assets/images/silver_trophy_pressed6.png" id="20_eyqfm"]
+[ext_resource type="Texture2D" uid="uid://btvksmsmsg468" path="res://assets/images/gold_trophy_hover4.png" id="20_glfox"]
+[ext_resource type="Texture2D" uid="uid://c8ypgxv6g8dut" path="res://assets/images/gold_trophy_hover5.png" id="21_abwx5"]
+[ext_resource type="Texture2D" uid="uid://bydb50xx6vd43" path="res://assets/images/gold_trophy_pressed5.png" id="21_lnt2t"]
+[ext_resource type="Texture2D" uid="uid://ihf5imj3lhxm" path="res://assets/images/silver_trophy_hover1.png" id="21_lxx53"]
+[ext_resource type="Texture2D" uid="uid://uetx6wqtyymo" path="res://assets/images/silver_trophy_hover2.png" id="22_b58wi"]
+[ext_resource type="Texture2D" uid="uid://ds8jbfng5agvc" path="res://assets/images/gold_trophy_hover6.png" id="22_bocfi"]
+[ext_resource type="Texture2D" uid="uid://ija3vcn6f83d" path="res://assets/images/gold_trophy_pressed6.png" id="22_fnfsu"]
+[ext_resource type="Texture2D" uid="uid://d2gu4pib6mgs6" path="res://assets/images/gold_trophy_pressed7.png" id="23_b6jqr"]
+[ext_resource type="Texture2D" uid="uid://c3hse63trljq" path="res://assets/images/silver_trophy_hover3.png" id="23_s5kwl"]
+[ext_resource type="Texture2D" uid="uid://dyjmbdvacxceu" path="res://assets/images/gold_trophy_hover7.png" id="23_ww2wg"]
+[ext_resource type="Texture2D" uid="uid://8snl23505h21" path="res://assets/images/gold_trophy_hover8.png" id="24_a7i4r"]
+[ext_resource type="Texture2D" uid="uid://vju8yuifx2aq" path="res://assets/images/gold_trophy_pressed8.png" id="24_f07th"]
+[ext_resource type="Texture2D" uid="uid://dum6efvacmxxo" path="res://assets/images/silver_trophy_hover4.png" id="24_i43ia"]
+[ext_resource type="Texture2D" uid="uid://b04uy6e13xxbu" path="res://assets/images/silver_trophy_hover5.png" id="25_tagps"]
+[ext_resource type="Texture2D" uid="uid://dx2ycxt8xx1gq" path="res://assets/images/silver_trophy_hover6.png" id="26_wq0up"]
+[ext_resource type="Texture2D" uid="uid://dqpqn0rrcn8rs" path="res://assets/images/sparkle.png" id="49_bh5d6"]
+[ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="52_6irp5"]
+[ext_resource type="Texture2D" uid="uid://bmqtt2pi3abmo" path="res://assets/images/badge.png" id="61_eyqfm"]
+[ext_resource type="Texture2D" uid="uid://cr376usl7tji2" path="res://assets/images/golden_badge.png" id="63_b58wi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eyqfm"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12kdf"]
 texture = ExtResource("2_5d4ag")
@@ -37,7 +88,187 @@ modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
 texture = ExtResource("4_a1wsg")
 modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "settings", "user_list")]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fpe64"]
+frames = 6
+speed_scale = 5.0
+frame_0/texture = ExtResource("9_wt33a")
+frame_1/texture = ExtResource("10_cfh5a")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_6irp5")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_m8t5g")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_ffklo")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_e6xqc")
+frame_5/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_75vrm"]
+frames = 6
+speed_scale = 5.0
+frame_0/texture = ExtResource("15_c2ugb")
+frame_1/texture = ExtResource("16_6trdw")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("17_2nf18")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("18_grcqo")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("19_bh5d6")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("20_eyqfm")
+frame_5/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_p2olv"]
+frames = 6
+speed_scale = 5.0
+frame_0/texture = ExtResource("21_lxx53")
+frame_1/texture = ExtResource("22_b58wi")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("23_s5kwl")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("24_i43ia")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("25_tagps")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("26_wq0up")
+frame_5/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_co7qn"]
+frames = 8
+speed_scale = 7.0
+frame_0/texture = ExtResource("9_sfthw")
+frame_1/texture = ExtResource("10_n3ahy")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_scr1a")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_d0t0a")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_sh0sw")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_wfqjx")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("15_cj7n5")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("16_afaap")
+frame_7/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_u15bo"]
+frames = 8
+speed_scale = 7.0
+frame_0/texture = ExtResource("17_ww2wg")
+frame_1/texture = ExtResource("18_a7i4r")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_8d054")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("20_726sv")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("21_lnt2t")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("22_fnfsu")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("23_b6jqr")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("24_f07th")
+frame_7/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qvwvq"]
+frames = 8
+speed_scale = 7.0
+frame_0/texture = ExtResource("17_gqbxs")
+frame_1/texture = ExtResource("18_1ss0f")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_54m0d")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("20_glfox")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("21_abwx5")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("22_bocfi")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("23_ww2wg")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("24_a7i4r")
+frame_7/duration = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lxx53"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_b58wi"]
+offsets = PackedFloat32Array(0.80104715, 0.85863876)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.7411765, 0, 1)
+
+[sub_resource type="Animation" id="Animation_p2olv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SilverBadge:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 336)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoldenBadge:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640.00006, 352)]
+}
+
+[sub_resource type="Animation" id="Animation_ffklo"]
+resource_name = "golden_badge_animation"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoldenBadge:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.30322972),
+"transitions": PackedFloat32Array(1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(640.00006, 352), Vector2(640.00006, 360)]
+}
+
+[sub_resource type="Animation" id="Animation_75vrm"]
+resource_name = "silver_badge_animation"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SilverBadge:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(640, 336), Vector2(640, 344)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mu3rc"]
+_data = {
+&"RESET": SubResource("Animation_p2olv"),
+&"golden_badge_animation": SubResource("Animation_ffklo"),
+&"silver_badge_animation": SubResource("Animation_75vrm")
+}
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "user_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,171 +277,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_um6dh")
 main_menu = NodePath("Background/Menu")
-settings = NodePath("Background/Settings")
 user_list = NodePath("Background/UserList")
 
-[node name="Background2" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_12kdf")
-metadata/_edit_use_anchors_ = true
-
-[node name="Menu" type="Panel" parent="Background2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -920.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MainButtons" type="VBoxContainer" parent="Background2/Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -233.5
-offset_right = 154.0
-offset_bottom = 233.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="Start" type="Button" parent="Background2/Menu/MainButtons"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_d6l81")
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-text = "Start
-New Game"
-
-[node name="Continue" type="Button" parent="Background2/Menu/MainButtons"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_d6l81")
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_um6dh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-disabled = true
-text = "Continue"
-
-[node name="Settings" type="Button" parent="Background2/Menu/MainButtons"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_d6l81")
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_d6l81")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-text = "Settings"
-
-[node name="Exit" type="Button" parent="Background2/Menu/MainButtons"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_d6l81")
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-text = "Exit"
-
-[node name="GameTitle" type="Label" parent="Background2/Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 188.0
-offset_top = -200.0
-offset_right = 1085.0
-offset_bottom = 199.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.67451)
-theme_override_constants/shadow_offset_x = 10
-theme_override_constants/shadow_offset_y = 10
-theme_override_fonts/font = ExtResource("5_i7p8e")
-theme_override_font_sizes/font_size = 63
-text = "
-game
-name
-?????"
-horizontal_alignment = 1
-
-[node name="User" type="Panel" parent="Background2/Menu"]
-layout_mode = 0
-offset_left = 576.0
-offset_top = 24.0
-offset_right = 1248.0
-offset_bottom = 88.0
-
-[node name="CurrentUser" type="Label" parent="Background2/Menu/User"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -280.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_5d4ag")
-theme_override_font_sizes/font_size = 16
-text = "Welcome back! Naer"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SwitchUser" type="Button" parent="Background2/Menu/User"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 400.0
-offset_right = 668.0
-offset_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("3_d6l81")
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-text = "Switch User"
-
-[node name="Settings" parent="Background2" node_paths=PackedStringArray("previous_menu") instance=ExtResource("6_bm8t2")]
-visible = false
-layout_mode = 1
-offset_top = -296.5
-offset_bottom = 296.5
-previous_menu = NodePath("../Menu")
-
-[node name="UserList" parent="Background2" node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
-visible = false
-layout_mode = 1
-parent = NodePath("../..")
-previous_menu = NodePath("../Menu")
-
 [node name="Background" type="Panel" parent="."]
+material = SubResource("CanvasItemMaterial_eyqfm")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,7 +291,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_12kdf")
 metadata/_edit_use_anchors_ = true
 
 [node name="Menu" type="Panel" parent="Background"]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -256,8 +326,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
-text = "Start
-New Game"
+text = "Start Game"
 
 [node name="Continue" type="Button" parent="Background/Menu/MainButtons"]
 texture_filter = 1
@@ -317,9 +386,9 @@ theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/font = ExtResource("5_i7p8e")
 theme_override_font_sizes/font_size = 63
 text = "
-game
-name
-?????"
+
+
+Spelunkode"
 horizontal_alignment = 1
 
 [node name="User" type="Panel" parent="Background/Menu"]
@@ -339,6 +408,7 @@ offset_right = -280.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_5d4ag")
+theme_override_colors/font_color = Color(1, 0.85882354, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Welcome back! Naer"
 horizontal_alignment = 1
@@ -360,12 +430,48 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Switch User"
 
-[node name="Settings" parent="Background" node_paths=PackedStringArray("previous_menu") instance=ExtResource("6_bm8t2")]
+[node name="SilverTrophy" type="TextureButton" parent="Background/Menu"]
 visible = false
-layout_mode = 1
-offset_top = -296.5
-offset_bottom = 296.5
-previous_menu = NodePath("../Menu")
+layout_mode = 0
+offset_left = 1036.0
+offset_top = 509.00003
+offset_right = 1056.0
+offset_bottom = 558.0
+scale = Vector2(3.796, 3.796)
+disabled = true
+texture_normal = SubResource("AnimatedTexture_fpe64")
+texture_pressed = SubResource("AnimatedTexture_75vrm")
+texture_hover = SubResource("AnimatedTexture_p2olv")
+
+[node name="GoldenTrophy" type="TextureButton" parent="Background/Menu"]
+visible = false
+layout_mode = 0
+offset_left = 1129.0
+offset_top = 494.00006
+offset_right = 1161.0
+offset_bottom = 547.00006
+scale = Vector2(3.7955487, 3.7955487)
+disabled = true
+texture_normal = SubResource("AnimatedTexture_co7qn")
+texture_pressed = SubResource("AnimatedTexture_u15bo")
+texture_hover = SubResource("AnimatedTexture_qvwvq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/Menu"]
+visible = false
+material = SubResource("CanvasItemMaterial_lxx53")
+position = Vector2(1136, 605)
+amount = 10
+texture = ExtResource("49_bh5d6")
+randomness = 0.8
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_max = 2.0
+color = Color(1, 0.8039216, 0.43137255, 1)
+color_initial_ramp = SubResource("Gradient_b58wi")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="UserList" parent="Background" node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
 visible = false
@@ -373,13 +479,93 @@ layout_mode = 1
 parent = NodePath("../..")
 previous_menu = NodePath("../Menu")
 
-[connection signal="pressed" from="Background2/Menu/MainButtons/Start" to="." method="_on_startnewgame_pressed"]
-[connection signal="pressed" from="Background2/Menu/MainButtons/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Background2/Menu/MainButtons/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="pressed" from="Background2/Menu/MainButtons/Exit" to="." method="_on_Exit_pressed"]
-[connection signal="pressed" from="Background2/Menu/User/SwitchUser" to="." method="_on_switch_user_pressed"]
+[node name="SilverBadge" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 336)
+scale = Vector2(6.857141, 6.8571405)
+texture = ExtResource("61_eyqfm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SilverBadge"]
+offset_left = -20.416674
+offset_top = 4.520837
+offset_right = 261.5833
+offset_bottom = 197.52084
+scale = Vector2(0.14483534, 0.14483534)
+
+[node name="Label" type="Label" parent="SilverBadge/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33875915, 0.40882403, 0.49626178, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("52_6irp5")
+theme_override_font_sizes/font_size = 24
+text = "JUNIOR
+PROGRAMMER'S
+BADGE"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="SilverBadge/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42531124, 0.5026744, 0.5992773, 1)
+theme_override_fonts/font = ExtResource("52_6irp5")
+theme_override_font_sizes/font_size = 16
+text = "
+Completed all
+four levels."
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SilverBadge"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mu3rc")
+}
+autoplay = "silver_badge_animation"
+
+[node name="GoldenBadge" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640.00006, 352)
+scale = Vector2(5.8823543, 5.8823566)
+texture = ExtResource("63_b58wi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GoldenBadge"]
+offset_left = -20.416674
+offset_top = 9.859995
+offset_right = 261.5833
+offset_bottom = 202.86
+scale = Vector2(0.14483534, 0.14483534)
+
+[node name="Label" type="Label" parent="GoldenBadge/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6819098, 0.4030956, 0.07143896, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("52_6irp5")
+theme_override_font_sizes/font_size = 24
+text = "SENIOR
+PROGRAMMER'S
+BADGE"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="GoldenBadge/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.753975, 0.4483136, 0.08904291, 1)
+theme_override_fonts/font = ExtResource("52_6irp5")
+theme_override_font_sizes/font_size = 16
+text = "
+Acquired three
+stars on all four
+levels."
+horizontal_alignment = 1
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="GoldenBadge"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mu3rc")
+}
+autoplay = "golden_badge_animation"
+
 [connection signal="pressed" from="Background/Menu/MainButtons/Start" to="." method="_on_startnewgame_pressed"]
 [connection signal="pressed" from="Background/Menu/MainButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Background/Menu/MainButtons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Background/Menu/MainButtons/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="Background/Menu/User/SwitchUser" to="." method="_on_switch_user_pressed"]
+[connection signal="pressed" from="Background/Menu/SilverTrophy" to="." method="_on_silver_trophy_pressed"]
+[connection signal="pressed" from="Background/Menu/GoldenTrophy" to="." method="_on_golden_trophy_pressed"]

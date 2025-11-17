@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://djwgkcg0f8rok"]
+[gd_scene load_steps=47 format=3 uid="uid://djwgkcg0f8rok"]
 
 [ext_resource type="Texture2D" uid="uid://6beclxvljmm0" path="res://assets/images/ChatGPT Image Aug 13, 2025, 02_10_01 AM.png" id="1_tssx3"]
 [ext_resource type="Script" uid="uid://b7exnj07p634w" path="res://scripts/level_selection_menu.gd" id="1_xivej"]
@@ -8,6 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://cu341iy5fue0f" path="res://assets/images/pixil-frame-0 (4).png" id="6_qece5"]
 [ext_resource type="Texture2D" uid="uid://bincjg4hdow5r" path="res://assets/images/mini_medal.png" id="7_8ikbu"]
 [ext_resource type="FontFile" uid="uid://8je5juxgn1f2" path="res://assets/fonts/mac's Minecraft.ttf" id="8_5p8x8"]
+[ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="9_00fxk"]
+[ext_resource type="Texture2D" uid="uid://ccjaely0tqtjt" path="res://assets/images/gold_trophy1.png" id="9_hcyyy"]
+[ext_resource type="Texture2D" uid="uid://bwabnmnilam5u" path="res://assets/images/gold_trophy2.png" id="10_00fxk"]
+[ext_resource type="Texture2D" uid="uid://ypn3kijs1sxb" path="res://assets/images/gold_trophy3.png" id="11_h8duj"]
+[ext_resource type="Texture2D" uid="uid://wp83q1jmw6rw" path="res://assets/images/gold_trophy4.png" id="12_li1rk"]
+[ext_resource type="Texture2D" uid="uid://bkp3ltsrkg1pf" path="res://assets/images/gold_trophy5.png" id="13_ssvqk"]
+[ext_resource type="Texture2D" uid="uid://k5jcxw50t420" path="res://assets/images/gold_trophy6.png" id="14_2cr5q"]
+[ext_resource type="Texture2D" uid="uid://yjmbd40ssrsc" path="res://assets/images/gold_trophy7.png" id="15_soay6"]
+[ext_resource type="Texture2D" uid="uid://b8mxvwgmveutd" path="res://assets/images/gold_trophy8.png" id="16_001ew"]
+[ext_resource type="Texture2D" uid="uid://04rjn5rljk8s" path="res://assets/images/silver_trophy1.png" id="17_gsujy"]
+[ext_resource type="Texture2D" uid="uid://csd7jr1l1omgv" path="res://assets/images/silver_trophy2.png" id="18_ydmww"]
+[ext_resource type="Texture2D" uid="uid://c7cyvmmnupk0s" path="res://assets/images/silver_trophy3.png" id="19_lkrlb"]
+[ext_resource type="Texture2D" uid="uid://bdfxrjvobp83r" path="res://assets/images/silver_trophy4.png" id="20_x88lr"]
+[ext_resource type="Texture2D" uid="uid://bd0fjo4gyqgf4" path="res://assets/images/silver_trophy5.png" id="21_t2e0p"]
+[ext_resource type="Texture2D" uid="uid://jd22r6l34ose" path="res://assets/images/silver_trophy6.png" id="22_deg24"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_haryb"]
 texture = ExtResource("1_tssx3")
@@ -47,6 +62,704 @@ modulate_color = Color(0.803922, 0.803922, 0.803922, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0s06"]
 texture = ExtResource("6_qece5")
 modulate_color = Color(0.720467, 0.720468, 0.720467, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8duj"]
+shader = ExtResource("9_00fxk")
+shader_parameter/blur_size = 1.04800004978
+
+[sub_resource type="Curve" id="Curve_en5e4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_xqfdn"]
+offsets = PackedFloat32Array(0.24675325, 0.4090909, 0.5974026)
+colors = PackedColorArray(1, 0.4392157, 0, 1, 1, 1, 0.3529412, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_li1rk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3820225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dpp3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_hcyyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_00fxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_h8duj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_li1rk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ssvqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2cr5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_soay6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_001ew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uh7hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_gsujy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ydmww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_lkrlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_x88lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_t2e0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_deg24")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_rtg04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoldenTtrophy:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoldenTtrophy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 352)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldenTtrophy:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fireworks2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Confetti/CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Confetti/CPUParticles2D3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Confetti/CPUParticles2D4:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Confetti/CPUParticles2D2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Confetti/CPUParticles2D5:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SilverTrophy:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SilverTrophy:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SilverTrophy:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 351.99997)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Blur:material:shader_parameter/blur_size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.04800004978]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Blur:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ff7mf"]
+resource_name = "show_both_rewards"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoldenTtrophy:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.53333336, 7.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoldenTtrophy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.3333333, 1.9333333, 6.733333, 7.423333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 352), Vector2(768, 328), Vector2(768, 328), Vector2(131, 85)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldenTtrophy:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3333333, 1.9333333, 6.733333, 7.423333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(8, 8), Vector2(8, 8), Vector2(-0.25, -0.25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fireworks2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 2.1333332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Confetti/CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Confetti/CPUParticles2D3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Confetti/CPUParticles2D4:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Confetti/CPUParticles2D2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Confetti/CPUParticles2D5:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.9333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SilverTrophy:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.53333336, 6.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SilverTrophy:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0666667, 6.0333333, 6.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(8.099998, 8.099998), Vector2(8.099998, 8.099998), Vector2(-0.35500002, -0.35500017)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SilverTrophy:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0666667, 6.0333333, 6.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 351.99997), Vector2(512, 336.00003), Vector2(512, 336.00003), Vector2(127, 81)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Blur:material:shader_parameter/blur_size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(2.5333333, 3.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.04800004978, 0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Blur:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 7.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h8duj"]
+resource_name = "show_golden_trophy"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fireworks2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 1.3333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confetti/CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confetti/CPUParticles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Confetti/CPUParticles2D4:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Confetti/CPUParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Confetti/CPUParticles2D5:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Blur:material:shader_parameter/blur_size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.5333333, 3.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.04800004978, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Blur:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 7.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GoldenTtrophy:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0674869, 5.633333, 6.336194),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 352), Vector2(640, 336), Vector2(640, 336), Vector2(127, 81)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GoldenTtrophy:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0674869, 5.633333, 6.336194),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(8.1, 8.1), Vector2(8.1, 8.1), Vector2(-0.35500002, -0.35500017)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GoldenTtrophy:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 6.503062),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_00fxk"]
+resource_name = "show_silver_trophy"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fireworks2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 1.3333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confetti/CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confetti/CPUParticles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Confetti/CPUParticles2D4:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Confetti/CPUParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Confetti/CPUParticles2D5:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 5.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SilverTrophy:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.53333336, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SilverTrophy:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0666667, 5.633333, 6.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(8.099998, 8.099998), Vector2(8.099998, 8.099998), Vector2(-0.35500002, -0.35500017)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SilverTrophy:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.53333336, 1.0666667, 5.633333, 6.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 351.99997), Vector2(640, 336.00003), Vector2(640, 336.00003), Vector2(127, 81)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Blur:material:shader_parameter/blur_size")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.5333333, 3.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.04800004978, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Blur:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 7.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kao2i"]
+_data = {
+&"RESET": SubResource("Animation_rtg04"),
+&"show_both_rewards": SubResource("Animation_ff7mf"),
+&"show_golden_trophy": SubResource("Animation_h8duj"),
+&"show_silver_trophy": SubResource("Animation_00fxk")
+}
 
 [node name="LevelSelectionMenu" type="Control"]
 clip_contents = true
@@ -242,7 +955,7 @@ scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 46, 27, 16)
+region_rect = Rect2(29, 46, 42, 16)
 
 [node name="lvl1medal1" type="Sprite2D" parent="Lvl1Completion"]
 visible = false
@@ -251,7 +964,7 @@ scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 65, 12, 17)
+region_rect = Rect2(29, 65, 42, 16)
 
 [node name="Lvl2Completion" type="Control" parent="."]
 visible = false
@@ -289,7 +1002,7 @@ scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 46, 27, 16)
+region_rect = Rect2(29, 46, 42, 16)
 
 [node name="lvl2medal1" type="Sprite2D" parent="Lvl2Completion"]
 visible = false
@@ -298,7 +1011,7 @@ scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 65, 12, 17)
+region_rect = Rect2(29, 65, 42, 16)
 
 [node name="Lvl3Completion" type="Control" parent="."]
 visible = false
@@ -322,7 +1035,7 @@ vertical_alignment = 3
 
 [node name="lvl3medal3" type="Sprite2D" parent="Lvl3Completion"]
 visible = false
-position = Vector2(264.00003, 592)
+position = Vector2(264, 592)
 scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
@@ -331,21 +1044,21 @@ region_rect = Rect2(29, 25, 42, 16)
 
 [node name="lvl3medal2" type="Sprite2D" parent="Lvl3Completion"]
 visible = false
-position = Vector2(264.00003, 592)
+position = Vector2(264, 592)
 scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 46, 27, 16)
+region_rect = Rect2(29, 46, 42, 16)
 
-[node name="lvl3 medal1" type="Sprite2D" parent="Lvl3Completion"]
+[node name="lvl3medal1" type="Sprite2D" parent="Lvl3Completion"]
 visible = false
-position = Vector2(264.00003, 592)
+position = Vector2(264, 592)
 scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 65, 12, 17)
+region_rect = Rect2(29, 65, 42, 16)
 
 [node name="Lvl4Completion" type="Control" parent="."]
 visible = false
@@ -383,16 +1096,180 @@ scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 46, 27, 16)
+region_rect = Rect2(29, 46, 42, 16)
 
-[node name="lvl4 medal1" type="Sprite2D" parent="Lvl4Completion"]
+[node name="lvl4medal1" type="Sprite2D" parent="Lvl4Completion"]
 visible = false
 position = Vector2(768, 592)
 scale = Vector2(3.1, 3.1)
 texture = ExtResource("7_8ikbu")
 centered = false
 region_enabled = true
-region_rect = Rect2(29, 65, 12, 17)
+region_rect = Rect2(29, 65, 42, 16)
+
+[node name="Reward" type="Node2D" parent="."]
+
+[node name="Blur" type="ColorRect" parent="Reward"]
+process_mode = 3
+visible = false
+material = SubResource("ShaderMaterial_h8duj")
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="fireworks2" type="CPUParticles2D" parent="Reward"]
+position = Vector2(644, 351)
+emitting = false
+amount = 600
+lifetime = 5.54
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.9
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 7.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_en5e4")
+color = Color(1, 0.8235294, 0, 1)
+color_ramp = SubResource("Gradient_xqfdn")
+
+[node name="Confetti" type="Node2D" parent="Reward"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Reward/Confetti"]
+position = Vector2(635, -19)
+emitting = false
+amount = 100
+lifetime = 3.71
+speed_scale = 0.4
+explosiveness = 0.07
+randomness = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(700, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+initial_velocity_min = 128.25
+initial_velocity_max = 462.2
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_li1rk")
+color = Color(0, 0.7019608, 0, 1)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Reward/Confetti"]
+position = Vector2(635, -19)
+emitting = false
+amount = 100
+lifetime = 3.71
+speed_scale = 0.4
+explosiveness = 0.07
+randomness = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(700, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+initial_velocity_min = 128.25
+initial_velocity_max = 462.2
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_li1rk")
+color = Color(1, 0.8117647, 0, 1)
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="Reward/Confetti"]
+position = Vector2(635, -19)
+emitting = false
+amount = 100
+lifetime = 3.71
+speed_scale = 0.4
+explosiveness = 0.07
+randomness = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(700, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+initial_velocity_min = 128.25
+initial_velocity_max = 462.2
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_li1rk")
+color = Color(1, 0.8117647, 0, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Reward/Confetti"]
+position = Vector2(635, -19)
+emitting = false
+amount = 100
+lifetime = 3.71
+speed_scale = 0.4
+explosiveness = 0.07
+randomness = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(700, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+initial_velocity_min = 128.25
+initial_velocity_max = 462.2
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_li1rk")
+color = Color(0, 0.4627451, 0.77254903, 1)
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="Reward/Confetti"]
+position = Vector2(635, -19)
+emitting = false
+amount = 100
+lifetime = 3.71
+speed_scale = 0.4
+explosiveness = 0.07
+randomness = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(700, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+initial_velocity_min = 128.25
+initial_velocity_max = 462.2
+angular_velocity_min = 210.0
+angular_velocity_max = 330.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_li1rk")
+color = Color(1, 0, 0, 1)
+
+[node name="GoldenTtrophy" type="AnimatedSprite2D" parent="Reward"]
+position = Vector2(640, 352)
+rotation = 3.1415925
+scale = Vector2(1e-05, 1e-05)
+sprite_frames = SubResource("SpriteFrames_dpp3m")
+autoplay = "default"
+frame_progress = 0.37508246
+flip_v = true
+
+[node name="SilverTrophy" type="AnimatedSprite2D" parent="Reward"]
+position = Vector2(640, 351.99997)
+rotation = 3.1415925
+scale = Vector2(1e-05, 1e-05)
+sprite_frames = SubResource("SpriteFrames_uh7hp")
+autoplay = "default"
+frame_progress = 0.8018316
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Reward"]
+libraries = {
+&"": SubResource("AnimationLibrary_kao2i")
+}
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

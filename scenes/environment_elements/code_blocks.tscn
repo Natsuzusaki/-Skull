@@ -1,16 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://b11yggyqs050q"]
+[gd_scene load_steps=8 format=3 uid="uid://b11yggyqs050q"]
 
-[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="1_d8087"]
 [ext_resource type="Script" uid="uid://dqf8lfenk1edv" path="res://scripts/code_blocks.gd" id="1_u1mv5"]
+[ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="3_k0jg3"]
 [ext_resource type="PackedScene" uid="uid://dt8d1yxyocqtj" path="res://scenes/environment_elements/pick_up_slot.tscn" id="3_lxhjd"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rr2pk"]
-font = ExtResource("1_d8087")
-font_size = 8
-
 [sub_resource type="LabelSettings" id="LabelSettings_h8sk8"]
-font = ExtResource("1_d8087")
+font = ExtResource("3_k0jg3")
 font_size = 8
+font_color = Color(1, 1, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_npj7h"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstLine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-35, -9), Vector2(-35, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_k0jg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstLine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-35, -9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lydg8"]
+_data = {
+&"RESET": SubResource("Animation_k0jg3"),
+&"new_animation": SubResource("Animation_npj7h")
+}
 
 [node name="Code_Blocks" type="Node2D"]
 script = ExtResource("1_u1mv5")
@@ -24,16 +60,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -35.0
-offset_top = -20.0
+offset_top = -9.0
 offset_right = 35.0
-offset_bottom = 20.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(35, 20)
+size_flags_vertical = 4
 
 [node name="Func_name" type="Label" parent="FirstLine"]
 layout_mode = 2
 text = "example"
-label_settings = SubResource("LabelSettings_rr2pk")
+label_settings = SubResource("LabelSettings_h8sk8")
 vertical_alignment = 1
 
 [node name="SecondLine" type="HBoxContainer" parent="FirstLine"]
@@ -47,7 +85,14 @@ text = "   "
 layout_mode = 2
 text = "example"
 label_settings = SubResource("LabelSettings_h8sk8")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PickUp_Slot" parent="FirstLine/SecondLine" instance=ExtResource("3_lxhjd")]
 layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lydg8")
+}
+autoplay = "new_animation"

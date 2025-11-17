@@ -99,7 +99,6 @@ func _pop_by_index(index: int):
 	filled()
 	print(inputs)
 	return value
-
 func insert(index, value) -> void:
 	inputs.insert(index, value)
 	array_action.emit("inserted", value, index)
@@ -109,6 +108,7 @@ func sort() -> void:
 	array_action.emit("sorted")
 	inputs.sort()
 	print(inputs)
+	print(len(inputs))
 
 #Accessing Array in []
 func set_at(index: int, value):

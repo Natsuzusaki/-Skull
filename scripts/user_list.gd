@@ -8,6 +8,10 @@ extends Panel
 @onready var delete_user: Button = $VBoxContainer2/Delete_User
 @onready var set_user: Button = $VBoxContainer/HBoxContainer/Set_User
 @onready var create_user: Button = $VBoxContainer/HBoxContainer/Create_user
+@onready var notice: Label = $Notice
+
+
+
 
 var selected_user
 
@@ -51,15 +55,15 @@ func _on_set_user_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	if selected_user != null:
 		SaveManager.set_user(selected_user)
-		parent.data = SaveManager.load_game()
-		var parent_node = get_parent()
-		var settings_scene = parent_node.find_child("Settings", false, false)
+		var settings_scene = Pause.find_child("Settings", false, false)
 		if settings_scene:
+			print(settings_scene)
 			settings_scene.load_settings()
 		self.visible = false
 		parent.current_user.text = "Welcome back! %s" % selected_user
 		previous_menu.visible = true
-		parent.check()
+		var parent2 = get_parent().get_parent()
+		parent2.check_game_completion()
 func _on_user_list_item_activated(_index: int) -> void:
 	_on_set_user_pressed()
 	
@@ -71,6 +75,11 @@ func _on_name_input_text_changed(new_text: String) -> void:
 		name_input.text = trimmed
 
 	create_user.disabled = (trimmed == "" or SaveManager.users.has(trimmed))
+	if SaveManager.users.has(trimmed):
+		notice.visible = true
+	else:
+		notice.visible = false
+		
 	clear_selection()
 
 func _on_delete_user_pressed() -> void:

@@ -9,6 +9,8 @@ extends Node2D
 @onready var consoles: Node2D = %Consoles
 @onready var timerr: CanvasLayer = $Time
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
+@onready var chapter_intro: CanvasLayer = $ChapterIntro
+@onready var progress_bar: CanvasLayer = $ProgressBar
 #----Markers
 @onready var code_block: Marker2D = $CameraPoints/CodeBlock
 @onready var wall: Marker2D = $CameraPoints/Wall
@@ -50,7 +52,7 @@ func _ready() -> void:
 				talk_ctr = 3
 				tutorial_end.monitoring = false
 				SaveManager.restore_objects()
-	starting_scene()
+	#starting_scene()
 
 #----SpecificTriggers
 func starting_scene() -> void:
@@ -153,8 +155,40 @@ func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 
 func _on_complete_body_entered(_body: Node2D) -> void:
 	player.stay = true
+	progress_bar.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter2", timerr, ui_level_complete)
 	SaveManager.evaluate_level_score("Chapter2")
-	SaveManager.reset_session_time("Chapter1")
+	SaveManager.reset_session_time("Chapter2")
 	SaveManager.mark_level_completed(2)
+
+func _on_room_1_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(1)
+func _on_room_2_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(2)
+func _on_room_3_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(3)
+func _on_room_4_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(4)
+func _on_room_5_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(5)
+func _on_room_6_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(6)
+func _on_room_7_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(7)
+func _on_room_8_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(8)
+func _on_room_9_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(9)
+func _on_room_10_body_entered(body: Node2D) -> void:
+	if body == player:
+		progress_bar.evaluate_progress(10)

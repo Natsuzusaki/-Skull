@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://wikiax10fqqp"]
+[gd_scene load_steps=42 format=3 uid="uid://wikiax10fqqp"]
 
 [ext_resource type="Script" uid="uid://dmpb7uykx5g3r" path="res://scripts/level_complete_ui.gd" id="1_6sdq8"]
 [ext_resource type="Texture2D" uid="uid://b11in1n6lehf2" path="res://assets/images/Level Complete.png" id="2_mb5wx"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://r4h50t2favek" path="res://assets/music/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="10_abo8g"]
 [ext_resource type="AudioStream" uid="uid://cn2kk0747yqyo" path="res://assets/music/fireworks-sound-280715.mp3" id="10_v2426"]
 [ext_resource type="FontFile" uid="uid://8je5juxgn1f2" path="res://assets/fonts/mac's Minecraft.ttf" id="11_w4d5t"]
+[ext_resource type="Texture2D" uid="uid://bincjg4hdow5r" path="res://assets/images/mini_medal.png" id="15_u4eal"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_224vw"]
 shader = ExtResource("8_mb5wx")
@@ -1046,9 +1047,34 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(5, 5)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(761, 1332)]
+}
 
 [sub_resource type="Animation" id="Animation_jfdpd"]
 resource_name = "Show time"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1104,10 +1130,34 @@ tracks/4/path = NodePath("woosh:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.16666667, 0.62252903),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.16666667, 0.62252903, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, true]
+"values": [true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.93333334, 1.106261),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(1.5, 1.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panel:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.93333334, 1.106261),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(761, 1332), Vector2(858, 851.00006)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c1u14"]
@@ -1197,6 +1247,7 @@ grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_mb5wx")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6sdq8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lbru2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mb5wx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6sdq8")
 metadata/_edit_use_anchors_ = true
 
@@ -1226,6 +1277,7 @@ grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_w4d5t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_nbakb")
 theme_override_styles/hover = SubResource("StyleBoxTexture_224vw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_w4d5t")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mb5wx")
 metadata/_edit_use_anchors_ = true
 
@@ -1297,11 +1349,15 @@ bus = &"SFX"
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
 [node name="Time label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -88.0
 offset_top = 1312.0001
-offset_right = 176.0
+offset_right = 176.00024
 offset_bottom = 1348.0001
 scale = Vector2(5, 5)
 theme_override_fonts/font = ExtResource("8_nbakb")
@@ -1312,7 +1368,7 @@ text = "TOTAL TIME"
 layout_mode = 0
 offset_left = 80.00018
 offset_top = 1328.0
-offset_right = 278.00043
+offset_right = 278.00104
 offset_bottom = 1364.0
 scale = Vector2(5, 5)
 theme_override_fonts/font = ExtResource("11_w4d5t")
@@ -1320,6 +1376,94 @@ theme_override_font_sizes/font_size = 32
 text = "time"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_direction = 3
+layout_mode = 0
+offset_left = -979.0
+offset_top = 1332.0
+offset_right = -761.0
+offset_bottom = 1449.0004
+scale = Vector2(2.5, 2.5)
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 23.25
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 117.0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 11
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Time label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 0
+theme_override_fonts/font = ExtResource("8_nbakb")
+theme_override_font_sizes/font_size = 8
+text = "Time Required:"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="3star" type="Sprite2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+position = Vector2(32.285706, -4.196167e-05)
+texture = ExtResource("15_u4eal")
+centered = false
+region_enabled = true
+region_rect = Rect2(29, 25, 42, 16)
+
+[node name="2star" type="Sprite2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+position = Vector2(48.285706, 21.42852)
+texture = ExtResource("15_u4eal")
+centered = false
+region_enabled = true
+region_rect = Rect2(29, 46, 27, 16)
+
+[node name="1star" type="Sprite2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+position = Vector2(63.285706, 42.142807)
+texture = ExtResource("15_u4eal")
+centered = false
+region_enabled = true
+region_rect = Rect2(29, 65, 12, 16)
+
+[node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 26
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("11_w4d5t")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 2
 
 [node name="fireworks2" type="CPUParticles2D" parent="."]
 z_index = 2
@@ -1453,3 +1597,4 @@ libraries = {
 [connection signal="pressed" from="Control/LevelCompleteImage/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/LevelCompleteImage/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
