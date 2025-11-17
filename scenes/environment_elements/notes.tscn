@@ -59,7 +59,7 @@ texture = ExtResource("2_xcep3")
 
 [node name="Button" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -40)
+position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_4byse")
 animation = &"idle"
 autoplay = "idle"

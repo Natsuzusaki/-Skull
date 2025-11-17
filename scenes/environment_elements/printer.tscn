@@ -20,6 +20,14 @@ texture = ExtResource("2_dbkte")
 region_enabled = true
 region_rect = Rect2(392, 224, 48, 66)
 
+[node name="Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -24.999998)
+scale = Vector2(0.666667, 0.877782)
+texture = ExtResource("2_dbkte")
+region_enabled = true
+region_rect = Rect2(325, 224, 48, 71)
+
 [node name="Blocked_Area" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 140

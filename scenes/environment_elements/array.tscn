@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgiq0jutsg2vj"]
 
-[ext_resource type="Texture2D" uid="uid://c0dlkm67l7jm3" path="res://icon.svg" id="1_1e3m2"]
 [ext_resource type="Script" uid="uid://5dnifpsr3xns" path="res://scripts/array.gd" id="1_c7e12"]
+[ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="2_uywlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctlna"]
-size = Vector2(80, 48)
+size = Vector2(80, 32)
 
 [node name="Array" type="Area2D" groups=["Storage"]]
 collision_layer = 0
@@ -12,22 +12,40 @@ collision_mask = 4096
 script = ExtResource("1_c7e12")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_ctlna")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 24)
-scale = Vector2(0.75000006, 0.125)
-texture = ExtResource("1_1e3m2")
+[node name="Fill0" type="Sprite2D" parent="."]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(192, 6, 96, 58)
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-40, -2.3841858e-07)
-scale = Vector2(0.12499999, 0.25)
-texture = ExtResource("1_1e3m2")
+[node name="Fill1" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(192, 70, 96, 58)
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(40, -2.3841858e-07)
-scale = Vector2(0.12499999, 0.25)
-texture = ExtResource("1_1e3m2")
+[node name="Fill3" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(192, 134, 96, 58)
+
+[node name="Fill5" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(80, 6, 96, 58)
+
+[node name="Fill10" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(80, 70, 96, 58)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

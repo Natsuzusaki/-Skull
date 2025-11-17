@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfan1cxcaqfbu"]
+[gd_scene load_steps=22 format=3 uid="uid://bfan1cxcaqfbu"]
 
 [ext_resource type="Script" uid="uid://b6lv1768mwh4d" path="res://scripts/console_panel.gd" id="1_7qxwa"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://df3vh6ys1xxhu" path="res://scripts/datatype_changer.gd" id="4_bptkf"]
 [ext_resource type="Texture2D" uid="uid://cw27pmkod1t64" path="res://assets/images/console2.png" id="4_oh7pb"]
 [ext_resource type="Texture2D" uid="uid://dcydk3mfwaanh" path="res://assets/images/console3.png" id="7_ifr1o"]
+[ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="8_jrj24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifr1o"]
 bg_color = Color(0.156863, 0.172549, 0.235294, 1)
@@ -112,6 +113,40 @@ _data = {
 &"pop_down": SubResource("Animation_hx16o"),
 &"pop_up": SubResource("Animation_ifr1o")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j4ab"]
+atlas = ExtResource("8_jrj24")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vklxr"]
+atlas = ExtResource("8_jrj24")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stbsn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Console" type="Area2D"]
 collision_layer = 16
@@ -286,6 +321,12 @@ texture = ExtResource("7_ifr1o")
 libraries = {
 &"": SubResource("AnimationLibrary_w38mj")
 }
+
+[node name="Button" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_stbsn")
+animation = &"idle"
+autoplay = "idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -42,7 +42,8 @@ do player.static_direction = -1
 Yuna: Wait, that old monitor over there... maybe that's what it meant!
 do player.move_in_cutscene(Vector2(4368, 424))
 do console1.turned_on = true
-do console1.consolesprite.visible = true
+do console1.retrigger(player)
+do console1.consolesprite_near.visible = true
 Yuna: It still works!
 Yuna: It seems you can type instructions here.
 Yuna: Remember those Strings we saw before? Try typing something like that.

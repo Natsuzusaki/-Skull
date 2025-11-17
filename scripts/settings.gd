@@ -13,6 +13,7 @@ var music_bus_id: int
 var sfx_bus_id: int
 
 var input_actions = {
+	"up": "Throw Up",
 	"left": "Move Left",
 	"right": "Move Right",
 	"down": "Move Down",

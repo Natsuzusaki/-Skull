@@ -17,6 +17,7 @@ extends Area2D
 @onready var consolesprite_near: Sprite2D = $Console_Near
 @onready var console_off: Sprite2D = $Console_Off
 @onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Limit
+@onready var button: AnimatedSprite2D = $Button
 
 enum ConsoleState {IDLE, NEAR, INTERACTING}
 var state: ConsoleState = ConsoleState.IDLE
@@ -36,6 +37,9 @@ func _ready() -> void:
 #WAS my greatest dissapointments, but now i fucking love it!
 func execute_code(user_code: String) -> bool:
 	var script = GDScript.new()
+	if user_code.is_empty():
+		label.text = "Error: No Script"
+		return false
 	if text_validator.detect_infinite_loops(user_code):
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		label.text = "Error: Infinite loop \ndetected! \nAdd an increment or break."
@@ -116,8 +120,7 @@ func _on_body_entered(_body: Node2D) -> void:
 	consolesprite.visible = false
 	consolesprite_near.visible = true
 	label.text = fixed_var
-	control.show()
-	pop_up_animation.play("pop_up")
+	button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	#actions_sent.emit("moved_closer","")
 func _on_body_exited(_body: Node2D) -> void:
 	if not turned_on:
@@ -127,12 +130,11 @@ func _on_body_exited(_body: Node2D) -> void:
 	state = ConsoleState.IDLE
 	consolesprite.visible = true
 	consolesprite_near.visible = false
-	if control.visible:
-		pop_up_animation.play("pop_down")
-		control.hide()
+	button.modulate = Color(1.0, 1.0, 1.0, 0.0)
 func _on_code_edit_focus_entered() -> void:
-	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
-	interacted()
+	pass
+	#SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
+	#interacted()
 func _on_code_edit_focus_exited() -> void:
 	player.stay = false
 	player.on_console = false
@@ -142,15 +144,15 @@ func _on_code_edit_lines_edited_from(_from_line: int, _to_line: int) -> void:
 		restart_text = false
 func console_exit() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_EXIT)
-	state = ConsoleState.IDLE
+	state = ConsoleState.NEAR
 	player.stay = false
 	player.on_console = false
-	player.near_console = false
 	camera.back()
 	code_edit.release_focus()
 	pop_up_animation.play("pop_down")
 	control.hide()
 func interacted() -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	state = ConsoleState.INTERACTING
 	label.text = fixed_var
 	player.stay = true
@@ -158,6 +160,8 @@ func interacted() -> void:
 	camera.focus_on_point(self)
 	camera.interact = true
 	code_edit.grab_focus()
+	control.show()
+	pop_up_animation.play("pop_up")
 	actions_sent.emit("console_focused")
 func code_run() -> void:
 	array_value.clear()
@@ -167,10 +171,9 @@ func code_run() -> void:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 		player.stay = false
 		player.on_console = false
-		player.near_console = false
 		camera.back()
 		control.hide()
-		state = ConsoleState.IDLE
+		state = ConsoleState.NEAR
 		actions_sent.emit("console_run")
 	else:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
@@ -179,6 +182,9 @@ func code_run() -> void:
 		state = ConsoleState.INTERACTING
 		camera.focus_on_point(self)
 		#label.text += "\n(Fix the error and \ntry again.)"
+
+func retrigger(val) -> void:
+	_on_body_entered(val)
 
 func _process(_delta: float) -> void:
 	if not turned_on:
@@ -192,7 +198,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:
 		console_exit()
 		get_viewport().set_input_as_handled()
-	if Input.is_action_just_pressed("carry") and state == ConsoleState.NEAR:
+	if Input.is_action_just_pressed("carry") and (player.near_console and state == ConsoleState.NEAR):
 		interacted()
 	if Input.is_action_just_pressed("AutoPrint") and state == ConsoleState.INTERACTING:
 		code_run()

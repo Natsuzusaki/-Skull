@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://8tx6hbgw5w6u"]
+[gd_scene load_steps=70 format=4 uid="uid://8tx6hbgw5w6u"]
 
 [ext_resource type="Script" uid="uid://dfn1v4ns41qgb" path="res://scripts/level3.gd" id="1_edoqj"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="2_ahaer"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://be7qsmwlyx7w2" path="res://scenes/environment_elements/gate.tscn" id="3_wt4k6"]
 [ext_resource type="PackedScene" uid="uid://6fi8kv2cysq8" path="res://scenes/environment_elements/gate2.tscn" id="4_ahaer"]
 [ext_resource type="PackedScene" uid="uid://bgs4eyp8262dh" path="res://scenes/environment_elements/platform.tscn" id="5_edoqj"]
+[ext_resource type="TileSet" uid="uid://co4aa8a5s77br" path="res://assets/presets/tiles_without_collision.tres" id="6_flme0"]
 [ext_resource type="PackedScene" uid="uid://dm1vrdfjgbxj" path="res://scenes/environment_elements/lantern.tscn" id="7_hl16f"]
 [ext_resource type="PackedScene" uid="uid://dm3a5jhuecy5i" path="res://scenes/UI/mouse_detection.tscn" id="8_edoqj"]
 [ext_resource type="PackedScene" uid="uid://bfan1cxcaqfbu" path="res://scenes/environment_elements/console.tscn" id="8_v6yyo"]
@@ -683,6 +684,14 @@ new_pos = Vector2(0, 125)
 min_limit = Vector2(3616, 1088)
 max_limit = Vector2(4448, 1488)
 move_in_y = true
+
+[node name="BackGround2" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AABOABIAAQAUAAAAAABSABIAAQAWAAAAAABOABUAAQAUAAIAAABOABYAAQAUAAEAAABOABcAAQAUAAEAAABOABgAAQAUAAIAAABOABkAAQAUAAIAAABOABoAAQAUAAIAAABSABUAAQAWAAIAAABSABYAAQAWAAEAAABSABcAAQAWAAEAAABSABgAAQAWAAEAAABSABkAAQAWAAEAAABSABoAAQAWAAIAAADFAEQAAQAUAAAAAADFAEcAAQAUAAEAAADFAEgAAQAUAAIAAADTAEcAAQAWAAEAAADTAEgAAQAWAAIAAADTAEQAAQAWAAAAAAA=")
+tile_set = ExtResource("6_flme0")
+
+[node name="BackGround" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AABMABMAAQAXAAEAAABMABQAAQAXAAIAAABMABUAAQAXAAMAAABNABMAAQAYAAEAAABNABQAAQAYAAEAAABNABUAAQAYAAMAAABOABMAAQAYAAEAAABOABQAAQAYAAEAAABOABUAAQAZAAMAAABPABMAAQAYAAEAAABPABQAAQAYAAEAAABPABUAAQAaAAMAAABQABMAAQAYAAEAAABQABQAAQAYAAEAAABQABUAAQAYAAMAAABRABMAAQAYAAEAAABRABQAAQAYAAEAAABRABUAAQAZAAMAAABSABMAAQAYAAEAAABSABQAAQAYAAEAAABSABUAAQAaAAMAAABTABMAAQAYAAEAAABTABQAAQAYAAEAAABTABUAAQAZAAMAAABUABMAAQAbAAIAAABUABQAAQAbAAIAAABUABUAAQAbAAMAAABMABIAAQAXAAAAAABNABIAAQAYAAAAAABOABIAAQAZAAAAAABPABIAAQAaAAAAAABQABIAAQAYAAAAAABRABIAAQAYAAAAAABSABIAAQAZAAAAAABTABIAAQAYAAAAAABUABIAAQAbAAAAAADFAEQAAQAXAAUAAADGAEQAAQAXAAUAAADHAEQAAQAXAAUAAADIAEQAAQAXAAUAAADJAEQAAQAXAAUAAADKAEQAAQAXAAUAAADLAEQAAQAXAAUAAADMAEQAAQAXAAUAAADNAEQAAQAXAAUAAADOAEQAAQAXAAUAAADPAEQAAQAXAAUAAADQAEQAAQAXAAUAAADRAEQAAQAXAAUAAADSAEQAAQAXAAUAAADTAEQAAQAXAAUAAADUAEUAAQAYAAYAAADTAEYAAQAXAAcAAADSAEYAAQAXAAcAAADRAEYAAQAXAAcAAADQAEYAAQAXAAcAAADPAEYAAQAXAAcAAADOAEYAAQAXAAcAAADNAEYAAQAXAAcAAADMAEYAAQAXAAcAAADLAEYAAQAXAAcAAADKAEYAAQAXAAcAAADJAEYAAQAXAAcAAADIAEYAAQAXAAcAAADHAEYAAQAXAAcAAADGAEYAAQAXAAcAAADFAEYAAQAXAAcAAADEAEUAAQAWAAYAAADEAEQAAQAWAAUAAADUAEQAAQAYAAUAAADUAEYAAQAYAAcAAADEAEYAAQAWAAcAAADFAEUAAQAXAAYAAADGAEUAAQAXAAYAAADHAEUAAQAXAAYAAADIAEUAAQAXAAYAAADJAEUAAQAXAAYAAADKAEUAAQAXAAYAAADLAEUAAQAXAAYAAADMAEUAAQAXAAYAAADNAEUAAQAXAAYAAADOAEUAAQAXAAYAAADPAEUAAQAXAAYAAADQAEUAAQAXAAYAAADRAEUAAQAXAAYAAADSAEUAAQAXAAYAAADTAEUAAQAXAAYAAAA=")
+tile_set = ExtResource("6_flme0")
 
 [node name="BackGround-1" type="TileMapLayer" parent="."]
 z_index = -1
@@ -1370,10 +1379,10 @@ offset_bottom = 352.0
 
 [node name="Label" type="Label" parent="Labels"]
 layout_mode = 0
-offset_left = -240.0
-offset_top = 56.0
-offset_right = -141.0
-offset_bottom = 79.0
+offset_left = -241.0
+offset_top = -7.0
+offset_right = -142.0
+offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
 text = "if plate == true:
@@ -1382,10 +1391,10 @@ text = "if plate == true:
 [node name="Label20" type="Label" parent="Labels"]
 self_modulate = Color(0, 0.54509807, 1, 1)
 layout_mode = 0
-offset_left = -228.0
-offset_top = 67.0
-offset_right = -129.0
-offset_bottom = 90.0
+offset_left = -229.0
+offset_top = 4.0
+offset_right = -130.0
+offset_bottom = 27.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
 text = " open_gate()"

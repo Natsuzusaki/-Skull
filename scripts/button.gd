@@ -23,7 +23,8 @@ var button_status := false #false-off, true-on
 
 func _on_body_entered(_body: Node2D) -> void:
 	is_near = true
-	button.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	if not disabled:
+		button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_body_exited(_body: Node2D) -> void:
 	is_near = false

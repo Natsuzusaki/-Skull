@@ -20,12 +20,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if SaveManager.current_user != "Guest":
+		data = SaveManager.load_game()
 		start_button.disabled = false
 		settings_button.disabled = false
-		data = SaveManager.load_game()
-		if data.has("Chapter1"):
-			if data["Chapter1"].has("checkpoint_order"):
-				continue_button.disabled = false
 
 func _on_startnewgame_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
@@ -57,3 +54,12 @@ func _on_switch_user_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	main_menu.visible = false
 	user_list.visible = true
+
+func check() -> void:
+	print(SaveManager.current_user)
+	print(SaveManager.load_game())
+	if data.has("Chapter1"):
+		if data["Chapter1"].has("checkpoint_order"):
+			continue_button.disabled = false
+		else:
+			continue_button.disabled = true

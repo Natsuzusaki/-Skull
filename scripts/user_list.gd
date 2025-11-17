@@ -51,6 +51,7 @@ func _on_set_user_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	if selected_user != null:
 		SaveManager.set_user(selected_user)
+		parent.data = SaveManager.load_game()
 		var parent_node = get_parent()
 		var settings_scene = parent_node.find_child("Settings", false, false)
 		if settings_scene:
@@ -58,6 +59,7 @@ func _on_set_user_pressed() -> void:
 		self.visible = false
 		parent.current_user.text = "Welcome back! %s" % selected_user
 		previous_menu.visible = true
+		parent.check()
 func _on_user_list_item_activated(_index: int) -> void:
 	_on_set_user_pressed()
 	

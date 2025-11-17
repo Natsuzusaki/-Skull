@@ -6,14 +6,21 @@ extends StaticBody2D
 @export var move_in_x: bool
 @export var move_in_y: bool
 @export var is_else: bool = false
+@export var new: bool = false
 var target: Vector2
 var status := false
+
+func _ready() -> void:
+	pass
 
 func activate(continuous: bool, time: float) -> void:
 	if not continuous:
 		status = not status
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.LEVEL_BUTTON)
-	target = (global_position + new_pos) if not status else (global_position - new_pos)
+	if new:
+		target = new_pos
+	else:
+		target = (global_position + new_pos) if not status else (global_position - new_pos)
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", target, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
