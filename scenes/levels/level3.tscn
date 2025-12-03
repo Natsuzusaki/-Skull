@@ -1140,42 +1140,43 @@ fixed_var = ""
 visibility_layer = 3
 position = Vector2(2568, -32)
 characterlimit = 20
-base_text = "  "
+base_text = "print(true, false)"
 fixed_var = ""
 
 [node name="Console4" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 672)
 characterlimit = 20
-base_text = ""
+base_text = "print(true, true, true)"
 fixed_var = ""
 
 [node name="Console5" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 848)
 characterlimit = 20
-base_text = "  "
+base_text = "print(?, ?, ?)"
 fixed_var = ""
 
 [node name="Console6" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 1008)
 characterlimit = 20
-base_text = "  "
+base_text = "print(?, ?, ?)"
 fixed_var = ""
 
 [node name="Console7" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 1168)
 characterlimit = 20
-base_text = "  "
+base_text = "print(?, ?, ?)"
 fixed_var = ""
 
 [node name="Console8" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(3480, 1168)
 characterlimit = 20
-base_text = "  "
+base_text = "print(7, 9, 11)
+print(?, ?)"
 fixed_var = ""
 outputs = {
 "printer": NodePath("../../Printers/Printer7")
@@ -1185,7 +1186,8 @@ outputs = {
 visibility_layer = 3
 position = Vector2(1824, -176)
 characterlimit = 20
-base_text = "  "
+base_text = "plat.position = ?, ?
+print(false)"
 fixed_var = ""
 outputs = {
 "plat": NodePath("../../Platforms/Customizable_Platform")
@@ -1388,7 +1390,7 @@ control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform2")]
 
 [node name="Code_Blocks2" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
-position = Vector2(1232, 744)
+position = Vector2(1216, 720)
 statement = "
 	printer.position.x "
 control_axis = "x"
@@ -1409,7 +1411,7 @@ value = false
 
 [node name="Player" parent="." instance=ExtResource("12_ojkn5")]
 unique_name_in_owner = true
-position = Vector2(4560, 1168)
+position = Vector2(16.000002, 136)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
