@@ -141,6 +141,7 @@ func _save_timer_to_json() -> void:
 
 func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
+	progress_bar.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter3", timerr, ui_level_complete) 
 	SaveManager.evaluate_level_score("Chapter3")

@@ -201,6 +201,7 @@ func _on_noise_body_entered(_body: Node2D) -> void:
 	entered_last_area()
 func _on_level_finished_body_entered(_body: Node2D) -> void:
 	player.stay = true
+	progress_bar.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter1", timerr, ui_level_complete)
 	SaveManager.evaluate_level_score("Chapter1")

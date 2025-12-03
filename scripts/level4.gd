@@ -6,6 +6,8 @@ extends Node2D
 @onready var array3: Area2D = $Arrays/Array3
 @onready var array4: Area2D = $Arrays/Array4
 @onready var array8: Area2D = $Arrays/Array8
+@onready var array9: Area2D = $Arrays/Array9
+@onready var array10: Area2D = $Arrays/Array10
 #Gates
 @onready var gate1: StaticBody2D = $Gates/Gate
 @onready var gate2: StaticBody2D = $Gates/Gate2
@@ -17,6 +19,7 @@ extends Node2D
 @onready var gate8: StaticBody2D = $Gates/Gate8
 #Consoles
 @onready var console1: Area2D = $Consoles/Console
+@onready var console5: Area2D = $Consoles/Console5
 #Printers
 @onready var printer1: Node2D = $Printers/Printer
 #References
@@ -38,10 +41,13 @@ extends Node2D
 @onready var extra_jump: Area2D = $Triggers/ExtraJump
 @onready var label9: Label = $Labels/Label9
 @onready var label10: Label = $Labels/Label10
+@onready var ui_level_complete: Control = $UIs/UI_LevelComplete
+@onready var notes6: Area2D = $Notes/Notes6
 #Markers
 @onready var printer_explode: Marker2D = $CameraPoints/PrinterExplode
 @onready var empty_room: Marker2D = $CameraPoints/EmptyRoom
 
+var intro: bool = true
 var current_chapter = "Chapter4"
 var global_condition: int = 0
 var condition_ctr: int = 0
@@ -50,7 +56,46 @@ var control_regex := RegEx.new()
 func _ready() -> void:
 	connections()
 	camera.back()
+	var data = SaveManager.load_game()
+	
+	if data.has("Chapter4"):
+		var chapter4 = data["Chapter4"]
+		if chapter4.has("player_pos"):
+			var pos = chapter4["player_pos"]
+			player.global_position = Vector2(pos[0], pos[1])
+		if chapter4.has("checkpoint_order"):
+			if chapter4["checkpoint_order"] == 1.0:
+				condition_ctr = 1
+				gate2.activate(false, 0.5)
+			if chapter4["checkpoint_order"] == 2.0:
+				condition_ctr = 2
+				gate1.activate(false, 0.5)
+			if chapter4["checkpoint_order"] == 3.0:
+				condition_ctr = 4
+				gate3.activate(false, 0.5)
+				gate4.activate(false, 0.5)
+				gate5.activate(false, 0.5)
+			if chapter4["checkpoint_order"] == 6.0:
+				condition_ctr = 5
+				gate6.activate(false, 0.5)
+			if chapter4["checkpoint_order"] == 7.0:
+				gate7.activate(false, 0.5)
+				gate8.activate(false, 0.5)
+		if chapter4.has("flags"):
+			var flags = chapter4["flags"]
+			if flags.has("intro"):
+				if flags["intro"]:
+					intro = false
+			if flags.has("note_on"):
+				if flags["note_on"]:
+					notes6.visible = true
+					notes6.on = true
+	start()
 
+func start() -> void:
+	if intro:
+		chapter_intro.show_intro()
+		SaveManager.update_save({"Chapter4": {"flags": {"intro": true}}})
 #----ScriptedEvents
 func printerexplode() -> void:
 	player.stay = true
@@ -165,6 +210,31 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 				await wait(0.7)
 				gate6.activate(false, 0.5)
 				condition_ctr = 5
+		array9.arr_name:
+			if condition_ctr == 5:
+				var target = "repetitiveness".split("")
+				var idx = 0
+				for item in array9.inputs:
+					if item == target[idx]:
+						idx += 1
+						if idx == target.size():
+							break
+				if idx == target.size():
+					console5.code_edit.placeholder_text = "for value in list2:\n\tlist1.append(?)"
+					array9.clear()
+					await wait(0.7)
+					gate7.activate(false, 0.5)
+					condition_ctr = 6
+			elif condition_ctr == 6:
+				array9.inputs.sort()
+				array10.inputs.sort()
+				var arr1 = array10.inputs
+				var arr2 = array9.inputs
+				if arr1 == arr2:
+					await wait(0.7)
+					gate8.activate(false, 0.5)
+					condition_ctr = 7
+
 	#print("MATCH: " + array_name +"\nACTION: "+ action +"\nCTR: " + str(condition_ctr) + "\nPLEASE: " + str(array1.inputs.size()))
 func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:
 	match loop_name:
@@ -172,6 +242,9 @@ func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:
 			if ctr == 2:
 				crystal.disable = false
 				label_6.text = "destroy the crystal\nto break the loop"
+				notes6.visible = true
+				notes6.on = true
+				SaveManager.update_save({"Chapter4": {"flags": {"note_on": true}}})
 		"Loop2":
 			if condition:
 				extra_jump.set_deferred("monitoring", true)
@@ -191,6 +264,14 @@ func _on_extra_jump_body_entered(body: Node2D) -> void:
 func change_text() -> void:
 	label9.text = "transfer the contents of\n\nto open gate2"
 	label10.text = "\nlist2 to list1"
+func _on_finish_body_entered(_body: Node2D) -> void:
+	player.stay = true
+	progress_bar.visible = false
+	ui_level_complete.drop_down()
+	SaveManager.save_level_completion("Chapter4", timerr, ui_level_complete)
+	SaveManager.evaluate_level_score("Chapter4")
+	SaveManager.reset_session_time("Chapter4")
+	SaveManager.mark_level_completed(4)
 
 func _on_room_1_body_entered(body: Node2D) -> void:
 	if body == player:
@@ -204,3 +285,23 @@ func _on_room_3_body_entered(body: Node2D) -> void:
 	if body == player:
 		pass
 		#progress_bar.evaluate_progress(3)
+func _on_room_4_body_entered(body: Node2D) -> void:
+	if body == player:
+		pass
+		#progress_bar.evaluate_progress(4)
+func _on_room_5_body_entered(body: Node2D) -> void:
+	if body == player:
+		pass
+		#progress_bar.evaluate_progress(5)
+func _on_room_6_body_entered(body: Node2D) -> void:
+	if body == player:
+		pass
+		#progress_bar.evaluate_progress(6)
+func _on_room_7_body_entered(body: Node2D) -> void:
+	if body == player:
+		pass
+		#progress_bar.evaluate_progress(7)
+func _on_room_8_body_entered(body: Node2D) -> void:
+	if body == player:
+		pass
+		#progress_bar.evaluate_progress(8)

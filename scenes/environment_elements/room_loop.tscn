@@ -9,7 +9,7 @@ size = Vector2(16, 128)
 size = Vector2(128, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_177h3"]
-size = Vector2(208, 16)
+size = Vector2(16, 192)
 
 [node name="RoomLoop" type="Area2D" groups=["LoopRoom"]]
 collision_layer = 0
