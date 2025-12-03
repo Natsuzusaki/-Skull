@@ -43,6 +43,10 @@ extends Node2D
 @onready var label10: Label = $Labels/Label10
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var notes6: Area2D = $Notes/Notes6
+@onready var empty_room_trigger: Area2D = $Triggers/EmptyRoom
+@onready var loop1: Area2D = $Loops/Loop1
+@onready var loop2: Area2D = $Loops/Loop2
+@onready var loop3: Area2D = $Loops/Loop3
 #Markers
 @onready var printer_explode: Marker2D = $CameraPoints/PrinterExplode
 @onready var empty_room: Marker2D = $CameraPoints/EmptyRoom
@@ -52,6 +56,8 @@ var current_chapter = "Chapter4"
 var global_condition: int = 0
 var condition_ctr: int = 0
 var control_regex := RegEx.new()
+var a1: bool = false
+var a2: bool = false
 
 func _ready() -> void:
 	connections()
@@ -69,16 +75,40 @@ func _ready() -> void:
 				gate2.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 2.0:
 				condition_ctr = 2
+				gate2.activate(false, 0.5)
 				gate1.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 3.0:
-				condition_ctr = 4
+				condition_ctr = 3
+				gate1.activate(false, 0.5)
+				gate2.activate(false, 0.5)
+				gate3.activate(false, 0.5)
+				gate4.activate(false, 0.5)
+				gate5.activate(false, 0.5)
+			if chapter4["checkpoint_order"] == 5.0:
+				loop1.queue_free()
+				condition_ctr = 3
+				gate1.activate(false, 0.5)
+				gate2.activate(false, 0.5)
 				gate3.activate(false, 0.5)
 				gate4.activate(false, 0.5)
 				gate5.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 6.0:
-				condition_ctr = 5
+				loop2.queue_free()
+				condition_ctr = 4
+				gate1.activate(false, 0.5)
+				gate2.activate(false, 0.5)
+				gate3.activate(false, 0.5)
+				gate4.activate(false, 0.5)
+				gate5.activate(false, 0.5)
 				gate6.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 7.0:
+				loop3.queue_free()
+				gate1.activate(false, 0.5)
+				gate2.activate(false, 0.5)
+				gate3.activate(false, 0.5)
+				gate4.activate(false, 0.5)
+				gate5.activate(false, 0.5)
+				gate6.activate(false, 0.5)
 				gate7.activate(false, 0.5)
 				gate8.activate(false, 0.5)
 		if chapter4.has("flags"):
@@ -199,19 +229,21 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 			if action == "removed" and array3.inputs.size() == 5 and condition_ctr == 2:
 				await wait(0.7)
 				gate5.activate(false, 0.5)
-				condition_ctr = 3
+				a1 = true
+				condition3(a1, a2)
 		array4.arr_name:
-			if array4.inputs.size() == 0 and condition_ctr == 3:
+			if array4.inputs.size() == 0 and condition_ctr == 2:
 				await wait(0.7)
 				gate4.activate(false, 0.5)
-				condition_ctr = 4
+				a2 = true
+				condition3(a1, a2)
 		array8.arr_name:
-			if array8.inputs.size() >= 50 and condition_ctr == 4:
+			if array8.inputs.size() >= 50 and condition_ctr == 3:
 				await wait(0.7)
 				gate6.activate(false, 0.5)
-				condition_ctr = 5
+				condition_ctr = 4
 		array9.arr_name:
-			if condition_ctr == 5:
+			if condition_ctr == 4:
 				var target = "repetitiveness".split("")
 				var idx = 0
 				for item in array9.inputs:
@@ -224,8 +256,8 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 					array9.clear()
 					await wait(0.7)
 					gate7.activate(false, 0.5)
-					condition_ctr = 6
-			elif condition_ctr == 6:
+					condition_ctr = 5
+			elif condition_ctr == 5:
 				array9.inputs.sort()
 				array10.inputs.sort()
 				var arr1 = array10.inputs
@@ -233,7 +265,7 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 				if arr1 == arr2:
 					await wait(0.7)
 					gate8.activate(false, 0.5)
-					condition_ctr = 7
+					condition_ctr = 6
 
 	#print("MATCH: " + array_name +"\nACTION: "+ action +"\nCTR: " + str(condition_ctr) + "\nPLEASE: " + str(array1.inputs.size()))
 func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:
@@ -247,6 +279,7 @@ func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:
 				SaveManager.update_save({"Chapter4": {"flags": {"note_on": true}}})
 		"Loop2":
 			if condition:
+				empty_room_trigger.set_deferred("monitoring", true)
 				extra_jump.set_deferred("monitoring", true)
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -264,6 +297,9 @@ func _on_extra_jump_body_entered(body: Node2D) -> void:
 func change_text() -> void:
 	label9.text = "transfer the contents of\n\nto open gate2"
 	label10.text = "\nlist2 to list1"
+func condition3(c1:bool, c2:bool) -> void:
+	if c1 and c2:
+		condition_ctr = 3
 func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	progress_bar.visible = false
@@ -272,6 +308,8 @@ func _on_finish_body_entered(_body: Node2D) -> void:
 	SaveManager.evaluate_level_score("Chapter4")
 	SaveManager.reset_session_time("Chapter4")
 	SaveManager.mark_level_completed(4)
+func _on_camera_limit_body_entered(_body: Node2D) -> void:
+	camera.limit_left = 1792
 
 func _on_room_1_body_entered(body: Node2D) -> void:
 	if body == player:

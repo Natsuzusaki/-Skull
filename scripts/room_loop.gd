@@ -21,10 +21,12 @@ func _on_room_loop_body_entered(body: Node2D) -> void:
 	loop_ctr += 1
 	var room_pos = global_position
 	if body.global_position.x < room_pos.x:
+		print("right")
 		body.global_position = tp_right
 		if push:
 			body.jump()
 	elif body.global_position.x > room_pos.x:
+		print("left")
 		body.global_position = tp_left
 		if push:
 			body.jump_side()

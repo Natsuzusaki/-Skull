@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://l8hb6r2jccd3"]
+[gd_scene load_steps=82 format=4 uid="uid://l8hb6r2jccd3"]
 
 [ext_resource type="Script" uid="uid://c2hwlghlabqox" path="res://scripts/level4.gd" id="1_5sfmg"]
 [ext_resource type="PackedScene" uid="uid://c2udgjcetsli8" path="res://scenes/environment_elements/player.tscn" id="1_eh8f3"]
@@ -69,6 +69,9 @@ size = Vector2(128, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjokd"]
 size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uq63i"]
+size = Vector2(24, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdy06"]
 atlas = ExtResource("3_hxr3b")
@@ -270,38 +273,45 @@ color = Color(0.272088, 0.568963, 0.733159, 1)
 position = Vector2(-880, 216)
 order = 1
 respawn_pos = Vector2(-880, 184)
+chapter = "Chapter4"
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("2_3fbce")]
 position = Vector2(16, 512)
 order = 2
 respawn_pos = Vector2(16, 472)
+chapter = "Chapter4"
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("2_3fbce")]
 position = Vector2(912, 512)
 order = 3
 respawn_pos = Vector2(912, 472)
+chapter = "Chapter4"
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("2_3fbce")]
 position = Vector2(1808, 512)
 order = 4
-respawn_pos = Vector2(1808, 472)
+respawn_pos = Vector2(1832, 472)
+chapter = "Chapter4"
 
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("2_3fbce")]
-position = Vector2(2704, 512)
+position = Vector2(2736, 512)
 order = 5
-respawn_pos = Vector2(2704, 472)
+respawn_pos = Vector2(2728, 472)
+chapter = "Chapter4"
 
 [node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("2_3fbce")]
-position = Vector2(3583.9998, -15.999996)
+position = Vector2(3583.9998, -48.000004)
 rotation = -1.5698386
 order = 6
-respawn_pos = Vector2(3288, -40)
+respawn_pos = Vector2(3408, -40)
+chapter = "Chapter4"
 
 [node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("2_3fbce")]
-position = Vector2(2672, -152.00002)
+position = Vector2(2639.9998, -152)
 rotation = -0.0010175498
 order = 7
-respawn_pos = Vector2(2640, -200)
+respawn_pos = Vector2(2560, -168)
+chapter = "Chapter4"
 
 [node name="Rooms" type="Node2D" parent="."]
 
@@ -375,9 +385,6 @@ tp_left = Vector2(2688, 472)
 tp_right = Vector2(3584, 472)
 crystal_ctr = 2
 
-[node name="CollisionShape2D3" parent="Loops/Loop2" index="2"]
-position = Vector2(352, -280)
-
 [node name="Loop3" parent="Loops" instance=ExtResource("3_ll01n")]
 position = Vector2(3136, -256)
 tp_left = Vector2(2688, -216)
@@ -389,7 +396,7 @@ crystal_ctr = 3
 position = Vector2(-472, 0)
 
 [node name="CollisionShape2D2" parent="Loops/Loop3" index="1"]
-position = Vector2(472, 0)
+position = Vector2(440, 0)
 
 [node name="CollisionShape2D3" parent="Loops/Loop3" index="2"]
 position = Vector2(352, 280)
@@ -411,6 +418,7 @@ shape = SubResource("RectangleShape2D_m1gbu")
 [node name="EmptyRoom" type="Area2D" parent="Triggers"]
 position = Vector2(3600, 448)
 collision_layer = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/EmptyRoom"]
 position = Vector2(116, -68)
@@ -431,6 +439,14 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Finish"]
 shape = SubResource("RectangleShape2D_rjokd")
+
+[node name="CameraLimit" type="Area2D" parent="Triggers"]
+position = Vector2(1808, -256)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CameraLimit"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_uq63i")
 
 [node name="CameraPoints" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -527,8 +543,9 @@ new = true
 
 [node name="Gate6" parent="Gates" instance=ExtResource("5_ev8xs")]
 position = Vector2(2816, 112)
-new_pos = Vector2(2816, 224)
+new_pos = Vector2(2816, 232)
 move_in_y = true
+new = true
 
 [node name="Gate7" parent="Gates" instance=ExtResource("5_ev8xs")]
 position = Vector2(3104, -16)
@@ -957,9 +974,9 @@ outputs = {
 
 [node name="Console3" parent="Consoles" instance=ExtResource("7_w24lh")]
 position = Vector2(992, 416)
-base_text = "list[?] = ?
-list[?] = ?
-list[?] = ?"
+base_text = "list1[?] = ?
+list2[?] = ?
+list2[?] = ?"
 fixed_var = ""
 outputs = {
 "list1": NodePath("../../Arrays/Array6"),
@@ -1257,19 +1274,21 @@ process_material = SubResource("ParticleProcessMaterial_q6dln")
 
 [node name="Vine" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1512, 392)
+length = 2
 is_chain = true
 
 [node name="Vine2" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1416, 312)
+length = 2
 is_chain = true
 
 [node name="Vine3" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1544, 392)
-length = 3
 is_chain = true
 
 [node name="Vine4" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1136, 392)
+length = 5
 is_chain = true
 
 [node name="Vine5" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1278,87 +1297,89 @@ is_chain = true
 
 [node name="Vine6" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1712, 40)
-length = 6
 is_chain = true
 
 [node name="Vine7" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1472, 40)
-length = 6
+length = 2
 is_chain = true
 
 [node name="Vine8" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1376, 40)
-length = 2
+length = 6
 is_chain = true
 
 [node name="Vine9" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1304, 72)
+length = 6
 is_chain = true
 
 [node name="Vine10" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1216, 40)
-length = 3
 is_chain = true
 
 [node name="Vine11" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-936, 40)
+length = 2
 is_chain = true
 
 [node name="Vine12" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1256, 312)
-length = 3
+length = 6
 is_chain = true
 
 [node name="Vine13" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1272, 312)
-length = 5
 is_chain = true
 
 [node name="Vine14" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1088, 40)
-length = 6
+length = 2
 is_chain = true
 
 [node name="Vine15" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-728, 264)
-length = 2
+length = 3
 is_chain = true
 
 [node name="Vine16" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-712, 264)
+length = 3
 is_chain = true
 
 [node name="Vine17" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-496, 264)
-length = 5
+length = 6
 is_chain = true
 
 [node name="Vine18" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-848, 40)
-length = 5
+length = 2
 is_chain = true
 
 [node name="Vine19" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-816, 40)
-length = 6
+length = 2
 is_chain = true
 
 [node name="Vine20" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-800, 40)
+length = 3
 is_chain = true
 
 [node name="Vine21" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-704, 40)
-length = 6
+length = 3
 is_chain = true
 
 [node name="Vine22" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-488, 40)
-length = 2
+length = 3
 is_chain = true
 
 [node name="Vine23" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-368, 40)
+length = 6
 is_chain = true
 
 [node name="Vine24" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1373,7 +1394,6 @@ is_chain = true
 
 [node name="Vine26" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(1864, 56)
-length = 2
 is_chain = true
 
 [node name="Vine27" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1382,7 +1402,6 @@ is_chain = true
 
 [node name="Vine28" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2056, 56)
-length = 2
 is_chain = true
 
 [node name="Vine29" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1396,20 +1415,22 @@ is_chain = true
 
 [node name="Vine31" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2296, 40)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine32" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2312, 40)
+length = 5
 is_chain = true
 
 [node name="Vine33" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2336, 104)
+length = 2
 is_chain = true
 
 [node name="Vine34" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2376, 40)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine35" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1419,20 +1440,22 @@ is_chain = true
 
 [node name="Vine36" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2488, 88)
+length = 3
 is_chain = true
 
 [node name="Vine37" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2504, 40)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine38" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2536, 72)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine39" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2560, 40)
+length = 5
 is_chain = true
 
 [node name="Vine40" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1455,25 +1478,26 @@ is_chain = true
 
 [node name="Vine44" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3640, 296)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine45" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3816, 296)
-length = 5
+length = 6
 is_chain = true
 
 [node name="Vine46" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3536, 136)
+length = 5
 is_chain = true
 
 [node name="Vine47" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3416, 40)
-length = 5
 is_chain = true
 
 [node name="Vine48" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3256, -136)
+length = 5
 is_chain = true
 
 [node name="Vine49" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1482,6 +1506,7 @@ is_chain = true
 
 [node name="Vine50" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2840, -120)
+length = 5
 is_chain = true
 
 [node name="Vine51" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1495,17 +1520,17 @@ is_chain = true
 
 [node name="Vine53" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3240, -328)
-length = 2
+length = 6
 is_chain = true
 
 [node name="Vine54" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3224, -328)
-length = 6
+length = 2
 is_chain = true
 
 [node name="Vine55" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3192, -472)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Grass" type="TileMapLayer" parent="."]
@@ -1548,6 +1573,9 @@ visible = false
 
 [node name="ChapterIntro" parent="." instance=ExtResource("27_ph4mq")]
 visible = false
+title = "Level4:
+
+Looping Lists "
 
 [node name="ProgressBar" parent="." instance=ExtResource("28_npa1m")]
 
@@ -1564,7 +1592,9 @@ visible = false
 [connection signal="body_exited" from="Triggers/EmptyRoom" to="." method="_on_empty_room_body_exited"]
 [connection signal="body_entered" from="Triggers/ExtraJump" to="." method="_on_extra_jump_body_entered"]
 [connection signal="body_entered" from="Triggers/Finish" to="." method="_on_finish_body_entered"]
+[connection signal="body_entered" from="Triggers/CameraLimit" to="." method="_on_camera_limit_body_entered"]
 
+[editable path="Loops/Loop1"]
 [editable path="Loops/Loop2"]
 [editable path="Loops/Loop3"]
 [editable path="ManualMovingPlatforms/Customizable_Platform"]

@@ -46,7 +46,7 @@ func activate() -> void:
 			output.activate(continuous, active_time)
 		elif output is Area2D:
 			if output.is_in_group("LoopRoom"):
-				output.activate = false
+				output.loop_break()
 			else:
 				output.change()
 		elif output is Camera2D:

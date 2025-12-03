@@ -56,10 +56,10 @@ func _on_startnewgame_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	if data["Levels"]["level1"]:
-		Loading.loading("res://scenes/levels/level2.tscn")
-	else:
-		Loading.loading("res://scenes/levels/level1.tscn")
+	var highest := get_highest_progress_level(data)
+	var path := "res://scenes/levels/level%d.tscn" % highest
+	Loading.loading(path)
+
 
 func _on_Settings_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
@@ -127,4 +127,13 @@ func check_game_completion() -> void:
 			silver_trophy.visible = false
 			golden_trophy.disabled = true
 			golden_trophy.visible = false
-		
+
+func get_highest_progress_level(_data: Dictionary) -> int:
+	var highest := 1
+	for i in range(1, 100): # up to Chapter/Level 99
+		var chapter := "Chapter%d" % i
+		if data.has(chapter) and data[chapter]["checkpoint_order"] > 0:
+			highest = i
+		else:
+			break
+	return highest
