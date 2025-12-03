@@ -9,25 +9,28 @@ func enter() -> void:
 	parent.debug.text = "jump"
 
 func process_input(_event: InputEvent) -> PlayerState:
+	if parent.stay or parent.dead:
+		return null
 	if Input.is_action_just_released("jump"):
 		parent.velocity.y *= 0.5
 	if Input.is_action_just_pressed("jump") and parent.can_double_jump and parent.has_double_jump:
 		parent.can_double_jump = false
 		parent.jump()
-	if Input.is_action_pressed("carry") and Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up"):
 		parent.up_throw()
 	if Input.is_action_pressed("carry"):
 		parent.carry()
 	return null
 
 func process_physics(delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		parent.velocity = Vector2.ZERO
+		return null
 	if not parent.is_on_floor():
 		if parent.velocity.y > 0.1:
 			return falling_state
-		parent.velocity.y += parent.gravity() * delta
-
+		parent.velocity.y += parent.gravity() * delta + parent.external_force.y * delta
 	parent.move(delta, move_speed)
-
 	if parent.is_on_floor():
 		if not parent.dynamic_direction:
 			return idle_state

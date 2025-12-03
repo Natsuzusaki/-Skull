@@ -145,8 +145,6 @@ func _on_button_pressed() -> void:
 			SaveManager.reset_save("Chapter1")
 	Loading.loading("res://scenes/levels/level1.tscn")
 
-		
-
 func _on_button_2_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	if SaveManager.is_level_completed(2):
@@ -163,8 +161,11 @@ func _on_button_3_pressed() -> void:
 
 func _on_button_4_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	
-		
+	if SaveManager.is_level_completed(4):
+		if not data["Time_and_Medal_Score"]["Chapter4"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter4"]["saved_session_time"] == 0.0 :
+			SaveManager.reset_save("Chapter4")
+	Loading.loading("res://scenes/levels/level4.tscn")
+
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

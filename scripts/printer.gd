@@ -11,6 +11,7 @@ extends Node2D
 @onready var camera : Camera2D = %Camera
 @onready var icon: Sprite2D = $Icon
 @onready var icon_2: Sprite2D = $Icon2
+@onready var icon_3: Sprite2D = $Icon3
 @onready var int_object = preload("res://scenes/environment_elements/int_object.tscn")
 @onready var str_object = preload("res://scenes/environment_elements/str_object.tscn")
 @onready var bool_object = preload("res://scenes/environment_elements/bool_object.tscn")
@@ -28,6 +29,11 @@ func _ready() -> void:
 	grid_pos = get_grid_coords(camera, 32)
 	if broken:
 		breaks()
+func outline(activate:bool) -> void:
+	if activate:
+		icon_3.visible = true
+	else:
+		icon_3.visible = false
 
 func breaks() -> void:
 	icon.visible = false

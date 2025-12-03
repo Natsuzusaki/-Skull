@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn2w5pk6mdsxu"]
+
+[ext_resource type="Texture2D" uid="uid://deytkfrieffpn" path="res://assets/images/tiles.png" id="1_m4wqv"]
+[ext_resource type="Script" uid="uid://bsrseo0lw13q3" path="res://scripts/bottom_vine.gd" id="1_vr6nv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drluq"]
+size = Vector2(10, 16)
+
+[node name="ChainBottom" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_vr6nv")
+min_push_interval = 10.0
+max_push_interval = 30.0
+push_strength = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_drluq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m4wqv")
+region_enabled = true
+region_rect = Rect2(0, 272, 16, 16)

@@ -8,7 +8,9 @@ func enter() -> void:
 	parent.debug.text = "idle"
 
 func process_input(_event: InputEvent) -> PlayerState:
-	if Input.is_action_pressed("carry") and Input.is_action_pressed("up") and not parent.stay:
+	if parent.stay or parent.dead:
+		return null
+	if Input.is_action_pressed("up"):
 		parent.up_throw()
 	if Input.is_action_pressed("carry") and not parent.stay:
 		parent.carry()
@@ -23,15 +25,20 @@ func process_input(_event: InputEvent) -> PlayerState:
 	return null
 
 func process_physics(delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		parent.velocity = Vector2.ZERO
+		return null
 	if not parent.is_on_floor():
-		parent.velocity.y += parent.gravity() * delta
-		parent.velocity.x = 0
+		parent.velocity.y += parent.gravity() * delta + parent.external_force.y * delta
+		#parent.velocity.x = 0
 	parent.move_and_slide()
 	if parent.is_on_floor() and parent.down_buffered:
 		parent.down()
 	return null
 
 func process_frame(_delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		return null
 	if parent.jump_buffered and parent.is_on_floor() and not parent.is_jump_pressed:
 		parent.is_jump_pressed = true
 		parent.jump()

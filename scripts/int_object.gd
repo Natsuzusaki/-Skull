@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var initial_value: int
+@export var tutorial: bool = false
 @onready var text_value: Label = $TextValue
 @onready var collision: CollisionShape2D = $Collision
 @onready var collision_shape_2d: CollisionShape2D = $ConvertDetect/CollisionShape2D
@@ -10,6 +11,7 @@ extends RigidBody2D
 @onready var str_object = load("res://scenes/environment_elements/str_object.tscn")
 @onready var float_object = load("res://scenes/environment_elements/float_object.tscn")
 @onready var bool_object = load("res://scenes/environment_elements/bool_object.tscn")
+@onready var button: AnimatedSprite2D = $Button
 var value = null
 var is_carried := false
 
@@ -48,6 +50,11 @@ func _process(_delta: float) -> void:
 	if is_carried:
 		global_position += Vector2.ZERO
 		global_position = player.global_position + Vector2(0, -15)
+	if tutorial:
+		if player.in_range and player.temp_current_object == self:
+			button.visible = true
+		else:
+			button.visible = false
 
 func initialize(new_value: int) -> void:
 	value = new_value

@@ -1,6 +1,7 @@
 extends Node2D
 
 @export_multiline var statement: String
+@export_enum("x", "y") var control_axis: String = ""
 @export var outputs: Array[Node2D] = []
 @export var is_a_variable: bool
 @export var stored_val_access: Array[Node2D] = []
@@ -10,6 +11,8 @@ extends Node2D
 @onready var statement1: Label = $FirstLine/SecondLine/Statement1
 
 var stored_value: Variant = null
+
+signal has_value
 
 func _ready() -> void:
 	if is_a_variable:
@@ -39,8 +42,12 @@ func _receive_value(value: int) -> void:
 	_propagate(processed_value)
 
 func _propagate(value: int) -> void:
+	emit_signal("has_value", value)
 	for output in outputs:
 		if output == null:
 			continue
 		if output.has_method("move"):
-			output.move(value)
+			match control_axis:
+				"x": output.move(value, "x")
+				"y": output.move(value, "y")
+				_: output.move(value)

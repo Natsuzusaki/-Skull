@@ -40,7 +40,7 @@ var has_double_jump := true
 var can_double_jump := true
 var push_force := 2000.0 #pushing boolean
 var dynamic_direction := 0.0 #-1 left, 0 idle, 1 right
-var static_direction := 0 #1-left, 0-right
+var static_direction := 0 #-1-left, 1-right
 var in_range := false #in range with an object
 var is_carrying := false
 var is_carry_pressed := false #key flagging
@@ -56,6 +56,7 @@ var fall_distance := 0.0 #landing cloud
 var near_console := false
 var near_note := false
 var near_button := false
+var external_force : Vector2
 
 #Interactions with other object
 signal on_interact()
@@ -88,10 +89,16 @@ func _physics_process(delta: float) -> void:
 		if fall_distance > landing_threshold:
 			_spawn_trail("landing_cloud")
 		fall_distance = 0.0
+		velocity.x = 0
 
 #Player Actions
 func gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
+func jump_side() -> void:
+	if not dead:
+		static_direction = 1
+		velocity.y = -100
+		velocity.x = 250
 func jump() -> void:
 	if not dead:
 		if not can_double_jump:
@@ -111,7 +118,7 @@ func move(_delta: float, move_speed: int) -> void:
 		move_and_slide()
 		return
 	dynamic_direction = Input.get_axis("left", "right")
-	velocity.x = dynamic_direction * move_speed
+	velocity.x = dynamic_direction * move_speed + external_force.x
 	var was_on_floor = is_on_floor()
 	move_and_slide()
 	if was_on_floor and not is_on_floor() and velocity.y >= 0:
@@ -142,6 +149,7 @@ func _spawn_trail(anim_name:String) -> void:
 	var trail_instance = run_trail.instantiate()
 	trail_instance.animation_name = anim_name
 	get_tree().get_current_scene().add_child(trail_instance)
+	trail_instance.z_index = 0
 	trail_instance.global_position = trailsmark.global_position if anim_name == "run_trail" else trailsmark.global_position - Vector2(0, -2)
 func move_in_cutscene(target_pos: Vector2, speed := 100) -> void:
 	set_process_input(false)
@@ -177,10 +185,11 @@ func carry() -> void:
 func up_throw() -> void:
 	if not dead:
 		if is_carrying and not is_carry_pressed:
-			is_carry_pressed = true
-			is_carrying = not is_carrying
-			object_out_timer.start()
-			on_throw_upward.emit()
+			if temp_current_object.value is float:
+				is_carry_pressed = true
+				is_carrying = not is_carrying
+				object_out_timer.start()
+				on_throw_upward.emit()
 	return
 
 #Timers

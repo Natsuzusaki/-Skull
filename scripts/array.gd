@@ -1,21 +1,31 @@
 # ArrayObject.gd
 extends Node2D
 
+@export var console: Node2D
 @export var arr_name: String
+@export var display_name: String
 @export var initial_input = []
+@export var pop_direction: bool = false
 @onready var fill_0: Sprite2D = $Fill0
 @onready var fill_1: Sprite2D = $Fill1
 @onready var fill_3: Sprite2D = $Fill3
 @onready var fill_5: Sprite2D = $Fill5
 @onready var fill_10: Sprite2D = $Fill10
+@onready var out_line: Sprite2D = $OutLine
+@onready var instance_timer: Timer = $InstanceTimer
+@onready var idle_timer: Timer = $IdleTimer
+@onready var camera: Camera2D = %Camera
 @onready var str_object = load("res://scenes/environment_elements/str_object.tscn")
 @onready var float_object = load("res://scenes/environment_elements/float_object.tscn")
 @onready var int_object = load("res://scenes/environment_elements/int_object.tscn")
 @onready var bool_object = load("res://scenes/environment_elements/bool_object.tscn")
+var popped_values := []
+var clicked: bool = false
 var inputs: Array = []
 var spawn_object
 
 signal array_action()
+signal array_changed(new_value)
 
 func _ready() -> void: 
 	if initial_input: 
@@ -27,9 +37,15 @@ func _on_area_entered(body: Node2D) -> void:
 	if obj: 
 		inputs.append(obj.value) 
 		obj.queue_free()
-		array_action.emit("print_fill", obj.value)
+		array_action.emit("print_fill", arr_name, obj.value)
 	filled()
 	print(inputs)
+
+func outline(activate:bool) -> void:
+	if activate:
+		out_line.visible = true
+	else:
+		out_line.visible = false
 
 #Sprite Update
 func filled() -> void:
@@ -54,22 +70,27 @@ func reset() -> void:
 #Array Commands
 func append(value) -> void:
 	inputs.append(value)
-	array_action.emit("append_fill", value)
+	array_action.emit("append_fill", arr_name, value)
 	filled()
+	_emit_after_camera_restore(null)
 	print(inputs)
 func clear() -> void:
 	inputs.clear()
-	array_action.emit("cleared")
+	array_action.emit("cleared", arr_name)
 	filled()
+	_emit_after_camera_restore(null)
 	print(inputs)
 func remove(value) -> void:
 	inputs.erase(value)
-	array_action.emit("removed", value)
+	array_action.emit("removed", arr_name, value)
 	filled()
+	_emit_after_camera_restore(null)
 	print(inputs)
 func pop(arg: Variant = null):
 	if inputs.is_empty():
 		return
+	idle_timer.stop()
+	idle_timer.start()
 	if arg == null:
 		return _pop_by_index(inputs.size() - 1)
 	if typeof(arg) == TYPE_INT:
@@ -94,20 +115,30 @@ func _pop_by_index(index: int):
 		spawn_object = null
 	if spawn_object:
 		spawn_object.initialize(value)
-		spawn(spawn_object)
-	array_action.emit("popped", value, index)
+		popped_values.append(spawn_object)
+	array_action.emit("popped", arr_name, value, index)
+	_emit_after_camera_restore(null)
 	filled()
 	print(inputs)
 	return value
+
 func insert(index, value) -> void:
 	inputs.insert(index, value)
-	array_action.emit("inserted", value, index)
+	array_action.emit("inserted", arr_name, value, index)
 	filled()
+	_emit_after_camera_restore(null)
 	print(inputs)
 func sort() -> void:
-	array_action.emit("sorted")
+	array_action.emit("sorted", arr_name)
 	inputs.sort()
+	_emit_after_camera_restore(null)
 	print(inputs)
+func size() -> void:
+	array_action.emit("sized", arr_name)
+	if console:
+		console.prevent_close = true
+		console.stay()
+		console.label.text = "The size of " + arr_name + " is: " + str(len(inputs))
 	print(len(inputs))
 
 #Accessing Array in []
@@ -116,7 +147,8 @@ func set_at(index: int, value):
 		inputs[index] = value
 	elif index == inputs.size():
 		inputs.append(value)
-	array_action.emit("replaced", value, index)
+	array_action.emit("replaced", arr_name, value, index)
+	_emit_after_camera_restore(null)
 	print(inputs)
 func get_at(index: int):
 	if index >= 0 and index < inputs.size():
@@ -143,7 +175,26 @@ func _iter_get(state):
 		return inputs[state]
 	return null
 
+func wait(time: float) -> void:
+	await get_tree().create_timer(time).timeout
 func spawn(object_spawn:Node2D) -> void:
+	var direction : int
+	if pop_direction:
+		direction = 1
+	else:
+		direction = -1
 	get_tree().get_current_scene().find_child("Objects").add_child(object_spawn)
-	object_spawn.position = position + Vector2(0, -40)
-	object_spawn.apply_impulse(Vector2(300,-100))
+	object_spawn.position = position + Vector2(0, 10)
+	object_spawn.apply_impulse(Vector2(300 * direction, 0))
+func delayed_spawn() -> void:
+	for v in popped_values:
+		spawn(v)
+		instance_timer.start()
+		await instance_timer.timeout
+func _on_idle_timer_timeout() -> void:
+	await delayed_spawn()
+	popped_values.clear()
+func _emit_after_camera_restore(value):
+	if camera.zoom.distance_to(camera.zoom_out) > 0.01:
+		await camera.zoom_restored
+	array_changed.emit(value)

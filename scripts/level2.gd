@@ -7,6 +7,7 @@ extends Node2D
 @onready var camera: Camera2D = %Camera
 @onready var notes: Node2D = %Notes
 @onready var consoles: Node2D = %Consoles
+@onready var code_blocks: Node2D = %CodeBlocks
 @onready var timerr: CanvasLayer = $Time
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
@@ -19,11 +20,17 @@ extends Node2D
 @onready var yuna_mouse: Area2D = $YunaMouse
 #----Area2D
 @onready var tutorial_end: Area2D = $Triggers/TutorialEnd
+@onready var code_block_area: Area2D = $Triggers/CodeBlock
+#----Labels
+@onready var open_grid: Label = $Labels/OpenGrid
+@onready var insert_int: Label = $Labels/InsertINT
+@onready var move_platform: Label = $Labels/MovePlatform
 
 var current_chapter = "Chapter2"
 var data = SaveManager.load_game()
 var ctr := false
 var talk_ctr := 0
+var retry_ctr := 0
 var mouse_target: Vector2
 var yuna_mouse_move := false
 var mouse_speed: float = 550.0
@@ -47,12 +54,23 @@ func _ready() -> void:
 		if chapter2.has("checkpoint_order"):
 			var checkpoint = chapter2["checkpoint_order"]
 			if checkpoint >= 1.0:
-				ctr = true
-			if checkpoint == 2.0:
-				talk_ctr = 3
-				tutorial_end.monitoring = false
-				SaveManager.restore_objects()
-	#starting_scene()
+				pass
+		
+		if chapter2.has("flags"):
+			var flags = chapter2["flags"]
+			if flags.has("talk1"):
+				if flags["talk1"]:
+					talk_ctr = 1
+					ctr = true
+					tutorial_end.monitoring = false
+					SaveManager.restore_objects()
+			if flags.has("talk2"):
+				if flags["talk2"]:
+					talk_ctr = 2
+			if flags.has("talk3"):
+				if flags["talk3"]:
+					talk_ctr = 3
+	starting_scene()
 
 #----SpecificTriggers
 func starting_scene() -> void:
@@ -62,30 +80,44 @@ func starting_scene() -> void:
 		Cutscene.start_cutscene()
 		player.stay = true
 		camera.focus_on_player(true, true)
+		chapter_intro.show_intro()
 		await player.move_in_cutscene(Vector2(64, 440))
-		await wait(0.5)
-		player.static_direction = -1
-		await wait(1)
-		player.static_direction = 1
-		await wait(1)
-		await player.move_in_cutscene(Vector2(128,440), 200)
-		await wait(1.5)
 		dialogue("talk1")
 		talk_ctr = 1
 	return
-func _actions_recieved(action: String) -> void:
-	if talk_ctr == 1 and action.contains("note_closed"):
-		Cutscene.start_cutscene()
-		player.stay = true
-		camera.focus_on_player(true, true)
-		dialogue("talk2")
-		talk_ctr = 2
-func _actions_recieved2(_action: String) -> void:
+func _actions_recieved(action: String, num:int = 0) -> void:
+	if talk_ctr == 2 and action.contains("note_closed") and num == 6:
+		dialogue("talk3")
+		talk_ctr = 3
+func _actions_recieved2(_action: String, _user_code:String) -> void:
 	pass
+func _codeblock_has_value(value) -> void:
+	print(talk_ctr, retry_ctr)
+	if talk_ctr == 1:
+		fade_out(insert_int)
+		fade_out(move_platform)
+		code_block_area.set_deferred("monitoring", false)
+		if (value < -3 and value > -7):
+			retry_ctr += 1
+			if retry_ctr >= 4:
+				Cutscene.start_cutscene()
+				player.stay = true
+				dialogue("talk2")
+				talk_ctr = 2
+				retry_ctr = 0
+		elif (value > -4 or value < -6) and retry_ctr <= 3:
+			Cutscene.start_cutscene()
+			player.stay = true
+			dialogue("talk2_5")
+			talk_ctr = 2
+			retry_ctr = 0
 
 #----Processes
 func _process(delta: float) -> void:
 	_save_time_on_death()
+	if not grid.visible:
+		timerr.visible = true
+		progress_bar.visible = true
 	if player.on_console:
 		grid.visible = false
 	if yuna_mouse_move:
@@ -96,12 +128,11 @@ func _process(delta: float) -> void:
 		else:
 			yuna_mouse.global_position = mouse_target
 			yuna_mouse_move = false
-			if talk_ctr == 2:
-				dialogue("talk3")
-				talk_ctr = 3
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
+			timerr.visible = false
+			progress_bar.visible = false
 			grid.visible = true
 		else:
 			grid.visible = false
@@ -123,7 +154,14 @@ func _save_time_on_death() -> void:
 
 #----Helpers
 func dialogue(talk: String) -> void:
+	timerr.pause()
+	timerr.visible = false
+	progress_bar.visible = false
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue2.dialogue"), talk)
+func dialogue_end() -> void:
+	timerr.start()
+	timerr.visible = true
+	progress_bar.visible = true
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
 func connections() -> void:
@@ -131,19 +169,26 @@ func connections() -> void:
 		note.actions_sent.connect(_actions_recieved)
 	for console in consoles.get_children():
 		console.actions_sent.connect(_actions_recieved2)
+	for blocks in code_blocks.get_children():
+		blocks.has_value.connect(_codeblock_has_value)
 func _save_timer_to_json() -> void:
 	SaveManager.save_timer_for_session("Chapter2", timerr.time)
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save_timer_to_json()
 		get_tree().quit()
+func fade_in(object) -> void:
+	var tween = create_tween()
+	tween.tween_property(object, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
+func fade_out(object) -> void:
+	var tween = create_tween()
+	tween.tween_property(object, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
 	SaveManager.mark_level_completed(2)
 	camera.focus_on_player(true, true)
 	await wait(1)
-	dialogue("talk4")
 func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	tutorial_end.set_deferred("monitoring", false)
 	talk_ctr = 3
@@ -152,7 +197,6 @@ func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	#ui_level_complete.drop_down()
 	##SaveManager.save_level_completion("Chapter2", timerr, true)
 	#SaveManager.mark_level_completed(2)
-
 func _on_complete_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	progress_bar.visible = false
@@ -192,3 +236,20 @@ func _on_room_9_body_entered(body: Node2D) -> void:
 func _on_room_10_body_entered(body: Node2D) -> void:
 	if body == player:
 		progress_bar.evaluate_progress(10)
+
+#----NewTriggers
+func _on_open_grid_body_entered(_body: Node2D) -> void:
+	fade_in(open_grid)
+func _on_open_grid_body_exited(_body: Node2D) -> void:
+	fade_out(open_grid)
+func _on_code_block_body_entered(_body: Node2D) -> void:
+	fade_in(insert_int)
+	fade_in(move_platform)
+	code_block_area.set_deferred("monitoring", false)
+func _on_tunnel_cam_body_entered(_body: Node2D) -> void:
+	
+	Cutscene.start_cutscene()
+	camera.focus_on_player(true, true)
+func _on_tunnel_cam_body_exited(_body: Node2D) -> void:
+	Cutscene.end_cutscene()
+	camera.back()

@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl4hun5wt4tpd"]
+[gd_scene load_steps=4 format=3 uid="uid://dl4hun5wt4tpd"]
 
 [ext_resource type="TileSet" uid="uid://d0goud1b4sckf" path="res://assets/presets/tiles.tres" id="1_08bv5"]
 [ext_resource type="Script" uid="uid://bqdbfgby1lyqw" path="res://scripts/customizable_platform.gd" id="2_lf1it"]
+[ext_resource type="TileSet" uid="uid://co4aa8a5s77br" path="res://assets/presets/tiles_without_collision.tres" id="3_xjplq"]
 
 [node name="Customizable_Platform" type="TileMapLayer"]
 tile_set = ExtResource("1_08bv5")
 script = ExtResource("2_lf1it")
+
+[node name="OutLine" type="TileMapLayer" parent="."]
+visible = false
+z_index = 5
+tile_set = ExtResource("3_xjplq")

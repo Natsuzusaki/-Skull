@@ -11,7 +11,7 @@ extends Area2D
 var show_status := false
 var near := false
 
-signal actions_sent(flag_name:String)
+signal actions_sent(flag_name:String, num:int)
 
 func _on_body_entered(_body: Node2D) -> void:
 	if on:
@@ -31,18 +31,23 @@ func _on_body_exited(_body: Node2D) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("carry") and near:
-		SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
-		if show_status:
-			show_status = false 
-			NoteManager.hide_note()
-			player.stay = false
-			player.collision.scale = Vector2(1,1)
-			player.collision.position = Vector2(0, -2.143)
-			actions_sent.emit("note_closed")
-		elif not show_status:
+		if not show_status:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 			show_status = true
 			NoteManager.show_note(note_num)
 			player.stay = true
 			player.collision.scale = Vector2(2.5, 1.5)
 			player.collision.position = Vector2(0, -7.143)
-			actions_sent.emit("note_interacted")
+			actions_sent.emit("note_interacted", note_num)
+	if Input.is_action_just_pressed("pause") and near:
+		if show_status:
+			get_viewport().set_input_as_handled()
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
+			show_status = false 
+			NoteManager.hide_note()
+			player.stay = false
+			player.collision.scale = Vector2(1,1)
+			player.collision.position = Vector2(0, -2.143)
+			actions_sent.emit("note_closed", note_num)
+		elif not show_status:
+			pass

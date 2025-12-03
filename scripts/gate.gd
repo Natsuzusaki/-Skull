@@ -8,17 +8,18 @@ extends StaticBody2D
 @export var is_else: bool = false
 @export var new: bool = false
 var target: Vector2
+var current_pos: Vector2
 var status := false
 
 func _ready() -> void:
-	pass
+	current_pos = global_position
 
 func activate(continuous: bool, time: float) -> void:
 	if not continuous:
 		status = not status
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.LEVEL_BUTTON)
 	if new:
-		target = new_pos
+		target = new_pos if status else current_pos
 	else:
 		target = (global_position + new_pos) if not status else (global_position - new_pos)
 	var tween = create_tween()

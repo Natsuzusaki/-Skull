@@ -11,6 +11,21 @@ font_color = Color(1, 1, 0, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_k0jg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstLine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-35, -9)]
+}
+
 [sub_resource type="Animation" id="Animation_npj7h"]
 resource_name = "new_animation"
 loop_mode = 1
@@ -27,21 +42,6 @@ tracks/0/keys = {
 "values": [Vector2(-35, -9), Vector2(-35, -2)]
 }
 
-[sub_resource type="Animation" id="Animation_k0jg3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FirstLine:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-35, -9)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lydg8"]
 _data = {
 &"RESET": SubResource("Animation_k0jg3"),
@@ -54,6 +54,7 @@ statement = "func move():
 	gate.position.x = "
 
 [node name="FirstLine" type="VBoxContainer" parent="."]
+z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

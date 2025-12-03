@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ecql172a61ma"]
+[gd_scene load_steps=5 format=3 uid="uid://ecql172a61ma"]
 
 [ext_resource type="Script" uid="uid://cg534wj40i3l6" path="res://scripts/room_loop.gd" id="1_177h3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5l12"]
-size = Vector2(16, 64)
+size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnfbl"]
+size = Vector2(128, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_177h3"]
-size = Vector2(16, 160)
+size = Vector2(208, 16)
 
 [node name="RoomLoop" type="Area2D" groups=["LoopRoom"]]
 collision_layer = 0
@@ -20,6 +23,11 @@ debug_color = Color(1, 0, 0, 0.41960785)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(472, 192)
 shape = SubResource("RectangleShape2D_o5l12")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, -256)
+shape = SubResource("RectangleShape2D_mnfbl")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Area" type="Area2D" parent="."]

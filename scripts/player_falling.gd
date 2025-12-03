@@ -13,7 +13,9 @@ func exit() -> void:
 	pass
 
 func process_input(_event: InputEvent) -> PlayerState:
-	if Input.is_action_pressed("carry") and Input.is_action_pressed("up"):
+	if parent.stay or parent.dead:
+		return null
+	if Input.is_action_pressed("up"):
 		parent.up_throw()
 	if Input.is_action_pressed("carry"):
 		parent.carry()
@@ -33,11 +35,13 @@ func process_input(_event: InputEvent) -> PlayerState:
 
 func process_physics(delta: float) -> PlayerState:
 	if not parent.is_on_floor():
-		parent.velocity.y += parent.gravity() * delta
+		parent.velocity.y += parent.gravity() * delta + parent.external_force.y * delta
 	parent.move(delta, move_speed)
 	return null
 
 func process_frame(_delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		return null
 	if parent.is_on_floor():
 		if Input.get_axis("left", "right"):
 			return run_state

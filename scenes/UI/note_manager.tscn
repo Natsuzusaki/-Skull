@@ -32,75 +32,87 @@ unique_name_in_owner = true
 position = Vector2(640, 360)
 
 [node name="Note1" type="Sprite2D" parent="Instructions"]
+z_index = 20
 position = Vector2(-0.110344, 1.23978e-05)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("2_wb6ox")
 
 [node name="Note2" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("3_ssm08")
 
 [node name="Note3" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("4_utwsd")
 
 [node name="Note4" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("5_utwsd")
 
 [node name="Note5" type="Sprite2D" parent="Instructions"]
 visible = false
-position = Vector2(-271.99997, 7.62939e-06)
+z_index = 20
+position = Vector2(0, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("7_0gnik")
 
 [node name="Note6" type="Sprite2D" parent="Instructions"]
 visible = false
-position = Vector2(272.00003, 7.62939e-06)
+z_index = 20
+position = Vector2(3.0517578e-05, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("8_2ni1o")
 
 [node name="Note7" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("9_fab4a")
 
 [node name="Note8" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("10_rgr4i")
 
 [node name="Note9" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("11_fab4a")
 
 [node name="Note10" type="Sprite2D" parent="Instructions"]
 visible = false
+z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("12_rgr4i")
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+z_index = 21
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -1144.0
-offset_top = 320.0
-offset_right = -890.0
-offset_bottom = 343.0
+offset_left = -752.0
+offset_top = 324.0
+offset_right = -498.0
+offset_bottom = 347.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_woc00")
-text = "Press \"E\" to close"
+text = "Press \"Esc\" to close"
 horizontal_alignment = 2

@@ -80,17 +80,18 @@ func _process(_delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
 		timerr.visible = true
+	if not grid.visible:
+		timerr.visible = true
+		progress_bar.visible = true
 	_save_time_on_death()
-
-	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
 			grid.visible = true
 			timerr.visible = false
+			progress_bar.visible = false
 		else:
 			grid.visible = false
-			timerr.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
 			_pause_game()

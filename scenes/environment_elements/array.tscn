@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="2_uywlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctlna"]
-size = Vector2(80, 32)
+size = Vector2(80, 8)
 
 [node name="Array" type="Area2D" groups=["Storage"]]
 collision_layer = 0
@@ -12,6 +12,7 @@ collision_mask = 4096
 script = ExtResource("1_c7e12")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_ctlna")
 
 [node name="Fill0" type="Sprite2D" parent="."]
@@ -48,4 +49,21 @@ texture = ExtResource("2_uywlu")
 region_enabled = true
 region_rect = Rect2(80, 70, 96, 58)
 
+[node name="OutLine" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uywlu")
+region_enabled = true
+region_rect = Rect2(72, 128, 112, 64)
+
+[node name="InstanceTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

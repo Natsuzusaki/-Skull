@@ -11,6 +11,7 @@ extends TileMapLayer
 @export var inputs: Array[InputRef] = []
 
 @onready var camera: Camera2D = %Camera
+@onready var out_line: TileMapLayer = $OutLine
 
 signal grid_pos_changed(new_pos: Vector2)
 
@@ -19,26 +20,31 @@ var _last_grid_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	target = global_position
-	await get_tree().process_frame  # wait 1 frame so camera snaps
+	await get_tree().process_frame 
 	_last_grid_pos = get_grid_coords(32)
 	camera.screen_snapped.connect(func(_screen, _world_center):
-		# Re-align to camera center whenever it moves
 		_last_grid_pos = get_grid_coords(32)
 		#print("[%s] re-synced grid to %s" % [name, _last_grid_pos])
 	)
 	for ref in inputs:
-		var plat = get_node_or_null(ref.platform)
-		if plat:
-			if plat.has_signal("grid_pos_changed"):
-				plat.grid_pos_changed.connect(func(_pos): recalculate())
+		var node = get_node_or_null(ref.platform)
+		if node:
+			if node.has_signal("array_changed"):
+				node.array_changed.connect(func(_val): recalculate())
+			if node.has_signal("grid_pos_changed"):
+				node.grid_pos_changed.connect(func(_pos): recalculate())
 	if inputs.size() > 0:
 		recalculate()
+func outline(activate:bool) -> void:
+	if activate:
+		out_line.visible = true
+	else:
+		out_line.visible = false
 
 # ----------------------------
 # Grid helpers (tile coords relative to camera)
 # ----------------------------
 func get_grid_coords(tile_size: float = 32.0) -> Vector2:
-	# diff relative to snapped camera center
 	var diff: Vector2 = global_position - camera.global_position
 	var coords: Vector2 = (diff / tile_size).round()
 	coords.y = -coords.y
@@ -47,7 +53,6 @@ func get_grid_coords(tile_size: float = 32.0) -> Vector2:
 func grid_to_world(coords: Vector2, tile_size: float = 32.0) -> Vector2:
 	var pos = coords * tile_size
 	pos.y = -pos.y
-	# anchor world space back to camera center
 	return camera.global_position + pos
 
 func get_grid_pos() -> Vector2:
@@ -121,11 +126,18 @@ func recalculate() -> void:
 		if plat == null:
 			continue
 		var pos: Vector2
-		if plat.has_method("get_grid_pos"):
-			pos = plat.get_grid_pos()
+		if plat.has_method("get_at") and ref.index >= 0:
+			var val = plat.get_at(ref.index)
+			if typeof(val) == TYPE_INT:
+				pos = Vector2(val, val)
+			else:
+				continue
 		else:
-			pos = ((plat.global_position - camera.global_position) / 32.0).round()
-			pos.y = -pos.y
+			if plat.has_method("get_grid_pos"):
+				pos = plat.get_grid_pos()
+			else:
+				pos = ((plat.global_position - camera.global_position) / 32.0).round()
+				pos.y = -pos.y
 		var axis = String(ref.axis).to_lower()
 		var op   = String(ref.operation).to_lower()
 		if axis == "x":

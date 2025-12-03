@@ -24,7 +24,7 @@ func _process(delta) -> void:
 func stop():
 	set_process(false)
 	total_time = "%02d:%02d:%02d" % [hr, minute, sec]
-	print(total_time)
+	#print(total_time)
 
 
 func update_display() -> void:
@@ -38,8 +38,8 @@ func update_display() -> void:
 
 func pause() -> void:
 	set_process(false)
-	print("     TIMER PAUSED")
+	#print("     TIMER PAUSED")
 
 func start() -> void:
 	set_process(true)
-	print("     TIMER STARTED")
+	#print("     TIMER STARTED")

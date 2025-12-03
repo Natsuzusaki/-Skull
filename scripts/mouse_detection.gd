@@ -9,16 +9,20 @@ extends Area2D
 @onready var platform: Panel = $CanvasLayer/UI/Platform
 @onready var array: Panel = $CanvasLayer/UI/Array
 @onready var array_name: Label = $CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/Name
-@onready var array_value: Label = $CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/Value
+@onready var array_size: Label = $CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/Size
+@onready var array_value: RichTextLabel = $CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/Value
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dot: Sprite2D = $Sprite2D
+var hovered: bool = false
+var UI_status: bool = false
 
 func _ready() -> void:
 	if is_array:
 		dot.visible = false
-		array_name.text = parent.arr_name
+		array_name.text = parent.display_name
 		format()
 		return
+	print(parent)
 	if parent.move_in_x and parent.move_in_y:
 		movement_coords.text = "X and Y coords"
 	elif parent.move_in_x and not parent.move_in_y:
@@ -45,36 +49,71 @@ func _process(_delta: float) -> void:
 		current_coords.text = "x (%d, %d) y" % [pos.x, pos.y]
 
 func format() -> void:
-	var formatted = []
+	var formatted := []
 	for x in parent.inputs:
+		var text := ""
 		if x is String:
-			formatted.append('"' + str(x) + '"')
+			text = '[color=orange]"%s"[/color]' % x
+		elif x is int:
+			text = "[color=blue]%s[/color]" % x
+		elif x is float:
+			text = "[color=green]%s[/color]" % x
+		elif x is bool:
+			text = "[color=red]%s[/color]" % ("true" if x else "false")
 		else:
-			formatted.append(str(x))
-	array_value.text = ", ".join(formatted)
+			text = str(x)
+		formatted.append(text)
+	array_value.bbcode_enabled = true
+	var final_text := "[ " + ", ".join(formatted) + " ]"
+	array_value.parse_bbcode(final_text)
+	array_size.text = str(parent.inputs.size())
+
 
 func _on_mouse_entered() -> void:
-	if is_array:
-		array.visible = true
-	else:
-		platform.visible = true
-	animation_player.play("pop_up")
+	hovered = true
 func _on_mouse_exited() -> void:
-	animation_player.play("pop_down")
-	if is_array:
-		array.visible = false
-	else:
-		platform.visible = false
+	hovered = false
 
 func _on_area_entered(_body: Node2D) -> void:
+	pass
+	#if is_array:
+		#array.visible = true
+	#else:
+		#platform.visible = true
+	#animation_player.play("pop_up")
+func _on_area_exited(_body: Node2D) -> void:
+	pass
+	#animation_player.play("pop_down")
+	#if is_array:
+		#array.visible = false
+	#else:
+		#platform.visible = false
+
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if hovered and event is InputEventMouseButton and event.pressed:
+		if UI_status:
+			hide_self()
+			UI_status = false
+		else:
+			show_self()
+			UI_status = true
+
+func show_self():
+	if UiManager.current_open and UiManager.current_open != self:
+		UiManager.current_open.hide_self()
 	if is_array:
+		parent.outline(true)
 		array.visible = true
 	else:
+		parent.outline(true)
 		platform.visible = true
 	animation_player.play("pop_up")
-func _on_area_exited(_body: Node2D) -> void:
-	animation_player.play("pop_down")
+	UiManager.current_open = self
+func hide_self():
 	if is_array:
+		parent.outline(false)
 		array.visible = false
 	else:
+		parent.outline(false)
 		platform.visible = false
+	animation_player.play("pop_down")

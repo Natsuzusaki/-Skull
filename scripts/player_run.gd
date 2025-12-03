@@ -9,11 +9,11 @@ func enter() -> void:
 	parent.debug.text = "run"
 
 func process_input(_event: InputEvent) -> PlayerState:
-	if parent.stay:
-		return idle_state
+	if parent.stay or parent.dead:
+		return null
 	if Input.is_action_just_pressed("down"):
 		parent.down()
-	if Input.is_action_pressed("carry") and Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up"):
 		parent.up_throw()
 	if Input.is_action_pressed("carry"):
 		parent.carry()
@@ -27,8 +27,11 @@ func process_input(_event: InputEvent) -> PlayerState:
 	return null
 
 func process_physics(delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		parent.velocity = Vector2.ZERO
+		return null
 	if not parent.is_on_floor() and not parent.can_coyote_jump:
-		parent.velocity.y += parent.gravity() * delta
+		parent.velocity.y += parent.gravity() * delta + parent.external_force.y * delta
 	parent.move(delta, move_speed)
 	if not parent.dynamic_direction:
 		return idle_state
@@ -37,6 +40,8 @@ func process_physics(delta: float) -> PlayerState:
 	return null
 
 func process_frame(_delta: float) -> PlayerState:
+	if parent.stay or parent.dead:
+		return null
 	if parent.jump_buffered and parent.is_on_floor() and not parent.is_jump_pressed:
 		parent.is_jump_pressed = true
 		parent.jump()

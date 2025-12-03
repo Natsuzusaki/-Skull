@@ -25,7 +25,6 @@ extends Node2D
 @onready var restart_label: Label = $Labels/Restart
 @onready var restart_label2: Label = $Labels/Restart2
 @onready var restart_label3: Label = $Labels/Restart3
-@onready var level_name: Panel = $Labels/LevelName
 #----Area2D
 @onready var console1: Area2D = $Consoles/Console
 @onready var button_2: Area2D = $Buttons/Button2
@@ -108,10 +107,7 @@ func start() -> void:
 func entered_last_area() -> void:
 	pass
 func title_fadeout() -> void:
-	await wait(0.2)
-	fade_in(level_name)
-	await wait(5)
-	fade_out(level_name)
+	chapter_intro.show_intro()
 
 #----Processes
 func _process(_delta: float) -> void:
@@ -139,7 +135,14 @@ func wait(time: float) -> void:
 func dialogue(talk: String) -> void:
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/test.dialogue"), talk)
 func newdialogue(talk: String) -> void:
+	timerr.pause()
+	timerr.visible = false
+	progress_bar.visible = false
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue1.dialogue"), talk)
+func dialogue_end() -> void:
+	timerr.start()
+	timerr.visible = true
+	progress_bar.visible = true
 func turn_dark_light(value) -> void:
 	var tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", value, 1)
@@ -227,7 +230,7 @@ func _on_asri_2_body_entered(_body: Node2D) -> void:
 	tween.tween_property(secretground, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
 
 #----Signals
-func _actions_recieved(action:String) -> void:
+func _actions_recieved(action:String, _num:int = 0) -> void:
 	if new_talkctr == 2 and action.contains("note_closed"):
 		new_talkctr = 3
 		newdialogue("talk3")

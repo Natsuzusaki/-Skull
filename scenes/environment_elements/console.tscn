@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://du1dou86xpprf" path="res://scripts/scriptvalidator.gd" id="2_kxyyb"]
 [ext_resource type="Texture2D" uid="uid://blj7xjycbvr2i" path="res://assets/images/console1.png" id="3_buc2e"]
 [ext_resource type="Script" uid="uid://df3vh6ys1xxhu" path="res://scripts/datatype_changer.gd" id="4_bptkf"]
-[ext_resource type="Texture2D" uid="uid://cw27pmkod1t64" path="res://assets/images/console2.png" id="4_oh7pb"]
+[ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="6_jrj24"]
 [ext_resource type="Texture2D" uid="uid://dcydk3mfwaanh" path="res://assets/images/console3.png" id="7_ifr1o"]
 [ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="8_jrj24"]
 
@@ -310,7 +310,9 @@ texture = ExtResource("3_buc2e")
 [node name="Console_Near" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 40)
-texture = ExtResource("4_oh7pb")
+texture = ExtResource("6_jrj24")
+region_enabled = true
+region_rect = Rect2(8, 136, 48, 64)
 
 [node name="Console_Off" type="Sprite2D" parent="."]
 visible = false

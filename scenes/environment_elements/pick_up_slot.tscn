@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dy36u8ylyhf5w" path="res://assets/fonts/mac's Minecraft Bold.ttf" id="2_j1yy5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1yy5"]
-size = Vector2(88, 16)
+size = Vector2(136, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2pid2"]
 font = ExtResource("2_j1yy5")
@@ -24,7 +24,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp_Area"]
-position = Vector2(-46, 0)
+position = Vector2(-70, 0)
 shape = SubResource("RectangleShape2D_j1yy5")
 
 [node name="Text" type="Label" parent="."]

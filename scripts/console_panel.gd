@@ -5,6 +5,8 @@ extends Area2D
 @export_multiline var base_text: String
 @export_multiline var fixed_var: String
 @export var outputs: Dictionary = {}
+@export var specific_printer: Array = []
+@export var console2_5: bool = false
 
 @onready var player: CharacterBody2D = %Player
 @onready var camera: Camera2D = %Camera
@@ -25,20 +27,49 @@ var valid := false #is the script valid
 var restart_text := false #restart fixed variables
 var value = null #player script
 var array_value = [] #player script
+var printer_isbroken := false
+var prevent_close := false
+var control_regex = RegEx.new()
 
 signal print_value()
 signal actions_sent()
 
 func _ready() -> void:
+	if console2_5:
+		code_edit.release_focus()
+		control.hide()
 	limit.text += str(characterlimit)
 	label.text = fixed_var
 	code_edit.placeholder_text = base_text
+func printer_status(user_code:String) -> bool:
+	control_regex.compile(r"print\s*\(([^)]*)\)")
+	if all_connected_printers_broken():
+		if control_regex.search(user_code):
+			return true
+	return false
+func all_connected_printers_broken() -> bool:
+	if specific_printer.is_empty():
+		return false
+	for path in specific_printer:
+		var printer: Node = null
+		if typeof(path) == TYPE_NODE_PATH:
+			printer = get_node_or_null(path)
+		elif typeof(path) == TYPE_STRING:
+			printer = get_node_or_null(NodePath(path))
+		if printer == null:
+			continue
+		if not printer.broken:
+			return false
+	return true
 
 #WAS my greatest dissapointments, but now i fucking love it!
 func execute_code(user_code: String) -> bool:
 	var script = GDScript.new()
 	if user_code.is_empty():
 		label.text = "Error: No Script"
+		return false
+	if printer_status(user_code):
+		label.text = "Error: All connected printers are broken"
 		return false
 	if text_validator.detect_infinite_loops(user_code):
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
@@ -74,7 +105,7 @@ func custom_print(varargs: Array) -> void:
 func run():
 %s
 """ % [var_assignments, init_assignments, formatted_code]
-	print(full_script) #debug
+	#print(full_script) #debug
 	#print(outputs)
 	if formatted_code.is_empty():
 		return false
@@ -117,7 +148,6 @@ func _on_body_entered(_body: Node2D) -> void:
 		return
 	player.near_console = true
 	state = ConsoleState.NEAR
-	consolesprite.visible = false
 	consolesprite_near.visible = true
 	label.text = fixed_var
 	button.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -128,7 +158,6 @@ func _on_body_exited(_body: Node2D) -> void:
 	player.near_console = false
 	camera.back()
 	state = ConsoleState.IDLE
-	consolesprite.visible = true
 	consolesprite_near.visible = false
 	button.modulate = Color(1.0, 1.0, 1.0, 0.0)
 func _on_code_edit_focus_entered() -> void:
@@ -151,6 +180,7 @@ func console_exit() -> void:
 	code_edit.release_focus()
 	pop_up_animation.play("pop_down")
 	control.hide()
+	actions_sent.emit("console_exited", "")
 func interacted() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	state = ConsoleState.INTERACTING
@@ -162,19 +192,21 @@ func interacted() -> void:
 	code_edit.grab_focus()
 	control.show()
 	pop_up_animation.play("pop_up")
-	actions_sent.emit("console_focused")
+	actions_sent.emit("console_focused", "")
 func code_run() -> void:
 	array_value.clear()
 	var user_code = code_edit.text
+	actions_sent.emit("console_run", user_code)
 	var success = execute_code(user_code)
 	if success:
-		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
-		player.stay = false
-		player.on_console = false
-		camera.back()
-		control.hide()
-		state = ConsoleState.NEAR
-		actions_sent.emit("console_run")
+		if not prevent_close:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
+			player.stay = false
+			player.on_console = false
+			camera.back()
+			control.hide()
+			state = ConsoleState.NEAR
+		prevent_close = false
 	else:
 		SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ERROR)
 		player.stay = true
@@ -183,6 +215,12 @@ func code_run() -> void:
 		camera.focus_on_point(self)
 		#label.text += "\n(Fix the error and \ntry again.)"
 
+func stay() -> void:
+	control.show()
+	player.stay = true
+	player.on_console = true
+	state = ConsoleState.INTERACTING
+	camera.focus_on_point(self)
 func retrigger(val) -> void:
 	_on_body_entered(val)
 
@@ -193,6 +231,7 @@ func _process(_delta: float) -> void:
 		console_off.visible = true
 	else:
 		console_off.visible = false
+		consolesprite.visible = true
 func _unhandled_input(_event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:

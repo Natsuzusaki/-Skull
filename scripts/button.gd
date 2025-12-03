@@ -51,6 +51,12 @@ func activate() -> void:
 				output.change()
 		elif output is Camera2D:
 			output.unlock()
+		elif output is TileMapLayer:
+			if button_status:
+				output.move(17, "x")
+				get_parent().get_parent().change_text()
+			else:
+				output.move(12, "x")
 	if one_use:
 		disabled = true
 

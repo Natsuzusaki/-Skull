@@ -1,74 +1,48 @@
 ~ talk1
-do player.sprite_animation("action")
-do wait(1)
-do star.visible = false
-do player.sprite_animation("idle")
-Yuna: What is this? It looks like one of those glasses you use when handling chemicals in a laboratory
-- Safety Glasses?
-Yuna: Yeah that, but it could be a visor or something
-Yuna: It's very thin, not good for protecting
-Yuna: [do player.sprite_animation("action")]Im gonna wear it anyways 
-Yuna: [do player.sprite_animation("idle")]I love glasses 
 do player.stay = false
 do camera.back()
 do Cutscene.end_cutscene()
-do timerr.visible = true
-do timerr.start()
+do dialogue_end()
 do ctr = true
+do SaveManager.update_save({"Chapter2": {"flags": {"talk1": true}}})
 => END!
 
 ~ talk2
 do timerr.visible = false
 do timerr.pause()
-Yuna: Integer? Throw? Where do we even throw the integer?
-- In that question mark?
-do camera.focus_on_point(code_block)
-Yuna: Sure Einstein, we'll try that later
-do camera.focus_on_player(true, true)
-Yuna: The big question is where are we suppose to see a grid?
-- Glasses
-Yuna: These thing? really?
-Yuna: I have to double check
-Yuna: Yeah theres a note inside, don't tell me how i didn't notice it at first
-Yuna: the note says "Press G to see grid"
-Yuna: 😤
-Yuna: Wow how blatant, i think someone is running out of ideas
-Yuna: What else are we missing?
-Yuna: Oh yeah what are we moving anyway?
-- Integer
-	do camera.focus_on_point(int_obj)
-	Yuna: Not sure, we can already move them ourself
-	Yuna: I don't think thats it
-	Yuna: How about that wall
-- Yuna
-	Yuna: Do I look like I'm disabled?
-	Yuna: Try finding an object we can't move, like that wall blocking our way
-- Wall
-do camera.focus_on_point(wall)
-Yuna: That wall does look suspicious
-Yuna: And it has a dot in the middle
-do camera.back()
-do wait(0.5)
-do grid.visible = true
-Yuna: And it lines up in the grid
-do grid.visible = false
-Yuna: Let me try something
-do mouse_target = mouse_move.global_position
+Yuna: I think you can click on that wall to check its properties.
+Yuna: [do mouse_target = mouse_move.global_position][do yuna_mouse_move = true]Like this...
+Yuna: Now you can see what axis the wall can move to.
+Yuna: Remember this, any object with a white dot can be moved.
+Yuna: Goodluck!
+do mouse_target = Vector2(832,640)
 do yuna_mouse_move = true
 do player.stay = false
 do Cutscene.end_cutscene()
-do timerr.visible = true
-do timerr.start()
+do dialogue_end()
+do SaveManager.update_save({"Chapter2": {"flags": {"talk2": true}}})
+=> END!
+
+~ talk2_5
+do timerr.visible = false
+do timerr.pause()
+Yuna: That was quick!
+Yuna: Before we move on, do you see that white dot?
+Yuna: Any object with a white dot can be moved.
+Yuna: You can even click it with your mouse to see its properties.
+Yuna: [do mouse_target = mouse_move.global_position][do yuna_mouse_move = true]Like this...
+Yuna: Now you can see what axis the wall can move to.
+Yuna: Goodluck! Hope this helps.
+do mouse_target = Vector2(832,640)
+do yuna_mouse_move = true
+do player.stay = false
+do Cutscene.end_cutscene()
+do dialogue_end()
+do SaveManager.update_save({"Chapter2": {"flags": {"talk3": true}}})
 => END!
 
 ~ talk3
-Yuna: That should help you figuring things out 😋😋😋
-Yuna: Goodluck Eisntein!
-do mouse_target = Vector2(832,640)
-do yuna_mouse_move = true
-=> END!
-
-~ talk4
-Yuna: ouch
+Yuna: Thanks i guess...
 do camera.back()
+do dialogue_end()
 => END!

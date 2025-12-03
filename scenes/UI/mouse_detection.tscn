@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dm3a5jhuecy5i"]
+[gd_scene load_steps=20 format=3 uid="uid://dm3a5jhuecy5i"]
 
 [ext_resource type="Script" uid="uid://bo4vm7vef4lfd" path="res://scripts/mouse_detection.gd" id="1_e6v1y"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_fumoj"]
@@ -43,14 +43,6 @@ font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_d6kmt"]
 font = ExtResource("2_fumoj")
-font_size = 8
-
-[sub_resource type="LabelSettings" id="LabelSettings_fumoj"]
-font = ExtResource("2_fumoj")
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_pjuo8"]
-font = ExtResource("3_h4ssr")
 font_size = 8
 
 [sub_resource type="Animation" id="Animation_htcs7"]
@@ -153,9 +145,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -64.0
+offset_top = -60.0
 offset_right = 64.0
-offset_bottom = 40.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(64, 40)
@@ -253,10 +245,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -12.0
-offset_right = 24.0
-offset_bottom = 8.0
+offset_left = -24.0
+offset_top = -39.999992
+offset_right = 27.428528
+offset_bottom = 12.571419
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fumoj")
@@ -304,6 +296,17 @@ label_settings = SubResource("LabelSettings_txh40")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label3" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "size:"
+label_settings = SubResource("LabelSettings_d6kmt")
+
+[node name="Size" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_txh40")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Label" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "value:"
@@ -313,30 +316,21 @@ label_settings = SubResource("LabelSettings_d6kmt")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "["
-label_settings = SubResource("LabelSettings_fumoj")
-
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Value" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer"]
+[node name="Value" type="RichTextLabel" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-label_settings = SubResource("LabelSettings_pjuo8")
+theme_override_fonts/normal_font = ExtResource("3_h4ssr")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+autowrap_trim_flags = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/UI/Array/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "]"
-label_settings = SubResource("LabelSettings_fumoj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -351,5 +345,6 @@ region_rect = Rect2(195, 163, 10, 10)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

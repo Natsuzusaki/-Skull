@@ -31,6 +31,7 @@ NoteManager="*res://scenes/UI/note_manager.tscn"
 DeathFog="*res://scenes/UI/death_fog.tscn"
 SfxManager="*res://scenes/UI/sfx_manager.tscn"
 Balloon="*res://scenes/UI/balloon.tscn"
+UiManager="*res://scripts/UIManager.gd"
 
 [dialogue_manager]
 

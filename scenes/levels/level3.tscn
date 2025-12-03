@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://8tx6hbgw5w6u"]
+[gd_scene load_steps=73 format=4 uid="uid://8tx6hbgw5w6u"]
 
 [ext_resource type="Script" uid="uid://dfn1v4ns41qgb" path="res://scripts/level3.gd" id="1_edoqj"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="2_ahaer"]
@@ -66,6 +66,9 @@ size = Vector2(224, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsxft"]
 size = Vector2(28, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1mne"]
+size = Vector2(32, 64)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k7ufq"]
 blend_mode = 3
@@ -458,6 +461,7 @@ environment = SubResource("Environment_ahaer")
 color = Color(0.31764707, 0.62352943, 0.79607844, 1)
 
 [node name="Rooms" type="Node2D" parent="."]
+visible = false
 
 [node name="Room1" type="Area2D" parent="Rooms"]
 
@@ -642,6 +646,13 @@ min_limit = Vector2(3696, 1088)
 max_limit = Vector2(4432, 1488)
 move_in_x = true
 
+[node name="MouseDetection" parent="Printers/Printer7" node_paths=PackedStringArray("parent") instance=ExtResource("8_edoqj")]
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Printers/Printer7/MouseDetection"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_d1mne")
+
 [node name="Printer8" parent="Printers" node_paths=PackedStringArray("console") instance=ExtResource("2_ahaer")]
 position = Vector2(1864, 72)
 console = NodePath("../../Consoles/Console9")
@@ -729,7 +740,7 @@ new_pos = Vector2(0, -126)
 move_in_y = true
 
 [node name="Gate14" parent="Gates" instance=ExtResource("3_wt4k6")]
-position = Vector2(3693, 787)
+position = Vector2(3688, 864)
 scale = Vector2(0.97798026, 1.0009922)
 new_pos = Vector2(0, 125)
 min_limit = Vector2(3616, 1088)
@@ -748,7 +759,7 @@ collision_enabled = false
 [node name="Customizable_Platform" parent="Platforms" instance=ExtResource("15_0qxt0")]
 position = Vector2(2304, 64)
 tile_map_data = PackedByteArray("AAABAAIAAAAIAA0AAAABAAEAAAAIAAwAAAABAAAAAAAIAAwAAAABAP//AAAIAAwAAAABAP7/AAAIAAwAAAABAP3/AAAIAAsAAAAAAAIAAAAHAA0AAAAAAAEAAAAHAAwAAAAAAAAAAAAHAAwAAAAAAP//AAAHAAwAAAAAAP7/AAAHAAwAAAAAAP3/AAAHAAsAAAD//wIAAAAHAA0AAAD//wEAAAAHAAwAAAD//wAAAAAHAAwAAAD/////AAAHAAwAAAD///7/AAAHAAwAAAD///3/AAAHAAsAAAD+/wIAAAAGAA0AAAD+/wEAAAAGAAwAAAD+/wAAAAAGAAwAAAD+////AAAGAAwAAAD+//7/AAAGAAwAAAD+//3/AAAGAAsAAAABAPz/AAAOAAkAAAAAAPz/AAAOAAkAAAD///z/AAAOAAkAAAD+//z/AAAOAAkAAAD+/wMAAAAOAAkAACD//wMAAAAOAAkAACAAAAMAAAAOAAkAACABAAMAAAAOAAkAACA=")
-platform_name = "plat1"
+platform_name = "plat"
 min_limit = Vector2(1824, 32)
 max_limit = Vector2(2688, 448)
 move_in_x = false
@@ -1177,7 +1188,7 @@ characterlimit = 20
 base_text = "  "
 fixed_var = ""
 outputs = {
-"plat1": NodePath("../../Platforms/Customizable_Platform")
+"plat": NodePath("../../Platforms/Customizable_Platform")
 }
 
 [node name="PressurePlates" type="Node2D" parent="."]
@@ -1373,12 +1384,14 @@ position = Vector2(2816, 712)
 statement = "
 	platform.position.x = 
 "
+control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform2")]
 
 [node name="Code_Blocks2" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
 position = Vector2(1232, 744)
 statement = "
 	printer.position.x "
+control_axis = "x"
 outputs = [NodePath("../../Printers/Printer7")]
 
 [node name="Objects" type="Node2D" parent="."]
@@ -1396,7 +1409,7 @@ value = false
 
 [node name="Player" parent="." instance=ExtResource("12_ojkn5")]
 unique_name_in_owner = true
-position = Vector2(5267, 1179)
+position = Vector2(4560, 1168)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -1976,7 +1989,7 @@ _3star = 35
 _2star = 40
 
 [node name="ChapterIntro" parent="." instance=ExtResource("29_flme0")]
-title = "Chapter 3:
+title = "Level 3:
 
 Booleans, Conditionals
 & if else"

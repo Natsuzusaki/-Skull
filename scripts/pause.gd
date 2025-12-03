@@ -16,7 +16,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	var root_name: String
 	if root:
 		root_name = root.name
-	print(root_name)
+	#print(root_name)
 	if root_name in ["Level1", "Level2", "Level3", "Level4"]:
 		if Input.is_action_just_pressed("pause"):
 			if self.visible and not settings.visible:
