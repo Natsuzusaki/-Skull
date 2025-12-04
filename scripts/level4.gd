@@ -71,14 +71,11 @@ func _ready() -> void:
 			player.global_position = Vector2(pos[0], pos[1])
 		if chapter4.has("checkpoint_order"):
 			if chapter4["checkpoint_order"] == 1.0:
-				condition_ctr = 1
 				gate2.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 2.0:
-				condition_ctr = 2
 				gate2.activate(false, 0.5)
 				gate1.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 3.0:
-				condition_ctr = 3
 				gate1.activate(false, 0.5)
 				gate2.activate(false, 0.5)
 				gate3.activate(false, 0.5)
@@ -86,7 +83,6 @@ func _ready() -> void:
 				gate5.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 5.0:
 				loop1.queue_free()
-				condition_ctr = 3
 				gate1.activate(false, 0.5)
 				gate2.activate(false, 0.5)
 				gate3.activate(false, 0.5)
@@ -94,7 +90,6 @@ func _ready() -> void:
 				gate5.activate(false, 0.5)
 			if chapter4["checkpoint_order"] == 6.0:
 				loop2.queue_free()
-				condition_ctr = 4
 				gate1.activate(false, 0.5)
 				gate2.activate(false, 0.5)
 				gate3.activate(false, 0.5)
@@ -216,34 +211,29 @@ func _actions_recieved2(action:String, user_code:= "") -> void:
 func _array_action(action:String, array_name:String, _value=null, _index=null) -> void:
 	match array_name:
 		array1.arr_name:
-			if action == "append_fill" and array1.inputs.size() == 5 and condition_ctr == 1:
+			if action == "append_fill" and array1.inputs.size() == 5:
 				await wait(0.7)
 				gate1.activate(false, 0.5)
-				condition_ctr = 2
 		array2.arr_name:
-			if action == "print_fill" and array2.inputs.size() == 5 and condition_ctr == 0:
+			if action == "print_fill" and array2.inputs.size() == 5:
 				await wait(0.7)
 				gate2.activate(false, 0.5)
-				condition_ctr = 1
 		array3.arr_name:
-			if action == "removed" and array3.inputs.size() == 5 and condition_ctr == 2:
+			if action == "removed" and array3.inputs.size() == 5:
 				await wait(0.7)
 				gate5.activate(false, 0.5)
 				a1 = true
-				condition3(a1, a2)
 		array4.arr_name:
-			if array4.inputs.size() == 0 and condition_ctr == 2:
+			if array4.inputs.size() == 0:
 				await wait(0.7)
 				gate4.activate(false, 0.5)
 				a2 = true
-				condition3(a1, a2)
 		array8.arr_name:
-			if array8.inputs.size() >= 50 and condition_ctr == 3:
+			if array8.inputs.size() >= 50:
 				await wait(0.7)
 				gate6.activate(false, 0.5)
-				condition_ctr = 4
 		array9.arr_name:
-			if condition_ctr == 4:
+			if condition_ctr == 0:
 				var target = "repetitiveness".split("")
 				var idx = 0
 				for item in array9.inputs:
@@ -253,11 +243,10 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 							break
 				if idx == target.size():
 					console5.code_edit.placeholder_text = "for value in list2:\n\tlist1.append(?)"
-					array9.clear()
 					await wait(0.7)
 					gate7.activate(false, 0.5)
-					condition_ctr = 5
-			elif condition_ctr == 5:
+					condition_ctr = 1
+			elif condition_ctr == 1:
 				array9.inputs.sort()
 				array10.inputs.sort()
 				var arr1 = array10.inputs
@@ -265,7 +254,7 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 				if arr1 == arr2:
 					await wait(0.7)
 					gate8.activate(false, 0.5)
-					condition_ctr = 6
+					condition_ctr = 2
 
 	#print("MATCH: " + array_name +"\nACTION: "+ action +"\nCTR: " + str(condition_ctr) + "\nPLEASE: " + str(array1.inputs.size()))
 func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:

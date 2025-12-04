@@ -21,6 +21,8 @@ var disabled := false
 var is_near := false
 var button_status := false #false-off, true-on
 
+#signal button_action
+
 func _on_body_entered(_body: Node2D) -> void:
 	is_near = true
 	if not disabled:
@@ -55,6 +57,7 @@ func activate() -> void:
 			if button_status:
 				output.move(17, "x")
 				get_parent().get_parent().change_text()
+				get_parent().get_parent().array9.clear()
 			else:
 				output.move(12, "x")
 	if one_use:
