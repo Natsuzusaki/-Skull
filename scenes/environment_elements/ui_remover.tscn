@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc4i8yotb1ccr"]
+
+[ext_resource type="Script" uid="uid://ccvey7dccqtni" path="res://scripts/ui_remover.gd" id="1_sudqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25gyp"]
+size = Vector2(16, 64)
+
+[node name="UI_Remover" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_sudqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_25gyp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

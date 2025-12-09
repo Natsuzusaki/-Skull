@@ -46,6 +46,7 @@ func printer_status(user_code:String) -> bool:
 	if all_connected_printers_broken():
 		if control_regex.search(user_code):
 			return true
+	
 	return false
 func all_connected_printers_broken() -> bool:
 	if specific_printer.is_empty():
@@ -180,7 +181,7 @@ func console_exit() -> void:
 	code_edit.release_focus()
 	pop_up_animation.play("pop_down")
 	control.hide()
-	actions_sent.emit("console_exited", "")
+	actions_sent.emit("console_exited", "", self)
 func interacted() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	state = ConsoleState.INTERACTING
@@ -192,11 +193,11 @@ func interacted() -> void:
 	code_edit.grab_focus()
 	control.show()
 	pop_up_animation.play("pop_up")
-	actions_sent.emit("console_focused", "")
+	actions_sent.emit("console_focused", "", self)
 func code_run() -> void:
 	array_value.clear()
 	var user_code = code_edit.text
-	actions_sent.emit("console_run", user_code)
+	actions_sent.emit("console_run", user_code, self)
 	var success = execute_code(user_code)
 	if success:
 		if not prevent_close:

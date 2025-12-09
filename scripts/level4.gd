@@ -195,9 +195,9 @@ func wait(time: float) -> void:
 #----Signals
 func _actions_recieved(_action:String, _note_num:int = 0) -> void:
 	pass
-func _actions_recieved2(action:String, user_code:= "") -> void:
+func _actions_recieved2(action:String, user_code:= "", console:=Node2D) -> void:
 	control_regex.compile(r"print\s*\(([^)]*)\)")
-	if control_regex.search(user_code) and action == "console_run" and not global_condition:
+	if console == console1 and control_regex.search(user_code) and action == "console_run" and not global_condition:
 		global_condition = 1
 		printer1.broken = true
 		#await wait(0.5)

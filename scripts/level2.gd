@@ -89,7 +89,7 @@ func _actions_recieved(action: String, num:int = 0) -> void:
 	if talk_ctr == 2 and action.contains("note_closed") and num == 6:
 		dialogue("talk3")
 		talk_ctr = 3
-func _actions_recieved2(_action: String, _user_code:String) -> void:
+func _actions_recieved2(_action: String, _user_code:String, _console:Node2D) -> void:
 	pass
 func _codeblock_has_value(value) -> void:
 	print(talk_ctr, retry_ctr)

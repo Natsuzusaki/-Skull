@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://tjy0471dujc4"]
+[gd_scene load_steps=25 format=3 uid="uid://tjy0471dujc4"]
 
 [ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
@@ -13,6 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://cgkbacwelgvmx" path="res://assets/images/Console Control8.png" id="10_rgr4i"]
 [ext_resource type="Texture2D" uid="uid://dcg4jhwtg6jh5" path="res://assets/images/Console Control9.png" id="11_fab4a"]
 [ext_resource type="Texture2D" uid="uid://battsl1bhcf0h" path="res://assets/images/Console Control10.png" id="12_rgr4i"]
+[ext_resource type="Texture2D" uid="uid://xbcxevljp8ye" path="res://assets/images/Console Control 11.png" id="13_xovmc"]
+[ext_resource type="Texture2D" uid="uid://bb8olodtnwyu4" path="res://assets/images/Console Control 15.png" id="13_xox42"]
+[ext_resource type="Texture2D" uid="uid://bjkhihgct1qam" path="res://assets/images/Console Control 12.png" id="14_e4g67"]
+[ext_resource type="Texture2D" uid="uid://cep0void8juso" path="res://assets/images/Console Control 16.png" id="14_jstvx"]
+[ext_resource type="Texture2D" uid="uid://deki4v8my0w60" path="res://assets/images/Console Control 17.png" id="15_xovmc"]
+[ext_resource type="Texture2D" uid="uid://e7ket57h5fqm" path="res://assets/images/Console Control 18.png" id="16_e4g67"]
+[ext_resource type="Texture2D" uid="uid://br3rjvmv6ehbo" path="res://assets/images/Console Control 19.png" id="17_nkxyp"]
+[ext_resource type="Texture2D" uid="uid://btfu25jp5i7c4" path="res://assets/images/Console Control 20.png" id="18_vbg4t"]
+[ext_resource type="Texture2D" uid="uid://bnga4j0nv2knm" path="res://assets/images/Console Control 21.png" id="19_xv4dg"]
+[ext_resource type="Texture2D" uid="uid://dr3y5d03pckj5" path="res://assets/images/Console Control 22.png" id="20_fpwn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ich"]
 shader = ExtResource("2_34uu6")
@@ -99,6 +109,76 @@ z_index = 20
 position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("12_rgr4i")
+
+[node name="Note11" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("13_xovmc")
+
+[node name="Note12" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("14_e4g67")
+
+[node name="Note13" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("13_xox42")
+
+[node name="Note14" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("14_jstvx")
+
+[node name="Note15" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("15_xovmc")
+
+[node name="Note16" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("16_e4g67")
+
+[node name="Note17" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("17_nkxyp")
+
+[node name="Note18" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("18_vbg4t")
+
+[node name="Note19" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("19_xv4dg")
+
+[node name="Note20" type="Sprite2D" parent="Instructions"]
+visible = false
+z_index = 20
+position = Vector2(-0.110388, 7.62939e-06)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("20_fpwn2")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)

@@ -235,7 +235,7 @@ func _actions_recieved(action:String, _num:int = 0) -> void:
 	if new_talkctr == 2 and action.contains("note_closed"):
 		new_talkctr = 3
 		newdialogue("talk3")
-func _actions_recieved2(action:String, _text:= "") -> void:
+func _actions_recieved2(action:String, _text:= "", _console:Node2D = null) -> void:
 	if action == "console_run":
 		await wait(1)
 		if has_fallen:
