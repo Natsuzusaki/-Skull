@@ -9,6 +9,7 @@ extends Node2D
 @onready var console_4: Area2D = $Consoles/Console4
 @onready var camera: Camera2D = %Camera
 @onready var consoles: Node2D = %Consoles
+@onready var notes: Node2D = %Notes
 @onready var printers: Node2D = $Printers
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
 @onready var progress_bar: CanvasLayer = $ProgressBar
@@ -37,6 +38,7 @@ var ctr := false
 
 
 func _ready() -> void:
+	connections()
 	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3", 0.03)
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -73,8 +75,6 @@ func _ready() -> void:
 				gate_9.global_position += Vector2(0, 120)
 			if checkpoint == 7.0:
 				gate_11.global_position += Vector2(0, 120)
-		
-	
 
 func _process(_delta: float) -> void:
 	if player.on_console:
@@ -102,8 +102,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
-
-	
+func _actions_recieved(action: String, num:int = 0) -> void:
+	if action == "note_interacted":
+		SaveManager.update_save({"Notes": {"note_%s" % num: true}})
+func _actions_recieved2(_action: String, _user_code:String, _console:Node2D) -> void:
+	pass
+func connections() -> void:
+	for note in notes.get_children():
+		note.actions_sent.connect(_actions_recieved)
+	for consolE in consoles.get_children():
+		consolE.actions_sent.connect(_actions_recieved2)
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	var duration = 0.5
 	var tween := create_tween()

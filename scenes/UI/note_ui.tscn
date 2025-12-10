@@ -1,0 +1,303 @@
+[gd_scene load_steps=34 format=3 uid="uid://cv300ivni4xnc"]
+
+[ext_resource type="Texture2D" uid="uid://dtwh1kivyyxno" path="res://assets/images/misc.png" id="1_03nx5"]
+[ext_resource type="Script" uid="uid://vb4j4alxo38w" path="res://scripts/note_ui.gd" id="1_j2cn5"]
+[ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="1_paurg"]
+[ext_resource type="Texture2D" uid="uid://dynulkcrgdj4b" path="res://assets/images/Console Control1.png" id="2_8liwt"]
+[ext_resource type="Texture2D" uid="uid://bay8corh4upa2" path="res://assets/images/Console Control2.png" id="3_paurg"]
+[ext_resource type="Texture2D" uid="uid://51eiyvbk5os7" path="res://assets/images/Console Control3.png" id="4_j2cn5"]
+[ext_resource type="Texture2D" uid="uid://brck2tyec62ob" path="res://assets/images/Console Control4.png" id="5_gd2v5"]
+[ext_resource type="Texture2D" uid="uid://dcodg31hpx0aw" path="res://assets/images/Console Control5.png" id="6_56prm"]
+[ext_resource type="Texture2D" uid="uid://ywm4gwyihwoy" path="res://assets/images/Console Control6.png" id="7_ow36y"]
+[ext_resource type="Texture2D" uid="uid://dh5tkhqmvif1g" path="res://assets/images/Console Control7.png" id="8_4xgdp"]
+[ext_resource type="Texture2D" uid="uid://cgkbacwelgvmx" path="res://assets/images/Console Control8.png" id="9_y6nq0"]
+[ext_resource type="Texture2D" uid="uid://dcg4jhwtg6jh5" path="res://assets/images/Console Control9.png" id="10_xhnrq"]
+[ext_resource type="Texture2D" uid="uid://battsl1bhcf0h" path="res://assets/images/Console Control10.png" id="11_bseri"]
+[ext_resource type="Texture2D" uid="uid://xbcxevljp8ye" path="res://assets/images/Console Control 11.png" id="12_pawht"]
+[ext_resource type="Texture2D" uid="uid://bjkhihgct1qam" path="res://assets/images/Console Control 12.png" id="13_2k44c"]
+[ext_resource type="Texture2D" uid="uid://bb8olodtnwyu4" path="res://assets/images/Console Control 15.png" id="14_cnkff"]
+[ext_resource type="Texture2D" uid="uid://cep0void8juso" path="res://assets/images/Console Control 16.png" id="15_2mlqe"]
+[ext_resource type="Texture2D" uid="uid://deki4v8my0w60" path="res://assets/images/Console Control 17.png" id="16_qnuld"]
+[ext_resource type="Texture2D" uid="uid://e7ket57h5fqm" path="res://assets/images/Console Control 18.png" id="17_elyv6"]
+[ext_resource type="Texture2D" uid="uid://br3rjvmv6ehbo" path="res://assets/images/Console Control 19.png" id="18_7ykj1"]
+[ext_resource type="Texture2D" uid="uid://btfu25jp5i7c4" path="res://assets/images/Console Control 20.png" id="19_22v78"]
+[ext_resource type="Texture2D" uid="uid://bnga4j0nv2knm" path="res://assets/images/Console Control 21.png" id="20_335cx"]
+[ext_resource type="Texture2D" uid="uid://dr3y5d03pckj5" path="res://assets/images/Console Control 22.png" id="21_disw5"]
+[ext_resource type="Texture2D" uid="uid://d12yv6w6n4eyt" path="res://assets/images/Console Control Empty.png" id="22_u0sxk"]
+[ext_resource type="PackedScene" uid="uid://dm3a5jhuecy5i" path="res://scenes/UI/mouse_detection.tscn" id="25_gd2v5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2cn5"]
+shader = ExtResource("1_paurg")
+shader_parameter/blur_size = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd2v5"]
+atlas = ExtResource("1_03nx5")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56prm"]
+atlas = ExtResource("1_03nx5")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ow36y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd2v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd2v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd2v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56prm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56prm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56prm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xgdp"]
+atlas = ExtResource("1_03nx5")
+region = Rect2(160, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6nq0"]
+atlas = ExtResource("1_03nx5")
+region = Rect2(128, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhnrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xgdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xgdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xgdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6nq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6nq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6nq0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56prm"]
+size = Vector2(48, 48)
+
+[node name="Note_UI" type="CanvasLayer"]
+script = ExtResource("1_j2cn5")
+
+[node name="Blur" type="ColorRect" parent="."]
+process_mode = 3
+visible = false
+material = SubResource("ShaderMaterial_j2cn5")
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="Notebook" type="Node2D" parent="."]
+
+[node name="NoteBook" type="Sprite2D" parent="Notebook"]
+position = Vector2(1088, 32)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_03nx5")
+region_enabled = true
+region_rect = Rect2(0, 288, 32, 32)
+
+[node name="HighLight" type="Sprite2D" parent="Notebook"]
+visible = false
+position = Vector2(1088, 32)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_03nx5")
+region_enabled = true
+region_rect = Rect2(32, 288, 32, 32)
+
+[node name="Notes" type="Node2D" parent="."]
+
+[node name="Note1" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.88965, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("2_8liwt")
+
+[node name="Note2" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("3_paurg")
+
+[node name="Note3" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("4_j2cn5")
+
+[node name="Note4" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("5_gd2v5")
+
+[node name="Note5" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(640, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("6_56prm")
+
+[node name="Note6" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(640, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("7_ow36y")
+
+[node name="Note7" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("8_4xgdp")
+
+[node name="Note8" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("9_y6nq0")
+
+[node name="Note9" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("10_xhnrq")
+
+[node name="Note10" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("11_bseri")
+
+[node name="Note11" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("12_pawht")
+
+[node name="Note12" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("13_2k44c")
+
+[node name="Note13" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("14_cnkff")
+
+[node name="Note14" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("15_2mlqe")
+
+[node name="Note15" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("16_qnuld")
+
+[node name="Note16" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("17_elyv6")
+
+[node name="Note17" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("18_7ykj1")
+
+[node name="Note18" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("19_22v78")
+
+[node name="Note19" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("20_335cx")
+
+[node name="Note20" type="Sprite2D" parent="Notes"]
+visible = false
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("21_disw5")
+
+[node name="Empty" type="Sprite2D" parent="Notes"]
+z_index = 20
+position = Vector2(639.8896, 360)
+scale = Vector2(0.22069, 0.218413)
+texture = ExtResource("22_u0sxk")
+
+[node name="Button1" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(352, 672)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ow36y")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.23255575
+
+[node name="Button2" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(928.00006, 672)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xhnrq")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.019968284
+
+[node name="MouseDetection" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("25_gd2v5")]
+position = Vector2(1088, 32)
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetection"]
+shape = SubResource("RectangleShape2D_56prm")

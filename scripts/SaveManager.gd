@@ -141,7 +141,29 @@ func create_user(user: String) -> void:
 		},
 		"Time_and_Medal_Score":{
 			
-			},
+		},
+		"Notes":{
+			"note_0":false,
+			"note_1":false,
+			"note_2":false,
+			"note_3":false,
+			"note_4":false,
+			"note_5":false,
+			"note_6":false,
+			"note_7":false,
+			"note_8":false,
+			"note_9":false,
+			"note_10":false,
+			"note_11":false,
+			"note_12":false,
+			"note_13":false,
+			"note_14":false,
+			"note_15":false,
+			"note_16":false,
+			"note_17":false,
+			"note_18":false,
+			"note_19":false
+		},
 		"Levels": {
 			"level1": false, 
 			"level2": false, 
@@ -152,6 +174,7 @@ func create_user(user: String) -> void:
 			},
 		"Settings": {
 			"keybinds": {
+				"up": "W",
 				"left": "A",
 				"right": "D",
 				"down": "S",

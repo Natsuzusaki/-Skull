@@ -56,6 +56,7 @@ var current_chapter = "Chapter4"
 var global_condition: int = 0
 var condition_ctr: int = 0
 var control_regex := RegEx.new()
+var arr_ctr := 0
 var a1: bool = false
 var a2: bool = false
 
@@ -193,8 +194,9 @@ func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
 
 #----Signals
-func _actions_recieved(_action:String, _note_num:int = 0) -> void:
-	pass
+func _actions_recieved(action:String, note_num:int = 0) -> void:
+	if action == "note_interacted":
+		SaveManager.update_save({"Notes": {"note_%s" % note_num: true}})
 func _actions_recieved2(action:String, user_code:= "", console:=Node2D) -> void:
 	control_regex.compile(r"print\s*\(([^)]*)\)")
 	if console == console1 and control_regex.search(user_code) and action == "console_run" and not global_condition:
@@ -247,14 +249,19 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 					gate7.activate(false, 0.5)
 					condition_ctr = 1
 			elif condition_ctr == 1:
-				array9.inputs.sort()
-				array10.inputs.sort()
-				var arr1 = array10.inputs
-				var arr2 = array9.inputs
-				if arr1 == arr2:
-					await wait(0.7)
-					gate8.activate(false, 0.5)
-					condition_ctr = 2
+				if arr_ctr >= 19:
+					array9.inputs.sort()
+					array10.inputs.sort()
+					var arr1 = array10.inputs
+					var arr2 = array9.inputs
+					if arr1 == arr2:
+						await wait(0.7)
+						gate8.activate(false, 0.5)
+						condition_ctr = 2
+				if action == "cleared":
+					arr_ctr = 0
+				else:
+					arr_ctr += 1
 
 	#print("MATCH: " + array_name +"\nACTION: "+ action +"\nCTR: " + str(condition_ctr) + "\nPLEASE: " + str(array1.inputs.size()))
 func _looptrigger(loop_name:String, ctr:int, condition:bool) -> void:

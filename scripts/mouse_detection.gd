@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var parent : Node2D
+@export var parent : Node
 @export var is_array : bool = false
 
 @onready var platform_name: Label = $CanvasLayer/UI/Platform/MarginContainer/Panel/MarginContainer/VBoxContainer/PlatformName
@@ -15,8 +15,13 @@ extends Area2D
 @onready var dot: Sprite2D = $Sprite2D
 var hovered: bool = false
 var UI_status: bool = false
+var book := false
 
 func _ready() -> void:
+	if parent is CanvasLayer:
+		dot.visible = false
+		book = true
+		return
 	if is_array:
 		dot.visible = false
 		array_name.text = parent.display_name
@@ -41,6 +46,8 @@ func _ready() -> void:
 	platform.visible = false
 
 func _process(_delta: float) -> void:
+	if book:
+		return
 	if is_array:
 		format()
 		return
@@ -71,8 +78,12 @@ func format() -> void:
 
 func _on_mouse_entered() -> void:
 	hovered = true
+	if book:
+		parent.high_light.visible = true
 func _on_mouse_exited() -> void:
 	hovered = false
+	if book:
+		parent.high_light.visible = false
 
 func _on_area_entered(_body: Node2D) -> void:
 	pass
@@ -92,10 +103,16 @@ func _on_area_exited(_body: Node2D) -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if hovered and event is InputEventMouseButton and event.pressed:
 		if UI_status:
-			hide_self()
+			if book:
+				parent.show_book()
+			else:
+				hide_self()
 			UI_status = false
 		else:
-			show_self()
+			if book:
+				parent.show_note()
+			else:
+				show_self()
 			UI_status = true
 
 func show_self():

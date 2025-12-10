@@ -5,15 +5,20 @@ extends Sprite2D
 @onready var camera: Camera2D = %Camera
 @onready var player: CharacterBody2D = %Player
 @onready var explosion: GPUParticles2D = %CrystalExplosion
+@onready var button: AnimatedSprite2D = $Button
 @onready var area: Area2D = $Area2D
 var player_near: bool = false
 var broken: bool = false
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	player_near = true
+	if not disable:
+		button.visible = true
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	player_near = false
+	if not disable:
+		button.visible = false
 
 func _ready() -> void:
 	if material:

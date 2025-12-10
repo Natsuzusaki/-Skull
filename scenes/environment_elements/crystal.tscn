@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm4qpg8xp51un"]
+[gd_scene load_steps=10 format=3 uid="uid://cm4qpg8xp51un"]
 
 [ext_resource type="Shader" uid="uid://c021os1p25kw7" path="res://assets/presets/white.gdshader" id="1_l8wmg"]
 [ext_resource type="Texture2D" uid="uid://deytkfrieffpn" path="res://assets/images/tiles.png" id="1_q2xlv"]
 [ext_resource type="Script" uid="uid://deplkhyf271sx" path="res://scripts/crystal.gd" id="2_pvkxf"]
+[ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="4_qnnfn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnnfn"]
 shader = ExtResource("1_l8wmg")
@@ -10,6 +11,40 @@ shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvkxf"]
 radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j4ab"]
+atlas = ExtResource("4_qnnfn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vklxr"]
+atlas = ExtResource("4_qnnfn")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dv5ac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vklxr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Crystal" type="Sprite2D"]
 material = SubResource("ShaderMaterial_qnnfn")
@@ -25,6 +60,13 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_pvkxf")
 debug_color = Color(1, 1, 0, 0.41960785)
+
+[node name="Button" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_dv5ac")
+animation = &"idle"
+autoplay = "idle"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

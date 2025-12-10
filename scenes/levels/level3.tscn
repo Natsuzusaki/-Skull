@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://8tx6hbgw5w6u"]
+[gd_scene load_steps=77 format=4 uid="uid://8tx6hbgw5w6u"]
 
 [ext_resource type="Script" uid="uid://dfn1v4ns41qgb" path="res://scripts/level3.gd" id="1_edoqj"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="2_ahaer"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://wikiax10fqqp" path="res://scenes/UI/level_complete_ui.tscn" id="28_6vxnv"]
 [ext_resource type="PackedScene" uid="uid://d27nho0jyfkam" path="res://scenes/UI/chapter_intro.tscn" id="29_flme0"]
 [ext_resource type="PackedScene" uid="uid://bk0nsimdoltgf" path="res://scenes/UI/progress_bar.tscn" id="30_0qxt0"]
+[ext_resource type="PackedScene" uid="uid://cv300ivni4xnc" path="res://scenes/UI/note_ui.tscn" id="34_d1mne"]
 
 [sub_resource type="Sky" id="Sky_gvm5i"]
 
@@ -1010,6 +1011,7 @@ tile_map_data = PackedByteArray("AAB4ABsAAAAAAAEAAAB5ABsAAAAAAAAAAAB7ABkAAAAAAAE
 tile_set = ExtResource("12_hl16f")
 
 [node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Notes" parent="Notes" instance=ExtResource("17_0y7c6")]
 position = Vector2(1152, 424)
@@ -1414,6 +1416,7 @@ active_time = 1.0
 outputs = [NodePath("../../Gates/Gate12")]
 
 [node name="CodeBlocks" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(2816, 712)
 
 [node name="Code_Blocks" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
@@ -2032,6 +2035,8 @@ Booleans, Conditionals
 & if else"
 
 [node name="ProgressBar" parent="." instance=ExtResource("30_0qxt0")]
+
+[node name="Note_UI" parent="." instance=ExtResource("34_d1mne")]
 
 [connection signal="body_entered" from="Rooms/Room1" to="." method="_on_room_1_body_entered"]
 [connection signal="body_entered" from="Rooms/Room2" to="." method="_on_room_2_body_entered"]

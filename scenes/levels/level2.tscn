@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://dlqyj5fklu02m"]
+[gd_scene load_steps=106 format=4 uid="uid://dlqyj5fklu02m"]
 
 [ext_resource type="PackedScene" uid="uid://c2udgjcetsli8" path="res://scenes/environment_elements/player.tscn" id="1_nos0u"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="1_ok6xr"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="30_jvp1d"]
 [ext_resource type="PackedScene" uid="uid://d27nho0jyfkam" path="res://scenes/UI/chapter_intro.tscn" id="31_hlvfl"]
 [ext_resource type="PackedScene" uid="uid://bc4i8yotb1ccr" path="res://scenes/environment_elements/ui_remover.tscn" id="31_m0i7f"]
+[ext_resource type="PackedScene" uid="uid://cv300ivni4xnc" path="res://scenes/UI/note_ui.tscn" id="39_grqcv"]
 
 [sub_resource type="Sky" id="Sky_gvm5i"]
 
@@ -1271,19 +1272,18 @@ position = Vector2(-8, 8)
 
 [node name="Vine" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(192, 80)
-length = 6
+length = 3
 
 [node name="Vine2" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(288, 64)
-length = 6
+length = 5
 
 [node name="Vine3" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(784, 80)
-length = 6
 
 [node name="Vine4" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(960, 192)
-length = 8
+length = 7
 
 [node name="Vine5" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2128, 144)
@@ -1291,32 +1291,34 @@ length = 3
 
 [node name="Vine6" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2336, 128)
-length = 3
+length = 6
 
 [node name="Vine7" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2576, 96)
-length = 5
+length = 7
 
 [node name="Vine8" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2944, 128)
-length = 3
+length = 5
 
 [node name="Vine9" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3328, 112)
+length = 7
 
 [node name="Vine10" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4432, 64)
-length = 8
 
 [node name="Vine11" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4912, 80)
-length = 8
+length = 5
 
 [node name="Vine12" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5312, 208)
+length = 5
 
 [node name="Vine13" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5120, 96)
+length = 3
 
 [node name="Vine14" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4784, 112)
@@ -1324,45 +1326,44 @@ length = 6
 
 [node name="Vine15" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4224, 64)
+length = 5
 
 [node name="Vine16" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3712, 256)
-length = 5
+length = 8
 
 [node name="Vine17" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3552, 64)
-length = 6
+length = 5
 
 [node name="Vine18" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3360, 48)
-length = 3
 
 [node name="Vine19" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2928, 80)
-length = 3
+length = 5
 
 [node name="Vine20" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2272, 112)
-length = 3
 
 [node name="Vine21" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2080, 96)
-length = 3
+length = 7
 
 [node name="Vine22" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1712, 48)
 
 [node name="Vine23" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(992, 96)
-length = 7
+length = 5
 
 [node name="Vine24" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(832, 160)
-length = 3
+length = 8
 
 [node name="Vine25" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(224, 48)
-length = 6
+length = 8
 
 [node name="Vine26" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(64, 304)
@@ -1370,7 +1371,6 @@ length = 5
 
 [node name="Vine27" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(352, 128)
-length = 5
 is_chain = true
 
 [node name="Vine28" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1380,12 +1380,12 @@ is_chain = true
 
 [node name="Vine29" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(416, 48)
-length = 3
+length = 6
 is_chain = true
 
 [node name="Vine30" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(480, 48)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine31" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1395,32 +1395,29 @@ is_chain = true
 
 [node name="Vine32" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(752, 32)
-length = 5
+length = 2
 is_chain = true
 
 [node name="Vine33" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1352, 48)
-length = 2
 is_chain = true
 
 [node name="Vine34" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1336, 48)
-length = 6
 is_chain = true
 
 [node name="Vine35" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1248, 48)
-length = 2
+length = 6
 is_chain = true
 
 [node name="Vine36" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1680, 48)
-length = 2
 is_chain = true
 
 [node name="Vine37" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(1608, 48)
-length = 6
+length = 3
 is_chain = true
 
 [node name="Vine38" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1429,12 +1426,11 @@ is_chain = true
 
 [node name="Vine39" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2048, 48)
-length = 2
+length = 6
 is_chain = true
 
 [node name="Vine40" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2224, 112)
-length = 6
 is_chain = true
 
 [node name="Vine41" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1449,21 +1445,21 @@ is_chain = true
 
 [node name="Vine43" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(2752, 176)
-length = 3
+length = 5
 is_chain = true
 
 [node name="Vine44" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3072, 128)
-length = 2
 is_chain = true
 
 [node name="Vine45" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3088, 48)
+length = 2
 is_chain = true
 
 [node name="Vine46" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3168, 32)
-length = 6
+length = 5
 is_chain = true
 
 [node name="Vine47" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1478,16 +1474,17 @@ is_chain = true
 
 [node name="Vine49" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(3472, 96)
-length = 6
+length = 5
 is_chain = true
 
 [node name="Vine50" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4304, 32)
-length = 6
+length = 5
 is_chain = true
 
 [node name="Vine51" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4288, 32)
+length = 2
 is_chain = true
 
 [node name="Vine52" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1497,7 +1494,7 @@ is_chain = true
 
 [node name="Vine53" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(4624, 176)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine54" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
@@ -1507,58 +1504,59 @@ is_chain = true
 
 [node name="Vine55" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5008, 176)
+length = 3
 is_chain = true
 
 [node name="Vine56" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5296, 176)
-length = 2
 is_chain = true
 
 [node name="Vine57" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5464, 384)
+length = 6
 is_chain = true
 
 [node name="Vine58" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6080, 1216)
-length = 3
 is_chain = true
 
 [node name="Vine59" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6064, 1216)
-length = 3
+length = 5
 is_chain = true
 
 [node name="Vine60" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5584, 1408)
-length = 6
+length = 5
 is_chain = true
 
 [node name="Vine61" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(5632, 1408)
-length = 3
+length = 6
 is_chain = true
 
 [node name="Vine62" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6656, 1152)
+length = 5
 is_chain = true
 
 [node name="Vine63" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6384, 1056)
-length = 6
+length = 3
 is_chain = true
 
 [node name="Vine64" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6864, 1136)
+length = 2
 is_chain = true
 
 [node name="Vine65" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(7024, 1136)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine66" parent="Vines_or_Chains" instance=ExtResource("23_r00g1")]
 position = Vector2(6800, 1184)
-length = 6
 is_chain = true
 
 [node name="Lights" type="Node2D" parent="."]
@@ -1891,6 +1889,8 @@ offset_left = 115.0
 offset_top = 424.0
 offset_right = 155.0
 offset_bottom = 464.0
+
+[node name="Note_UI" parent="." instance=ExtResource("39_grqcv")]
 
 [connection signal="body_entered" from="Rooms/Room1" to="." method="_on_room_1_body_entered"]
 [connection signal="body_entered" from="Rooms/Room2" to="." method="_on_room_2_body_entered"]

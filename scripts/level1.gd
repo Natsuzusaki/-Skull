@@ -231,10 +231,12 @@ func _on_asri_2_body_entered(_body: Node2D) -> void:
 	tween.tween_property(secretground, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
 
 #----Signals
-func _actions_recieved(action:String, _num:int = 0) -> void:
+func _actions_recieved(action:String, num:int = 0) -> void:
 	if new_talkctr == 2 and action.contains("note_closed"):
 		new_talkctr = 3
 		newdialogue("talk3")
+	if action == "note_interacted":
+		SaveManager.update_save({"Notes": {"note_%s" % num: true}})
 func _actions_recieved2(action:String, _text:= "", _console:Node2D = null) -> void:
 	if action == "console_run":
 		await wait(1)
