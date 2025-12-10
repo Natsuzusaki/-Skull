@@ -123,6 +123,7 @@ func apply_dialogue_line() -> void:
 	will_hide_balloon = false
 
 	dialogue_label.show()
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.PRINTER)
 	if not dialogue_line.text.is_empty():
 		dialogue_label.type_out()
 		await dialogue_label.finished_typing

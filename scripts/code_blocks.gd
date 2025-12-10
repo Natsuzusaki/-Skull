@@ -42,6 +42,7 @@ func _receive_value(value: int) -> void:
 	_propagate(processed_value)
 
 func _propagate(value: int) -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CODE_BLOCKS)
 	emit_signal("has_value", value)
 	for output in outputs:
 		if output == null:

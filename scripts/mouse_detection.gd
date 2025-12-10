@@ -112,6 +112,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if book:
 				parent.show_note()
 			else:
+				SfxManager.play_sfx(sfx_settings.SFX_NAME.HOVER)
 				show_self()
 			UI_status = true
 

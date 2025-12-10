@@ -9,6 +9,7 @@ func _ready() -> void:
 	self.visible = false
 
 func paused() -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.PAUSE)
 	self.visible = true
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -20,6 +21,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if root_name in ["Level1", "Level2", "Level3", "Level4"]:
 		if Input.is_action_just_pressed("pause"):
 			if self.visible and not settings.visible:
+				SfxManager.play_sfx(sfx_settings.SFX_NAME.UNPAUSE)
 				self.visible = false
 				get_tree().paused = false
 			elif self.visible and settings.visible and not pause_menu.visible:

@@ -1276,7 +1276,7 @@ offset_left = 3600.0
 offset_top = 320.0
 offset_right = 3860.0
 offset_bottom = 361.0
-text = "I WANT COMMISION YOU!"
+text = "WRONG WAY, GO UP!"
 label_settings = SubResource("LabelSettings_atlnk")
 horizontal_alignment = 1
 
@@ -1308,7 +1308,7 @@ texture = ExtResource("23_7cvth")
 
 [node name="Player" parent="." instance=ExtResource("1_eh8f3")]
 unique_name_in_owner = true
-position = Vector2(1832, 472)
+position = Vector2(-1776, 184.00002)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -1334,31 +1334,32 @@ process_material = SubResource("ParticleProcessMaterial_q6dln")
 
 [node name="Vine" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1512, 392)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine2" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1416, 312)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine3" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1544, 392)
-length = 2
+length = 3
 is_chain = true
 
 [node name="Vine4" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1136, 392)
-length = 2
+length = 3
 is_chain = true
 
 [node name="Vine5" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1744, 40)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine6" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1712, 40)
+length = 3
 is_chain = true
 
 [node name="Vine7" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1373,11 +1374,12 @@ is_chain = true
 
 [node name="Vine9" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1304, 72)
+length = 3
 is_chain = true
 
 [node name="Vine10" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1216, 40)
-length = 5
+length = 2
 is_chain = true
 
 [node name="Vine11" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1387,12 +1389,11 @@ is_chain = true
 
 [node name="Vine12" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1256, 312)
-length = 3
+length = 5
 is_chain = true
 
 [node name="Vine13" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-1272, 312)
-length = 2
 is_chain = true
 
 [node name="Vine14" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1402,7 +1403,7 @@ is_chain = true
 
 [node name="Vine15" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-728, 264)
-length = 3
+length = 6
 is_chain = true
 
 [node name="Vine16" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1412,7 +1413,6 @@ is_chain = true
 
 [node name="Vine17" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-496, 264)
-length = 6
 is_chain = true
 
 [node name="Vine18" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1421,26 +1421,26 @@ is_chain = true
 
 [node name="Vine19" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-816, 40)
+length = 3
 is_chain = true
 
 [node name="Vine20" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-800, 40)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine21" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-704, 40)
-length = 2
+length = 3
 is_chain = true
 
 [node name="Vine22" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-488, 40)
-length = 2
 is_chain = true
 
 [node name="Vine23" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(-368, 40)
-length = 5
+length = 3
 is_chain = true
 
 [node name="Vine24" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1454,7 +1454,6 @@ is_chain = true
 
 [node name="Vine26" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(1864, 56)
-length = 6
 is_chain = true
 
 [node name="Vine27" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1464,21 +1463,21 @@ is_chain = true
 
 [node name="Vine28" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2056, 56)
+length = 2
 is_chain = true
 
 [node name="Vine29" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2112, 40)
-length = 3
+length = 2
 is_chain = true
 
 [node name="Vine30" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2168, 40)
-length = 2
 is_chain = true
 
 [node name="Vine31" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2296, 40)
-length = 6
+length = 3
 is_chain = true
 
 [node name="Vine32" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1492,11 +1491,11 @@ is_chain = true
 
 [node name="Vine34" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2376, 40)
-length = 2
 is_chain = true
 
 [node name="Vine35" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2424, 56)
+length = 3
 is_chain = true
 
 [node name="Vine36" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1511,19 +1510,22 @@ is_chain = true
 
 [node name="Vine38" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2536, 72)
+length = 3
 is_chain = true
 
 [node name="Vine39" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2560, 40)
-length = 2
+length = 5
 is_chain = true
 
 [node name="Vine40" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2632, 56)
+length = 2
 is_chain = true
 
 [node name="Vine41" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2904, 40)
+length = 2
 is_chain = true
 
 [node name="Vine42" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1537,7 +1539,7 @@ is_chain = true
 
 [node name="Vine44" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3640, 296)
-length = 3
+length = 6
 is_chain = true
 
 [node name="Vine45" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1547,15 +1549,16 @@ is_chain = true
 
 [node name="Vine46" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3376, 184)
-length = 5
 is_chain = true
 
 [node name="Vine47" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3416, 40)
+length = 3
 is_chain = true
 
 [node name="Vine48" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3256, -136)
+length = 5
 is_chain = true
 
 [node name="Vine49" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1565,6 +1568,7 @@ is_chain = true
 
 [node name="Vine50" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(2840, -120)
+length = 3
 is_chain = true
 
 [node name="Vine51" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
@@ -1578,11 +1582,11 @@ is_chain = true
 
 [node name="Vine53" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3240, -328)
-length = 2
 is_chain = true
 
 [node name="Vine54" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]
 position = Vector2(3224, -328)
+length = 3
 is_chain = true
 
 [node name="Vine55" parent="Vine_or_Chain" instance=ExtResource("17_qtppw")]

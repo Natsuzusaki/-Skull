@@ -145,6 +145,8 @@ func _on_button_pressed() -> void:
 			SaveManager.reset_save("Chapter1")
 	Loading.loading("res://scenes/levels/level1.tscn")
 
+		
+
 func _on_button_2_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	if SaveManager.is_level_completed(2):
@@ -161,11 +163,11 @@ func _on_button_3_pressed() -> void:
 
 func _on_button_4_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	if SaveManager.is_level_completed(4):
+	if SaveManager.is_level_completed(3):
 		if not data["Time_and_Medal_Score"]["Chapter4"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter4"]["saved_session_time"] == 0.0 :
 			SaveManager.reset_save("Chapter4")
 	Loading.loading("res://scenes/levels/level4.tscn")
-
+		
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
@@ -185,17 +187,26 @@ func check_game_completion() -> void:
 			if lvl1 and lvl2 and lvl3 and lvl4:
 				if lvl1_medals == 3.0 and lvl2_medals == 3.0 and lvl3_medals == 3.0 and lvl4_medals == 3.0:
 					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == false:
+						MusicManager.change_volume2(0.01)
 						animation_player.play("show_both_rewards")
 						user_data["Levels"]["golden_trophy_shown"] = true
 						user_data["Levels"]["silver_trophy_shown"]= true
 						SaveManager.update_save(user_data)
+						await get_tree().create_timer(8).timeout
+						MusicManager.change_volume2(0.08)
 					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == true:
+						MusicManager.change_volume2(0.01)
 						animation_player.play("show_golden_trophy")
 						user_data["Levels"]["golden_trophy_shown"] = true
 						SaveManager.update_save(user_data)
+						await get_tree().create_timer(8).timeout
+						MusicManager.change_volume2(0.08)
 				else:
 					if user_data["Levels"]["silver_trophy_shown"] == false:
+						MusicManager.change_volume2(0.01)
 						animation_player.play("show_silver_trophy")
 						user_data["Levels"]["silver_trophy_shown"] = true
 						SaveManager.update_save(user_data)
+						await get_tree().create_timer(8).timeout
+						MusicManager.change_volume2(0.08)
 					

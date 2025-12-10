@@ -61,6 +61,7 @@ var a1: bool = false
 var a2: bool = false
 
 func _ready() -> void:
+	MusicManager.play_music_with_fade("res://assets/music/[1-17] Geothermal - Cave Story Remastered Soundtrack.mp3", 0.08)
 	connections()
 	camera.back()
 	var data = SaveManager.load_game()

@@ -173,11 +173,13 @@ func move_in_cutscene(target_pos: Vector2, speed := 100) -> void:
 func carry() -> void:
 	if not dead and not near_button and not near_console and not near_note:
 		if not is_carrying and in_range and not is_carry_pressed:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.PICKUP)
 			is_carry_pressed = true
 			is_carrying = not is_carrying
 			pick_up_collision.disabled = true
 			on_interact.emit()
 		elif is_carrying and not is_carry_pressed:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.THROW)
 			is_carry_pressed = true
 			is_carrying = not is_carrying
 			object_out_timer.start()

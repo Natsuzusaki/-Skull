@@ -15,11 +15,14 @@ extends Control
 @onready var animation_player: AnimationPlayer = $SilverBadge/AnimationPlayer
 @onready var animation_player_2: AnimationPlayer = $GoldenBadge/AnimationPlayer2
 @onready var sparkle: CPUParticles2D = $Background/Menu/CPUParticles2D
+@onready var lights: PointLight2D = $Background/PointLight2D
+@onready var back_button: Button = $BackButton
 
 
 var data = SaveManager.load_game()
 
 func _ready() -> void:
+	light_flicker()
 	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3", 0.08)
 	
 	if SaveManager.current_user == "Guest":
@@ -35,6 +38,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		golden_badge.visible = false
 		silver_badge.visible = false
 		menu.visible = true
+		if back_button.visible:
+			back_button.visible = false
 		
 func _process(_delta: float) -> void:
 	check_game_completion()
@@ -56,10 +61,10 @@ func _on_startnewgame_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	var highest := get_highest_progress_level(data)
-	var path := "res://scenes/levels/level%d.tscn" % highest
-	Loading.loading(path)
-
+	if data["Levels"]["level1"]:
+		Loading.loading("res://scenes/levels/level2.tscn")
+	else:
+		Loading.loading("res://scenes/levels/level1.tscn")
 
 func _on_Settings_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
@@ -78,18 +83,42 @@ func _on_switch_user_pressed() -> void:
 	main_menu.visible = false
 	user_list.visible = true
 
+func light_flicker() -> void:
+	while true:
+		var duration = 0.1
+		var num := randi_range(1, 4)
+		
+		match num:
+			1:
+				var tween := create_tween()
+				tween.tween_property(lights, "energy", 0.0, duration)
+			2:
+				var tween := create_tween()
+				tween.tween_property(lights, "energy", 0.56, duration)
+			3:
+				var tween := create_tween()
+				tween.tween_property(lights, "energy", 0.0, duration)
+			4:
+				var tween := create_tween()
+				tween.tween_property(lights, "energy", 0.0, duration)
+				
+		await get_tree().create_timer(0.1).timeout
 
 func _on_silver_trophy_pressed() -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.TROPHY_PRESSED)
 	if golden_badge.visible:
 		golden_badge.visible = false
+	back_button.visible = true
 	silver_badge.visible = true
 	animation_player.play("silver_badge_animation")
 	menu.visible = false
 
 
 func _on_golden_trophy_pressed() -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.TROPHY_PRESSED)
 	if silver_badge:
 		silver_badge.visible = false
+	back_button.visible = true
 	golden_badge.visible = true
 	animation_player_2.play("golden_badge_animation")
 	menu.visible = false
@@ -127,13 +156,13 @@ func check_game_completion() -> void:
 			silver_trophy.visible = false
 			golden_trophy.disabled = true
 			golden_trophy.visible = false
+		
 
-func get_highest_progress_level(_data: Dictionary) -> int:
-	var highest := 1
-	for i in range(1, 100): # up to Chapter/Level 99
-		var chapter := "Chapter%d" % i
-		if data.has(chapter) and data[chapter]["checkpoint_order"] > 0:
-			highest = i
-		else:
-			break
-	return highest
+func _on_back_button_pressed() -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
+	if golden_badge.visible or silver_badge.visible:
+		golden_badge.visible = false
+		silver_badge.visible = false
+		back_button.visible = false
+		menu.visible = true
+		

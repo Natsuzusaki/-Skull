@@ -91,3 +91,10 @@ func change_volume(value: float) -> void:
 		tween = create_tween()
 		tween.tween_property(music_player_loop, "volume_db", linear_to_db(music_volume), fade_in_duration)
 		
+func change_volume2(value: float) -> void:
+	music_volume = clamp(value, 0.00, MAX_VOLUME)
+	if music_player:
+		music_player.volume_db = linear_to_db(music_volume)
+	if music_player_loop:
+		music_player_loop.volume_db = linear_to_db(music_volume)
+		

@@ -27,6 +27,17 @@ func _ready():
 	sfx_bus_id = AudioServer.get_bus_index("SFX")
 	load_settings()
 
+func _unhandled_input(_event: InputEvent) -> void:
+	var root = get_tree().current_scene
+	var menu: Node
+	if root:
+		menu = root.find_child("Menu")
+	if menu:
+		if Input.is_action_just_pressed("pause") and self.visible and not menu.visible:
+			save_settings()
+			Pause.hide_settings()
+			menu.visible = true
+	
 #Keybinds
 func _create_action_list():
 	for item in action_list.get_children():

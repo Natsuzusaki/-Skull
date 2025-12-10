@@ -1,4 +1,5 @@
 extends Node2D
+
 @onready var player: Player = %Player
 @onready var printer: Node2D = $Printers/Printer
 @onready var console: Area2D = $Consoles/Console
@@ -13,7 +14,6 @@ extends Node2D
 @onready var printers: Node2D = $Printers
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
 @onready var progress_bar: CanvasLayer = $ProgressBar
-
 
 @onready var if_1: Control = $Labels/if1
 @onready var if_2: Control = $Labels/if2
@@ -34,11 +34,11 @@ extends Node2D
 
 var current_chapter = "Chapter3"
 var data = SaveManager.load_game()
-var ctr := false
+var talk_ctr := 0
+
 
 
 func _ready() -> void:
-	connections()
 	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3", 0.03)
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -46,7 +46,7 @@ func _ready() -> void:
 	if_4.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_5.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_6.modulate = Color(1.0, 1.0, 1.0, 0.0)
-	
+	#connections()
 	if data["Time_and_Medal_Score"].has("Chapter3"):
 		var chap3 = data["Time_and_Medal_Score"]["Chapter3"]
 		if chap3.has("saved_session_time"):
@@ -67,31 +67,43 @@ func _ready() -> void:
 			var checkpoint = chapter3["checkpoint_order"]
 			if checkpoint == 2.0:
 				gate.global_position += Vector2(0, 120)
+				talk_ctr = 1
+			if checkpoint == 3.0:
+				talk_ctr = 1
+			if checkpoint == 4.0:
+				talk_ctr = 1
 			if checkpoint == 5.0:
+				talk_ctr = 1
 				customizable_platform_2.position += Vector2(-160, 0)
 				int_object.queue_free()
 			if checkpoint == 6.0:
+				talk_ctr = 2
 				gate_8.global_position += Vector2(0, 120)
 				gate_9.global_position += Vector2(0, 120)
 			if checkpoint == 7.0:
 				gate_11.global_position += Vector2(0, 120)
+		
+	
 
 func _process(_delta: float) -> void:
 	if player.on_console:
 		grid.visible = false
 		timerr.visible = true
-	if not grid.visible:
-		timerr.visible = true
-		progress_bar.visible = true
 	_save_time_on_death()
+
+	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
 			grid.visible = true
 			timerr.visible = false
 			progress_bar.visible = false
 		else:
 			grid.visible = false
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			timerr.visible = true
+			progress_bar.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
 			_pause_game()
@@ -112,7 +124,15 @@ func connections() -> void:
 		note.actions_sent.connect(_actions_recieved)
 	for consolE in consoles.get_children():
 		consolE.actions_sent.connect(_actions_recieved2)
+
+
+func dialogue(talk: String) -> void:
+	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue3.dialogue"), talk)
+
 func _on_area_2d_body_entered(_body: Node2D) -> void:
+	if talk_ctr == 1:
+		dialogue("talk2")
+		talk_ctr = 2
 	var duration = 0.5
 	var tween := create_tween()
 	tween.tween_property(if_1, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
@@ -133,7 +153,7 @@ func _on_area_2d_5_body_entered(_body: Node2D) -> void:
 	var duration = 0.5
 	var tween := create_tween()
 	tween.tween_property(if_5, "modulate", Color(1.0, 1.0, 1.0, 1.0), duration)
-
+	
 func _on_area_2d_6_body_entered(_body: Node2D) -> void:
 	var duration = 0.5
 	var tween := create_tween()
@@ -149,7 +169,6 @@ func _save_timer_to_json() -> void:
 
 func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
-	progress_bar.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter3", timerr, ui_level_complete) 
 	SaveManager.evaluate_level_score("Chapter3")
@@ -159,6 +178,8 @@ func _on_finish_body_entered(_body: Node2D) -> void:
 	await get_tree().create_timer(5).timeout
 	MusicManager.change_volume(0.03)
 	
+func wait(time: float) -> void:
+	await get_tree().create_timer(time).timeout
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
@@ -189,3 +210,9 @@ func _on_room_7_body_entered(body: Node2D) -> void:
 func _on_room_8_body_entered(body: Node2D) -> void:
 	if body == player:
 		progress_bar.evaluate_progress(8)
+ 
+
+func _on_cutscene_1_body_entered(_body: Node2D) -> void:
+	if talk_ctr == 0:
+		dialogue("talk1")
+		talk_ctr = 1

@@ -1,14 +1,13 @@
-[gd_scene load_steps=77 format=4 uid="uid://8tx6hbgw5w6u"]
+[gd_scene load_steps=76 format=4 uid="uid://8tx6hbgw5w6u"]
 
 [ext_resource type="Script" uid="uid://dfn1v4ns41qgb" path="res://scripts/level3.gd" id="1_edoqj"]
 [ext_resource type="PackedScene" uid="uid://ba5axojyo8end" path="res://scenes/environment_elements/printer.tscn" id="2_ahaer"]
 [ext_resource type="PackedScene" uid="uid://7gnnosfir6we" path="res://scenes/environment_elements/checkpoint.tscn" id="2_wt4k6"]
-[ext_resource type="PackedScene" uid="uid://bc4i8yotb1ccr" path="res://scenes/environment_elements/ui_remover.tscn" id="3_0y7c6"]
 [ext_resource type="PackedScene" uid="uid://be7qsmwlyx7w2" path="res://scenes/environment_elements/gate.tscn" id="3_wt4k6"]
 [ext_resource type="PackedScene" uid="uid://6fi8kv2cysq8" path="res://scenes/environment_elements/gate2.tscn" id="4_ahaer"]
 [ext_resource type="PackedScene" uid="uid://bgs4eyp8262dh" path="res://scenes/environment_elements/platform.tscn" id="5_edoqj"]
-[ext_resource type="TileSet" uid="uid://co4aa8a5s77br" path="res://assets/presets/tiles_without_collision.tres" id="6_rfqup"]
 [ext_resource type="PackedScene" uid="uid://dm1vrdfjgbxj" path="res://scenes/environment_elements/lantern.tscn" id="7_hl16f"]
+[ext_resource type="TileSet" uid="uid://co4aa8a5s77br" path="res://assets/presets/tiles_without_collision.tres" id="7_lsxft"]
 [ext_resource type="PackedScene" uid="uid://dm3a5jhuecy5i" path="res://scenes/UI/mouse_detection.tscn" id="8_edoqj"]
 [ext_resource type="PackedScene" uid="uid://bfan1cxcaqfbu" path="res://scenes/environment_elements/console.tscn" id="8_v6yyo"]
 [ext_resource type="PackedScene" uid="uid://gximac3mmbpx" path="res://scenes/environment_elements/pressure_plate.tscn" id="9_fhpi3"]
@@ -25,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dl4hun5wt4tpd" path="res://scenes/environment_elements/customizable_platform.tscn" id="15_0qxt0"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="16_lsxft"]
 [ext_resource type="TileSet" uid="uid://cqd57uw5omsxj" path="res://assets/presets/grass_tiles.tres" id="16_yc51k"]
-[ext_resource type="PackedScene" uid="uid://tbbseijgioje" path="res://scenes/environment_elements/notes.tscn" id="17_0y7c6"]
+[ext_resource type="PackedScene" uid="uid://tbbseijgioje" path="res://scenes/environment_elements/notes.tscn" id="18_rfqup"]
 [ext_resource type="PackedScene" uid="uid://dersvtufh1xbs" path="res://scenes/environment_elements/spike_platform.tscn" id="19_wo5bm"]
 [ext_resource type="PackedScene" uid="uid://cpmp4bujrpjva" path="res://scenes/environment_elements/int_object.tscn" id="21_db4wd"]
 [ext_resource type="PackedScene" uid="uid://bfgrj03avqqj7" path="res://scenes/environment_elements/bool_object.tscn" id="22_yc51k"]
@@ -33,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://wikiax10fqqp" path="res://scenes/UI/level_complete_ui.tscn" id="28_6vxnv"]
 [ext_resource type="PackedScene" uid="uid://d27nho0jyfkam" path="res://scenes/UI/chapter_intro.tscn" id="29_flme0"]
 [ext_resource type="PackedScene" uid="uid://bk0nsimdoltgf" path="res://scenes/UI/progress_bar.tscn" id="30_0qxt0"]
-[ext_resource type="PackedScene" uid="uid://cv300ivni4xnc" path="res://scenes/UI/note_ui.tscn" id="34_d1mne"]
+[ext_resource type="PackedScene" uid="uid://cv300ivni4xnc" path="res://scenes/UI/note_ui.tscn" id="33_0y7c6"]
 
 [sub_resource type="Sky" id="Sky_gvm5i"]
 
@@ -72,7 +71,7 @@ size = Vector2(224, 80)
 size = Vector2(28, 133)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1mne"]
-size = Vector2(32, 64)
+size = Vector2(453, 48)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k7ufq"]
 blend_mode = 3
@@ -617,21 +616,11 @@ chapter = "Chapter3"
 position = Vector2(5374, 1159)
 shape = SubResource("RectangleShape2D_lsxft")
 
-[node name="UI_Remover" parent="Triggers" instance=ExtResource("3_0y7c6")]
-position = Vector2(1792, 312)
+[node name="Cutscene1" type="Area2D" parent="Triggers"]
 
-[node name="UI_Remover2" parent="Triggers" instance=ExtResource("3_0y7c6")]
-position = Vector2(2688, 256)
-
-[node name="UI_Remover3" parent="Triggers" instance=ExtResource("3_0y7c6")]
-position = Vector2(2975.9998, 831.99994)
-rotation = 1.5602865
-
-[node name="UI_Remover4" parent="Triggers" instance=ExtResource("3_0y7c6")]
-position = Vector2(3584, 1456)
-
-[node name="UI_Remover5" parent="Triggers" instance=ExtResource("3_0y7c6")]
-position = Vector2(4496, 1176)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Cutscene1"]
+position = Vector2(1165.5, 424)
+shape = SubResource("RectangleShape2D_d1mne")
 
 [node name="Printers" type="Node2D" parent="."]
 
@@ -666,13 +655,6 @@ min_limit = Vector2(3696, 1088)
 max_limit = Vector2(4432, 1488)
 move_in_x = true
 
-[node name="MouseDetection" parent="Printers/Printer7" node_paths=PackedStringArray("parent") instance=ExtResource("8_edoqj")]
-parent = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Printers/Printer7/MouseDetection"]
-position = Vector2(0, -24)
-shape = SubResource("RectangleShape2D_d1mne")
-
 [node name="Printer8" parent="Printers" node_paths=PackedStringArray("console") instance=ExtResource("2_ahaer")]
 position = Vector2(1864, 72)
 console = NodePath("../../Consoles/Console9")
@@ -686,8 +668,9 @@ collision_enabled = false
 
 [node name="BackGround-1" type="TileMapLayer" parent="."]
 modulate = Color(0.28627452, 0.28627452, 0.28627452, 1)
-tile_map_data = PackedByteArray("AABIABsAAAAIAAwAAABIABoAAAAIAAwAAABIABkAAAAIAAsAAABHABsAAAAGAAwAAABHABoAAAAGAAwAAABHABkAAAAGAAsAAABIABwAAAAIAA0AAABHABwAAAAGAA0AAAC6AD8AAAAHAA0AAAC6AD4AAAAKAA0AAAC6AD0AAAAIAAwAAAC6ADwAAAAIAAwAAAC6ADsAAAAIAAsAAAC5AD8AAAAHAA0AAAC5AD4AAAALAA0AAAC5AD0AAAAGAAwAAAC5ADwAAAAGAAwAAAC5ADsAAAAGAAsAAAC+AD8AAAAIAA0AAAC+AD4AAAAIAAsAAAC9AD8AAAAHAA0AAAC9AD4AAAAHAAsAAAC8AD8AAAAHAA0AAAC8AD4AAAAHAAsAAAC7AD8AAAAHAA0AAAC7AD4AAAAHAAsAAAC4AD8AAAAHAA0AAAC4AD4AAAAHAAsAAAC3AD8AAAAHAA0AAAC3AD4AAAAHAAsAAAC2AD8AAAAGAA0AAAC2AD4AAAAGAAsAAAA=")
-tile_set = ExtResource("6_rfqup")
+position = Vector2(1648, 344)
+tile_map_data = PackedByteArray("AADh/wYAAAAIAA0AAADh/wUAAAAIAAwAAADh/wQAAAAIAAwAAADg/wYAAAAGAA0AAADg/wUAAAAGAAwAAADg/wQAAAAGAAwAAADh/wMAAAAIAAsAAADg/wMAAAAGAAsAAABTACkAAAAHAA0AAABTACgAAAAIAAwAAABTACcAAAAIAAwAAABTACYAAAAIAAsAAABSACkAAAAHAA0AAABSACgAAAAGAAwAAABSACcAAAAGAAwAAABSACYAAAAGAAsAAABWACkAAAAIAA0AAABVACkAAAAHAA0AAABUACkAAAAHAA0AAABRACkAAAAHAA0AAABQACkAAAAHAA0AAABPACkAAAAGAA0AAAA=")
+tile_set = ExtResource("7_lsxft")
 
 [node name="Gates" type="Node2D" parent="."]
 position = Vector2(1648, 344)
@@ -772,7 +755,7 @@ new_pos = Vector2(0, -126)
 move_in_y = true
 
 [node name="Gate14" parent="Gates" instance=ExtResource("3_wt4k6")]
-position = Vector2(3688, 864)
+position = Vector2(3693, 864)
 scale = Vector2(0.97798026, 1.0009922)
 new_pos = Vector2(0, 125)
 min_limit = Vector2(3616, 1088)
@@ -784,7 +767,7 @@ move_in_y = true
 [node name="Customizable_Platform" parent="Platforms" instance=ExtResource("15_0qxt0")]
 position = Vector2(2304, 64)
 tile_map_data = PackedByteArray("AAABAAIAAAAIAA0AAAABAAEAAAAIAAwAAAABAAAAAAAIAAwAAAABAP//AAAIAAwAAAABAP7/AAAIAAwAAAABAP3/AAAIAAsAAAAAAAIAAAAHAA0AAAAAAAEAAAAHAAwAAAAAAAAAAAAHAAwAAAAAAP//AAAHAAwAAAAAAP7/AAAHAAwAAAAAAP3/AAAHAAsAAAD//wIAAAAHAA0AAAD//wEAAAAHAAwAAAD//wAAAAAHAAwAAAD/////AAAHAAwAAAD///7/AAAHAAwAAAD///3/AAAHAAsAAAD+/wIAAAAGAA0AAAD+/wEAAAAGAAwAAAD+/wAAAAAGAAwAAAD+////AAAGAAwAAAD+//7/AAAGAAwAAAD+//3/AAAGAAsAAAABAPz/AAAOAAkAAAAAAPz/AAAOAAkAAAD///z/AAAOAAkAAAD+//z/AAAOAAkAAAD+/wMAAAAOAAkAACD//wMAAAAOAAkAACAAAAMAAAAOAAkAACABAAMAAAAOAAkAACA=")
-platform_name = "plat"
+platform_name = "plat1"
 min_limit = Vector2(1824, 32)
 max_limit = Vector2(2688, 448)
 move_in_x = false
@@ -1010,17 +993,6 @@ tile_set = ExtResource("16_yc51k")
 tile_map_data = PackedByteArray("AAB4ABsAAAAAAAEAAAB5ABsAAAAAAAAAAAB7ABkAAAAAAAEAAAB9ABoAAAAAAAEAAAB/ABsAAAAAAAIAAACEABAAAAAAAAEAAACGABAAAAAAAAAAAACFAAIAAAAAAAAAAACBAAIAAAAAAAIAAAB+AAIAAAAAAAIAAAB8AAIAAAAAAAAAAAB6AAIAAAAAAAIAAAB5AAYAAAAAAAAAAAB3AAYAAAAAAAAAAACPAAgAAAAAAAEAAACRAAgAAAAAAAAAAACWAAoAAAAAAAAAAACWAAgAAAAAAAEAAAClAAYAAAAAAAAAAAClAAQAAAAAAAIAAAClAAIAAAAAAAEAAACdABgAAAAAAAAAAACcABoAAAAAAAAAAACaABsAAAAAAAAAAACWABkAAAAAAAAAAACUABsAAAAAAAIAAACSABsAAAAAAAAAAACQABkAAAAAAAEAAACPABoAAAAAAAEAAACgABoAAAAAAAIAAACiABsAAAAAAAAAAACkABsAAAAAAAAAAACkABkAAAAAAAAAAACiABgAAAAAAAEAAAChABYAAAAAAAAAAACgABUAAAAAAAIAAACDAAIAAAAAAAAAAAC5ABsAAAAAAAIAAAC/ABsAAAAAAAEAAADbABEAAAAAAAAAAADWAA0AAAAAAAAAAADUAAgAAAAAAAIAAADbAAcAAAAAAAIAAADbAAQAAAAAAAEAAAC0AAgAAAAAAAEAAACzAAgAAAAAAAAAAADXADIAAAAAAAEAAACqAEUAAAAAAAEAAACqAEcAAAAAAAIAAACsAEIAAAAAAAIAAADcAEYAAAAAAAAAAADbAEMAAAAAAAAAAADcAFAAAAAAAAIAAADcAE8AAAAAAAAAAADbAEwAAAAAAAEAAACrAE4AAAAAAAIAAACrAE0AAAAAAAEAAACqAFEAAAAAAAAAAACqAFgAAAAAAAAAAACqAFkAAAAAAAIAAACsAFsAAAAAAAIAAACsAFYAAAAAAAAAAADAADIAAAAAAAEAAADIADIAAAAAAAEAAADRADIAAAAAAAEAAAC9ADIAAAAAAAAAAAAAAVwAAAAAAAIAAAD8AFwAAAAAAAIAAAD5AFwAAAAAAAIAAADzAFkAAAAAAAIAAADxAFcAAAAAAAIAAADsAFQAAAAAAAAAAADqAFMAAAAAAAEAAAAiAU8AAAAAAAAAAAAmAU8AAAAAAAEAAAAuAU8AAAAAAAAAAAAxAU8AAAAAAAAAAAAhAV0AAAAAAAEAAAAoAV0AAAAAAAEAAAAtAV0AAAAAAAAAAAA0AV0AAAAAAAEAAAA8AV0AAAAAAAEAAABFAV0AAAAAAAAAAABFAVEAAAAAAAIAAABIAU4AAAAAAAIAAABHAUsAAAAAAAAAAACDABsAAAAAAAAAAAA=")
 tile_set = ExtResource("12_hl16f")
 
-[node name="Notes" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Notes" parent="Notes" instance=ExtResource("17_0y7c6")]
-position = Vector2(1152, 424)
-note_num = 10
-
-[node name="Notes2" parent="Notes" instance=ExtResource("17_0y7c6")]
-position = Vector2(2976, 968)
-note_num = 11
-
 [node name="Lanterns" type="Node2D" parent="."]
 position = Vector2(280, -240)
 
@@ -1161,6 +1133,17 @@ z_index = -1
 position = Vector2(5024, 1648)
 metadata/_edit_lock_ = true
 
+[node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Notes" parent="Notes" instance=ExtResource("18_rfqup")]
+position = Vector2(1152, 424)
+note_num = 10
+
+[node name="Notes2" parent="Notes" instance=ExtResource("18_rfqup")]
+position = Vector2(2976, 976)
+note_num = 11
+
 [node name="Consoles" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(288, 256)
@@ -1176,43 +1159,42 @@ fixed_var = ""
 visibility_layer = 3
 position = Vector2(2568, -32)
 characterlimit = 20
-base_text = "print(true, false)"
+base_text = "  print(???)"
 fixed_var = ""
 
 [node name="Console4" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 672)
 characterlimit = 20
-base_text = "print(true, true, true)"
+base_text = "print(??? , ??? , ???)"
 fixed_var = ""
 
 [node name="Console5" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 848)
 characterlimit = 20
-base_text = "print(?, ?, ?)"
+base_text = "  print(??? , ??? , ???)"
 fixed_var = ""
 
 [node name="Console6" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 1008)
 characterlimit = 20
-base_text = "print(?, ?, ?)"
+base_text = "  print(??? , ??? , ???)"
 fixed_var = ""
 
 [node name="Console7" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(2544, 1168)
 characterlimit = 20
-base_text = "print(?, ?, ?)"
+base_text = " print(??? , ??? , ???, ???)"
 fixed_var = ""
 
 [node name="Console8" parent="Consoles" instance=ExtResource("8_v6yyo")]
 visibility_layer = 3
 position = Vector2(3480, 1168)
 characterlimit = 20
-base_text = "print(7, 9, 11)
-print(?, ?)"
+base_text = "  "
 fixed_var = ""
 outputs = {
 "printer": NodePath("../../Printers/Printer7")
@@ -1222,11 +1204,10 @@ outputs = {
 visibility_layer = 3
 position = Vector2(1824, -176)
 characterlimit = 20
-base_text = "plat.position = ?, ?
-print(false)"
+base_text = "  "
 fixed_var = ""
 outputs = {
-"plat": NodePath("../../Platforms/Customizable_Platform")
+"plat1": NodePath("../../Platforms/Customizable_Platform")
 }
 
 [node name="PressurePlates" type="Node2D" parent="."]
@@ -1416,21 +1397,19 @@ active_time = 1.0
 outputs = [NodePath("../../Gates/Gate12")]
 
 [node name="CodeBlocks" type="Node2D" parent="."]
-unique_name_in_owner = true
 position = Vector2(2816, 712)
 
 [node name="Code_Blocks" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
+position = Vector2(0, -35)
 statement = "
 	platform.position.x = 
 "
-control_axis = "x"
 outputs = [NodePath("../../Platforms/Customizable_Platform2")]
 
 [node name="Code_Blocks2" parent="CodeBlocks" node_paths=PackedStringArray("outputs") instance=ExtResource("11_fhpi3")]
-position = Vector2(1216, 720)
+position = Vector2(1212, 708)
 statement = "
 	printer.position.x "
-control_axis = "x"
 outputs = [NodePath("../../Printers/Printer7")]
 
 [node name="Objects" type="Node2D" parent="."]
@@ -1448,7 +1427,7 @@ value = false
 
 [node name="Player" parent="." instance=ExtResource("12_ojkn5")]
 unique_name_in_owner = true
-position = Vector2(16.000002, 136)
+position = Vector2(24.00003, 136)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -1534,18 +1513,19 @@ offset_bottom = 640.0
 
 [node name="Label3" type="Label" parent="Labels/if1"]
 layout_mode = 0
-offset_right = 192.0
+offset_left = -66.0
+offset_right = 270.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "if plate1 and plate2 and plate3:
+text = "if plate1 == true and plate2 == true and plate3 == true:
      open_gate()"
 
 [node name="Label5" type="Label" parent="Labels/if1"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 58.0
-offset_right = 79.0
+offset_left = 39.0
+offset_right = 60.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1554,8 +1534,8 @@ text = "and"
 [node name="Label4" type="Label" parent="Labels/if1"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 126.0
-offset_right = 147.0
+offset_left = 154.0
+offset_right = 175.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1564,9 +1544,9 @@ text = "and"
 [node name="Label21" type="Label" parent="Labels/if1"]
 self_modulate = Color(0, 0.54509807, 1, 1)
 layout_mode = 0
-offset_left = 16.0
+offset_left = -50.0
 offset_top = 11.0
-offset_right = 115.0
+offset_right = 49.0
 offset_bottom = 34.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1574,8 +1554,10 @@ text = " open_gate()"
 
 [node name="if2" type="Control" parent="Labels"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -35.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 42.0
 
 [node name="Label6" type="Label" parent="Labels/if2"]
 layout_mode = 0
@@ -1585,15 +1567,15 @@ offset_right = 1914.0
 offset_bottom = 815.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "if plate4 or plate5 == false and plate6:
+text = "if plate4 == true or plate5 == false and plate6 == true:
      open_gate2()"
 
 [node name="Label7" type="Label" parent="Labels/if2"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 1843.0
+offset_left = 1890.0
 offset_top = 792.0
-offset_right = 1865.0
+offset_right = 1912.0
 offset_bottom = 800.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1602,9 +1584,9 @@ text = "and"
 [node name="Label8" type="Label" parent="Labels/if2"]
 self_modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 1730.0
+offset_left = 1777.0
 offset_top = 792.0
-offset_right = 1752.0
+offset_right = 1799.0
 offset_bottom = 800.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1634,7 +1616,7 @@ offset_right = 1927.0
 offset_bottom = 975.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "if not plate7 and plate8 and plate9 == false:
+text = "if not plate7 and plate8 == true and plate9 == false:
      open_gate3()"
 
 [node name="Label12" type="Label" parent="Labels/if3"]
@@ -1651,9 +1633,9 @@ text = "not"
 [node name="Label13" type="Label" parent="Labels/if3"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 1806.0
+offset_left = 1853.0
 offset_top = 952.0
-offset_right = 1828.0
+offset_right = 1875.0
 offset_bottom = 960.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1683,7 +1665,7 @@ text = " open_gate3()"
 
 [node name="if4" type="Control" parent="Labels"]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -40.0
 offset_bottom = 40.0
 
 [node name="Label15" type="Label" parent="Labels/if4"]
@@ -1694,15 +1676,15 @@ offset_right = 1996.0
 offset_bottom = 1135.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "if (plate10 and not plate11) and (plate12 or plate13 == false):
+text = "if (plate10 == true and not plate11) and (plate12 == true or plate13 == false):
      open_gate4()"
 
 [node name="Label16" type="Label" parent="Labels/if4"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 1705.0
+offset_left = 1752.0
 offset_top = 1112.0
-offset_right = 1727.0
+offset_right = 1774.0
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1711,9 +1693,9 @@ text = "not"
 [node name="Label18" type="Label" parent="Labels/if4"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 1786.0
+offset_left = 1833.0
 offset_top = 1112.0
-offset_right = 1808.0
+offset_right = 1855.0
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1722,9 +1704,9 @@ text = "and"
 [node name="Label17" type="Label" parent="Labels/if4"]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 1680.0
+offset_left = 1727.0
 offset_top = 1112.0
-offset_right = 1702.0
+offset_right = 1749.0
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1733,9 +1715,9 @@ text = "and"
 [node name="Label19" type="Label" parent="Labels/if4"]
 self_modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 1868.0
+offset_left = 1962.0
 offset_top = 1112.0
-offset_right = 1890.0
+offset_right = 1984.0
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1766,16 +1748,16 @@ offset_right = 94.0
 offset_bottom = 64.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "var a = 10 == 10
-var b = 12 > 13
-var c = 25 < 30 "
+text = "var a = (10 == 10)
+var b = (12 > 13)
+var c = (25 < 30) "
 
 [node name="Label24" type="Label" parent="Labels/if5"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 71.0
 offset_top = 16.0
-offset_right = 76.0
-offset_bottom = 35.0
+offset_right = 83.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1784,10 +1766,10 @@ text = "==
 
 [node name="Label25" type="Label" parent="Labels/if5"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 38.0
-offset_right = 76.0
-offset_bottom = 57.0
+offset_left = 71.0
+offset_top = 27.0
+offset_right = 83.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1795,10 +1777,10 @@ text = ">"
 
 [node name="Label26" type="Label" parent="Labels/if5"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 60.0
-offset_right = 76.0
-offset_bottom = 79.0
+offset_left = 71.0
+offset_top = 38.0
+offset_right = 83.0
+offset_bottom = 57.0
 theme_override_colors/font_color = Color(0, 0.46666667, 1, 1)
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1812,7 +1794,7 @@ offset_right = 394.0
 offset_bottom = 264.0
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
-text = "if plate1 == b: 
+text = " if plate1 == b: 
      move_platform1()
 
 if plate2 == a: 
@@ -1857,9 +1839,9 @@ text = "move_platform3()"
 
 [node name="Label34" type="Label" parent="Labels/if5"]
 layout_mode = 0
-offset_top = 60.0
+offset_top = 38.0
 offset_right = 21.0
-offset_bottom = 79.0
+offset_bottom = 57.0
 theme_override_colors/font_color = Color(1, 0, 1, 1)
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -1867,9 +1849,9 @@ text = "var"
 
 [node name="Label35" type="Label" parent="Labels/if5"]
 layout_mode = 0
-offset_top = 38.0
+offset_top = 27.0
 offset_right = 21.0
-offset_bottom = 57.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(1, 0, 1, 1)
 theme_override_fonts/font = ExtResource("16_lsxft")
 theme_override_font_sizes/font_size = 8
@@ -2028,15 +2010,13 @@ _3star = 35
 _2star = 40
 
 [node name="ChapterIntro" parent="." instance=ExtResource("29_flme0")]
-visible = false
-title = "Level 3:
-
+title = "Chapter 3:
 Booleans, Conditionals
 & if else"
 
 [node name="ProgressBar" parent="." instance=ExtResource("30_0qxt0")]
 
-[node name="Note_UI" parent="." instance=ExtResource("34_d1mne")]
+[node name="Note_UI" parent="." instance=ExtResource("33_0y7c6")]
 
 [connection signal="body_entered" from="Rooms/Room1" to="." method="_on_room_1_body_entered"]
 [connection signal="body_entered" from="Rooms/Room2" to="." method="_on_room_2_body_entered"]
@@ -2053,3 +2033,4 @@ Booleans, Conditionals
 [connection signal="body_entered" from="ShowIfs/Area2D5" to="." method="_on_area_2d_5_body_entered"]
 [connection signal="body_entered" from="ShowIfs/Area2D6" to="." method="_on_area_2d_6_body_entered"]
 [connection signal="body_entered" from="Triggers/Finish" to="." method="_on_finish_body_entered"]
+[connection signal="body_entered" from="Triggers/Cutscene1" to="." method="_on_cutscene_1_body_entered"]

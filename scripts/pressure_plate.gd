@@ -51,26 +51,28 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	occupied += 1
-	animation_player.play("pressed")
-	green.visible = true
-	red.visible = false
+	if occupied == 1:
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.PLATE_GREEN)
+		animation_player.play("pressed")
+		green.visible = true
+		red.visible = false
 	current_object = body
-
 	# Apply NOT logic
 	var value: bool = bool(body.get("value"))
 	if is_not:
 		value = !value
-
+	
 	# Update activated state
 	_evaluate_logic(value)
 
 
 func _on_body_exited(body: Node) -> void:
 	occupied -= 1
-	animation_player.play("not_pressed")
-	green.visible = false
-	red.visible = true
-
+	if occupied == 0:
+		#SfxManager.play_sfx(sfx_settings.SFX_NAME.PLATE_RED)
+		animation_player.play("not_pressed")
+		green.visible = false
+		red.visible = true
 	if body == current_object and occupied <= 0:
 		current_object = null
 		#activated = false
@@ -113,6 +115,7 @@ func _evaluate_logic(value: bool) -> void:
 
 
 func _evaluate_main_group(_value: bool) -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.PLATE_GREEN)
 	var members = get_tree().get_nodes_in_group(main_group)
 	if members.is_empty():
 		return

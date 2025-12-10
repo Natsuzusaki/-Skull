@@ -99,6 +99,7 @@ func set_grid_y(val) -> void:
 	commanded_position = _last_grid_pos
 
 func _move_to(new_grid: Vector2) -> void:
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.PLATFORM)
 	_last_grid_pos = new_grid
 	target = grid_to_world(new_grid, 32)
 	target.x = clamp(target.x, min_limit.x, max_limit.x)

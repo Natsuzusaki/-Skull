@@ -1,11 +1,13 @@
-[gd_scene load_steps=75 format=3 uid="uid://dp6tjuwpf5i5h"]
+[gd_scene load_steps=82 format=3 uid="uid://dp6tjuwpf5i5h"]
 
 [ext_resource type="Script" uid="uid://c1p1e8spypbpk" path="res://scripts/main_menu.gd" id="1_um6dh"]
-[ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_5d4ag"]
+[ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_m8t5g"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_d6l81"]
+[ext_resource type="Texture2D" uid="uid://rwhjbjyg7n6" path="res://assets/images/bg_light.png" id="3_ffklo"]
 [ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="4_a1wsg"]
-[ext_resource type="FontFile" uid="uid://clukxufm8416u" path="res://assets/fonts/04B_30__.TTF" id="5_i7p8e"]
+[ext_resource type="Texture2D" uid="uid://vdr667ixq1pe" path="res://assets/images/light1.png" id="4_e6xqc"]
 [ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="6_5d4ag"]
+[ext_resource type="FontFile" uid="uid://bg66otq46n6cb" path="res://assets/fonts/JMH Cthulhumbus Arcade UG.ttf" id="6_ffklo"]
 [ext_resource type="PackedScene" uid="uid://25bjfaqklrw" path="res://scenes/UI/user_list.tscn" id="8_um6dh"]
 [ext_resource type="Texture2D" uid="uid://ccjaely0tqtjt" path="res://assets/images/gold_trophy1.png" id="9_sfthw"]
 [ext_resource type="Texture2D" uid="uid://04rjn5rljk8s" path="res://assets/images/silver_trophy1.png" id="9_wt33a"]
@@ -60,8 +62,12 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12kdf"]
-texture = ExtResource("2_5d4ag")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffklo"]
+texture = ExtResource("2_m8t5g")
+
+[sub_resource type="Curve" id="Curve_e6xqc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.21343872, 1), 0.0, 0.0, 0, 0, Vector2(0.49802366, 1), 0.0, 0.0, 0, 0, Vector2(0.78656125, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwd2w"]
 texture = ExtResource("4_a1wsg")
@@ -268,6 +274,19 @@ _data = {
 &"silver_badge_animation": SubResource("Animation_75vrm")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e6xqc"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c2ugb"]
+texture = ExtResource("4_a1wsg")
+modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6trdw"]
+texture = ExtResource("4_a1wsg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nf18"]
+
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "user_list")]
 layout_mode = 3
 anchors_preset = 15
@@ -287,8 +306,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_12kdf")
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_ffklo")
+
+[node name="PointLight2D" type="PointLight2D" parent="Background"]
+show_behind_parent = true
+position = Vector2(631, 363)
+scale = Vector2(0.93108875, 0.96469516)
+energy = 0.45
+range_z_min = -1
+range_z_max = 1
+texture = ExtResource("3_ffklo")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+position = Vector2(640, 352.00003)
+scale = Vector2(5.5335293, 5.5335293)
+amount = 30
+texture = ExtResource("4_e6xqc")
+lifetime = 18.0
+speed_scale = 1.93
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 146.17
+gravity = Vector2(0, 0)
+initial_velocity_max = 21.9
+scale_amount_min = 0.0
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_e6xqc")
+color = Color(0.84705883, 1, 0.45490196, 0.49019608)
 
 [node name="Menu" type="Panel" parent="Background"]
 self_modulate = Color(0, 0, 0, 0)
@@ -367,28 +411,30 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Exit"
 
-[node name="GameTitle" type="Label" parent="Background/Menu"]
+[node name="GameTitle" type="RichTextLabel" parent="Background/Menu"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 188.0
-offset_top = -200.0
-offset_right = 1085.0
-offset_bottom = 199.0
+offset_left = 261.0
+offset_top = -173.0
+offset_right = 985.09033
+offset_bottom = -59.21277
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.67451)
-theme_override_constants/shadow_offset_x = 10
-theme_override_constants/shadow_offset_y = 10
-theme_override_fonts/font = ExtResource("5_i7p8e")
-theme_override_font_sizes/font_size = 63
-text = "
-
-
-Spelunkode"
+theme_override_colors/default_color = Color(0.82194465, 0.9644236, 0.7455018, 1)
+theme_override_colors/font_outline_color = Color(0.308926, 0.46839166, 0.20864654, 1)
+theme_override_colors/font_shadow_color = Color(0.09822961, 0.1363405, 0.27583444, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/normal_font = ExtResource("6_ffklo")
+theme_override_font_sizes/normal_font_size = 124
+bbcode_enabled = true
+text = "[wave]Spelunkode"
+scroll_active = false
 horizontal_alignment = 1
 
 [node name="User" type="Panel" parent="Background/Menu"]
@@ -475,12 +521,14 @@ anim_speed_max = 1.0
 
 [node name="UserList" parent="Background" node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
 visible = false
+z_index = 2
 layout_mode = 1
 parent = NodePath("../..")
 previous_menu = NodePath("../Menu")
 
 [node name="SilverBadge" type="Sprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(640, 336)
 scale = Vector2(6.857141, 6.8571405)
 texture = ExtResource("61_eyqfm")
@@ -522,6 +570,7 @@ autoplay = "silver_badge_animation"
 
 [node name="GoldenBadge" type="Sprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(640.00006, 352)
 scale = Vector2(5.8823543, 5.8823566)
 texture = ExtResource("63_b58wi")
@@ -562,6 +611,27 @@ libraries = {
 }
 autoplay = "golden_badge_animation"
 
+[node name="BackButton" type="Button" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -584.0
+offset_top = 48.0
+offset_right = -429.0
+offset_bottom = 133.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_d6l81")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxTexture_e6xqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_c2ugb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6trdw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2nf18")
+text = "Back"
+
 [connection signal="pressed" from="Background/Menu/MainButtons/Start" to="." method="_on_startnewgame_pressed"]
 [connection signal="pressed" from="Background/Menu/MainButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Background/Menu/MainButtons/Settings" to="." method="_on_Settings_pressed"]
@@ -569,3 +639,4 @@ autoplay = "golden_badge_animation"
 [connection signal="pressed" from="Background/Menu/User/SwitchUser" to="." method="_on_switch_user_pressed"]
 [connection signal="pressed" from="Background/Menu/SilverTrophy" to="." method="_on_silver_trophy_pressed"]
 [connection signal="pressed" from="Background/Menu/GoldenTrophy" to="." method="_on_golden_trophy_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

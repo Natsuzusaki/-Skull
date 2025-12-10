@@ -109,3 +109,4 @@ func move(steps: int, _axis = null) -> void:
 	target.y = clamp(target.y, min_limit.y, max_limit.y)
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", target, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.PLATFORM)

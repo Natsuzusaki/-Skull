@@ -12,6 +12,7 @@ extends Control
 @onready var next_level_button: Button = $Control/LevelCompleteImage/NextLevelButton
 @onready var timer_2: Timer = $Timer2
 @onready var label: Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Label
+@onready var button_label: Label = $Control/LevelCompleteImage/NextLevelButton/ButtonLabel
 
 var converted_min3: float
 var converted_min2: float
@@ -22,6 +23,18 @@ var medals: int
 
 func _ready() -> void:
 	self.visible = false
+	var scene_chapter = get_tree().current_scene.current_chapter
+	if scene_chapter == "Chapter4":
+		main_menu_button.visible = false
+		button_label.text = "Return"
+		next_level_button.position = Vector2(354,388)
+	else:
+		main_menu_button.visible = true
+		button_label.text = "Next Level"
+		next_level_button.position = Vector2(482,388)
+		
+		
+	
 
 func drop_down() -> void:
 	self.visible = true

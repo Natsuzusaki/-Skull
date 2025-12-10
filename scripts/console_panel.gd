@@ -201,7 +201,7 @@ func code_run() -> void:
 	var success = execute_code(user_code)
 	if success:
 		if not prevent_close:
-			SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_RUN)
 			player.stay = false
 			player.on_console = false
 			camera.back()

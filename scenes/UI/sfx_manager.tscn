@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhkwho3sbf2km"]
+[gd_scene load_steps=54 format=3 uid="uid://bhkwho3sbf2km"]
 
 [ext_resource type="Script" uid="uid://druv8tccie5pt" path="res://scripts/sfx_manager.gd" id="1_yybmf"]
 [ext_resource type="Script" uid="uid://b0cgvostktddq" path="res://scripts/sfx_settings.gd" id="2_nf7bn"]
@@ -11,6 +11,22 @@
 [ext_resource type="AudioStream" uid="uid://cikm5xnxoyicy" path="res://assets/music/console exit.mp3" id="9_ktasg"]
 [ext_resource type="AudioStream" uid="uid://b30amtl6y8tjv" path="res://assets/music/console error.mp3" id="10_5ifs4"]
 [ext_resource type="AudioStream" uid="uid://kkecea4bpwvr" path="res://assets/music/stone.mp3" id="11_ktasg"]
+[ext_resource type="AudioStream" uid="uid://sv4g7qevvs6v" path="res://assets/music/run.mp3" id="12_5ifs4"]
+[ext_resource type="AudioStream" uid="uid://bq3r5jlxr5vsv" path="res://assets/music/plate_on.wav" id="13_eb3jp"]
+[ext_resource type="AudioStream" uid="uid://c5dlnjenplq5j" path="res://assets/music/plate_off.wav" id="14_ybe85"]
+[ext_resource type="AudioStream" uid="uid://c1haw22skm408" path="res://assets/music/codeblock.mp3" id="15_ybe85"]
+[ext_resource type="AudioStream" uid="uid://cfkdblp4vhqym" path="res://assets/music/pickup.mp3" id="16_vrmod"]
+[ext_resource type="AudioStream" uid="uid://dqn2nnj8j2kd7" path="res://assets/music/throw.mp3" id="17_xdce8"]
+[ext_resource type="AudioStream" uid="uid://g60li1er4k7j" path="res://assets/music/grid.wav" id="18_d1kr7"]
+[ext_resource type="AudioStream" uid="uid://cpmxvqy0w6do" path="res://assets/music/gate.mp3" id="18_xdce8"]
+[ext_resource type="AudioStream" uid="uid://dh5n4xwfbjavk" path="res://assets/music/printer.wav" id="20_bay6x"]
+[ext_resource type="AudioStream" uid="uid://c2dvwyd8bnxxr" path="res://assets/music/hover.mp3" id="21_3hvex"]
+[ext_resource type="AudioStream" uid="uid://i4yjyvceum1l" path="res://assets/music/trophy_pressed.mp3" id="22_b0meb"]
+[ext_resource type="AudioStream" uid="uid://dk76pveuvvm70" path="res://assets/music/explosion.mp3" id="23_ycf1s"]
+[ext_resource type="AudioStream" uid="uid://kflrbxqetvtc" path="res://assets/music/pause.mp3" id="24_df3ek"]
+[ext_resource type="AudioStream" uid="uid://b2vv6r77swq1e" path="res://assets/music/unpause.mp3" id="25_rau41"]
+[ext_resource type="AudioStream" uid="uid://p1em3yd06v4s" path="res://assets/music/crystal.mp3" id="26_rau41"]
+[ext_resource type="AudioStream" uid="uid://kbnpqiepe5xu" path="res://assets/music/loop.mp3" id="27_1cw60"]
 
 [sub_resource type="Resource" id="Resource_nf7bn"]
 script = ExtResource("2_nf7bn")
@@ -75,6 +91,126 @@ sfx_file = ExtResource("11_ktasg")
 volume = -16.109
 metadata/_custom_type_script = "uid://b0cgvostktddq"
 
+[sub_resource type="Resource" id="Resource_73vw4"]
+script = ExtResource("2_nf7bn")
+sfx_name = 8
+sfx_file = ExtResource("12_5ifs4")
+volume = -16.17
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_vrmod"]
+script = ExtResource("2_nf7bn")
+sfx_name = 10
+sfx_file = ExtResource("13_eb3jp")
+volume = -20.936
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_xdce8"]
+script = ExtResource("2_nf7bn")
+sfx_name = 11
+sfx_file = ExtResource("14_ybe85")
+volume = -20.476
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_d1kr7"]
+script = ExtResource("2_nf7bn")
+sfx_name = 12
+sfx_file = ExtResource("15_ybe85")
+volume = -16.983
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_bay6x"]
+script = ExtResource("2_nf7bn")
+sfx_name = 13
+sfx_file = ExtResource("16_vrmod")
+volume = -16.052
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_3hvex"]
+script = ExtResource("2_nf7bn")
+sfx_name = 14
+sfx_file = ExtResource("17_xdce8")
+volume = 1.0
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_b0meb"]
+script = ExtResource("2_nf7bn")
+sfx_name = 15
+sfx_file = ExtResource("11_ktasg")
+volume = -16.238
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_ycf1s"]
+script = ExtResource("2_nf7bn")
+sfx_name = 16
+sfx_file = ExtResource("18_d1kr7")
+volume = -20.777
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_0lxf2"]
+script = ExtResource("2_nf7bn")
+sfx_name = 17
+sfx_file = ExtResource("18_xdce8")
+volume = -16.567
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_df3ek"]
+script = ExtResource("2_nf7bn")
+sfx_name = 18
+sfx_file = ExtResource("20_bay6x")
+volume = -16.233
+pitch_random = 0.5
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_rau41"]
+script = ExtResource("2_nf7bn")
+sfx_name = 19
+sfx_file = ExtResource("21_3hvex")
+volume = -23.566
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_1cw60"]
+script = ExtResource("2_nf7bn")
+sfx_name = 20
+sfx_file = ExtResource("22_b0meb")
+volume = -11.5
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_rqpqa"]
+script = ExtResource("2_nf7bn")
+sfx_name = 21
+sfx_file = ExtResource("23_ycf1s")
+volume = -24.0
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_5iwjt"]
+script = ExtResource("2_nf7bn")
+sfx_name = 22
+sfx_file = ExtResource("24_df3ek")
+volume = -16.188
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_coisj"]
+script = ExtResource("2_nf7bn")
+sfx_name = 23
+sfx_file = ExtResource("25_rau41")
+volume = -16.749
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_cr43n"]
+script = ExtResource("2_nf7bn")
+sfx_name = 24
+sfx_file = ExtResource("26_rau41")
+volume = -15.0
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
+[sub_resource type="Resource" id="Resource_yijcu"]
+script = ExtResource("2_nf7bn")
+sfx_name = 25
+sfx_file = ExtResource("27_1cw60")
+volume = -15.698
+metadata/_custom_type_script = "uid://b0cgvostktddq"
+
 [node name="SfxManager" type="Node"]
 script = ExtResource("1_yybmf")
-SFX_SETTINGS = Array[ExtResource("2_nf7bn")]([SubResource("Resource_nf7bn"), SubResource("Resource_oub7f"), SubResource("Resource_w4mbc"), SubResource("Resource_0ho66"), SubResource("Resource_0u5pd"), SubResource("Resource_kpkhy"), SubResource("Resource_eb3jp"), SubResource("Resource_ybe85"), SubResource("Resource_5ifs4")])
+SFX_SETTINGS = Array[ExtResource("2_nf7bn")]([SubResource("Resource_nf7bn"), SubResource("Resource_oub7f"), SubResource("Resource_w4mbc"), SubResource("Resource_0ho66"), SubResource("Resource_0u5pd"), SubResource("Resource_kpkhy"), SubResource("Resource_eb3jp"), SubResource("Resource_ybe85"), SubResource("Resource_5ifs4"), SubResource("Resource_73vw4"), SubResource("Resource_vrmod"), SubResource("Resource_xdce8"), SubResource("Resource_d1kr7"), SubResource("Resource_bay6x"), SubResource("Resource_3hvex"), SubResource("Resource_b0meb"), SubResource("Resource_ycf1s"), SubResource("Resource_0lxf2"), SubResource("Resource_df3ek"), SubResource("Resource_rau41"), SubResource("Resource_1cw60"), SubResource("Resource_rqpqa"), SubResource("Resource_5iwjt"), SubResource("Resource_coisj"), SubResource("Resource_cr43n"), SubResource("Resource_yijcu")])
