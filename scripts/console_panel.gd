@@ -13,6 +13,7 @@ extends Area2D
 @onready var label = %Label
 @onready var code_edit: CodeEdit = $Terminal/Panel/MarginContainer/VBoxContainer/CodeEdit
 @onready var pop_up_animation: AnimationPlayer = $"PopUp Animation"
+@onready var shortcut_animation: AnimationPlayer = $"Shortcut Animation"
 @onready var control: Control = $Terminal
 @onready var text_validator: Node2D = $TextValidator
 @onready var consolesprite: Sprite2D = $Console
@@ -20,6 +21,8 @@ extends Area2D
 @onready var console_off: Sprite2D = $Console_Off
 @onready var limit: Label = $Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Limit
 @onready var button: AnimatedSprite2D = $Button
+@onready var arrow_direction: Label = $Terminal/Panel2/MarginContainer/HBoxContainer/ArrowDirection
+@onready var highlight: Sprite2D = $Terminal/Panel2/Highlight
 
 enum ConsoleState {IDLE, NEAR, INTERACTING}
 var state: ConsoleState = ConsoleState.IDLE
@@ -30,6 +33,8 @@ var array_value = [] #player script
 var printer_isbroken := false
 var prevent_close := false
 var control_regex = RegEx.new()
+var UI_status := false
+var hovered := false
 
 signal print_value()
 signal actions_sent()
@@ -234,7 +239,6 @@ func _process(_delta: float) -> void:
 		console_off.visible = false
 		consolesprite.visible = true
 func _unhandled_input(_event: InputEvent) -> void:
-	
 	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:
 		console_exit()
 		get_viewport().set_input_as_handled()
@@ -242,3 +246,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 		interacted()
 	if Input.is_action_just_pressed("AutoPrint") and state == ConsoleState.INTERACTING:
 		code_run()
+
+func open_shortcut() -> void:
+	shortcut_animation.play("open")
+	arrow_direction.text = "<"
+func close_shortcut() -> void:
+	shortcut_animation.play("close")
+	arrow_direction.text = ">"

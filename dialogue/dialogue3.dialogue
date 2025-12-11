@@ -1,5 +1,6 @@
 ~ talk1
 do Cutscene.start_cutscene()
+do note_ui.visible = false
 do progress_bar.visible = false
 do timerr.visible = false
 do timerr.pause()
@@ -8,6 +9,7 @@ do wait(1)
 do player.move_in_cutscene(Vector2(1184, 440))
 Yuna: Now what would this be?
 do player.stay = false
+do note_ui.visible = true
 do progress_bar.visible = true
 do timerr.visible = true
 do timerr.pause()
@@ -18,11 +20,13 @@ do Cutscene.end_cutscene()
 do wait(0.5)
 do camera.focus_on_player(true, true)
 do Cutscene.start_cutscene()
+do note_ui.visible = false
 do progress_bar.visible = false
 do timerr.visible = false
 do timerr.pause()
 do wait(1.0)
 Yuna: Just a reminder, be careful of falling booleans, they can crush you 
+do note_ui.visible = true
 do progress_bar.visible = true
 do timerr.visible = true
 do camera.back()

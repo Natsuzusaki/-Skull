@@ -12,6 +12,7 @@ extends Node2D
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
 @onready var progress_bar: CanvasLayer = $ProgressBar
+@onready var note_ui: CanvasLayer = $Note_UI
 #----Markers
 @onready var code_block: Marker2D = $CameraPoints/CodeBlock
 @onready var wall: Marker2D = $CameraPoints/Wall
@@ -46,6 +47,7 @@ func _ready() -> void:
 			timerr.time = session_time
 			print(timerr.time)
 			timerr.update_display() 
+
 	if data.has("Chapter2"):
 		var chapter2 = data["Chapter2"]
 		if chapter2.has("player_pos"):
@@ -118,6 +120,7 @@ func _codeblock_has_value(value) -> void:
 func _process(delta: float) -> void:
 	_save_time_on_death()
 	if not grid.visible:
+		note_ui.visible = true
 		timerr.visible = true
 		progress_bar.visible = true
 	if player.on_console:
@@ -133,10 +136,13 @@ func _process(delta: float) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			note_ui.visible = false
 			timerr.visible = false
 			progress_bar.visible = false
 			grid.visible = true
 		else:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
 			grid.visible = false
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
@@ -159,11 +165,13 @@ func dialogue(talk: String) -> void:
 	timerr.pause()
 	timerr.visible = false
 	progress_bar.visible = false
+	note_ui.visible = false
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue2.dialogue"), talk)
 func dialogue_end() -> void:
 	timerr.start()
 	timerr.visible = true
 	progress_bar.visible = true
+	note_ui.visible = true
 func wait(time: float) -> void:
 	await get_tree().create_timer(time).timeout
 func connections() -> void:

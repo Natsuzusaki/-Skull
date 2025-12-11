@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cv300ivni4xnc"]
+[gd_scene load_steps=41 format=3 uid="uid://cv300ivni4xnc"]
 
 [ext_resource type="Texture2D" uid="uid://dtwh1kivyyxno" path="res://assets/images/misc.png" id="1_03nx5"]
 [ext_resource type="Script" uid="uid://vb4j4alxo38w" path="res://scripts/note_ui.gd" id="1_j2cn5"]
@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://dr3y5d03pckj5" path="res://assets/images/Console Control 22.png" id="21_disw5"]
 [ext_resource type="Texture2D" uid="uid://d12yv6w6n4eyt" path="res://assets/images/Console Control Empty.png" id="22_u0sxk"]
 [ext_resource type="PackedScene" uid="uid://dm3a5jhuecy5i" path="res://scenes/UI/mouse_detection.tscn" id="25_gd2v5"]
+[ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="25_ow36y"]
+[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="26_56prm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j2cn5"]
 shader = ExtResource("1_paurg")
@@ -98,8 +100,48 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkxyp"]
+atlas = ExtResource("25_ow36y")
+region = Rect2(122, 64, 61, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbg4t"]
+atlas = ExtResource("25_ow36y")
+region = Rect2(122, 96, 61, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xgdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56prm"]
 size = Vector2(48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56prm"]
+bg_color = Color(0, 0, 0, 0.7647059)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ow36y"]
+font = ExtResource("26_56prm")
 
 [node name="Note_UI" type="CanvasLayer"]
 script = ExtResource("1_j2cn5")
@@ -130,6 +172,8 @@ region_enabled = true
 region_rect = Rect2(32, 288, 32, 32)
 
 [node name="Notes" type="Node2D" parent="."]
+position = Vector2(64, 32)
+scale = Vector2(0.9, 0.9)
 
 [node name="Note1" type="Sprite2D" parent="Notes"]
 visible = false
@@ -279,7 +323,7 @@ texture = ExtResource("22_u0sxk")
 
 [node name="Button1" type="AnimatedSprite2D" parent="."]
 light_mask = 0
-position = Vector2(352, 672)
+position = Vector2(384, 632)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ow36y")
 animation = &"idle"
@@ -288,12 +332,27 @@ frame_progress = 0.23255575
 
 [node name="Button2" type="AnimatedSprite2D" parent="."]
 light_mask = 0
-position = Vector2(928.00006, 672)
+position = Vector2(896, 632)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xhnrq")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.019968284
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 56.0
+mouse_filter = 2
+
+[node name="Button3" type="AnimatedSprite2D" parent="."]
+position = Vector2(64.00001, 32.000008)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4xgdp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.07166381
 
 [node name="MouseDetection" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("25_gd2v5")]
 position = Vector2(1088, 32)
@@ -301,3 +360,23 @@ parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetection"]
 shape = SubResource("RectangleShape2D_56prm")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 456.0
+offset_top = 672.0
+offset_right = 824.0
+offset_bottom = 712.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_56prm")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1 of 20 notes"
+label_settings = SubResource("LabelSettings_ow36y")
+horizontal_alignment = 1
+vertical_alignment = 1

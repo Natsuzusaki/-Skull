@@ -29,6 +29,7 @@ extends Node2D
 @onready var loops: Node2D = %Loops
 @onready var player: CharacterBody2D = %Player
 @onready var timerr: CanvasLayer = $Time
+@onready var note_ui: CanvasLayer = $Note_UI
 @onready var gates: Node2D = %Gates
 @onready var arrays: Node2D = %Arrays
 @onready var explosion: GPUParticles2D = $Explosion
@@ -117,6 +118,13 @@ func _ready() -> void:
 				if flags["note_on"]:
 					notes6.visible = true
 					notes6.on = true
+	if data["Time_and_Medal_Score"].has("Chapter4"):
+		var chap1 = data["Time_and_Medal_Score"]["Chapter4"]
+		if chap1.has("saved_session_time"):
+			var session_time = chap1["saved_session_time"]
+			timerr.time = session_time
+			print(timerr.time)
+			timerr.update_display() 
 	start()
 
 func start() -> void:
@@ -145,13 +153,22 @@ func printerexplode() -> void:
 #----Processes
 func _process(_delta: float) -> void:
 	_save_time_on_death()
+	if not grid.visible:
+		note_ui.visible = true
+		timerr.visible = true
+		progress_bar.visible = true
+	if player.on_console:
+		grid.visible = false
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			note_ui.visible = false
 			timerr.visible = false
 			progress_bar.visible = false
 			grid.visible = true
 		else:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
 			grid.visible = false
 			timerr.visible = true
 			progress_bar.visible = true

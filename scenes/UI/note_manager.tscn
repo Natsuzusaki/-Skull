@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://tjy0471dujc4"]
+[gd_scene load_steps=29 format=3 uid="uid://tjy0471dujc4"]
 
 [ext_resource type="Script" uid="uid://c4gaeanfkv6od" path="res://scripts/note_manager.gd" id="1_th8kw"]
-[ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_woc00"]
 [ext_resource type="Shader" uid="uid://cb087n4sb8sq1" path="res://assets/presets/blur.gdshader" id="2_34uu6"]
 [ext_resource type="Texture2D" uid="uid://dynulkcrgdj4b" path="res://assets/images/Console Control1.png" id="2_wb6ox"]
 [ext_resource type="Texture2D" uid="uid://bay8corh4upa2" path="res://assets/images/Console Control2.png" id="3_ssm08"]
@@ -23,10 +22,48 @@
 [ext_resource type="Texture2D" uid="uid://btfu25jp5i7c4" path="res://assets/images/Console Control 20.png" id="18_vbg4t"]
 [ext_resource type="Texture2D" uid="uid://bnga4j0nv2knm" path="res://assets/images/Console Control 21.png" id="19_xv4dg"]
 [ext_resource type="Texture2D" uid="uid://dr3y5d03pckj5" path="res://assets/images/Console Control 22.png" id="20_fpwn2"]
+[ext_resource type="Texture2D" uid="uid://cppx55jrlp8xm" path="res://assets/images/controls_button.png" id="23_e4g67"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6ich"]
 shader = ExtResource("2_34uu6")
 shader_parameter/blur_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4g67"]
+bg_color = Color(0, 0, 0, 0.7647059)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkxyp"]
+atlas = ExtResource("23_e4g67")
+region = Rect2(122, 64, 61, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbg4t"]
+atlas = ExtResource("23_e4g67")
+region = Rect2(122, 96, 61, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xv4dg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbg4t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="NoteManager" type="CanvasLayer"]
 script = ExtResource("1_th8kw")
@@ -180,19 +217,18 @@ position = Vector2(-0.110388, 7.62939e-06)
 scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("20_fpwn2")
 
-[node name="Label" type="Label" parent="."]
-modulate = Color(18.892157, 18.892157, 18.892157, 1)
-z_index = 21
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -752.0
-offset_top = 324.0
-offset_right = -498.0
-offset_bottom = 347.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_woc00")
-text = "Press \"Esc\" to close"
-horizontal_alignment = 2
+[node name="Panel" type="Panel" parent="."]
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 56.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e4g67")
+
+[node name="Button" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xv4dg")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.56847686

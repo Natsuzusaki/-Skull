@@ -16,6 +16,7 @@ extends Node2D
 @onready var secretground: TileMapLayer = $SecretGround
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
 @onready var progress_bar: CanvasLayer = $ProgressBar
+@onready var note_ui: CanvasLayer = $Note_UI
 #----Label
 @onready var move_label: Label = $Labels/Move
 @onready var jump_label: Label = $Labels/Jump
@@ -120,6 +121,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug") and not player.stay:
 		_save_timer_to_json()
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("OpenNotes") and not player.on_note:
+		if note_ui.notes.visible:
+			note_ui.show_book()
+		else:
+			note_ui.show_note()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -138,11 +144,13 @@ func newdialogue(talk: String) -> void:
 	timerr.pause()
 	timerr.visible = false
 	progress_bar.visible = false
+	note_ui.visible = false
 	DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue1.dialogue"), talk)
 func dialogue_end() -> void:
 	timerr.start()
 	timerr.visible = true
 	progress_bar.visible = true
+	note_ui.visible = true
 func turn_dark_light(value) -> void:
 	var tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", value, 1)

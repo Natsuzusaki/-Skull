@@ -32,6 +32,7 @@ class_name Player
 #Player's Local Variable
 var stay := false # DONT MOVE WHEN INTERACTING THE TERMINAL PLEASE
 var on_console := false
+var on_note := false
 var dead := false
 var down_buffered := false
 var jump_buffered := false

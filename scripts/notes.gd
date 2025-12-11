@@ -35,6 +35,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 			show_status = true
 			NoteManager.show_note(note_num)
+			player.on_note = true
 			player.stay = true
 			player.collision.scale = Vector2(2.5, 1.5)
 			player.collision.position = Vector2(0, -7.143)
@@ -45,6 +46,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 			show_status = false 
 			NoteManager.hide_note()
+			player.on_note = false
 			player.stay = false
 			player.collision.scale = Vector2(1,1)
 			player.collision.position = Vector2(0, -2.143)

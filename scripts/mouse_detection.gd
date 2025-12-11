@@ -16,11 +16,17 @@ extends Area2D
 var hovered: bool = false
 var UI_status: bool = false
 var book := false
+var panel := false
 
 func _ready() -> void:
 	if parent is CanvasLayer:
 		dot.visible = false
 		book = true
+		return
+	if parent is Panel:
+		print("?")
+		dot.visible = false
+		panel = true
 		return
 	if is_array:
 		dot.visible = false
@@ -47,6 +53,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if book:
+		return
+	if panel:
 		return
 	if is_array:
 		format()
@@ -105,12 +113,20 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		if UI_status:
 			if book:
 				parent.show_book()
+			elif panel:
+				print("clicked_open")
+				self.position += Vector2(72,0)
+				parent.get_parent().get_parent().close_shortcut()
 			else:
 				hide_self()
 			UI_status = false
 		else:
 			if book:
 				parent.show_note()
+			elif panel:
+				print("clicked_close")
+				self.position += Vector2(-72,0)
+				parent.get_parent().get_parent().open_shortcut()
 			else:
 				SfxManager.play_sfx(sfx_settings.SFX_NAME.HOVER)
 				show_self()

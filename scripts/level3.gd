@@ -14,6 +14,7 @@ extends Node2D
 @onready var printers: Node2D = $Printers
 @onready var chapter_intro: CanvasLayer = $ChapterIntro
 @onready var progress_bar: CanvasLayer = $ProgressBar
+@onready var note_ui: CanvasLayer = $Note_UI
 
 @onready var if_1: Control = $Labels/if1
 @onready var if_2: Control = $Labels/if2
@@ -86,24 +87,25 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
+	_save_time_on_death()
+	if not grid.visible:
+		note_ui.visible = true
+		timerr.visible = true
+		progress_bar.visible = true
 	if player.on_console:
 		grid.visible = false
-		timerr.visible = true
-	_save_time_on_death()
 
-	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			note_ui.visible = false
 			grid.visible = true
 			timerr.visible = false
 			progress_bar.visible = false
 		else:
 			grid.visible = false
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
-			timerr.visible = true
-			progress_bar.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if not get_tree().paused:
 			_pause_game()
