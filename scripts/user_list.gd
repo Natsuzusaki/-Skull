@@ -59,11 +59,14 @@ func _on_set_user_pressed() -> void:
 		if settings_scene:
 			print(settings_scene)
 			settings_scene.load_settings()
-		self.visible = false
+		
 		parent.current_user.text = "Welcome back! %s" % selected_user
-		previous_menu.visible = true
 		var parent2 = get_parent().get_parent()
 		parent2.check_game_completion()
+		Scene_Manager.play_transition()
+		await get_tree().create_timer(0.4).timeout
+		self.visible = false
+		previous_menu.visible = true
 func _on_user_list_item_activated(_index: int) -> void:
 	_on_set_user_pressed()
 	

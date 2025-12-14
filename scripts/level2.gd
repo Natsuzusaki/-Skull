@@ -37,7 +37,7 @@ var yuna_mouse_move := false
 var mouse_speed: float = 550.0
 
 func _ready() -> void:
-	#Engine.time_scale = 0.1
+	SfxManager.mute_sfx()
 	MusicManager.play_music_with_fade("res://assets/music/[1-15] Gestation - Cave Story Remastered Soundtrack [2CFvy4lMCcA].mp3", 0.08)
 	connections()
 	if data["Time_and_Medal_Score"].has("Chapter2"):
@@ -78,6 +78,8 @@ func _ready() -> void:
 func starting_scene() -> void:
 	if not ctr:
 		timerr.pause()
+		progress_bar.visible = false
+		note_ui.visible = false
 		timerr.visible = false
 		Cutscene.start_cutscene()
 		player.stay = true
@@ -119,12 +121,14 @@ func _codeblock_has_value(value) -> void:
 #----Processes
 func _process(delta: float) -> void:
 	_save_time_on_death()
-	if not grid.visible:
-		note_ui.visible = true
-		timerr.visible = true
-		progress_bar.visible = true
+	#if not grid.visible:
+		#if ctr:
+			#note_ui.visible = true
+			#timerr.visible = true
+			#progress_bar.visible = true
 	if player.on_console:
 		grid.visible = false
+
 	if yuna_mouse_move:
 		var current = yuna_mouse.global_position
 		if current.distance_to(mouse_target) > 2:
@@ -144,13 +148,29 @@ func _unhandled_input(_event: InputEvent) -> void:
 		else:
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
 			grid.visible = false
+			timerr.visible = true
+			progress_bar.visible = true
+			note_ui.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
-		if not get_tree().paused:
+		if grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			grid.hide_grid()
+			timerr.visible = true
+			progress_bar.visible = true
+			note_ui.visible = true
+		elif not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("debug") and not player.stay:
 		_save_timer_to_json()
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("OpenNotes") and not player.on_note and not grid.visible and not player.stay:
+		if note_ui.notes.visible:
+			note_ui.show_book()
+			if not progress_bar.visible:
+				progress_bar.visible = true
+		else:
+			note_ui.show_note()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -196,25 +216,25 @@ func fade_out(object) -> void:
 
 #----Triggers
 func _on_fall_cutscene_body_entered(_body: Node2D) -> void:
-	SaveManager.mark_level_completed(2)
-	camera.focus_on_player(true, true)
-	await wait(1)
+	#camera.focus_on_player(true, true)
+	#await wait(1)
+	pass
 func _on_tutorial_end_body_entered(_body: Node2D) -> void:
 	tutorial_end.set_deferred("monitoring", false)
 	talk_ctr = 3
-#func _on_area_2d_body_entered(_body: Node2D) -> void:
-	#player.stay = true
-	#ui_level_complete.drop_down()
-	##SaveManager.save_level_completion("Chapter2", timerr, true)
-	#SaveManager.mark_level_completed(2)
+	
 func _on_complete_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	progress_bar.visible = false
+	note_ui.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter2", timerr, ui_level_complete)
 	SaveManager.evaluate_level_score("Chapter2")
 	SaveManager.reset_session_time("Chapter2")
 	SaveManager.mark_level_completed(2)
+	MusicManager.change_volume(0.01)
+	await get_tree().create_timer(5).timeout
+	MusicManager.change_volume(0.08)
 
 func _on_room_1_body_entered(body: Node2D) -> void:
 	if body == player:

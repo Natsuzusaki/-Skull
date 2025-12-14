@@ -17,6 +17,9 @@ extends Control
 @onready var sparkle: CPUParticles2D = $Background/Menu/CPUParticles2D
 @onready var lights: PointLight2D = $Background/PointLight2D
 @onready var back_button: Button = $BackButton
+@onready var sprite_2d: Sprite2D = $Background/Menu/User/Sprite2D
+@onready var animation_player1: AnimationPlayer = $Background/Menu/User/AnimationPlayer
+@onready var switch_user: Button = $Background/Menu/User/SwitchUser
 
 
 var data = SaveManager.load_game()
@@ -26,11 +29,14 @@ func _ready() -> void:
 	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3", 0.08)
 	
 	if SaveManager.current_user == "Guest":
-		current_user.text = "Who is playing?"
+		current_user.text = "SELECT OR CREATE USER!"
 		start_button.disabled = true
 		settings_button.disabled = true
+		switch_user.modulate = Color(1.0, 1.0, 1.0)
+		switch_user.text = "Select User"
 	else:
 		current_user.text = "Welcome back! %s" % SaveManager.current_user
+		
 		
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -44,11 +50,18 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	check_game_completion()
 	if SaveManager.current_user != "Guest":
+		animation_player1.play("new_animation_2")
+		switch_user.text = "Switch User"
+		sprite_2d.visible = false
 		start_button.disabled = false
 		settings_button.disabled = false
 		if data.has("Chapter1"):
 			if data["Chapter1"].has("checkpoint_order"):
 				continue_button.disabled = false
+	else:
+		animation_player1.play("new_animation")
+		#sprite_2d.visible = true
+		
 	
 	
 
@@ -57,7 +70,8 @@ func _on_startnewgame_pressed() -> void:
 	if SaveManager.current_user == "Guest":
 		pass
 	else:
-		get_tree().change_scene_to_file("res://scenes/UI/level_selection_menu.tscn")
+		Scene_Manager.change_scene("res://scenes/UI/level_selection_menu.tscn")
+		#get_tree().change_scene_to_file("res://scenes/UI/level_selection_menu.tscn")
 
 func _on_continue_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
@@ -80,6 +94,8 @@ func _on_Exit_pressed() -> void:
 
 func _on_switch_user_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
+	Scene_Manager.play_transition()
+	await get_tree().create_timer(0.4).timeout
 	main_menu.visible = false
 	user_list.visible = true
 
@@ -131,11 +147,11 @@ func check_game_completion() -> void:
 			var lvl2 = user_data["Levels"]["level2"]
 			var lvl3 = user_data["Levels"]["level3"]
 			var lvl4 = user_data["Levels"]["level4"]
-			var lvl1_medals = user_data["Time_and_Medal_Score"]["Chapter1"]["prev_medals"]
-			var lvl2_medals = user_data["Time_and_Medal_Score"]["Chapter2"]["prev_medals"]
-			var lvl3_medals = user_data["Time_and_Medal_Score"]["Chapter3"]["prev_medals"]
-			var lvl4_medals = user_data["Time_and_Medal_Score"]["Chapter4"]["prev_medals"]
 			if lvl1 and lvl2 and lvl3 and lvl4:
+				var lvl1_medals = user_data["Time_and_Medal_Score"]["Chapter1"]["prev_medals"]
+				var lvl2_medals = user_data["Time_and_Medal_Score"]["Chapter2"]["prev_medals"]
+				var lvl3_medals = user_data["Time_and_Medal_Score"]["Chapter3"]["prev_medals"]
+				var lvl4_medals = user_data["Time_and_Medal_Score"]["Chapter4"]["prev_medals"]
 				if lvl1_medals == 3.0 and lvl2_medals == 3.0 and lvl3_medals == 3.0 and lvl4_medals == 3.0:
 					sparkle.visible = true
 					silver_trophy.position = Vector2(1036, 509)

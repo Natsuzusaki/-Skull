@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 				player.static_direction = -1
 			broken = true
 			player.stay = true
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.CRYSTAL)
 			player.sprite_animation("mining")
 			flash_white()
 			await wait(2)

@@ -29,6 +29,7 @@ extends Control
 @onready var lvl_3_completion: Control = $Lvl3Completion
 @onready var lvl_4_completion: Control = $Lvl4Completion
 @onready var animation_player: AnimationPlayer = $Reward/AnimationPlayer
+@onready var animation_player_2: AnimationPlayer = $BackButton/AnimationPlayer2
 
 var data = SaveManager.load_game()
 
@@ -163,14 +164,16 @@ func _on_button_3_pressed() -> void:
 
 func _on_button_4_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	if SaveManager.is_level_completed(3):
+	if SaveManager.is_level_completed(4):
 		if not data["Time_and_Medal_Score"]["Chapter4"].has("saved_session_time") or data["Time_and_Medal_Score"]["Chapter4"]["saved_session_time"] == 0.0 :
 			SaveManager.reset_save("Chapter4")
 	Loading.loading("res://scenes/levels/level4.tscn")
 		
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+	Scene_Manager.change_scene("res://scenes/UI/main_menu.tscn")
+	#get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+	animation_player_2.stop()
 	
 func check_game_completion() -> void:
 	var user_data = SaveManager.load_game()
@@ -180,11 +183,11 @@ func check_game_completion() -> void:
 			var lvl2 = user_data["Levels"]["level2"]
 			var lvl3 = user_data["Levels"]["level3"]
 			var lvl4 = user_data["Levels"]["level4"]
-			var lvl1_medals = user_data["Time_and_Medal_Score"]["Chapter1"]["prev_medals"]
-			var lvl2_medals = user_data["Time_and_Medal_Score"]["Chapter2"]["prev_medals"]
-			var lvl3_medals = user_data["Time_and_Medal_Score"]["Chapter3"]["prev_medals"]
-			var lvl4_medals = user_data["Time_and_Medal_Score"]["Chapter4"]["prev_medals"]
 			if lvl1 and lvl2 and lvl3 and lvl4:
+				var lvl1_medals = user_data["Time_and_Medal_Score"]["Chapter1"]["prev_medals"]
+				var lvl2_medals = user_data["Time_and_Medal_Score"]["Chapter2"]["prev_medals"]
+				var lvl3_medals = user_data["Time_and_Medal_Score"]["Chapter3"]["prev_medals"]
+				var lvl4_medals = user_data["Time_and_Medal_Score"]["Chapter4"]["prev_medals"]
 				if lvl1_medals == 3.0 and lvl2_medals == 3.0 and lvl3_medals == 3.0 and lvl4_medals == 3.0:
 					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == false:
 						MusicManager.change_volume2(0.01)
@@ -193,6 +196,7 @@ func check_game_completion() -> void:
 						user_data["Levels"]["silver_trophy_shown"]= true
 						SaveManager.update_save(user_data)
 						await get_tree().create_timer(8).timeout
+						animation_player_2.play("new_animation")
 						MusicManager.change_volume2(0.08)
 					if user_data["Levels"]["golden_trophy_shown"] == false and user_data["Levels"]["silver_trophy_shown"] == true:
 						MusicManager.change_volume2(0.01)
@@ -200,6 +204,7 @@ func check_game_completion() -> void:
 						user_data["Levels"]["golden_trophy_shown"] = true
 						SaveManager.update_save(user_data)
 						await get_tree().create_timer(8).timeout
+						animation_player_2.play("new_animation")
 						MusicManager.change_volume2(0.08)
 				else:
 					if user_data["Levels"]["silver_trophy_shown"] == false:
@@ -208,5 +213,6 @@ func check_game_completion() -> void:
 						user_data["Levels"]["silver_trophy_shown"] = true
 						SaveManager.update_save(user_data)
 						await get_tree().create_timer(8).timeout
+						animation_player_2.play("new_animation")
 						MusicManager.change_volume2(0.08)
 					

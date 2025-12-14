@@ -44,6 +44,8 @@ func show_book():
 	panel2.visible = false
 func show_note():
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
+	var pb = get_tree().get_current_scene().find_child("ProgressBar")
+	pb.visible = false
 	mouse_detection.UI_status = true
 	player.stay = true
 	blur.visible = true
@@ -73,9 +75,12 @@ func display_note():
 	update_page_label()
 
 func _unhandled_input(_event):
+	var pb = get_tree().get_current_scene().find_child("ProgressBar")
 	if not notes.visible:
 		return
 	if Input.is_action_just_pressed("pause"):
+		if not pb.visible:
+			pb.visible = true
 		show_book()
 		get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("left<-"):

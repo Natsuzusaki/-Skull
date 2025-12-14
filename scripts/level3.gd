@@ -40,6 +40,7 @@ var talk_ctr := 0
 
 
 func _ready() -> void:
+	SfxManager.mute_sfx()
 	MusicManager.play_music_with_fade("res://assets/music/[2-18] White Cliffs - Cave Story Remastered Soundtrack.mp3", 0.03)
 	if_1.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	if_2.modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -88,12 +89,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_save_time_on_death()
-	if not grid.visible:
-		note_ui.visible = true
-		timerr.visible = true
-		progress_bar.visible = true
+	#if not grid.visible:
+		#note_ui.visible = true
+		#timerr.visible = true
+		#progress_bar.visible = true
 	if player.on_console:
 		grid.visible = false
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
@@ -106,13 +108,29 @@ func _unhandled_input(_event: InputEvent) -> void:
 		else:
 			grid.visible = false
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			timerr.visible = true
+			progress_bar.visible = true
+			note_ui.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
-		if not get_tree().paused:
+		if grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
+			grid.hide_grid()
+			timerr.visible = true
+			progress_bar.visible = true
+			note_ui.visible = true
+		elif not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("debug") and not player.stay:
 		_save_timer_to_json()
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("OpenNotes") and not player.on_note and not grid.visible and not player.stay:
+		if note_ui.notes.visible:
+			note_ui.show_book()
+			if not progress_bar.visible:
+				progress_bar.visible = true
+		else:
+			note_ui.show_note()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -171,7 +189,9 @@ func _save_timer_to_json() -> void:
 
 func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
+	progress_bar.visible = false
 	ui_level_complete.drop_down()
+	note_ui.visible = false
 	SaveManager.save_level_completion("Chapter3", timerr, ui_level_complete) 
 	SaveManager.evaluate_level_score("Chapter3")
 	SaveManager.reset_session_time("Chapter3")

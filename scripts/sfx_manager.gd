@@ -23,6 +23,15 @@ func play_sfx(type: sfx_settings.SFX_NAME):
 		sfx_player.finished.connect(sfx_player.queue_free)
 		sfx_player.play()
 
+func mute_sfx() -> void:
+	var bus_index := AudioServer.get_bus_index("SFX")
+	if bus_index == -1:
+		return
+	AudioServer.set_bus_mute(bus_index,true)
+	await get_tree().create_timer(1.0).timeout
+	AudioServer.set_bus_mute(bus_index,false)
+	
+	
 
 
 

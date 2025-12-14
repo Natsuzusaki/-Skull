@@ -240,6 +240,9 @@ func _process(_delta: float) -> void:
 		consolesprite.visible = true
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause") and player.on_console and state == ConsoleState.INTERACTING:
+		if UI_status:
+			UI_status = false
+			close_shortcut()
 		console_exit()
 		get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("carry") and (player.near_console and state == ConsoleState.NEAR):
@@ -249,7 +252,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func open_shortcut() -> void:
 	shortcut_animation.play("open")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	arrow_direction.text = "<"
 func close_shortcut() -> void:
 	shortcut_animation.play("close")
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.CONSOLE_ON)
 	arrow_direction.text = ">"

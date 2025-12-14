@@ -117,6 +117,18 @@ texture_over = ExtResource("9_uij07")
 texture_progress = ExtResource("10_8ppl0")
 texture_progress_offset = Vector2(2, 2)
 
+[node name="lvl4" type="TextureProgressBar" parent="."]
+offset_left = 40.0
+offset_top = 33.0
+offset_right = 220.0
+offset_bottom = 43.0
+scale = Vector2(1.5, 1.5)
+step = 0.1
+texture_under = ExtResource("8_xk6ph")
+texture_over = ExtResource("9_uij07")
+texture_progress = ExtResource("10_8ppl0")
+texture_progress_offset = Vector2(2, 2)
+
 [node name="Flag" type="AnimatedSprite2D" parent="."]
 position = Vector2(327, 35)
 scale = Vector2(1.5, 1.5)

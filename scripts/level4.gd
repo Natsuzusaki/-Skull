@@ -62,6 +62,7 @@ var a1: bool = false
 var a2: bool = false
 
 func _ready() -> void:
+	SfxManager.mute_sfx()
 	MusicManager.play_music_with_fade("res://assets/music/[1-17] Geothermal - Cave Story Remastered Soundtrack.mp3", 0.08)
 	connections()
 	camera.back()
@@ -139,6 +140,7 @@ func printerexplode() -> void:
 	camera.focus_on_point(printer_explode)
 	await wait(0.5)
 	explosion.emitting = true
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.EXPLOSION)
 	await wait(0.5)
 	printer1.broken = true
 	printer1.breaks()
@@ -153,12 +155,13 @@ func printerexplode() -> void:
 #----Processes
 func _process(_delta: float) -> void:
 	_save_time_on_death()
-	if not grid.visible:
-		note_ui.visible = true
-		timerr.visible = true
-		progress_bar.visible = true
+	#if not grid.visible:
+		#note_ui.visible = true
+		#timerr.visible = true
+		#progress_bar.visible = true
 	if player.on_console:
 		grid.visible = false
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("grid") and not player.on_console and not player.stay:
 		if not grid.visible:
@@ -172,17 +175,27 @@ func _unhandled_input(_event: InputEvent) -> void:
 			grid.visible = false
 			timerr.visible = true
 			progress_bar.visible = true
+			note_ui.visible = true
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:
 		if grid.visible:
+			SfxManager.play_sfx(sfx_settings.SFX_NAME.GRID)
 			grid.hide_grid()
 			timerr.visible = true
 			progress_bar.visible = true
+			note_ui.visible = true
 		elif not get_tree().paused:
 			_pause_game()
 			get_viewport().set_input_as_handled()
 	if Input.is_action_just_pressed("debug") and not player.stay:
 		_save_timer_to_json()
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("OpenNotes") and not player.on_note and not grid.visible and not player.stay:
+		if note_ui.notes.visible:
+			note_ui.show_book()
+			if not progress_bar.visible:
+				progress_bar.visible = true
+		else:
+			note_ui.show_note()
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -241,11 +254,13 @@ func _array_action(action:String, array_name:String, _value=null, _index=null) -
 		array3.arr_name:
 			if action == "removed" and array3.inputs.size() == 5:
 				await wait(0.7)
+				gate5.new_pos.y = 608
 				gate5.activate(false, 0.5)
 				a1 = true
 		array4.arr_name:
 			if array4.inputs.size() == 0:
 				await wait(0.7)
+				gate4.new_pos.y = 608
 				gate4.activate(false, 0.5)
 				a2 = true
 		array8.arr_name:
@@ -318,42 +333,38 @@ func _on_finish_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	progress_bar.visible = false
 	ui_level_complete.drop_down()
+	note_ui.visible = false
 	SaveManager.save_level_completion("Chapter4", timerr, ui_level_complete)
 	SaveManager.evaluate_level_score("Chapter4")
 	SaveManager.reset_session_time("Chapter4")
 	SaveManager.mark_level_completed(4)
+	MusicManager.change_volume(0.01)
+	await get_tree().create_timer(5).timeout
+	MusicManager.change_volume(0.08)
 func _on_camera_limit_body_entered(_body: Node2D) -> void:
 	camera.limit_left = 1792
 
 func _on_room_1_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(1)
+		progress_bar.evaluate_progress(1)
 func _on_room_2_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(2)
+		progress_bar.evaluate_progress(2)
 func _on_room_3_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(3)
+		progress_bar.evaluate_progress(3)
 func _on_room_4_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(4)
+		progress_bar.evaluate_progress(4)
 func _on_room_5_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(5)
+		progress_bar.evaluate_progress(5)
 func _on_room_6_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(6)
+		progress_bar.evaluate_progress(6)
 func _on_room_7_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(7)
+		progress_bar.evaluate_progress(7)
 func _on_room_8_body_entered(body: Node2D) -> void:
 	if body == player:
-		pass
-		#progress_bar.evaluate_progress(8)
+		progress_bar.evaluate_progress(8)

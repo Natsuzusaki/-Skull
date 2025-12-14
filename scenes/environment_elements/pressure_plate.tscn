@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k3anjeybnyvr" path="res://scripts/pressure_plate.gd" id="1_l6a50"]
 [ext_resource type="Texture2D" uid="uid://b41xh7oaog0tp" path="res://assets/images/pressure_plate.png" id="2_l6a50"]
-[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/PixelOperator8.ttf" id="3_jwwgu"]
+[ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="3_jwwgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7e88l"]
 size = Vector2(54, 8)

@@ -66,6 +66,7 @@ animations = [{
 }]
 
 [node name="NoteManager" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_th8kw")
 
 [node name="Blur" type="ColorRect" parent="."]
@@ -79,6 +80,7 @@ unique_name_in_owner = true
 position = Vector2(640, 360)
 
 [node name="Note1" type="Sprite2D" parent="Instructions"]
+visible = false
 z_index = 20
 position = Vector2(-0.110344, 1.23978e-05)
 scale = Vector2(0.22069, 0.218413)

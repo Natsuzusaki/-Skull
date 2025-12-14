@@ -30,8 +30,16 @@ func _on_body_exited(_body: Node2D) -> void:
 		player.near_note = false
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("carry") and near:
+	var pb = get_tree().get_current_scene().find_child("ProgressBar")
+	var grid = get_tree().get_current_scene().find_child("Grid")
+	var ntbk = get_tree().get_current_scene().find_child("Note_UI")
+	var note_icon = ntbk.find_child("Notebook")
+	if Input.is_action_just_pressed("carry") and near and not grid.visible:
 		if not show_status:
+			if note_icon.visible:
+				note_icon.visible = false
+			if pb.visible:
+				pb.visible = false
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 			show_status = true
 			NoteManager.show_note(note_num)
@@ -42,6 +50,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 			actions_sent.emit("note_interacted", note_num)
 	if Input.is_action_just_pressed("pause") and near:
 		if show_status:
+			if not pb.visible:
+				pb.visible = true
+			if not note_icon.visible:
+				note_icon.visible = true
 			get_viewport().set_input_as_handled()
 			SfxManager.play_sfx(sfx_settings.SFX_NAME.NOTE)
 			show_status = false 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://djwgkcg0f8rok"]
+[gd_scene load_steps=56 format=3 uid="uid://djwgkcg0f8rok"]
 
 [ext_resource type="Texture2D" uid="uid://6beclxvljmm0" path="res://assets/images/ChatGPT Image Aug 13, 2025, 02_10_01 AM.png" id="1_tssx3"]
 [ext_resource type="Script" uid="uid://b7exnj07p634w" path="res://scripts/level_selection_menu.gd" id="1_xivej"]
+[ext_resource type="Texture2D" uid="uid://clnieoq2qpj2b" path="res://assets/images/btn_outline.png" id="3_001ew"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_erkc0"]
 [ext_resource type="Texture2D" uid="uid://cmfnnb7gj8i2k" path="res://assets/images/pixil-frame-0 (1).png" id="4_qece5"]
 [ext_resource type="Texture2D" uid="uid://beqk2ccumslfk" path="res://assets/images/pixil-frame-0 (3).png" id="5_erkc0"]
@@ -44,6 +45,67 @@ modulate_color = Color(0.355314, 0.355314, 0.355314, 1)
 texture = ExtResource("4_qece5")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b730w"]
+
+[sub_resource type="Animation" id="Animation_gsujy"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ydmww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkrlb"]
+_data = {
+&"RESET": SubResource("Animation_ydmww"),
+&"new_animation": SubResource("Animation_gsujy")
+}
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kqfvb"]
 texture = ExtResource("5_erkc0")
@@ -1061,6 +1123,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_haryb")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(133.35916, 89.44558)
+scale = Vector2(0.0946792, 0.108834825)
+texture = ExtResource("3_001ew")
+
 [node name="BackButton" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -1080,6 +1149,11 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_totgr")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ty4yg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_b730w")
 text = "Back"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="BackButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_lkrlb")
+}
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
