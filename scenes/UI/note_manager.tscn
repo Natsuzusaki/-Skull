@@ -66,6 +66,7 @@ animations = [{
 }]
 
 [node name="NoteManager" type="CanvasLayer"]
+layer = 999999999
 script = ExtResource("1_th8kw")
 
 [node name="Blur" type="ColorRect" parent="."]
@@ -73,6 +74,7 @@ process_mode = 3
 material = SubResource("ShaderMaterial_x6ich")
 offset_right = 1280.0
 offset_bottom = 720.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Instructions" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -218,15 +220,16 @@ scale = Vector2(0.22069, 0.218413)
 texture = ExtResource("20_fpwn2")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 24.0
+offset_left = 21.0
 offset_top = 8.0
-offset_right = 104.0
+offset_right = 101.0
 offset_bottom = 56.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e4g67")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="AnimatedSprite2D" parent="."]
-position = Vector2(64, 32)
+position = Vector2(61, 32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xv4dg")
 animation = &"idle"
