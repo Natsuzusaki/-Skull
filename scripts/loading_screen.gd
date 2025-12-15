@@ -22,7 +22,7 @@ func _process(delta):
 	var status = ResourceLoader.load_threaded_get_status(next_scene_path, progress)
 	var target_progress = progress[0] if progress.size() > 0 else 0.0
 
-	displayed_progress = lerp(displayed_progress, target_progress, 5 * delta)
+	displayed_progress = lerp(displayed_progress, target_progress, 3 * delta)
 	progress_bar.value = int(displayed_progress * 100)
 
 	if status == ResourceLoader.THREAD_LOAD_LOADED:
@@ -30,4 +30,6 @@ func _process(delta):
 
 	if scene_loaded and elapsed_time >= min_display_time and abs(displayed_progress - 1.0) < 0.01:
 		var packed_scene = ResourceLoader.load_threaded_get(next_scene_path)
+		Scene_Manager.play_transition()
+		await get_tree().create_timer(0.4).timeout
 		get_tree().change_scene_to_packed(packed_scene)

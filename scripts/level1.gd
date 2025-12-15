@@ -48,6 +48,7 @@ var is_first_present := false
 var blocked := false
 
 func _ready() -> void:
+	SfxManager.mute_sfx()
 	MusicManager.play_music_with_fade("res://assets/music/New [1-02] Access - Cave Story Remastered Soundtrack.mp3", 0.08)
 	console1.turned_on = false
 	connections()
@@ -121,11 +122,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug") and not player.stay:
 		_save_timer_to_json()
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("OpenNotes") and not player.on_note:
+	if Input.is_action_just_pressed("OpenNotes") and not player.on_note and not player.stay:
 		if note_ui.notes.visible:
 			note_ui.show_book()
+			if not progress_bar.visible:
+				progress_bar.visible = true
 		else:
 			note_ui.show_note()
+			
 func _pause_game() -> void:
 	get_tree().paused = true
 	Pause.paused()
@@ -210,11 +214,15 @@ func _on_noise_body_entered(_body: Node2D) -> void:
 func _on_level_finished_body_entered(_body: Node2D) -> void:
 	player.stay = true
 	progress_bar.visible = false
+	note_ui.visible = false
 	ui_level_complete.drop_down()
 	SaveManager.save_level_completion("Chapter1", timerr, ui_level_complete)
 	SaveManager.evaluate_level_score("Chapter1")
 	SaveManager.reset_session_time("Chapter1")
 	SaveManager.mark_level_completed(1)
+	MusicManager.change_volume(0.01)
+	await get_tree().create_timer(5).timeout
+	MusicManager.change_volume(0.08)
 #----NewTriggers
 func _on_tip_body_entered(_body: Node2D) -> void:
 	await wait(0.5)

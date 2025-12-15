@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Spelunkode"
 config/version="v4.1.9"
-run/main_scene="uid://dp6tjuwpf5i5h"
+run/main_scene="uid://cu4rph1thd17w"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://c3kltcorlq61h"
 
@@ -33,6 +33,7 @@ DeathFog="*res://scenes/UI/death_fog.tscn"
 SfxManager="*res://scenes/UI/sfx_manager.tscn"
 Balloon="*res://scenes/UI/balloon.tscn"
 UiManager="*res://scripts/UIManager.gd"
+Scene_Manager="*res://scenes/UI/scene_manager.tscn"
 
 [dialogue_manager]
 

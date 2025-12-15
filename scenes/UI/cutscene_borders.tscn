@@ -98,7 +98,8 @@ script = ExtResource("1_mwj87")
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 88.0
+offset_top = -128.0
+offset_bottom = -40.0
 grow_horizontal = 2
 color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 
@@ -107,7 +108,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -80.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.0253638, 0.0253638, 0.0253638, 1)

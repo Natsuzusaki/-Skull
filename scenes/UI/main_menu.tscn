@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://dp6tjuwpf5i5h"]
+[gd_scene load_steps=87 format=3 uid="uid://dp6tjuwpf5i5h"]
 
 [ext_resource type="Script" uid="uid://c1p1e8spypbpk" path="res://scripts/main_menu.gd" id="1_um6dh"]
 [ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_m8t5g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://csd1xt3gyob2q" path="res://assets/presets/theme1.tres" id="6_5d4ag"]
 [ext_resource type="FontFile" uid="uid://bg66otq46n6cb" path="res://assets/fonts/JMH Cthulhumbus Arcade UG.ttf" id="6_ffklo"]
 [ext_resource type="PackedScene" uid="uid://25bjfaqklrw" path="res://scenes/UI/user_list.tscn" id="8_um6dh"]
+[ext_resource type="Texture2D" uid="uid://clnieoq2qpj2b" path="res://assets/images/btn_outline.png" id="9_c2ugb"]
 [ext_resource type="Texture2D" uid="uid://ccjaely0tqtjt" path="res://assets/images/gold_trophy1.png" id="9_sfthw"]
 [ext_resource type="Texture2D" uid="uid://04rjn5rljk8s" path="res://assets/images/silver_trophy1.png" id="9_wt33a"]
 [ext_resource type="Texture2D" uid="uid://csd7jr1l1omgv" path="res://assets/images/silver_trophy2.png" id="10_cfh5a"]
@@ -71,7 +72,7 @@ point_count = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwd2w"]
 texture = ExtResource("4_a1wsg")
-modulate_color = Color(0.753984, 0.753984, 0.753984, 1)
+modulate_color = Color(0.8039216, 0.8039216, 0.8039216, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlsky"]
 texture = ExtResource("4_a1wsg")
@@ -93,6 +94,156 @@ modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d6l81"]
 texture = ExtResource("4_a1wsg")
 modulate_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="Animation" id="Animation_2nf18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CurrentUser:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.85882354, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CurrentUser:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6trdw"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CurrentUser:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.85882354, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CurrentUser:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c2ugb"]
+resource_name = "new_animation_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CurrentUser:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.85882354, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CurrentUser:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grcqo"]
+_data = {
+&"RESET": SubResource("Animation_2nf18"),
+&"new_animation": SubResource("Animation_6trdw"),
+&"new_animation_2": SubResource("Animation_c2ugb")
+}
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_fpe64"]
 frames = 6
@@ -352,9 +503,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -154.0
-offset_top = -233.5
+offset_top = -184.0
 offset_right = 154.0
-offset_bottom = 233.5
+offset_bottom = 283.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
@@ -438,11 +589,16 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="User" type="Panel" parent="Background/Menu"]
-layout_mode = 0
-offset_left = 576.0
-offset_top = 24.0
-offset_right = 1248.0
-offset_bottom = 88.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.011111111
+anchor_bottom = 0.011111111
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1240.0
+offset_bottom = 96.0
+pivot_offset = Vector2(600, 32)
+metadata/_edit_use_anchors_ = true
 
 [node name="CurrentUser" type="Label" parent="Background/Menu/User"]
 unique_name_in_owner = true
@@ -450,9 +606,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -280.0
+offset_left = 568.0
+offset_right = -240.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(196, 32)
 theme = ExtResource("6_5d4ag")
 theme_override_colors/font_color = Color(1, 0.85882354, 0, 1)
 theme_override_font_sizes/font_size = 16
@@ -460,14 +618,23 @@ text = "Welcome back! Naer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="Background/Menu/User"]
+visible = false
+position = Vector2(148, 40.957737)
+scale = Vector2(0.15712683, 0.084507026)
+texture = ExtResource("9_c2ugb")
+
 [node name="SwitchUser" type="Button" parent="Background/Menu/User"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 400.0
-offset_right = 668.0
-offset_bottom = 64.0
+offset_left = 13.9999695
+offset_top = 9.999992
+offset_right = 281.99997
+offset_bottom = 73.99999
+pivot_offset = Vector2(134, 32)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_fonts/font = ExtResource("3_d6l81")
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxTexture_xwd2w")
@@ -475,6 +642,11 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wlsky")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Switch User"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Menu/User"]
+libraries = {
+&"": SubResource("AnimationLibrary_grcqo")
+}
 
 [node name="SilverTrophy" type="TextureButton" parent="Background/Menu"]
 visible = false

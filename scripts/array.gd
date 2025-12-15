@@ -1,6 +1,7 @@
 # ArrayObject.gd
 extends Node2D
 
+@onready var player: Player = %Player
 @export var console: Node2D
 @export var arr_name: String
 @export var display_name: String
@@ -23,7 +24,6 @@ var popped_values := []
 var clicked: bool = false
 var inputs: Array = []
 var spawn_object
-
 signal array_action()
 signal array_changed(new_value)
 
@@ -33,11 +33,14 @@ func _ready() -> void:
 			inputs.append(input) 
 	filled()
 func _on_area_entered(body: Node2D) -> void: 
+	var status = player.is_carrying
 	var obj = body.get_parent() 
 	if obj: 
 		inputs.append(obj.value) 
-		obj.queue_free()
+		obj.queue_free()	
+		status = not status
 		array_action.emit("print_fill", arr_name, obj.value)
+		SfxManager.play_sfx(sfx_settings.SFX_NAME.PICKUP)
 	filled()
 	print(inputs)
 

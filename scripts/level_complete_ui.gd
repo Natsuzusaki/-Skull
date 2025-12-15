@@ -59,10 +59,12 @@ func drop_down() -> void:
 	
 func _on_main_menu_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
+	#Scene_Manager.change_scene("res://scenes/UI/main_menu.tscn")
 	Loading.loading("res://scenes/UI/main_menu.tscn")
 	
 func _on_next_level_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
+	#Scene_Manager.change_scene("res://scenes/UI/level_selection_menu.tscn")
 	Loading.loading("res://scenes/UI/level_selection_menu.tscn")
 	
 

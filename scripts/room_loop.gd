@@ -18,8 +18,11 @@ func _process(_delta: float) -> void:
 	set_collision_disabled(not activate)
 
 func _on_room_loop_body_entered(body: Node2D) -> void:
+	var pb1 = get_tree().current_scene
+	var pb = pb1.find_child("ProgressBar")
 	loop_ctr += 1
 	var room_pos = global_position
+	SfxManager.play_sfx(sfx_settings.SFX_NAME.LOOP)
 	if body.global_position.x < room_pos.x:
 		print("right")
 		body.global_position = tp_right
@@ -31,6 +34,7 @@ func _on_room_loop_body_entered(body: Node2D) -> void:
 		if push:
 			body.jump_side()
 	looptriggered.emit(self.name, loop_ctr, false)
+	pb.working = false
 
 func set_collision_disabled(value: bool) -> void:
 	collision_shape.disabled = value
@@ -38,9 +42,16 @@ func set_collision_disabled(value: bool) -> void:
 	collision_shape3.disabled = value
 
 func _on_area_body_entered(_body: Node2D) -> void:
+	var pb1 = get_tree().current_scene
+	var pb = pb1.find_child("ProgressBar")
 	activate = true
 	camera.lock()
 	area.set_deferred("monitoring", false)
+	await get_tree().create_timer(0.5).timeout
+	pb.working = false
 
 func speak() -> void:
+	var pb1 = get_tree().current_scene
+	var pb = pb1.find_child("ProgressBar")
 	looptriggered.emit(self.name, loop_ctr, true)
+	pb.working = true

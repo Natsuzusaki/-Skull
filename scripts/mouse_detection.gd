@@ -109,10 +109,13 @@ func _on_area_exited(_body: Node2D) -> void:
 		#platform.visible = false
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	var pb = get_tree().get_current_scene().find_child("ProgressBar")
 	if hovered and event is InputEventMouseButton and event.pressed:
 		if UI_status:
 			if book:
 				parent.show_book()
+				if not pb.visible:
+					pb.visible = true
 			elif panel:
 				print("clicked_open")
 				self.position += Vector2(72,0)

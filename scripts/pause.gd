@@ -59,7 +59,9 @@ func _on_exit_pressed() -> void:
 	if main_scene.has_node("Time") and scene_chapter:
 		var time_node = main_scene.get_node("Time")
 		SaveManager.save_timer_for_session(scene_chapter, time_node.time)
-	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+	#Scene_Manager.change_scene("res://scenes/UI/main_menu.tscn")
+	Loading.loading("res://scenes/UI/main_menu.tscn")
+	#get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 
 func show_settings() -> void:
 	self.visible = true

@@ -201,7 +201,7 @@ metadata/_custom_type_script = "uid://b0cgvostktddq"
 script = ExtResource("2_nf7bn")
 sfx_name = 24
 sfx_file = ExtResource("26_rau41")
-volume = -15.0
+volume = -11.19
 metadata/_custom_type_script = "uid://b0cgvostktddq"
 
 [sub_resource type="Resource" id="Resource_yijcu"]
