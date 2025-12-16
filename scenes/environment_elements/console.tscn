@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
 [ext_resource type="Script" uid="uid://du1dou86xpprf" path="res://scripts/scriptvalidator.gd" id="2_kxyyb"]
 [ext_resource type="Texture2D" uid="uid://blj7xjycbvr2i" path="res://assets/images/console1.png" id="3_buc2e"]
-[ext_resource type="Script" uid="uid://23bkvb8t8ic4" path="res://mouse_detection_UI.gd" id="4_84pe4"]
+[ext_resource type="Script" uid="uid://23bkvb8t8ic4" path="res://scripts/mouse_detection_UI.gd" id="4_84pe4"]
 [ext_resource type="Script" uid="uid://df3vh6ys1xxhu" path="res://scripts/datatype_changer.gd" id="4_bptkf"]
 [ext_resource type="FontFile" uid="uid://b14yj6f0tuvtr" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_stbsn"]
 [ext_resource type="Texture2D" uid="uid://dtwh1kivyyxno" path="res://assets/images/misc.png" id="6_84pe4"]
@@ -352,9 +352,9 @@ pivot_offset = Vector2(150, 200)
 
 [node name="Panel2" type="Panel" parent="Terminal"]
 layout_mode = 0
-offset_left = 136.66667
+offset_left = 123.33332
 offset_top = 21.666676
-offset_right = 283.3344
+offset_right = 270.00107
 offset_bottom = 128.33334
 scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(27, 133.5)

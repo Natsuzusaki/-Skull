@@ -69,23 +69,22 @@ func _ready() -> void:
 			var checkpoint = chapter3["checkpoint_order"]
 			if checkpoint == 2.0:
 				gate.global_position += Vector2(0, 120)
-				talk_ctr = 1
-			if checkpoint == 3.0:
-				talk_ctr = 1
-			if checkpoint == 4.0:
-				talk_ctr = 1
 			if checkpoint == 5.0:
-				talk_ctr = 1
 				customizable_platform_2.position += Vector2(-160, 0)
 				int_object.queue_free()
 			if checkpoint == 6.0:
-				talk_ctr = 2
 				gate_8.global_position += Vector2(0, 120)
 				gate_9.global_position += Vector2(0, 120)
 			if checkpoint == 7.0:
 				gate_11.global_position += Vector2(0, 120)
-		
-	
+		if chapter3.has("flags"):
+			var flags = chapter3["flags"]
+			if flags.has("talk1"):
+				if flags["talk1"]:
+					talk_ctr = 1
+			if flags.has("talk2"):
+				if flags["talk2"]:
+					talk_ctr = 2
 
 func _process(_delta: float) -> void:
 	_save_time_on_death()
@@ -233,7 +232,6 @@ func _on_room_8_body_entered(body: Node2D) -> void:
 	if body == player:
 		progress_bar.evaluate_progress(8)
  
-
 func _on_cutscene_1_body_entered(_body: Node2D) -> void:
 	if talk_ctr == 0:
 		dialogue("talk1")

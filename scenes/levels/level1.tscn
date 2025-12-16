@@ -1740,15 +1740,14 @@ tile_set = ExtResource("18_qg8x4")
 
 [node name="Vine" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(864, 104)
-length = 3
+length = 7
 
 [node name="Vine2" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(848, 104)
-length = 3
 
 [node name="Vine3" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(912, 88)
-length = 6
+length = 5
 
 [node name="Vine4" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(944, 56)
@@ -1756,13 +1755,15 @@ length = 6
 
 [node name="Vine5" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1000, 40)
-length = 7
+length = 8
 
 [node name="Vine6" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1040, 40)
+length = 6
 
 [node name="Vine7" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1160, 88)
+length = 7
 
 [node name="Vine8" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1176, 88)
@@ -1770,7 +1771,6 @@ length = 3
 
 [node name="Vine9" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1272, 72)
-length = 8
 
 [node name="Vine10" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1320, 72)
@@ -1778,10 +1778,11 @@ length = 5
 
 [node name="Vine11" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1368, 40)
-length = 8
+length = 5
 
 [node name="Vine12" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1424, 88)
+length = 6
 
 [node name="Vine13" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1456, 184)
@@ -1789,44 +1790,44 @@ length = 6
 
 [node name="Vine14" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1504, 152)
-length = 3
 
 [node name="Vine15" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1632, 152)
-length = 8
+length = 3
 
 [node name="Vine16" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1672, 40)
-length = 5
+length = 6
 
 [node name="Vine17" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1752, 216)
-length = 7
+length = 3
 
 [node name="Vine18" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1784, 216)
+length = 3
 
 [node name="Vine19" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1824, 104)
-length = 8
+length = 5
 
 [node name="Vine20" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1888, 104)
+length = 5
 
 [node name="Vine21" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1920, 136)
-length = 7
+length = 3
 
 [node name="Vine22" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(1984, 72)
+length = 8
 
 [node name="Vine23" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2064, 40)
-length = 7
 
 [node name="Vine24" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2152, 88)
-length = 3
 
 [node name="Vine25" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2176, 24)
@@ -1834,42 +1835,45 @@ length = 3
 
 [node name="Vine26" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2280, 40)
+length = 7
 
 [node name="Vine27" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2304, 40)
 
 [node name="Vine28" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2456, 104)
-length = 7
+length = 5
 
 [node name="Vine29" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2792, 184)
-length = 5
+length = 3
 
 [node name="Vine30" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3576, 136)
-length = 7
+length = 3
 
 [node name="Vine31" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3560, 168)
+length = 6
 
 [node name="Vine32" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3752, 40)
+length = 7
 
 [node name="Vine33" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3864, 72)
-length = 6
+length = 3
 
 [node name="Vine34" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4008, 88)
+length = 7
 
 [node name="Vine35" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4168, 72)
-length = 8
 
 [node name="Vine36" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4328, 88)
-length = 5
+length = 3
 
 [node name="Vine37" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4360, 88)
@@ -1877,45 +1881,45 @@ length = 5
 
 [node name="Vine38" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4424, 72)
-length = 8
+length = 5
 
 [node name="Vine39" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4448, 40)
-length = 7
+length = 6
 
 [node name="Vine40" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4528, 72)
-length = 3
 
 [node name="Vine41" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4600, 104)
-length = 5
 
 [node name="Vine42" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4712, 72)
-length = 5
+length = 3
 
 [node name="Vine43" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4744, 40)
+length = 7
 
 [node name="Vine44" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4856, 56)
+length = 3
 
 [node name="Vine45" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4888, 72)
-length = 6
+length = 3
 
 [node name="Vine46" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4968, 40)
-length = 8
+length = 3
 
 [node name="Vine47" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5016, 88)
-length = 5
+length = 3
 
 [node name="Vine48" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5320, 40)
-length = 3
+length = 5
 
 [node name="Vine49" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5352, 72)
@@ -1927,50 +1931,49 @@ length = 7
 
 [node name="Vine51" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5520, 120)
-length = 3
+length = 5
 
 [node name="Vine52" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5544, 88)
+length = 6
 
 [node name="Vine53" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5592, 88)
 
 [node name="Vine54" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5704, 72)
-length = 7
 
 [node name="Vine55" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5736, 104)
-length = 6
+length = 3
 
 [node name="Vine56" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5848, 120)
+length = 8
 
 [node name="Vine57" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5240, -392)
-length = 8
 
 [node name="Vine58" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5272, -424)
-length = 3
+length = 5
 
 [node name="Vine59" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5344, -392)
-length = 3
 
 [node name="Vine60" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5368, -392)
 
 [node name="Vine61" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5440, -376)
+length = 7
 
 [node name="Vine62" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5504, -376)
-length = 8
 
 [node name="Vine63" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5552, -408)
-length = 6
+length = 5
 
 [node name="Vine64" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5592, -408)
@@ -1978,26 +1981,27 @@ length = 7
 
 [node name="Vine65" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5696, -392)
-length = 5
+length = 3
 
 [node name="Vine66" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5720, -408)
-length = 6
+length = 3
 
 [node name="Vine67" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6008, -360)
-length = 3
+length = 6
 
 [node name="Vine68" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6040, -392)
-length = 7
+length = 3
 
 [node name="Vine69" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6120, -440)
-length = 5
+length = 8
 
 [node name="Vine70" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6184, -440)
+length = 5
 
 [node name="Vine71" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6424, -440)
@@ -2005,71 +2009,71 @@ length = 3
 
 [node name="Vine72" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6376, -440)
-length = 8
+length = 5
 
 [node name="Vine73" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6456, -392)
-length = 5
 
 [node name="Vine74" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6600, -424)
-length = 7
+length = 3
 
 [node name="Vine75" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6664, -440)
+length = 5
 
 [node name="Vine76" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6680, -424)
-length = 8
+length = 5
 
 [node name="Vine77" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6888, -408)
-length = 5
 
 [node name="Vine78" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6936, -424)
-length = 6
+length = 5
 
 [node name="Vine79" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6992, -392)
-length = 7
+length = 8
 
 [node name="Vine80" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7096, -408)
+length = 3
 
 [node name="Vine81" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7128, -456)
-length = 3
 
 [node name="Vine82" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7288, -408)
-length = 3
+length = 7
 
 [node name="Vine83" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7272, -408)
-length = 8
+length = 5
 
 [node name="Vine84" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7344, -392)
-length = 8
+length = 3
 
 [node name="Vine85" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7400, -392)
-length = 5
+length = 6
 
 [node name="Vine86" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7448, -424)
+length = 8
 
 [node name="Vine87" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7480, -408)
+length = 6
 
 [node name="Vine88" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(7144, -392)
-length = 3
+length = 7
 
 [node name="Vine89" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(6072, -344)
-length = 5
 
 [node name="Vine90" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5864, -216)
@@ -2077,26 +2081,25 @@ length = 3
 
 [node name="Vine91" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5224, -232)
-length = 5
+length = 6
 
 [node name="Vine92" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5272, 120)
-length = 8
+length = 5
 
 [node name="Vine93" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5240, 120)
 
 [node name="Vine94" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(5736, 296)
-length = 8
+length = 5
 
 [node name="Vine95" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4696, 120)
-length = 7
+length = 6
 
 [node name="Vine96" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(4120, 136)
-length = 5
 
 [node name="Vine97" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3840, 152)
@@ -2104,46 +2107,45 @@ length = 6
 
 [node name="Vine98" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3784, 104)
-length = 6
+length = 3
 
 [node name="Vine99" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3304, 120)
-length = 3
+length = 5
 
 [node name="Vine100" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(3288, 152)
+length = 6
 
 [node name="Vine101" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2912, 104)
-length = 5
+length = 7
 
 [node name="Vine102" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2776, 184)
-length = 5
+length = 6
 
 [node name="Vine103" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2712, 328)
-length = 6
+length = 5
 
 [node name="Vine104" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2504, 248)
-length = 3
+length = 8
 
 [node name="Vine105" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2552, 360)
-length = 3
+length = 8
 
 [node name="Vine106" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2408, 136)
-length = 3
+length = 6
 
 [node name="Vine107" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(2384, 136)
-length = 6
 
 [node name="Vine108" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(296, 216)
-length = 3
 
 [node name="Vine109" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(224, 264)
@@ -2157,7 +2159,7 @@ position = Vector2(120, 264)
 
 [node name="Vine112" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(320, 472)
-length = 8
+length = 5
 
 [node name="Vine113" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(344, 488)
@@ -2165,6 +2167,7 @@ length = 3
 
 [node name="Vine114" parent="Vines" instance=ExtResource("28_noix2")]
 position = Vector2(400, 520)
+length = 5
 
 [node name="SecretGround" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AABCAen/AAADAAYAAABCAer/AAAEAAEAAABCAev/AAAKAAIAAABCAez/AAAJAAcAAABBAen/AAACAAEAAABAAen/AAACAAIAAAA/Aen/AAACAAIAAAA/Aej/AAACAAIAAAA/Aef/AAACAAIAAAA/Aeb/AAACAAIAAAA/AeX/AAACAAIAAAA/AeT/AAACAAIAAAA/AeP/AAACAAIAAAA/AeL/AAACAAIAAAA/AeH/AAACAAIAAAA/AeD/AAACAAIAAAA+AeD/AAACAAIAAAA9AeD/AAACAAIAAAA8AeD/AAACAAIAAAA7AeD/AAACAAIAAAA6AeD/AAACAAIAAAA6AeH/AAACAAIAAAA6AeL/AAACAAIAAAA6AeP/AAACAAIAAAA6AeT/AAACAAIAAAA6AeX/AAACAAIAAAA6Aeb/AAACAAIAAAA6Aef/AAACAAIAAAA6Aej/AAACAAIAAAA6Aen/AAACAAIAAAA6Aer/AAACAAIAAAA6Aev/AAACAAIAAAA6Aez/AAACAAIAAAA7Aez/AAACAAIAAAA8Aez/AAACAAIAAAA9Aez/AAACAAIAAAA+Aez/AAACAAIAAAA/Aez/AAACAAIAAABAAez/AAACAAIAAABBAez/AAAIAAIAAABBAev/AAAIAAIAAABBAer/AAACAAIAAABAAer/AAACAAIAAAA/Aer/AAACAAIAAAA+Aer/AAACAAIAAAA9Aer/AAACAAIAAAA8Aer/AAACAAIAAAA7Aer/AAACAAIAAAA7Aev/AAACAAIAAAA8Aev/AAACAAIAAAA9Aev/AAACAAIAAAA+Aev/AAACAAIAAAA/Aev/AAACAAIAAABAAev/AAACAAIAAAA+Aen/AAACAAIAAAA+Aej/AAACAAIAAAA+Aef/AAACAAIAAAA+Aeb/AAACAAIAAAA+AeX/AAACAAIAAAA+AeT/AAACAAIAAAA+AeP/AAACAAIAAAA+AeL/AAACAAIAAAA+AeH/AAACAAIAAAA9AeH/AAACAAIAAAA8AeH/AAACAAIAAAA7AeH/AAACAAIAAAA7AeL/AAACAAIAAAA7AeP/AAACAAIAAAA7AeT/AAACAAIAAAA7AeX/AAACAAIAAAA7Aeb/AAACAAIAAAA7Aef/AAACAAIAAAA7Aej/AAACAAIAAAA7Aen/AAACAAIAAAA8Aen/AAACAAIAAAA8Aej/AAACAAIAAAA8Aef/AAACAAIAAAA8Aeb/AAACAAIAAAA8AeX/AAACAAIAAAA8AeT/AAACAAIAAAA8AeP/AAACAAIAAAA9AeP/AAACAAIAAAA9AeT/AAACAAIAAAA9AeX/AAACAAIAAAA9Aeb/AAACAAIAAAA9Aef/AAACAAIAAAA9Aej/AAACAAIAAAA9Aen/AAACAAIAAAA9AeL/AAACAAIAAAA8AeL/AAACAAIAAABBAe3/AAACAAIAAABAAe3/AAACAAIAAAA/Ae3/AAACAAIAAAA+Ae3/AAACAAIAAAA9Ae3/AAACAAIAAAA8Ae3/AAACAAIAAAA7Ae3/AAACAAIAAAA6Ae3/AAACAAIAAAA5Ae3/AAACAAIAAAA5Aez/AAACAAIAAAA5Aev/AAACAAIAAAA5Aer/AAACAAIAAAA5Aen/AAACAAIAAAA5Aej/AAACAAIAAAA5Aef/AAACAAIAAAA5Aeb/AAACAAIAAAA5AeX/AAACAAIAAAA5AeT/AAACAAIAAAA5AeP/AAACAAIAAAA5AeL/AAACAAIAAAA5AeH/AAACAAIAAAA5AeD/AAACAAIAAAA9Ae7/AAACAAIAAAA8Ae7/AAACAAIAAAA7Ae7/AAACAAIAAABBAej/AAACAAIAAABAAej/AAACAAIAAABAAef/AAACAAIAAABAAeb/AAACAAIAAABAAeX/AAACAAIAAABAAeT/AAACAAIAAABAAeP/AAACAAIAAABAAeL/AAACAAIAAABAAeH/AAACAAIAAABAAeD/AAACAAIAAAA=")

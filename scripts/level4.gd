@@ -324,7 +324,7 @@ func _on_extra_jump_body_entered(body: Node2D) -> void:
 	body.position.y = -40
 	extra_jump.set_deferred("monitoring", false)
 func change_text() -> void:
-	label9.text = "transfer the contents of\n\nto open gate2"
+	label9.text = "append the contents of\n\nto open gate2"
 	label10.text = "\nlist2 to list1"
 func condition3(c1:bool, c2:bool) -> void:
 	if c1 and c2:
