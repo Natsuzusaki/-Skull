@@ -1,6 +1,7 @@
 extends Node2D
 
 #----References
+@onready var marker: Sprite2D = $Marker
 @onready var grid: CanvasLayer = $Grid
 @onready var star: ColorRect = $Star
 @onready var player: Player = %Player
@@ -120,6 +121,7 @@ func _codeblock_has_value(value) -> void:
 
 #----Processes
 func _process(delta: float) -> void:
+	marker.global_position = player.global_position + Vector2(0, -30)
 	_save_time_on_death()
 	#if not grid.visible:
 		#if ctr:

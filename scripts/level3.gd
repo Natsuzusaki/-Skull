@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var marker: Sprite2D = $Marker
 @onready var player: Player = %Player
 @onready var printer: Node2D = $Printers/Printer
 @onready var console: Area2D = $Consoles/Console
@@ -87,6 +88,7 @@ func _ready() -> void:
 					talk_ctr = 2
 
 func _process(_delta: float) -> void:
+	marker.global_position = player.global_position + Vector2(0, -30)
 	_save_time_on_death()
 	#if not grid.visible:
 		#note_ui.visible = true

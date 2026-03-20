@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biqqp127d5upk"
-path="res://.godot/imported/Yuna.png-c3348227a3aa21c9c9a155e95b8a5e55.ctex"
+uid="uid://dnrtr7m8nb166"
+path="res://.godot/imported/OldYuna.png-68283b8f5c1f2e4bd63724d89255702d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/Yuna.png"
-dest_files=["res://.godot/imported/Yuna.png-c3348227a3aa21c9c9a155e95b8a5e55.ctex"]
+source_file="res://assets/characters/OldYuna.png"
+dest_files=["res://.godot/imported/OldYuna.png-68283b8f5c1f2e4bd63724d89255702d.ctex"]
 
 [params]
 

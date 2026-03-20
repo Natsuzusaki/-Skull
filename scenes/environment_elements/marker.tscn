@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d7mmuix33ebu"]
+
+[ext_resource type="Texture2D" uid="uid://kgah5a43sph5" path="res://assets/images/marker.png" id="1_iu1pm"]
+
+[node name="Marker" type="Sprite2D" unique_id=1250067875]
+z_index = 5
+position = Vector2(-2.3841858e-07, -2.3841858e-07)
+texture = ExtResource("1_iu1pm")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

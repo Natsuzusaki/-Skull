@@ -7,6 +7,7 @@ extends Node2D
 @onready var objects: Node2D = %Objects
 @onready var consoles: Node2D = %Consoles
 #----Reference
+@onready var marker: Sprite2D = $Marker
 @onready var ui_level_complete: Control = $UIs/UI_LevelComplete
 @onready var str_object_4: RigidBody2D = $Objects/Str_Object4
 @onready var gate: StaticBody2D = $Gate
@@ -113,6 +114,7 @@ func title_fadeout() -> void:
 
 #----Processes
 func _process(_delta: float) -> void:
+	marker.global_position = player.global_position + Vector2(0,-30)
 	_save_time_on_death()
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause") and not player.on_console and not player.stay:

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://barler3osxcnf"]
+[gd_resource type="TileSet" format=3 uid="uid://barler3osxcnf"]
 
 [ext_resource type="Texture2D" uid="uid://ccs5i3rum3qh2" path="res://assets/images/grayblocking3.png" id="1_t2yk4"]
 

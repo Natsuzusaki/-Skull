@@ -23,6 +23,7 @@ extends Node2D
 #Printers
 @onready var printer1: Node2D = $Printers/Printer
 #References
+@onready var marker: Sprite2D = $Marker
 @onready var notes: Node2D = %Notes
 @onready var consoles: Node2D = %Consoles
 @onready var camera: Camera2D = %Camera
@@ -154,6 +155,7 @@ func printerexplode() -> void:
 
 #----Processes
 func _process(_delta: float) -> void:
+	marker.global_position = player.global_position + Vector2(0, -30)
 	_save_time_on_death()
 	#if not grid.visible:
 		#note_ui.visible = true

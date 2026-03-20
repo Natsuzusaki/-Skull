@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bfan1cxcaqfbu"]
+[gd_scene format=3 uid="uid://bfan1cxcaqfbu"]
 
 [ext_resource type="Script" uid="uid://b6lv1768mwh4d" path="res://scripts/console_panel.gd" id="1_7qxwa"]
 [ext_resource type="FontFile" uid="uid://bp83qou1fslbk" path="res://assets/fonts/PixelOperator8.ttf" id="2_her8x"]
@@ -322,24 +322,24 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Console" type="Area2D"]
+[node name="Console" type="Area2D" unique_id=39217588]
 collision_layer = 16
 script = ExtResource("1_7qxwa")
 base_text = "enter code..."
 fixed_var = "var number = 5
 const SPEED = 10"
 
-[node name="TextValidator" type="Node2D" parent="."]
+[node name="TextValidator" type="Node2D" parent="." unique_id=213715901]
 script = ExtResource("2_kxyyb")
 
-[node name="DataType_Changer" type="Control" parent="."]
+[node name="DataType_Changer" type="Control" parent="." unique_id=49465478]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_bptkf")
 
-[node name="Terminal" type="Control" parent="."]
+[node name="Terminal" type="Control" parent="." unique_id=895858785]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
@@ -350,18 +350,18 @@ offset_bottom = 259.0
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(150, 200)
 
-[node name="Panel2" type="Panel" parent="Terminal"]
+[node name="Panel2" type="Panel" parent="Terminal" unique_id=1424246123]
 layout_mode = 0
-offset_left = 123.33332
+offset_left = 136.66667
 offset_top = 21.666676
-offset_right = 270.00107
+offset_right = 283.3344
 offset_bottom = 128.33334
 scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(27, 133.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_84pe4")
 script = ExtResource("4_84pe4")
 
-[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel2"]
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel2" unique_id=1982778514]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -372,19 +372,19 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel2/MarginContainer" unique_id=1004924004]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer" unique_id=1240246216]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="Panel" type="Panel" parent="Terminal/Panel2/MarginContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Terminal/Panel2/MarginContainer/HBoxContainer" unique_id=1827540738]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_u633n")
 
-[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel" unique_id=1643314408]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,29 +396,29 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer" unique_id=890608983]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1685218232]
 layout_mode = 2
 text = "Shortcuts:"
 label_settings = SubResource("LabelSettings_stbsn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1113937074]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=290612849]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1400176135]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1564275227]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -427,7 +427,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=809398202]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -436,10 +436,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=989210405]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1375064800]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -448,7 +448,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=250304823]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -458,10 +458,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1315166744]
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label5" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=818028910]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -470,7 +470,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label6" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label6" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=802167323]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -480,10 +480,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=359858377]
 layout_mode = 2
 
-[node name="Label7" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label7" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1466589354]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -492,7 +492,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label8" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label8" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1384082821]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -502,10 +502,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1259543351]
 layout_mode = 2
 
-[node name="Label9" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label9" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1476814795]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -514,7 +514,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label10" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label10" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=173316111]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -524,10 +524,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator5" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=374559905]
 layout_mode = 2
 
-[node name="Label11" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label11" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=911069694]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -536,7 +536,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label12" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label12" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1018985368]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -545,10 +545,10 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator6" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator6" type="HSeparator" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=85784527]
 layout_mode = 2
 
-[node name="Label13" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label13" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=129232166]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -557,7 +557,7 @@ label_settings = SubResource("LabelSettings_84pe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label14" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label14" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=58845117]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -566,7 +566,7 @@ label_settings = SubResource("LabelSettings_u633n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArrowDirection" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer"]
+[node name="ArrowDirection" type="Label" parent="Terminal/Panel2/MarginContainer/HBoxContainer" unique_id=1556443134]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -576,14 +576,14 @@ label_settings = SubResource("LabelSettings_n4g51")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Highlight" type="Sprite2D" parent="Terminal/Panel2"]
+[node name="Highlight" type="Sprite2D" parent="Terminal/Panel2" unique_id=1205690541]
 visible = false
 position = Vector2(140, 53.33332)
 texture = ExtResource("6_84pe4")
 region_enabled = true
 region_rect = Rect2(208, 200, 16, 112)
 
-[node name="Panel" type="Panel" parent="Terminal"]
+[node name="Panel" type="Panel" parent="Terminal" unique_id=1723163281]
 z_index = 10
 layout_mode = 1
 anchors_preset = 10
@@ -597,7 +597,7 @@ scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(120, 200)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ifr1o")
 
-[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel" unique_id=1536409472]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -609,25 +609,25 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer" unique_id=653510784]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer" unique_id=724471243]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2068949984]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Panel" type="Panel" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1196328379]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_stbsn")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel" unique_id=1155528215]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -635,7 +635,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer" unique_id=1511095145]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -644,25 +644,25 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/ScrollContainer/MarginContainer" unique_id=741940299]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 label_settings = SubResource("LabelSettings_ujx2k")
 autowrap_mode = 1
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=687712084]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1815377929]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1408296108]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=934455529]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -671,25 +671,25 @@ theme_override_fonts/font = ExtResource("2_her8x")
 theme_override_font_sizes/font_size = 8
 text = "run"
 
-[node name="Exit" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Exit" type="Button" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=244357611]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_her8x")
 theme_override_font_sizes/font_size = 8
 text = "X"
 
-[node name="Limit" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Limit" type="Label" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1169545080]
 layout_mode = 2
 text = "string size
 limit: "
 label_settings = SubResource("LabelSettings_ifr1o")
 horizontal_alignment = 1
 
-[node name="HSplitContainer3" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HSplitContainer3" type="HSplitContainer" parent="Terminal/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1425247342]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="CodeEdit" type="CodeEdit" parent="Terminal/Panel/MarginContainer/VBoxContainer"]
+[node name="CodeEdit" type="CodeEdit" parent="Terminal/Panel/MarginContainer/VBoxContainer" unique_id=763776339]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.133333, 0.545098, 0.133333, 1)
@@ -705,38 +705,34 @@ indent_automatic = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2119923603]
 position = Vector2(0, 40)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_rx28n")
 
-[node name="Console" type="Sprite2D" parent="."]
+[node name="Console" type="Sprite2D" parent="." unique_id=237914642]
 position = Vector2(0, 40)
 texture = ExtResource("3_buc2e")
 
-[node name="Console_Near" type="Sprite2D" parent="."]
+[node name="Console_Near" type="Sprite2D" parent="." unique_id=1864428525]
 visible = false
 position = Vector2(0, 40)
 texture = ExtResource("6_jrj24")
 region_enabled = true
 region_rect = Rect2(8, 136, 48, 64)
 
-[node name="Console_Off" type="Sprite2D" parent="."]
+[node name="Console_Off" type="Sprite2D" parent="." unique_id=1755115797]
 visible = false
 position = Vector2(0, 40)
 texture = ExtResource("7_ifr1o")
 
-[node name="PopUp Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_w38mj")
-}
+[node name="PopUp Animation" type="AnimationPlayer" parent="." unique_id=640480420]
+libraries/ = SubResource("AnimationLibrary_w38mj")
 
-[node name="Shortcut Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_n4g51")
-}
+[node name="Shortcut Animation" type="AnimationPlayer" parent="." unique_id=152045676]
+libraries/ = SubResource("AnimationLibrary_n4g51")
 
-[node name="Button" type="AnimatedSprite2D" parent="."]
+[node name="Button" type="AnimatedSprite2D" parent="." unique_id=865290710]
 modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_stbsn")
 animation = &"idle"

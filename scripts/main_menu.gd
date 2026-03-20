@@ -22,8 +22,6 @@ extends Control
 @onready var switch_user: Button = $Background/Menu/User/SwitchUser
 
 
-var data = SaveManager.load_game()
-
 func _ready() -> void:
 	light_flicker()
 	MusicManager.play_music("res://assets/music/[1-01] Cave Story (Main Theme) - Cave Story Remastered Soundtrack.mp3", 0.08)
@@ -37,6 +35,9 @@ func _ready() -> void:
 	else:
 		current_user.text = "Welcome back! %s" % SaveManager.current_user
 
+func get_save_data() -> Dictionary:
+	return SaveManager.load_game()
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause") and golden_badge.visible or silver_badge.visible:
 		golden_badge.visible = false
@@ -48,14 +49,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	check_game_completion()
 	if SaveManager.current_user != "Guest":
+		var data = get_save_data()
 		animation_player1.play("new_animation_2")
 		switch_user.text = "Switch User"
 		sprite_2d.visible = false
 		start_button.disabled = false
 		settings_button.disabled = false
-		if data.has("Chapter1"):
-			if data["Chapter1"].has("checkpoint_order"):
-				continue_button.disabled = false
+		continue_button.disabled = not has_level_progress(data)
 	else:
 		animation_player1.play("new_animation")
 		#sprite_2d.visible = true
@@ -70,10 +70,13 @@ func _on_startnewgame_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
-	if data["Levels"]["level1"]:
-		Loading.loading("res://scenes/levels/level2.tscn")
-	else:
-		Loading.loading("res://scenes/levels/level1.tscn")
+	if SaveManager.current_user == "Guest":
+		return
+	var data := SaveManager.load_game()
+	var scene_path := get_continue_scene(data)
+	if scene_path == "":
+		return # safety guard
+	Loading.loading(scene_path)
 
 func _on_Settings_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)
@@ -169,6 +172,29 @@ func check_game_completion() -> void:
 			silver_trophy.visible = false
 			golden_trophy.disabled = true
 			golden_trophy.visible = false
+
+func has_level_progress(save_data: Dictionary) -> bool:
+	var chapters := ["Chapter1", "Chapter2", "Chapter3", "Chapter4"]
+	for chapter in chapters:
+		if save_data.has(chapter):
+			if save_data[chapter].has("checkpoint_order"):
+				if save_data[chapter]["checkpoint_order"] > 0:
+					return true
+	return false
+
+func get_continue_scene(save_data: Dictionary) -> String:
+	var levels = save_data.get("Levels", {})
+
+	if levels.get("level4", false):
+		return "res://scenes/levels/level4.tscn"
+	elif levels.get("level3", false):
+		return "res://scenes/levels/level3.tscn"
+	elif levels.get("level2", false):
+		return "res://scenes/levels/level2.tscn"
+	elif levels.get("level1", false):
+		return "res://scenes/levels/level1.tscn"
+	return ""
+
 
 func _on_back_button_pressed() -> void:
 	SfxManager.play_sfx(sfx_settings.SFX_NAME.MENU_BUTTON)

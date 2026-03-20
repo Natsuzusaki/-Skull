@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://co4aa8a5s77br"]
+[gd_resource type="TileSet" format=3 uid="uid://co4aa8a5s77br"]
 
 [ext_resource type="Shader" uid="uid://b2f4ibx0vechv" path="res://assets/presets/crystal_tile_glow.gdshader" id="1_44ydv"]
 [ext_resource type="Texture2D" uid="uid://deytkfrieffpn" path="res://assets/images/tiles.png" id="2_v56en"]

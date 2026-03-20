@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dp6tjuwpf5i5h"]
+[gd_scene format=3 uid="uid://dp6tjuwpf5i5h"]
 
 [ext_resource type="Script" uid="uid://c1p1e8spypbpk" path="res://scripts/main_menu.gd" id="1_um6dh"]
 [ext_resource type="Texture2D" uid="uid://bk6qs6w4c8fg8" path="res://assets/images/bg.png" id="2_m8t5g"]
@@ -438,7 +438,7 @@ texture = ExtResource("4_a1wsg")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nf18"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "user_list")]
+[node name="MainMenu" type="Control" unique_id=805630247 node_paths=PackedStringArray("main_menu", "user_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -449,7 +449,7 @@ script = ExtResource("1_um6dh")
 main_menu = NodePath("Background/Menu")
 user_list = NodePath("Background/UserList")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="." unique_id=1655335814]
 material = SubResource("CanvasItemMaterial_eyqfm")
 layout_mode = 1
 anchors_preset = 15
@@ -459,7 +459,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ffklo")
 
-[node name="PointLight2D" type="PointLight2D" parent="Background"]
+[node name="PointLight2D" type="PointLight2D" parent="Background" unique_id=1568694131]
 show_behind_parent = true
 position = Vector2(631, 363)
 scale = Vector2(0.93108875, 0.96469516)
@@ -468,7 +468,7 @@ range_z_min = -1
 range_z_max = 1
 texture = ExtResource("3_ffklo")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background" unique_id=824009175]
 position = Vector2(640, 352.00003)
 scale = Vector2(5.5335293, 5.5335293)
 amount = 30
@@ -485,7 +485,7 @@ scale_amount_max = 0.15
 scale_amount_curve = SubResource("Curve_e6xqc")
 color = Color(0.84705883, 1, 0.45490196, 0.49019608)
 
-[node name="Menu" type="Panel" parent="Background"]
+[node name="Menu" type="Panel" parent="Background" unique_id=1202751662]
 self_modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -495,7 +495,7 @@ offset_right = -920.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainButtons" type="VBoxContainer" parent="Background/Menu"]
+[node name="MainButtons" type="VBoxContainer" parent="Background/Menu" unique_id=1964900076]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -510,7 +510,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Start" type="Button" parent="Background/Menu/MainButtons"]
+[node name="Start" type="Button" parent="Background/Menu/MainButtons" unique_id=215990671]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -523,7 +523,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_mf7fl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Start Game"
 
-[node name="Continue" type="Button" parent="Background/Menu/MainButtons"]
+[node name="Continue" type="Button" parent="Background/Menu/MainButtons" unique_id=1242870785]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -537,7 +537,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 disabled = true
 text = "Continue"
 
-[node name="Settings" type="Button" parent="Background/Menu/MainButtons"]
+[node name="Settings" type="Button" parent="Background/Menu/MainButtons" unique_id=1070241984]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -550,7 +550,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_d6l81")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Settings"
 
-[node name="Exit" type="Button" parent="Background/Menu/MainButtons"]
+[node name="Exit" type="Button" parent="Background/Menu/MainButtons" unique_id=596477732]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -562,7 +562,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Exit"
 
-[node name="GameTitle" type="RichTextLabel" parent="Background/Menu"]
+[node name="GameTitle" type="RichTextLabel" parent="Background/Menu" unique_id=170478063]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -588,7 +588,7 @@ text = "[wave]Spelunkode"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="User" type="Panel" parent="Background/Menu"]
+[node name="User" type="Panel" parent="Background/Menu" unique_id=685133123]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.011111111
@@ -600,7 +600,7 @@ offset_bottom = 96.0
 pivot_offset = Vector2(600, 32)
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentUser" type="Label" parent="Background/Menu/User"]
+[node name="CurrentUser" type="Label" parent="Background/Menu/User" unique_id=1167694129]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -618,13 +618,13 @@ text = "Welcome back! Naer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Menu/User"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Menu/User" unique_id=367120430]
 visible = false
 position = Vector2(148, 40.957737)
 scale = Vector2(0.15712683, 0.084507026)
 texture = ExtResource("9_c2ugb")
 
-[node name="SwitchUser" type="Button" parent="Background/Menu/User"]
+[node name="SwitchUser" type="Button" parent="Background/Menu/User" unique_id=839216743]
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.9999695
@@ -643,12 +643,10 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wfgb2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dvdtt")
 text = "Switch User"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Menu/User"]
-libraries = {
-&"": SubResource("AnimationLibrary_grcqo")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Menu/User" unique_id=324840390]
+libraries/ = SubResource("AnimationLibrary_grcqo")
 
-[node name="SilverTrophy" type="TextureButton" parent="Background/Menu"]
+[node name="SilverTrophy" type="TextureButton" parent="Background/Menu" unique_id=1610865872]
 visible = false
 layout_mode = 0
 offset_left = 1036.0
@@ -661,7 +659,7 @@ texture_normal = SubResource("AnimatedTexture_fpe64")
 texture_pressed = SubResource("AnimatedTexture_75vrm")
 texture_hover = SubResource("AnimatedTexture_p2olv")
 
-[node name="GoldenTrophy" type="TextureButton" parent="Background/Menu"]
+[node name="GoldenTrophy" type="TextureButton" parent="Background/Menu" unique_id=1108076167]
 visible = false
 layout_mode = 0
 offset_left = 1129.0
@@ -674,7 +672,7 @@ texture_normal = SubResource("AnimatedTexture_co7qn")
 texture_pressed = SubResource("AnimatedTexture_u15bo")
 texture_hover = SubResource("AnimatedTexture_qvwvq")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/Menu"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/Menu" unique_id=2114081079]
 visible = false
 material = SubResource("CanvasItemMaterial_lxx53")
 position = Vector2(1136, 605)
@@ -691,28 +689,28 @@ color_initial_ramp = SubResource("Gradient_b58wi")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="UserList" parent="Background" node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
+[node name="UserList" parent="Background" unique_id=1671234505 node_paths=PackedStringArray("parent", "previous_menu") instance=ExtResource("8_um6dh")]
 visible = false
 z_index = 2
 layout_mode = 1
 parent = NodePath("../..")
 previous_menu = NodePath("../Menu")
 
-[node name="SilverBadge" type="Sprite2D" parent="."]
+[node name="SilverBadge" type="Sprite2D" parent="." unique_id=853172209]
 visible = false
 z_index = 2
 position = Vector2(640, 336)
 scale = Vector2(6.857141, 6.8571405)
 texture = ExtResource("61_eyqfm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SilverBadge"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SilverBadge" unique_id=782836934]
 offset_left = -20.416674
 offset_top = 4.520837
 offset_right = 261.5833
 offset_bottom = 197.52084
 scale = Vector2(0.14483534, 0.14483534)
 
-[node name="Label" type="Label" parent="SilverBadge/VBoxContainer"]
+[node name="Label" type="Label" parent="SilverBadge/VBoxContainer" unique_id=927521195]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.33875915, 0.40882403, 0.49626178, 1)
 theme_override_constants/line_spacing = 10
@@ -723,7 +721,7 @@ PROGRAMMER'S
 BADGE"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="SilverBadge/VBoxContainer"]
+[node name="Label2" type="Label" parent="SilverBadge/VBoxContainer" unique_id=1052770108]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.42531124, 0.5026744, 0.5992773, 1)
 theme_override_fonts/font = ExtResource("52_6irp5")
@@ -733,28 +731,26 @@ Completed all
 four levels."
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SilverBadge"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SilverBadge" unique_id=945034761]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_mu3rc")
-}
-autoplay = "silver_badge_animation"
+libraries/ = SubResource("AnimationLibrary_mu3rc")
+autoplay = &"silver_badge_animation"
 
-[node name="GoldenBadge" type="Sprite2D" parent="."]
+[node name="GoldenBadge" type="Sprite2D" parent="." unique_id=2048223927]
 visible = false
 z_index = 2
 position = Vector2(640.00006, 352)
 scale = Vector2(5.8823543, 5.8823566)
 texture = ExtResource("63_b58wi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GoldenBadge"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GoldenBadge" unique_id=2079675455]
 offset_left = -20.416674
 offset_top = 9.859995
 offset_right = 261.5833
 offset_bottom = 202.86
 scale = Vector2(0.14483534, 0.14483534)
 
-[node name="Label" type="Label" parent="GoldenBadge/VBoxContainer"]
+[node name="Label" type="Label" parent="GoldenBadge/VBoxContainer" unique_id=1171740451]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6819098, 0.4030956, 0.07143896, 1)
 theme_override_constants/line_spacing = 10
@@ -765,7 +761,7 @@ PROGRAMMER'S
 BADGE"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="GoldenBadge/VBoxContainer"]
+[node name="Label2" type="Label" parent="GoldenBadge/VBoxContainer" unique_id=1757106913]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.753975, 0.4483136, 0.08904291, 1)
 theme_override_fonts/font = ExtResource("52_6irp5")
@@ -776,14 +772,12 @@ stars on all four
 levels."
 horizontal_alignment = 1
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="GoldenBadge"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="GoldenBadge" unique_id=70843176]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_mu3rc")
-}
-autoplay = "golden_badge_animation"
+libraries/ = SubResource("AnimationLibrary_mu3rc")
+autoplay = &"golden_badge_animation"
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=793147521]
 visible = false
 texture_filter = 1
 layout_mode = 1

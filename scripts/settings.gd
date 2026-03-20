@@ -13,7 +13,7 @@ var music_bus_id: int
 var sfx_bus_id: int
 
 var input_actions = {
-	"up": "Throw up",
+	"up": "Throw object up",
 	"left": "Move Left",
 	"right": "Move Right",
 	"down": "Move Down",
@@ -26,6 +26,7 @@ func _ready():
 	music_bus_id = AudioServer.get_bus_index("Music")
 	sfx_bus_id = AudioServer.get_bus_index("SFX")
 	load_settings()
+	_add_secondary_controls()
 
 func _unhandled_input(_event: InputEvent) -> void:
 	var root = get_tree().current_scene
@@ -76,7 +77,11 @@ func _input(event):
 		if (event is InputEventKey ||(event is InputEventMouseButton && event.pressed)):
 			if event is InputEventMouseButton && event.double_click:
 				event.double_click = false
-			InputMap.action_erase_events(action_to_remap)
+			var events = InputMap.action_get_events(action_to_remap)
+			for ev in events:
+				if ev is InputEventKey:
+					if ev.physical_keycode not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
+						InputMap.action_erase_event(action_to_remap, ev)
 			InputMap.action_add_event(action_to_remap, event)
 			_update_action_list(remapping_button, event)
 			is_remapping = false
@@ -103,6 +108,18 @@ func _on_reset_to_default_pressed() -> void:
 		}
 	})
 	_create_action_list()
+func _add_secondary_controls():
+	_add_secondary("up", KEY_UP)
+	_add_secondary("down", KEY_DOWN)
+	_add_secondary("left", KEY_LEFT)
+	_add_secondary("right", KEY_RIGHT)
+func _add_secondary(action, keycode):
+	for ev in InputMap.action_get_events(action):
+		if ev is InputEventKey and ev.physical_keycode == keycode:
+			return # already exists
+	var ev := InputEventKey.new()
+	ev.physical_keycode = keycode
+	InputMap.action_add_event(action, ev)
 
 #Sounds
 func _on_music_slider_value_changed(value: float) -> void:
